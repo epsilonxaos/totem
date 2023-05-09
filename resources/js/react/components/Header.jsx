@@ -23,7 +23,7 @@ function MenuMovil({ open }) {
             )}
 
             {open && (
-                <div className="bg-black md:hidden bg-opacity-30 h-screen w-screen z-10"></div>
+                <div className="bg-black fixed top-0 left-0 md:hidden bg-opacity-30 h-screen w-screen z-10"></div>
             )}
         </>
     );
@@ -35,20 +35,24 @@ export default function Header() {
     return (
         <>
             <header className="bg-white border-b-[9px] border-b-delftblue py-6 px-6 relative z-30">
-                <div className="grid grid-cols-2 md:grid-cols-3">
-                    <div className="col-span-1"></div>
-                    <div className="col-span-1 flex justify-end md:hidden">
-                        <div
-                            className={`menu menu-3 ${open ? "active" : ""}`}
-                            onClick={() => {
-                                setOpen(!open);
-                            }}
-                        >
-                            <span></span>
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid grid-cols-2 md:grid-cols-3">
+                        <div className="col-span-1"></div>
+                        <div className="col-span-1 flex justify-end md:hidden">
+                            <div
+                                className={`menu menu-3 ${
+                                    open ? "active" : ""
+                                }`}
+                                onClick={() => {
+                                    setOpen(!open);
+                                }}
+                            >
+                                <span></span>
+                            </div>
                         </div>
-                    </div>
-                    <div className="hidden md:block md:col-span-2">
-                        <MenuList />
+                        <div className="hidden md:block md:col-span-2">
+                            <MenuList />
+                        </div>
                     </div>
                 </div>
             </header>

@@ -19,6 +19,9 @@ module.exports = {
                 delftblue: "#202E56",
                 oxfordblue: "#0E1A3D",
             },
+            maxWidth: {
+                design: "1527px",
+            },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 inter: ["Inter", "sans-serif"],
