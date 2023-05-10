@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 
 let container = null;
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("DOMContentLoaded", function () {
     if (!container) {
         container = document.getElementById("root");
         const root = createRoot(container);

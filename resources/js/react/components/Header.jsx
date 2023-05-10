@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../../../css/custom/header.css";
 import { Link } from "react-router-dom";
 
+import logo from "../../../img/app/logo.svg";
+
 function MenuList() {
     return (
         <ul className="flex flex-col md:flex-row gap-10 md:gap-5 lg:gap-8 justify-end font-medium text-raisinblack text-sm">
@@ -37,10 +39,18 @@ export default function Header() {
 
     return (
         <>
-            <header className="bg-white border-b-[9px] border-b-delftblue py-6 px-6 relative z-30">
+            <header className="bg-white border-b-[9px] border-b-delftblue py-2 px-6 relative z-30">
                 <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-2 md:grid-cols-3">
-                        <div className="col-span-1"></div>
+                    <div className="grid grid-cols-2 md:grid-cols-3 items-center">
+                        <div className="col-span-1">
+                            <Link to={"/"}>
+                                <img
+                                    src={logo}
+                                    alt="Tótem Beach Club"
+                                    className="w-24"
+                                />
+                            </Link>
+                        </div>
                         <div className="col-span-1 flex justify-end md:hidden">
                             <div
                                 className={`menu menu-3 ${
