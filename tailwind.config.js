@@ -18,6 +18,7 @@ module.exports = {
                 verdigris: "#75B5B0",
                 delftblue: "#202E56",
                 oxfordblue: "#0E1A3D",
+                platinum: "#D9D9D9",
             },
             maxWidth: {
                 design: "1527px",
