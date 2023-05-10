@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/{path?}', 'welcome')->where('path', '.*');
+// Route::view('/{path?}', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,33 +32,33 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::middleware('guest') -> prefix('/admin') -> group(function() {
-    Route::get('/', [AdminController::class, 'iniciarSesionView']) -> name('panel.access');
-    Route::post('/login', [AdminController::class, 'login']) -> name('panel.login');
-    Route::get('/register', [AdminController::class, 'registrarAdmin']) -> name('panel.register');
+Route::middleware('guest')->prefix('/admin')->group(function () {
+    Route::get('/', [AdminController::class, 'iniciarSesionView'])->name('panel.access');
+    Route::post('/login', [AdminController::class, 'login'])->name('panel.login');
+    Route::get('/register', [AdminController::class, 'registrarAdmin'])->name('panel.register');
 });
 
-Route::middleware(['auth:admin', 'verified']) -> prefix('/admin') -> group(function() {
-    Route::post('/logout', [AdminController::class, 'logout']) -> name('panel.logout');
-    Route::get('/dashboard', [AdminController::class, 'dashboardAdmin']) -> name('panel.dashboard');
-    
-    
-    Route::prefix('/perfil') -> group(function() {
-        Route::get('/', [AdminController::class, 'editProfile']) -> name('panel.profile.edit');
-        Route::patch('/update', [AdminController::class, 'updateProfile']) -> name('panel.profile.update');
-        Route::put('/update/password', [AdminController::class, 'updateProfilePassword']) -> name('panel.profile.update.password');
-        Route::delete('/destroy', [AdminController::class, 'destroyProfile']) -> name('panel.profile.destroy');
+Route::middleware(['auth:admin', 'verified'])->prefix('/admin')->group(function () {
+    Route::post('/logout', [AdminController::class, 'logout'])->name('panel.logout');
+    Route::get('/dashboard', [AdminController::class, 'dashboardAdmin'])->name('panel.dashboard');
+
+
+    Route::prefix('/perfil')->group(function () {
+        Route::get('/', [AdminController::class, 'editProfile'])->name('panel.profile.edit');
+        Route::patch('/update', [AdminController::class, 'updateProfile'])->name('panel.profile.update');
+        Route::put('/update/password', [AdminController::class, 'updateProfilePassword'])->name('panel.profile.update.password');
+        Route::delete('/destroy', [AdminController::class, 'destroyProfile'])->name('panel.profile.destroy');
     });
 
-    Route::prefix('/usuarios') -> group(function() {
-        Route::get('/', [AdminController::class, 'index']) -> name('panel.usuarios.index');
-        Route::get('/create', [AdminController::class, 'create']) -> name('panel.usuarios.create');
-        Route::post('/store', [AdminController::class, 'store']) -> name('panel.usuarios.store');
-        Route::get('/edit/{id?}', [AdminController::class, 'editProfileId']) -> name('panel.usuarios.edit');
-        Route::patch('/update/{id?}', [AdminController::class, 'updateProfile']) -> name('panel.usuarios.update');
-        Route::put('/update/{id?}/password', [AdminController::class, 'updateProfilePassword']) -> name('panel.usuarios.update.password');
-        Route::delete('/destroy/{id?}', [AdminController::class, 'destroyProfile']) -> name('panel.usuarios.destroy');
+    Route::prefix('/usuarios')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('panel.usuarios.index');
+        Route::get('/create', [AdminController::class, 'create'])->name('panel.usuarios.create');
+        Route::post('/store', [AdminController::class, 'store'])->name('panel.usuarios.store');
+        Route::get('/edit/{id?}', [AdminController::class, 'editProfileId'])->name('panel.usuarios.edit');
+        Route::patch('/update/{id?}', [AdminController::class, 'updateProfile'])->name('panel.usuarios.update');
+        Route::put('/update/{id?}/password', [AdminController::class, 'updateProfilePassword'])->name('panel.usuarios.update.password');
+        Route::delete('/destroy/{id?}', [AdminController::class, 'destroyProfile'])->name('panel.usuarios.destroy');
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

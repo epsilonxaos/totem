@@ -26,6 +26,7 @@ module.exports = {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 inter: ["Inter", "sans-serif"],
+                murecho: ["Murecho", "sans-serif"],
             },
         },
     },

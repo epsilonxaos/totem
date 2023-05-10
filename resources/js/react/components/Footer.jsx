@@ -1,9 +1,9 @@
 import React from "react";
 
-import logoFooter from "../../../../img/app/logo-footer.svg";
-import iconIn from "../../../../img/app/icon-in.svg";
-import iconFb from "../../../../img/app/icon-fb.svg";
-import iconLocation from "../../../../img/app/icon-location.svg";
+import logoFooter from "../../../img/app/logo-footer.svg";
+import iconIn from "../../../img/app/icon-in.svg";
+import iconFb from "../../../img/app/icon-fb.svg";
+import iconLocation from "../../../img/app/icon-location.svg";
 
 export default function Footer() {
     return (
