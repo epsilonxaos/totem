@@ -6,6 +6,7 @@ import Membresia from "./components/pages/Membresia";
 import { Route, Routes } from "react-router-dom";
 import Page404 from "./components/pages/Page404";
 import Politicas from "./components/pages/Politicas";
+import Restaurante from "./components/pages/Resturante";
 
 export default function App() {
     return (
@@ -14,6 +15,7 @@ export default function App() {
 
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/restaurante" element={<Restaurante />} />
                 <Route path="/membresia" element={<Membresia />} />
                 <Route path="/politicas" element={<Politicas />} />
             </Routes>

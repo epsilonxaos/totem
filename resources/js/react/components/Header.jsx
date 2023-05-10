@@ -8,7 +8,9 @@ function MenuList() {
     return (
         <ul className="flex flex-col md:flex-row gap-10 md:gap-5 lg:gap-8 justify-end font-medium text-raisinblack text-sm">
             <li className="">Daypass</li>
-            <li className="">Restaurante</li>
+            <li className="">
+                <Link to={"/restaurante"}>Restaurante</Link>
+            </li>
             <li className="">
                 <Link to={"/membresia"}>Membresía</Link>
             </li>
