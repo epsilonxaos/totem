@@ -1,0 +1,7 @@
+.splide__slide {
+    transform: translateY(0px);
+    transition: all 300ms;
+}
+.splide__slide.is-active {
+    transform: scale(1.1);
+}

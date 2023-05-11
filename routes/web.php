@@ -19,6 +19,7 @@ Route::view('/', 'welcome')->where('path', '.*');
 Route::view('/restaurante', 'welcome')->where('path', '.*');
 Route::view('/membresia', 'welcome')->where('path', '.*');
 Route::view('/politicas', 'welcome')->where('path', '.*');
+Route::view('/daypass', 'welcome')->where('path', '.*');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

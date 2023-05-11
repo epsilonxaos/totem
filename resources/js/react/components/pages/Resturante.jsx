@@ -16,7 +16,7 @@ export default function Restaurante() {
             <div className="w-full">
                 <img
                     src={banner}
-                    className="aspect-square md:aspect-video w-full object-cover max-h-[850px]"
+                    className="aspect-square md:aspect-video w-full object-cover max-h-[660px]"
                     alt=""
                 />
             </div>
