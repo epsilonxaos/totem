@@ -15,6 +15,7 @@ import gal_3 from "../../../../img/app/galeria-day/3.jpg";
 import gal_4 from "../../../../img/app/galeria-day/4.jpg";
 import gal_5 from "../../../../img/app/galeria-day/5.jpg";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { Link } from "react-router-dom";
 
 export default function Daypass() {
     return (
@@ -27,7 +28,7 @@ export default function Daypass() {
                 />
             </div>
 
-            <div className="px-4 py-8 md:py-14">
+            <div className="px-4 py-8 md:py-14 pb-0">
                 <div className="max-w-design mx-auto flex flex-row flex-wrap justify-center">
                     <div className="w:full md:max-w-[650px]">
                         <h3 className="font-murecho font-extrabold text-3xl text-oxfordblue mb-2">
@@ -84,16 +85,18 @@ export default function Daypass() {
                         </p>
                     </div>
                     <div className="w-full">
-                        <button className="px-8 py-3 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-oxfordblue rounded-md mx-auto">
-                            ¡Reserva Ahora!
-                        </button>
+                        <Link to={"/daypass/orden"}>
+                            <button className="px-8 py-3 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto">
+                                ¡Reserva Ahora!
+                            </button>
+                        </Link>
                         <p>De Lunes a Domingo de 11:00 am a 6:00 pm.</p>
                         <p className="font-bold">Disponibilidad limitada*</p>
                     </div>
                 </div>
             </div>
 
-            <div className="max-w-design mx-auto">
+            <div className="max-w-design mx-auto w-full overflow-hidden py-12 md:py-28">
                 <Galeria />
             </div>
         </main>
@@ -124,7 +127,6 @@ function Galeria() {
                 arrows: false,
                 pagination: false,
                 autoplay: true,
-                interval: 5000,
                 speed: 2500,
                 lazyLoad: true,
                 perPage: 3,
@@ -133,35 +135,35 @@ function Galeria() {
         >
             <SplideSlide>
                 <img
-                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] max-w-[450px]"
+                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] mx-auto"
                     src={gal_1}
                     alt="Galeria 1"
                 />
             </SplideSlide>
             <SplideSlide>
                 <img
-                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] max-w-[450px]"
+                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] mx-auto"
                     src={gal_2}
                     alt="Galeria 1"
                 />
             </SplideSlide>
             <SplideSlide>
                 <img
-                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] max-w-[450px]"
+                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] mx-auto"
                     src={gal_3}
                     alt="Galeria 1"
                 />
             </SplideSlide>
             <SplideSlide>
                 <img
-                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] max-w-[450px]"
+                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] mx-auto"
                     src={gal_4}
                     alt="Galeria 1"
                 />
             </SplideSlide>
             <SplideSlide>
                 <img
-                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] max-w-[450px]"
+                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] mx-auto"
                     src={gal_5}
                     alt="Galeria 1"
                 />

@@ -8,6 +8,7 @@ import Page404 from "./components/pages/Page404";
 import Politicas from "./components/pages/Politicas";
 import Restaurante from "./components/pages/Resturante";
 import Daypass from "./components/pages/Daypass";
+import Orden from "./components/pages/Orden";
 
 export default function App() {
     return (
@@ -18,6 +19,7 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/restaurante" element={<Restaurante />} />
                 <Route path="/daypass" element={<Daypass />} />
+                <Route path="/daypass/orden" element={<Orden />} />
                 <Route path="/membresia" element={<Membresia />} />
                 <Route path="/politicas" element={<Politicas />} />
             </Routes>
