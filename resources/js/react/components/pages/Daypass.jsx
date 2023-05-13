@@ -28,9 +28,9 @@ export default function Daypass() {
                 />
             </div>
 
-            <div className="px-4 py-8 md:py-14 pb-0">
+            <div className="px-4 py-8 md:pt-14 md:pb-0">
                 <div className="max-w-design mx-auto flex flex-row flex-wrap justify-center">
-                    <div className="w:full md:max-w-[650px]">
+                    <div className="w:full md:max-w-[780px]">
                         <h3 className="font-murecho font-extrabold text-3xl text-oxfordblue mb-2">
                             <span className="text-verdigris">
                                 Ven a vivir un día
@@ -38,7 +38,7 @@ export default function Daypass() {
                             inolvidable las veces que quieras con nuestro day
                             pass.
                         </h3>
-                        <p className="">
+                        <p className="mt-2">
                             Las puertas de nuestro club están siempre abiertas
                             para que{" "}
                             <span className="text-verdigris">
@@ -48,8 +48,8 @@ export default function Daypass() {
                         </p>
                     </div>
                     <div className="w-full"></div>
-                    <div className="w-full md:max-w-[800px] py-10">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                    <div className="w-full md:max-w-[800px] py-10 md:py-24">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-16">
                             <Amenidad img={anemidad_1} title={"Camastros"} />
                             <Amenidad img={anemidad_2} title={"Albercas"} />
                             <Amenidad img={anemidad_3} title={"Kayaks"} />
@@ -69,7 +69,7 @@ export default function Daypass() {
                             />
                         </div>
                     </div>
-                    <div className="w-full md:max-w-[800px] flex max-sm:flex-col items-center justify-between gap-4 pb-16">
+                    <div className="w-full md:max-w-[800px] flex max-sm:flex-col items-center justify-between gap-4 pb-14 md:pb-24">
                         <p className="bg-platinum bg-opacity-50 rounded-2xl py-4 px-5 max-w-[200px]">
                             Visitantes externos{" "}
                             <span className="font-bold">$300</span> pesos
@@ -96,7 +96,7 @@ export default function Daypass() {
                 </div>
             </div>
 
-            <div className="max-w-design mx-auto w-full overflow-hidden py-12 md:py-28">
+            <div className="max-w-design mx-auto w-full overflow-hidden py-12 md:py-24">
                 <Galeria />
             </div>
         </main>

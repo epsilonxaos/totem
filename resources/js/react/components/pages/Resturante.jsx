@@ -21,16 +21,16 @@ export default function Restaurante() {
                 />
             </div>
 
-            <div className="py-12 md:py-24 px-4">
+            <div className="py-12 md:py-20 px-4">
                 <h3 className=" font-murecho font-extrabold text-3xl text-oxfordblue">
                     Conoce nuestro menú
                 </h3>
-                <p className="text-delftblue  mb-10">
+                <p className="text-delftblue mb-14">
                     En <span className="text-verdigris">Tótem Beach Club</span>{" "}
                     tenemos el menú ideal para ti y tu familia.
                 </p>
 
-                <div className="flex max-sm:flex-col max-sm:items-center items-start justify-center gap-11 mb-28">
+                <div className="flex max-sm:flex-col max-sm:items-center items-start justify-center gap-11 mb-14">
                     <div className="">
                         <img src={menu} alt="Menu" className="inline" />
                         <p className="pt-3">Menú</p>
@@ -48,9 +48,9 @@ export default function Restaurante() {
                 <p className="font-murecho font-extrabold text-xl text-oxfordblue">
                     Horario de servicio:
                 </p>
-                <p className="mb-1">De 11:00 am a 5:30 pm.</p>
-                <p className="mb-6">
-                    <small>Disponibilidad limitada.</small>
+                <p className="">De 11:00 am a 5:30 pm.</p>
+                <p className="mb-14">
+                    <small className="text-xs">Disponibilidad limitada.</small>
                 </p>
                 <p className=" font-murecho font-extrabold text-xl text-oxfordblue">
                     ¡RESERVA AQUÍ!

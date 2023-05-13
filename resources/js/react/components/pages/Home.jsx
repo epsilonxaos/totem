@@ -5,7 +5,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 // import "@splidejs/react-splide/css";
 import "@splidejs/react-splide/css/core";
 
-import bannerInicial from "../../../../img/app/banner-1.png";
+import bannerInicial from "../../../../img/app/banner-1.jpg";
 import galeriaTest from "../../../../img/app/galeria-test.jpg";
 import arrowDown from "../../../../img/app/icon-arrow-down.png";
 
@@ -39,24 +39,24 @@ export default function Home() {
             </div>
 
             {/* Bienvenida */}
-            <div className="max-w-design mx-auto text-center font-extrabold text-3xl pt-4 px-4">
+            <div className="max-w-design mx-auto text-center font-extrabold text-3xl pt-4 px-4 pt-8">
                 <h1 className="text-delftblue">
                     Has llegado a Tótem Beach Club, <br />{" "}
                     <span className="text-verdigris">¡bienvenido!</span>
                 </h1>
 
                 <img
-                    className="mt-8 inline cursor-pointer"
+                    className="mt-2 inline cursor-pointer"
                     src={arrowDown}
                     alt="desplazar abajo"
                 />
             </div>
 
             {/* Galeria */}
-            <div className="max-w-6xl mx-auto text-center pt-8 pb-8 md:pb-16 overflow-x-hidden px-4">
+            <div className="max-w-6xl mx-auto text-center pt-8 pb-8 md:pb-12 overflow-x-hidden px-4">
                 <Galeria />
 
-                <p className="pt-4">
+                <p className="pt-4 md:pt-8">
                     Hemos creado{" "}
                     <span className="text-verdigris">
                         un increíble espacio para gozar{" "}
@@ -207,7 +207,7 @@ export default function Home() {
                 />
 
                 {/* Contacto */}
-                <div className="pt-8 pb-8 px-4">
+                <div className="pt-8 pb-8 px-4 bg-platinum bg-opacity-50">
                     <div className="max-w-6xl mx-auto">
                         <div className="grid grid-cols-1 md:grid-cols-3 items-center">
                             <div className="col-span-1 md:col-span-2 md:pr-3">
