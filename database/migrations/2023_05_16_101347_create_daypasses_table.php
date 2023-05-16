@@ -11,7 +11,7 @@ return new class extends Migration
 	 */
 	public function up(): void
 	{
-		Schema::create('daypasses', function (Blueprint $table) {
+		Schema::create('daypass', function (Blueprint $table) {
 			$table->id();
 			$table->integer('limite_total')->default(50);
 			$table->integer('limite_publico')->default(0);
