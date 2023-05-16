@@ -17,9 +17,9 @@ class CompraController extends Controller
 {
 	public function compraConekta(Request $request)
 	{
-		Conekta::setApiKey(env('PRO_APP_PAGOS_KEY_S', 'key_2sTgHXfvMrkpEXRyqzAeAw'));
-		Conekta::setApiVersion('2.0.0');
-		Conekta::setLocale('es');
+		Conekta::setApiKey(env('CONEKTA_KEY_SECRET'));
+		// Conekta::setApiVersion('2.0.0');
+		// Conekta::setLocale('es');
 
 		$today = date('Y-m-d H:i:s');
 		$client = isset($request->isSocio) ? Socios::where([['email', '=', $request->email], ['token_access', '=', $request->token_access]])->get() : $request;
