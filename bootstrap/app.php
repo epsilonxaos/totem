@@ -12,8 +12,24 @@
 */
 
 $app = new Illuminate\Foundation\Application(
-    $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
+	$_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
+
+
+/*
+|--------------------------------------------------------------------------
+| Load Environment File on Startup
+|--------------------------------------------------------------------------
+|
+| This will determine, which environment will be loaded for our application.
+|
+*/
+$env = $app->detectEnvironment(function () {
+	return getenv('APP_ENV') ?: 'local';
+});
+
+
+$app->loadEnvironmentFrom(".env.{$env}");
 
 /*
 |--------------------------------------------------------------------------
@@ -27,18 +43,18 @@ $app = new Illuminate\Foundation\Application(
 */
 
 $app->singleton(
-    Illuminate\Contracts\Http\Kernel::class,
-    App\Http\Kernel::class
+	Illuminate\Contracts\Http\Kernel::class,
+	App\Http\Kernel::class
 );
 
 $app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+	Illuminate\Contracts\Console\Kernel::class,
+	App\Console\Kernel::class
 );
 
 $app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+	Illuminate\Contracts\Debug\ExceptionHandler::class,
+	App\Exceptions\Handler::class
 );
 
 /*
