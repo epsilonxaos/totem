@@ -1,6 +1,7 @@
 import React from "react";
 
 import banner from "../../../../img/app/banner-03.jpg";
+import bannerM from "../../../../img/app/banner-03-m.jpg";
 import anemidad_1 from "../../../../img/app/icons/icon-5.png";
 import anemidad_2 from "../../../../img/app/icons/icon-2.png";
 import anemidad_3 from "../../../../img/app/icons/icon-9.png";
@@ -16,6 +17,7 @@ import gal_4 from "../../../../img/app/galeria-day/4.jpg";
 import gal_5 from "../../../../img/app/galeria-day/5.jpg";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Link } from "react-router-dom";
+import Textos from "../Textos";
 
 export default function Daypass() {
     return (
@@ -23,7 +25,12 @@ export default function Daypass() {
             <div className="w-full">
                 <img
                     src={banner}
-                    className="aspect-square md:aspect-video w-full object-cover max-h-[673px]"
+                    className="hidden sm:block aspect-square md:aspect-video w-full object-cover max-h-[673px]"
+                    alt=""
+                />
+                <img
+                    src={bannerM}
+                    className="sm:hidden w-full object-cover max-h-[450px]"
                     alt=""
                 />
             </div>
@@ -31,13 +38,20 @@ export default function Daypass() {
             <div className="px-4 py-8 md:pt-14 md:pb-0">
                 <div className="max-w-design mx-auto flex flex-row flex-wrap justify-center">
                     <div className="w:full md:max-w-[780px]">
-                        <h3 className="font-murecho font-extrabold text-3xl text-oxfordblue mb-2">
+                        <Textos.Subtitulo className="hidden md:block font-murecho mb-2">
                             <span className="text-verdigris">
                                 Ven a vivir un día
                             </span>{" "}
                             inolvidable las veces que quieras con nuestro day
                             pass.
-                        </h3>
+                        </Textos.Subtitulo>
+                        <Textos.Subtitulo className="md:hidden font-murecho mb-2">
+                            Disfruta{" "}
+                            <span className="text-verdigris">
+                                Tótem Beach Club
+                            </span>{" "}
+                            cuando quieras.
+                        </Textos.Subtitulo>
                         <p className="mt-2">
                             Las puertas de nuestro club están siempre abiertas
                             para que{" "}
@@ -49,25 +63,25 @@ export default function Daypass() {
                     </div>
                     <div className="w-full"></div>
                     <div className="w-full md:max-w-[800px] py-10 md:py-24">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-16">
+                        <ul className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-16">
                             <Amenidad img={anemidad_1} title={"Camastros"} />
                             <Amenidad img={anemidad_2} title={"Albercas"} />
-                            <Amenidad img={anemidad_3} title={"Kayaks"} />
+                            <Amenidad img={anemidad_5} title={"Regaderas"} />
                             <Amenidad
                                 img={anemidad_4}
                                 title={"Paddle boards"}
                             />
-                            <Amenidad img={anemidad_5} title={"Regaderas"} />
+                            <Amenidad img={anemidad_3} title={"Kayaks"} />
+                            <Amenidad img={anemidad_7} title={"Cambiadores"} />
                             <Amenidad
                                 img={anemidad_6}
                                 title={"Shampoo y Jabón de baño."}
                             />
-                            <Amenidad img={anemidad_7} title={"Cambiadores"} />
                             <Amenidad
                                 img={anemidad_8}
                                 title={"Área de Lockers"}
                             />
-                        </div>
+                        </ul>
                     </div>
                     <div className="w-full md:max-w-[800px] flex max-sm:flex-col items-center justify-between gap-4 pb-14 md:pb-24">
                         <p className="bg-platinum bg-opacity-50 rounded-2xl py-4 px-5 max-w-[200px]">
@@ -86,11 +100,14 @@ export default function Daypass() {
                     </div>
                     <div className="w-full">
                         <Link to={"/daypass/orden"}>
-                            <button className="px-8 py-3 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto">
+                            <button className="px-8 py-3 mb-6 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto">
                                 ¡Reserva Ahora!
                             </button>
                         </Link>
-                        <p>De Lunes a Domingo de 11:00 am a 6:00 pm.</p>
+                        <p>
+                            De Lunes a Domingo de <br className="sm:hidden" />{" "}
+                            11:00 am a 6:00 pm.
+                        </p>
                         <p className="font-bold">Disponibilidad limitada*</p>
                     </div>
                 </div>
@@ -105,16 +122,16 @@ export default function Daypass() {
 
 function Amenidad({ img, title }) {
     return (
-        <div className="col-span-1">
+        <li className="col-span-1">
             <div className="flex text-center flex-col items-center justify-center max-w-[140px] mx-auto">
                 <img
                     src={img}
                     alt={title}
-                    className="w-[95px] h-[95px] object-contain"
+                    className="w-[70px] md:w-[95px] md:h-[95px] object-contain"
                 />
                 <p className="font-bold">{title}</p>
             </div>
-        </div>
+        </li>
     );
 }
 
@@ -131,39 +148,44 @@ function Galeria() {
                 lazyLoad: true,
                 perPage: 3,
                 focus: "center",
+                breakpoints: {
+                    640: {
+                        perPage: 1,
+                    },
+                },
             }}
         >
             <SplideSlide>
                 <img
-                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] mx-auto"
+                    className="object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto"
                     src={gal_1}
                     alt="Galeria 1"
                 />
             </SplideSlide>
             <SplideSlide>
                 <img
-                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] mx-auto"
+                    className="object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto"
                     src={gal_2}
                     alt="Galeria 1"
                 />
             </SplideSlide>
             <SplideSlide>
                 <img
-                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] mx-auto"
+                    className="object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto"
                     src={gal_3}
                     alt="Galeria 1"
                 />
             </SplideSlide>
             <SplideSlide>
                 <img
-                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] mx-auto"
+                    className="object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto"
                     src={gal_4}
                     alt="Galeria 1"
                 />
             </SplideSlide>
             <SplideSlide>
                 <img
-                    className="object-cover object-center aspect-square h-[300px] md:h-[750px] w-[90%] mx-auto"
+                    className="object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto"
                     src={gal_5}
                     alt="Galeria 1"
                 />

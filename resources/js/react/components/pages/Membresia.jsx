@@ -1,6 +1,8 @@
 import React from "react";
 
 import bg from "../../../../img/app/membresia-bg.jpg";
+import bgM from "../../../../img/app/membresia-bg-m.jpg";
+import Textos from "../Textos";
 
 export default function Membresia() {
     return (
@@ -8,13 +10,28 @@ export default function Membresia() {
             <img
                 src={bg}
                 alt="Membresia"
-                className="w-full object-cover sm:w-1/2 max-w-full"
+                className="hidden sm:block w-full object-cover sm:w-1/2 max-w-full"
             />
+            <img
+                src={bgM}
+                alt="Membresia"
+                className="sm:hidden max-h-[450px] w-full object-cover"
+            />
+
             <div className="sm:flex h-full items-center justify-center sm:w-1/2 py-10 px-4">
                 <div className="max-w-[400px] mx-auto text-xs text-center font-medium">
-                    <h2 className="font-murecho text-3xl font-bold text-oxfordblue mb-8">
+                    <p className="text-center mb-6 font-semibold">
+                        Si ya eres miembro{" "}
+                        <span className="text-verdigris">haz clic</span> para
+                        reservar.
+                    </p>
+                    <button className="px-8 py-3 inline text-sm mt-2 max-w-max bg-verdigris text-white rounded-md mx-auto">
+                        ¡Reserva Ahora!
+                    </button>
+                    <hr className="max-w-[1273px] w-[95%] border-oxfordblue mx-auto my-9" />
+                    <Textos.Subtitulo className="font-murecho mb-8">
                         No te quedes fuera, ¡aún tenemos un lugar para ti!
-                    </h2>
+                    </Textos.Subtitulo>
                     <p className="mx-auto w-11/12 mb-6">
                         <span className="text-verdigris">Tótem Beach Club</span>{" "}
                         de Playa ofrece un número limitado de membresías para
@@ -61,8 +78,7 @@ export default function Membresia() {
 
                     <p className="mb-6 text-sm">
                         <span className="font-bold">Precios especiales</span> en
-                        eventos organizados por <br />
-                        el Club.
+                        eventos <br /> organizados por el Club.
                     </p>
                     <p className="text-verdigris font-bold text-sm mb-6">
                         {" "}

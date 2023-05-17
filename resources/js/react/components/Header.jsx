@@ -43,7 +43,7 @@ export default function Header() {
 
     return (
         <>
-            <header className="bg-white border-b-[9px] border-b-delftblue py-2 px-6 relative z-30">
+            <header className="bg-white border-b-[9px] border-b-delftblue py-1 px-6 relative z-30">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid grid-cols-2 md:grid-cols-3 items-center">
                         <div className="col-span-1">
@@ -51,7 +51,7 @@ export default function Header() {
                                 <img
                                     src={logo}
                                     alt="Tótem Beach Club"
-                                    className="w-24"
+                                    className="w-24 h-16 object-cover"
                                 />
                             </Link>
                         </div>

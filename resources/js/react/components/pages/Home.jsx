@@ -25,6 +25,7 @@ import daypass from "../../../../img/app/daypass.png";
 
 import bannerEventos from "../../../../img/app/banner-eventos.jpg";
 import tapir from "../../../../img/app/tapir.jpg";
+import Textos from "../Textos";
 
 export default function Home() {
     return (
@@ -33,17 +34,17 @@ export default function Home() {
             <div className="w-full">
                 <img
                     src={bannerInicial}
-                    className="aspect-square md:aspect-video w-full object-cover max-h-[850px]"
+                    className="min-h-[70vh] aspect-square md:aspect-video w-full object-cover max-h-[850px]"
                     alt=""
                 />
             </div>
 
             {/* Bienvenida */}
-            <div className="max-w-design mx-auto text-center font-extrabold text-3xl pt-4 px-4 pt-8">
-                <h1 className="text-delftblue">
+            <div className="max-w-design mx-auto text-center font-extrabold text-3xl px-4 pt-8">
+                <Textos.Titulo>
                     Has llegado a Tótem Beach Club, <br />{" "}
                     <span className="text-verdigris">¡bienvenido!</span>
-                </h1>
+                </Textos.Titulo>
 
                 <img
                     className="mt-2 inline cursor-pointer"
@@ -53,15 +54,18 @@ export default function Home() {
             </div>
 
             {/* Galeria */}
-            <div className="max-w-6xl mx-auto text-center pt-8 pb-8 md:pb-12 overflow-x-hidden px-4">
+            <div className="max-w-6xl mx-auto text-center pt-8 pb-8 md:pb-12 overflow-x-hidden">
                 <Galeria />
 
-                <p className="pt-4 md:pt-8">
+                <p className="pt-4 md:pt-8 px-4">
                     Hemos creado{" "}
                     <span className="text-verdigris">
-                        un increíble espacio para gozar{" "}
-                    </span>
-                    el maravilloso espectáculo de la costa con total comodidad.
+                        {" "}
+                        un increíble espacio <br className="sm:hidden" /> para
+                        gozar{" "}
+                    </span>{" "}
+                    el maravilloso espectáculo <br className="sm:hidden" /> de
+                    la costa con total comodidad.
                 </p>
             </div>
 
@@ -71,16 +75,28 @@ export default function Home() {
             <div className="max-w-6xl mx-auto px-4 pt-8 pb-8 md:pb-16 lg:pb-32 lg:pt-32 text-oxfordblue relative z-[11]">
                 <div className="grid items-center grid-cols-1 lg:grid-cols-7 relative z-20">
                     <div className="col-span-1 lg:col-span-3">
-                        <h3 className="mb-5 text-center lg:text-left font-extrabold text-3xl md:max-w-[80%] md:mx-auto lg:ml-0 lg:max-w-[415px]">
+                        <Textos.Subtitulo
+                            className={
+                                "hidden md:block mb-5 text-center lg:text-left md:max-w-[80%] md:mx-auto lg:ml-0 lg:max-w-[415px]"
+                            }
+                        >
                             Hemos cuidado cada detalle para que tu experiencia
                             en{" "}
                             <span className="text-verdigris">
                                 Tótem Beach Club
                             </span>{" "}
                             sea inolvidable.
-                        </h3>
-                        <ul className="flex flex-col md:grid lg:flex md:grid-cols-2 md:max-w-max lg:max-w-none md:mx-auto gap-4 pl-3 mb-10 lg:mb-0">
-                            <li className="flex gap-2 md:col-span-1 justify-center md:justify-start">
+                        </Textos.Subtitulo>
+                        <Textos.Subtitulo
+                            className={
+                                "md:hidden mb-5 text-center lg:text-left md:max-w-[80%] md:mx-auto lg:ml-0 lg:max-w-[415px]"
+                            }
+                        >
+                            Vive una experiencia <br />{" "}
+                            <span className="text-verdigris">inolvidable.</span>
+                        </Textos.Subtitulo>
+                        <ul className="max-sm:max-w-[220px] flex flex-col mx-auto sm:grid sm:grid-cols-2 lg:flex sm:max-w-max lg:max-w-none gap-4 pl-3 mb-10 lg:mb-0">
+                            <li className=" flex gap-2 sm:col-span-1 justify-start">
                                 <img
                                     className="inline w-5"
                                     src={anemidad_1}
@@ -88,7 +104,7 @@ export default function Home() {
                                 />{" "}
                                 Terraza Techada
                             </li>
-                            <li className="flex gap-2 md:col-span-1 justify-center md:justify-start">
+                            <li className=" flex gap-2 sm:col-span-1 justify-start">
                                 <img
                                     className="inline w-5"
                                     src={anemidad_2}
@@ -96,7 +112,7 @@ export default function Home() {
                                 />{" "}
                                 Alberca
                             </li>
-                            <li className="flex gap-2 md:col-span-1 justify-center md:justify-start">
+                            <li className=" flex gap-2 sm:col-span-1 justify-start">
                                 <img
                                     className="inline w-5"
                                     src={anemidad_3}
@@ -104,7 +120,7 @@ export default function Home() {
                                 />{" "}
                                 Palapas de Playa
                             </li>
-                            <li className="flex gap-2 md:col-span-1 justify-center md:justify-start">
+                            <li className=" flex gap-2 sm:col-span-1 justify-start">
                                 <img
                                     className="inline w-5"
                                     src={anemidad_4}
@@ -112,7 +128,7 @@ export default function Home() {
                                 />{" "}
                                 Baños y regaderas
                             </li>
-                            <li className="flex gap-2 md:col-span-1 justify-center md:justify-start">
+                            <li className=" flex gap-2 sm:col-span-1 justify-start">
                                 <img
                                     className="inline w-5"
                                     src={anemidad_5}
@@ -120,7 +136,7 @@ export default function Home() {
                                 />
                                 Área de asoleadero
                             </li>
-                            <li className="flex gap-2 md:col-span-1 justify-center md:justify-start">
+                            <li className=" flex gap-2 sm:col-span-1 justify-start">
                                 <img
                                     className="inline w-5"
                                     src={anemidad_6}
@@ -128,7 +144,7 @@ export default function Home() {
                                 />
                                 Área de juegos para niños
                             </li>
-                            <li className="flex gap-2 md:col-span-1 justify-center md:justify-start">
+                            <li className=" flex gap-2 sm:col-span-1 justify-start">
                                 <img
                                     className="inline w-5"
                                     src={anemidad_7}
@@ -156,14 +172,24 @@ export default function Home() {
 
             <div className="bg-platinum bg-opacity-50 py-12 md:pt-32 md:pb-36 px-4">
                 <div className="max-w-6xl mx-auto">
-                    <h3 className="font-extrabold mb-11 max-w-[920px] mx-auto text-3xl text-center text-delftblue">
+                    <Textos.Subtitulo className="hidden md:block mb-11 max-w-[920px] mx-auto text-center">
                         Queremos que vivas{" "}
                         <span className="text-verdigris">
                             la experiencia Tótem Beach Club.
                         </span>{" "}
                         Por ello te abrimos las puertas adaptándonos a tus
                         necesidades.
-                    </h3>
+                    </Textos.Subtitulo>
+
+                    <Textos.Subtitulo
+                        className={
+                            "md:hidden mb-11 max-w-[920px] mx-auto text-center"
+                        }
+                    >
+                        Vive{" "}
+                        <span className="text-verdigris">Tótem Beach Club</span>{" "}
+                        <br />a tu manera.
+                    </Textos.Subtitulo>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center text-xs">
                         <div className="col-span-1">
@@ -211,14 +237,20 @@ export default function Home() {
                     <div className="max-w-6xl mx-auto">
                         <div className="grid grid-cols-1 md:grid-cols-3 items-center">
                             <div className="col-span-1 md:col-span-2 md:pr-3">
-                                <h3 className="font-extrabold text-2xl text-center md:text-left text-delftblue mb-8 md:mb-0">
+                                <Textos.Subtitulo className="hidden md:block text-left mb-0">
                                     Nos encanta ser anfitriones de{" "}
                                     <span className="text-verdigris">
                                         los eventos más inolvidables
                                     </span>{" "}
                                     teniendo la belleza de la costa como
                                     escenario.
-                                </h3>
+                                </Textos.Subtitulo>
+                                <Textos.Subtitulo className="md:hidden text-center mb-8">
+                                    <span className="text-verdigris">
+                                        Vive un evento increíble
+                                    </span>{" "}
+                                    en nuestras instalaciones.
+                                </Textos.Subtitulo>
                             </div>
                             <div className="col-span-1 text-center md:text-right">
                                 <button className="px-8 py-3 inline text-sm mt-2 bg-verdigris text-oxfordblue rounded-md mx-auto">
@@ -230,13 +262,13 @@ export default function Home() {
                 </div>
 
                 {/* Santuario */}
-                <div className="max-w-6xl mx-auto px-4 py-8 md:py-44">
-                    <div className="grid grid-cols-1 md:grid-cols-5 bg-verdigris rounded-t-[36px] rounded-bl-[36px] overflow-hidden">
-                        <div className="col-span-1 md:col-span-2 py-16 pl-16 pr-8 text-center md:text-left">
-                            <h3 className="font-extrabold text-2xl text-delftblue mb-8 md:mb-0">
+                <div className="max-w-6xl mx-auto md:px-4 pt-8 md:py-44">
+                    <div className="grid grid-cols-1 md:grid-cols-5 bg-verdigris rounded-t-[36px] md:rounded-bl-[36px] overflow-hidden">
+                        <div className="col-span-1 md:col-span-2 py-16 px-4 md:pl-16 md:pr-8 text-center md:text-left">
+                            <Textos.Subtitulo className="md:text-2xl mb-8 md:mb-0">
                                 Apoyemos al Santuario del Tapír de Yucatán.
-                            </h3>
-                            <p className="text-white mb-2">
+                            </Textos.Subtitulo>
+                            <p className="text-white text-justify md:text-left mb-2">
                                 Con tu donativo apoyamos y promovemos el
                                 proyecto, que se enfoca en el Rescate, Manejo,
                                 Reproducción, Reintroducción, Investigación y
@@ -249,7 +281,7 @@ export default function Home() {
                         </div>
                         <div className="col-span-1 md:col-span-3">
                             <img
-                                className="aspect-video h-full max-md:max-h-[350px] rounded-tl-[36px]  rounded-tr-[36px] rounded-bl-[36px] object-cover object-right w-full"
+                                className="aspect-video h-full max-md:max-h-[350px] md:rounded-tl-[36px] md:rounded-tr-[36px] md:rounded-bl-[36px] object-cover object-right w-full"
                                 src={tapir}
                                 alt="Santuario"
                             />
@@ -275,34 +307,15 @@ function Galeria() {
                 lazyLoad: true,
             }}
         >
-            <SplideSlide>
-                <img
-                    className="aspect-video object-cover"
-                    src={galeriaTest}
-                    alt="Galeria 1"
-                />
-            </SplideSlide>
-            <SplideSlide>
-                <img
-                    className="aspect-video object-cover"
-                    src={galeriaTest}
-                    alt="Galeria 1"
-                />
-            </SplideSlide>
-            <SplideSlide>
-                <img
-                    className="aspect-video object-cover"
-                    src={galeriaTest}
-                    alt="Galeria 1"
-                />
-            </SplideSlide>
-            <SplideSlide>
-                <img
-                    className="aspect-video object-cover"
-                    src={galeriaTest}
-                    alt="Galeria 1"
-                />
-            </SplideSlide>
+            {[1, 2, 3, 4].map((item) => (
+                <SplideSlide key={item}>
+                    <img
+                        className="aspect-square sm:aspect-video object-cover"
+                        src={galeriaTest}
+                        alt="Galeria 1"
+                    />
+                </SplideSlide>
+            ))}
         </Splide>
     );
 }
@@ -319,11 +332,11 @@ function CardExperiencia({ img, titulo, text, bgAzul = false }) {
                 <h5 className="text-xl font-semibold text-delftblue">
                     {titulo}
                 </h5>
-                <p>{text}</p>
+                <p className="text-sm">{text}</p>
             </main>
 
             <button
-                className={`px-8 py-3 mt-2 ${
+                className={`px-8 py-3 mt-2 text-sm ${
                     bgAzul ? "bg-oxfordblue" : "bg-verdigris"
                 } text-white rounded-md max-w-[185px] mx-auto`}
             >

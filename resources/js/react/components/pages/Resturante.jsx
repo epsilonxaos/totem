@@ -1,30 +1,37 @@
 import React from "react";
 
 import banner from "../../../../img/app/banner-02.jpg";
+import bannerM from "../../../../img/app/banner-02-m.jpg";
 import menu from "../../../../img/app/menu.png";
 import menuKids from "../../../../img/app/kids.png";
+import Textos from "../Textos";
 
 export default function Restaurante() {
     return (
         <main className="w-full text-sm font-medium relative z-[1] text-center">
-            <h3 className=" font-murecho font-extrabold text-3xl my-12 text-oxfordblue">
+            <Textos.Subtitulo className="font-murecho my-12 ">
                 <span className="text-verdigris">Consiente</span> tus sentidos
                 con las delicias de <br className="max-sm:hidden" /> nuestro
                 restaurante.
-            </h3>
+            </Textos.Subtitulo>
 
             <div className="w-full">
                 <img
                     src={banner}
-                    className="aspect-square md:aspect-video w-full object-cover max-h-[660px]"
+                    className="hidden sm:block aspect-square md:aspect-video w-full object-cover max-h-[660px]"
+                    alt=""
+                />
+                <img
+                    src={bannerM}
+                    className="sm:hidden w-full object-cover max-h-[450px]"
                     alt=""
                 />
             </div>
 
             <div className="py-12 md:py-20 px-4">
-                <h3 className=" font-murecho font-extrabold text-3xl text-oxfordblue">
+                <Textos.Subtitulo className=" font-murecho">
                     Conoce nuestro menú
-                </h3>
+                </Textos.Subtitulo>
                 <p className="text-delftblue mb-14">
                     En <span className="text-verdigris">Tótem Beach Club</span>{" "}
                     tenemos el menú ideal para ti y tu familia.
