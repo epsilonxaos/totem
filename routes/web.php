@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/webhook', [ConektaController::class, 'webhook']);
 Route::view('/', 'welcome')->where('path', '.*');
 Route::view('/restaurante', 'welcome')->where('path', '.*');
 Route::view('/membresia', 'welcome')->where('path', '.*');

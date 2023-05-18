@@ -12,14 +12,24 @@ use Conekta\ParameterValidationError;
 use Conekta\ProcessingError;
 use Conekta\ResourceNotFoundError;
 use Illuminate\Http\Request;
+use stdClass;
 
 class CompraController extends Controller
 {
 	public function compraConekta(Request $request)
 	{
-		Conekta::setApiKey(env('CONEKTA_KEY_SECRET'));
-		// Conekta::setApiVersion('2.0.0');
-		// Conekta::setLocale('es');
+		Conekta::setApiKey("key_udNu9b2MboHMhzCi5uYUK7n");
+		Conekta::setApiVersion('2.0.0');
+		Conekta::setLocale('es');
+
+		$datos = new stdClass();
+		$datos->nombre = "Jesus";
+		$datos->apellido_paterno = "Gonzalez";
+		$datos->apellido_materno = "Ramon";
+		$datos->correo = "jesus@example.com";
+		$datos->telefono = "9934325614";
+		$datos->monto = 450;
+
 
 		$today = date('Y-m-d H:i:s');
 		$client = isset($request->isSocio) ? Socios::where([['email', '=', $request->email], ['token_access', '=', $request->token_access]])->get() : $request;
@@ -29,9 +39,9 @@ class CompraController extends Controller
 		try {
 			$customerConekta = Customer::create(
 				array(
-					"name" => $client->nombre . ' ' . $client->apellido_paterno . ' ' . $client->apellido_materno,
-					"email" => $client->correo,
-					"phone" => $client->telefono,
+					"name" => $datos->nombre . ' ' . $datos->apellido_paterno . ' ' . $datos->apellido_materno,
+					"email" => $datos->correo,
+					"phone" => $datos->telefono,
 					"payment_sources" => [
 						[
 							"type" => "card",
@@ -106,26 +116,24 @@ class CompraController extends Controller
 			// 	'method_pay' => "conekta",
 			// 	'discount' => $request->discount
 			// ]);
-			$order = Order::create([]);
+			// $order = Order::create([]);
 
 			if ($success_customer) {
 				$success = false;
 
 				try {
-					$preOrder = array(
-						"line_items" => array(
+
+					$validOrderWithCheckout = array(
+						'line_items' => array(
 							array(
-								"name" => 'Paquete de clases',
-								'unit_price' => $request->monto * 100,
+								'name' => 'Box of Cohiba S1s',
+								'description' => 'Imported From Mex.',
+								'unit_price' => 120000,
 								'quantity' => 1,
+								'sku' => 'cohbs1',
+								'category' => 'food',
+								'tags' => array('food', 'mexican food')
 							)
-						),
-						"currency" => 'MXN',
-						"metadata" => array(
-							"pago_id" => $order->id
-						),
-						"customer_info" => array(
-							"customer_id" => $customerConekta->id
 						),
 						"charges" => array(
 							array(
@@ -133,8 +141,14 @@ class CompraController extends Controller
 									"type" => "default",
 								)
 							)
-						)
+						),
+						'customer_info' => array(
+							'customer_id'   =>  $customerConekta->id
+						),
+						'currency'    => 'mxn',
+						'metadata'    => array('test' => 'extra info')
 					);
+					$order = Order::create($validOrderWithCheckout);
 
 					// if($request -> discond > 0)
 					// {
@@ -147,6 +161,7 @@ class CompraController extends Controller
 					//     );
 					// }
 
+					// $order = Order::create($preOrder);
 
 
 					$success = true;
@@ -161,11 +176,12 @@ class CompraController extends Controller
 				}
 
 				if ($success) {
+					// return response($order['charges'][0], 200);
 					$status = $order->charges[0]->status;
-					$free = 2;
+					// $free = 2;
 					switch ($status) {
 						case 'paid':
-							$order->status = 2;
+							// $order->status = 2;
 
 							//? Cupones
 							// if ($request->discount > 0) { //Detectamos si existe algun descuento
@@ -187,20 +203,18 @@ class CompraController extends Controller
 							// 	}
 							// }
 
-							$order->save();
+							// $order->save();
 							// dd($order);
-							return redirect()->route('completado', ['free' => $free, 'success' => 'complete']);
+							return response(["status" => 'paid'], 200);
 						default:
-							return redirect()->route('completado', ['free' => $free, 'success' => 'fail'])->with('error', $error);
+							return response(["status" => 'fail', 'error' => $error], 200);
 							break;
 					}
 				} else {
-					$order->status = 4;
-					$order->save();
-					return redirect()->route('completado')->with('error', $error);
+					return response(["status" => 'error', 'error' => $error], 200);
 				}
 			} else {
-				return redirect()->route('completado')->with('error', $er);
+				return response(["status" => 'Orden error', 'error' => $er], 200);
 			}
 
 			// ? Historial de compra
@@ -225,7 +239,6 @@ class CompraController extends Controller
 
 			// }
 		}
-
-		return redirect()->route('completado')->with('error', 'Desconocido');
+		return response(["status" => 'error desconocido', 'error' => 'Ni idea'], 200);
 	}
 }

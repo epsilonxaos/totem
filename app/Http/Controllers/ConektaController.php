@@ -9,6 +9,14 @@ class ConektaController extends Controller
 {
 	public function webhook(Request $request)
 	{
+
+		logger('WEBHOOK LOG', [
+			'type' => $request->type,
+			'data' => print_r($request->data, true)
+		]);
+
+		return response('webhook done', 200);
+
 		switch ($request->type) {
 			case 'order.paid':
 				$source = Orden::find($request->data['object']['metadata']['pago_id']);

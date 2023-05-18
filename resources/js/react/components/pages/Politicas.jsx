@@ -1,11 +1,21 @@
 import React from "react";
 
 import logo from "../../../../img/app/logo.svg";
+import { twMerge } from "tailwind-merge";
 
-export default function Politicas() {
+export default function Politicas({ className }) {
     return (
-        <div className="max-w-4xl mx-auto py-8 px-4 md:py-36 text-sm font-medium">
-            <img src={logo} alt="Tótem Beach Club" className="mx-auto mb-4" />
+        <div
+            className={twMerge(
+                "max-w-4xl mx-auto py-8 px-4 md:py-36 text-sm font-medium",
+                className
+            )}
+        >
+            <img
+                src={logo}
+                alt="Tótem Beach Club"
+                className="mx-auto mb-4 w-[200px]"
+            />
 
             <h2 className="font-murecho text-3xl font-bold text-oxfordblue mb-14 text-center">
                 Politicas de Privacidad <br /> Tótem Beach Club

@@ -71,4 +71,8 @@ class DaypassController extends Controller
 	{
 		//
 	}
+
+	public function verificarDisponibilidad(Request $request)
+	{
+	}
 }

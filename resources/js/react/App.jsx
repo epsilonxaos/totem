@@ -9,6 +9,8 @@ import Politicas from "./components/pages/Politicas";
 import Restaurante from "./components/pages/Resturante";
 import Daypass from "./components/pages/Daypass";
 import Orden from "./components/pages/Orden";
+import Test from "./components/pages/Test";
+import PublicOrden from "./components/pages/PublicOrden";
 
 export default function App() {
     return (
@@ -19,7 +21,7 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/restaurante" element={<Restaurante />} />
                 <Route path="/daypass" element={<Daypass />} />
-                <Route path="/daypass/orden" element={<Orden />} />
+                <Route path="/daypass/orden" element={<PublicOrden />} />
                 <Route path="/membresia" element={<Membresia />} />
                 <Route path="/politicas" element={<Politicas />} />
             </Routes>
