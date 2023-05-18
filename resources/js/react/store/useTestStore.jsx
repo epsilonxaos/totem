@@ -39,3 +39,98 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export { useClickControlStore }
+
+//? Otros recursos
+// optimalRoutePromise(data) {
+// 	return new Promise(async (resolve, reject) => {
+// 		await axios({
+// 			method: 'POST',
+// 			url: APP_ENV.API_URL + '/mapa/ruta/optima',
+// 			headers: {
+// 				token: cookie.get('token'),
+// 			},
+// 			data: { ...data },
+// 		})
+// 			.then(response => {
+// 				resolve(response.data)
+// 			})
+// 			.catch(err => {
+// 				reject(err)
+// 			})
+// 	})
+// },
+
+
+// promise
+// 	.then(response => {
+// 		let idPoint = ''
+// 		const routesFeatures = this.getFeatureMultiplePoints(response)
+
+// 		routesFeatures.map((resp, indice) => {
+// 			const rutaOptima = this.getOptimalRoute(resp, drawInLayerInstance)
+
+// 			if (lastPoint) {
+// 				if (indice === 0) idPoint = lastPoint.id
+// 				else idPoint = locationsPoints[indice - 1].id
+// 			} else {
+// 				idPoint = locationsPoints[indice].id
+// 			}
+
+// 			useOptimalRouteStore.getState().updatePointForIndex({
+// 				id: routeID,
+// 				idPoint: idPoint,
+// 				params: { indications: rutaOptima.indications, conexion: true },
+// 			})
+// 		})
+
+// 		let viajesSinConexion = this.encontrarViajesSinConexiones(routesFeatures)
+// 		let puntosSinConexion = viajesSinConexion.map((ml, idx) => {
+// 			//* Si no existe el ultimo punto agregado el current es el
+// 			if (!lastPoint) {
+// 				if (!ml.conectado_inicio && !ml.conectado_final) {
+// 					return locationsPoints[ml.pointRef - 1]
+// 				}
+// 				if (ml.conectado_inicio && !ml.conectado_final) {
+// 					return locationsPoints[ml.pointRef]
+// 				}
+
+// 				if (!ml.conectado_inicio && ml.conectado_final) {
+// 					return locationsPoints[ml.pointRef - 1]
+// 				}
+// 			} else {
+// 				if (!ml.conectado_inicio && !ml.conectado_final) {
+// 					return locationsPoints[ml.pointRef - 2]
+// 				}
+
+// 				if (ml.conectado_inicio && !ml.conectado_final) {
+// 					return locationsPoints[ml.pointRef - 1]
+// 				}
+
+// 				if (!ml.conectado_inicio && ml.conectado_final) {
+// 					return locationsPoints[ml.pointRef - 2]
+// 				}
+// 			}
+// 		})
+
+// 		puntosSinConexion = [...new Set(puntosSinConexion)]
+
+// 		if (puntosSinConexion.length) {
+// 			puntosSinConexion.forEach(m => {
+// 				if (m) {
+// 					this.markerStatus('error', m.marker)
+
+// 					useOptimalRouteStore.getState().updatePointForIndex({
+// 						id: routeID,
+// 						idPoint: m.id,
+// 						params: { conexion: false },
+// 					})
+// 				}
+// 			})
+// 		}
+
+// 		return routesFeatures
+// 	})
+// 	.then(response => {
+// 		onSuccess(response)
+// 	})
+	// .catch(err => onError(err))
