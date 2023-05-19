@@ -19,7 +19,7 @@ export default function PublicForm() {
         setLoading(true);
         try {
             const response = await axios.post(
-                "https://totem-local.mx:443/api/disponibilidad/daypass",
+                import.meta.env.VITE_APP_URL+"/api/disponibilidad/daypass",
                 { daypass_id: 1, fecha_reservacion: state.reservacion }
             );
             setData(response.data);
@@ -39,7 +39,7 @@ export default function PublicForm() {
         try {
             if (!data) {
                 const response = await axios.post(
-                    "https://totem-local.mx:443/api/disponibilidad/daypass",
+                    import.meta.env.VITE_APP_URL+"/api/disponibilidad/daypass",
                     { daypass_id: 1, fecha_reservacion: state.reservacion }
                 );
                 if (!response.data.disponibilidad) {

@@ -46,7 +46,7 @@ export default function CreditCardForm() {
                 setErrorMessage('')
                 try {
                     axios
-                        .post("https://totem-local.mx/api/pago", {
+                        .post(import.meta.env.VITE_APP_URL+"/api/pago", {
                             token: event.id,
                             ...state
                         })

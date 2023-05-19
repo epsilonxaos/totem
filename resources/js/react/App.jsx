@@ -13,13 +13,14 @@ import Test from "./components/pages/Test";
 import PublicOrden from "./components/pages/PublicOrden";
 import { useInicialStore } from "./store/useInicialStore";
 import Resumen from "./components/pages/Resumen";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
     const [loading, setData, setLoading] = useInicialStore(state => [state.loading, state.setData, state.setLoading]);
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get( "https://totem-local.mx:443/api/inicial" );
+            const response = await axios.get( import.meta.env.VITE_APP_URL+"/api/inicial" );
             setData(response.data);
             setTimeout(() => {
                 setLoading(false)
@@ -33,6 +34,7 @@ export default function App() {
     return (
         <>
             <Header />
+            <ScrollToTop />
 
             <Routes>
                 <Route path="/" element={<Home />} />

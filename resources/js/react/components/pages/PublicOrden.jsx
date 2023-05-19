@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import PoliticasOrden from "./orden/PoliticasOrden";
 import BgOrden from "./orden/BgOrden";
 import PublicForm from "./orden/Publicform";
@@ -34,6 +34,13 @@ export default function PublicOrden() {
 		redirectTo: ''
 	}
 	const [state, dispatch] = useReducer(reducer, initialArgs)
+
+	useEffect(() => {
+		window.scrollTo({
+			behavior: "auto",
+			top: 0
+		});
+	}, [state.pasoActual])
 
 	// Si se establece el estado de redirección, redirige a la ruta especificada
 	if (state.redirectTo) {
