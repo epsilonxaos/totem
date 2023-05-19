@@ -22,10 +22,11 @@ class AdminController extends Controller
         return view('panel.auth.login');
     }
 
-    public function login(Request $request){
-        if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], true)){
+    public function login(Request $request)
+    {
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], true)) {
             return redirect()->route('panel.dashboard');
-        }else{
+        } else {
             return redirect()->back()->withInput()->withErrors(['message' => 'Correo o contraseña invalida']);
         }
     }
@@ -40,12 +41,14 @@ class AdminController extends Controller
     }
 
     //* Vista inicial al ingresar al panel
-    public function dashboardAdmin(): View {
+    public function dashboardAdmin(): View
+    {
         return view('panel.dashboard');
     }
 
     //todo Funciones de modulo de usuarios
-    public function index(): View {
+    public function index(): View
+    {
         return view('panel.users.index', [
             "title" => "Administrar usuarios",
             "breadcrumb" => [
@@ -58,7 +61,8 @@ class AdminController extends Controller
         ]);
     }
 
-    public function create(): View {
+    public function create(): View
+    {
         return view('panel.users.create', [
             "title" => "Administrar usuarios",
             "breadcrumb" => [
@@ -75,11 +79,12 @@ class AdminController extends Controller
         ]);
     }
 
-    public function store(Request $request) : RedirectResponse {
+    public function store(Request $request): RedirectResponse
+    {
         //Sí las constraseñas no son iguales regresamos al paso anterior
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Admin::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . Admin::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -104,7 +109,7 @@ class AdminController extends Controller
         ]);
     }
 
-    
+
     public function editProfileId(String $id): View
     {
         return view('panel.profileAdmin.edit', [
@@ -120,7 +125,7 @@ class AdminController extends Controller
     public function updateProfile(ProfileUpdateRequest $request, String $id = null,): RedirectResponse
     {
         $user = !$id ? $request->user() : Admin::find($id);
-        
+
         $user->fill($request->validated());
 
         if ($user->isDirty('email')) {
@@ -129,8 +134,8 @@ class AdminController extends Controller
 
         $user->save();
 
-        if($id) {
-            return Redirect::route('panel.usuarios.edit', ['id' => $user -> id])->with('status', 'profile-updated');
+        if ($id) {
+            return Redirect::route('panel.usuarios.edit', ['id' => $user->id])->with('status', 'profile-updated');
         } else {
             return Redirect::route('panel.profile.edit')->with('status', 'profile-updated');
         }
@@ -163,11 +168,11 @@ class AdminController extends Controller
 
         $user = !$id ? $request->user() : Admin::find($id);
 
-        Auth::guard('admin') -> logout();
+        Auth::guard('admin')->logout();
 
         $user->delete();
 
-        if($id) return Redirect::route('panel.usuarios.index')->with('success', 'Eliminado');
+        if ($id) return Redirect::route('panel.usuarios.index')->with('success', 'Eliminado');
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

@@ -18,15 +18,17 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
         $guards = empty($guards) ? [null] : $guards;
-
+        // dd($guards);
         foreach ($guards as $guard) {
-            if (Auth::guard('admin') ->check()) {
-                return redirect('/admin/dashboard');
+            if ($guard === 'admin') {
+                if (Auth::guard($guard)->check()) {
+                    return redirect('/admin/dashboard');
+                }
+            } else {
+                if (Auth::guard($guard)->check()) {
+                    return redirect(RouteServiceProvider::HOME);
+                }
             }
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
-            }
-
         }
 
         return $next($request);
