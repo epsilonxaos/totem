@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Politicas from "../Politicas";
+import OrdenContext from "../../../context/OrdenContext";
 
-export default function PoliticasOrden({ acceptFn, accept, changeCurrentFn }) {
+export default function PoliticasOrden() {
+    const {state, dispatch} = useContext(OrdenContext);
     return (
         <>
             <Politicas className={"md:pb-8"} />
@@ -10,7 +12,7 @@ export default function PoliticasOrden({ acceptFn, accept, changeCurrentFn }) {
                 <div className="flex items-center mb-8">
                     <input
                         id="default-checkbox"
-                        onChange={(ev) => acceptFn(ev.target.checked)}
+                        onChange={(ev) => dispatch({politicasAccept: ev.target.checked})}
                         type="checkbox"
                         value=""
                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
@@ -24,12 +26,12 @@ export default function PoliticasOrden({ acceptFn, accept, changeCurrentFn }) {
                 </div>
 
                 <button
-                    {...(accept && {
-                        onClick: () => changeCurrentFn("reservacion"),
+                    {...(state.politicasAccept && {
+                        onClick: () => dispatch({pasoActual: "reservacion"}),
                     })}
-                    {...(!accept && { disabled: true })}
+                    {...(!state.politicasAccept && { disabled: true })}
                     className={`px-8 py-3 mb-3 inline text-sm mt-2 max-w-max bg-verdigris ${
-                        accept
+                        state.politicasAccept
                             ? "cursor-pointer"
                             : "opacity-60 pointer-events-none"
                     } text-black rounded-md mx-auto`}

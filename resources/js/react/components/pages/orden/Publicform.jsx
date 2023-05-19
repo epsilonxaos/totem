@@ -1,28 +1,18 @@
-import React, { useState } from "react";
-import { DateTime } from "luxon";
+import React, { useContext, useEffect, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
 import axios from "axios";
 import * as Yup from "yup";
+import OrdenContext from "../../../context/OrdenContext";
+import { DateTime } from "luxon";
+import MaskedInput from "./creditCard/MaskedInput";
 
-export default function PublicForm({ changeCurrentFn }) {
-    const tomorrow = DateTime.now()
-        .setZone("America/Merida")
-        .plus({ days: 1 })
-        .toJSDate();
-    const tomorrowFormat = DateTime.now()
-        .setZone("America/Merida")
-        .plus({ days: 1 })
-        .toFormat("yyyy-MM-dd");
-    const [startDate, setStartDate] = useState(tomorrow);
-    const [reservacion, setReservacion] = useState(tomorrowFormat);
+export default function PublicForm() {
+    const {state, dispatch} = useContext(OrdenContext)
+    
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(null);
-
-    const [nombre, setNombre] = useState("");
-    const [correo, setCorreo] = useState("");
-    const [telefono, setTelefono] = useState("");
     const [errors, setErrors] = useState({});
 
     const verificarDisponibilidad = async () => {
@@ -30,7 +20,7 @@ export default function PublicForm({ changeCurrentFn }) {
         try {
             const response = await axios.post(
                 "https://totem-local.mx:443/api/disponibilidad/daypass",
-                { daypass_id: 1, fecha_reservacion: reservacion }
+                { daypass_id: 1, fecha_reservacion: state.reservacion }
             );
             setData(response.data);
             setLoading(false);
@@ -44,56 +34,33 @@ export default function PublicForm({ changeCurrentFn }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const schema = Yup.object().shape({
-            nombre: Yup.string().required("El nombre es requerido"),
-            correo: Yup.string()
-                .email("Correo inválido")
-                .required("El correo es requerido"),
-            telefono: Yup.string()
-                .matches(/^\d+$/, "Teléfono inválido")
-                .required("El teléfono es requerido"),
-        });
-
+        // Lógica para verificar disponibilidad antes de enviar el formulario
+        setLoading(true);
         try {
-            await schema.validate(
-                { nombre, correo, telefono },
-                { abortEarly: false }
-            );
-
-            // Lógica para verificar disponibilidad antes de enviar el formulario
-            setLoading(true);
-            try {
-                if (!data) {
-                    const response = await axios.post(
-                        "https://totem-local.mx:443/api/disponibilidad/daypass",
-                        { daypass_id: 1, fecha_reservacion: reservacion }
-                    );
-                    if (!response.data.disponibilidad) {
-                        setData(response.data);
-                        setLoading(false);
-                        return;
-                    }
-                    changeCurrentFn("informacion");
-                } else {
-                    if (!data.disponibilidad) {
-                        return;
-                    }
-                    changeCurrentFn("informacion"); // Puedes hacer algo con la respuesta recibida
+            if (!data) {
+                const response = await axios.post(
+                    "https://totem-local.mx:443/api/disponibilidad/daypass",
+                    { daypass_id: 1, fecha_reservacion: state.reservacion }
+                );
+                if (!response.data.disponibilidad) {
+                    setData(response.data);
+                    setLoading(false);
+                    return;
                 }
-
-                // Enviar el formulario si la disponibilidad es satisfactoria
-                // Puedes agregar tu lógica de envío del formulario aquí
-            } catch (error) {
-                setLoading(false);
-                console.error(error);
-                // Mostrar mensaje de error o realizar alguna acción en caso de error de disponibilidad
+                dispatch({pasoActual: "informacion"});
+            } else {
+                if (!data.disponibilidad) {
+                    return;
+                }
+                dispatch({pasoActual: "informacion"}); // Puedes hacer algo con la respuesta recibida
             }
-        } catch (err) {
-            const validationErrors = {};
-            err.inner.forEach((error) => {
-                validationErrors[error.path] = error.message;
-            });
-            setErrors(validationErrors);
+
+            // Enviar el formulario si la disponibilidad es satisfactoria
+            // Puedes agregar tu lógica de envío del formulario aquí
+        } catch (error) {
+            setLoading(false);
+            console.error(error);
+            // Mostrar mensaje de error o realizar alguna acción en caso de error de disponibilidad
         }
     };
 
@@ -104,10 +71,7 @@ export default function PublicForm({ changeCurrentFn }) {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-12 md:gap-24">
                         <div className="col-span-1 sm:col-span-2">
                             <div className="mb-6">
-                                <label
-                                    htmlFor="tipo"
-                                    className="block mb-2 text-sm font-medium text-white"
-                                >
+                                <label htmlFor="tipo" className="block mb-2 text-sm font-medium text-white" >
                                     Tipo de acceso
                                 </label>
                                 <input
@@ -119,25 +83,18 @@ export default function PublicForm({ changeCurrentFn }) {
                                 />
                             </div>
                             <div className="mb-6">
-                                <label
-                                    htmlFor="nombre"
-                                    className="block mb-2 text-sm font-medium text-white"
-                                >
+                                <label htmlFor="nombre" className="block mb-2 text-sm font-medium text-white" >
                                     *Nombre Completo
                                 </label>
                                 <input
                                     type="text"
                                     name="nombre"
                                     id="nombre"
-                                    onChange={(e) => setNombre(e.target.value)}
-                                    value={nombre}
+                                    onChange={(e) => dispatch({nombre: e.target.value})}
+                                    value={state.nombre}
+                                    required
                                     className="bg-transparent border-2 border-verdigris text-white text-sm block w-full p-2.5"
                                 />
-                                {errors.nombre && (
-                                    <div className="text-red-600 text-xs">
-                                        {errors.nombre}
-                                    </div>
-                                )}
                             </div>
                             <div className="mb-6">
                                 <label
@@ -150,38 +107,24 @@ export default function PublicForm({ changeCurrentFn }) {
                                     type="email"
                                     name="email"
                                     id="email"
-                                    onChange={(e) => setCorreo(e.target.value)}
-                                    value={correo}
+                                    onChange={(e) => dispatch({correo: e.target.value})}
+                                    value={state.correo}
+                                    required
                                     className="bg-transparent border-2 border-verdigris text-white text-sm block w-full p-2.5"
                                 />
-                                {errors.correo && (
-                                    <div className="text-red-600 text-xs">
-                                        {errors.correo}
-                                    </div>
-                                )}
                             </div>
                             <div className="mb-6">
-                                <label
-                                    htmlFor="telefono"
-                                    className="block mb-2 text-sm font-medium text-white"
-                                >
-                                    *Numero de celular
-                                </label>
-                                <input
-                                    type="tel"
-                                    name="telefono"
-                                    id="telefono"
-                                    onChange={(e) =>
-                                        setTelefono(e.target.value)
-                                    }
-                                    value={telefono}
-                                    className="bg-transparent border-2 border-verdigris text-white text-sm block w-full p-2.5"
+                                
+                                <MaskedInput
+                                    onChange={(value) => {
+                                        dispatch({telefono: value})
+                                    }}
+                                    value={state.telefono}
+                                    titulo={"*Numero de celular"}
+                                    forInput={"telefono"}
+                                    mask={"0000000000"}
                                 />
-                                {errors.telefono && (
-                                    <div className="text-red-600 text-xs">
-                                        {errors.telefono}
-                                    </div>
-                                )}
+                                
                             </div>
                         </div>
                         <div className="col-span-1">
@@ -194,16 +137,15 @@ export default function PublicForm({ changeCurrentFn }) {
                                 </label>
                                 <div className="uppercase">
                                     <ReactDatePicker
-                                        selected={startDate}
+                                        selected={state.startDate}
                                         locale={es}
-                                        minDate={tomorrow}
+                                        minDate={state.tomorrow}
                                         onChange={(date) => {
                                             const formattedDate =
                                                 DateTime.fromJSDate(
                                                     date
                                                 ).toFormat("yyyy-MM-dd");
-                                            setStartDate(date);
-                                            setReservacion(formattedDate);
+                                            dispatch({startDate:date, reservacion: formattedDate});
                                         }}
                                         inline
                                     />
@@ -244,7 +186,6 @@ export default function PublicForm({ changeCurrentFn }) {
                     <div className="text-right">
                         <button
                             type="submit"
-                            // onClick={() => changeCurrentFn("informacion")}
                             className="px-8 py-3 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto"
                         >
                             Reservar

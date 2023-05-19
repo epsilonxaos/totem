@@ -18,8 +18,8 @@ return new class extends Migration
 			// $table->integer('socio_id')->unsigned();
 			// $table->enum('compra', ['daypass'])->default('daypass');
 			$table->string('folio');
-			$table->string('nombre');
-			$table->string('apellido_paterno');
+			$table->string('nombre')->nullable();
+			$table->string('apellido_paterno')->nullable();
 			$table->string('apellido_materno')->nullable();
 			$table->string('nombre_completo');
 			$table->string('correo');

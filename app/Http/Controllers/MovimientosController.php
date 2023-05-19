@@ -14,12 +14,14 @@ class MovimientosController extends Controller
         $count = Movimientos::where([
             ['daypass_id', '=', $request->daypass_id],
             ['fecha_reservacion', '=', $request->fecha_reservacion]
-        ])->count();
+        ]);
 
-        if ($count >= $daypass->limite_total) {
+        $total = $count->sum('cantidad');
+
+        if ($total >= $daypass->limite_total) {
             return response(['disponibilidad' => false]);
         } else {
-            return response(['disponibilidad' => true, 'cupo_disponible' => $daypass->limite_total - $count]);
+            return response(['disponibilidad' => true, 'cupo_disponible' => $daypass->limite_total - $total]);
         }
     }
 }

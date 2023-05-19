@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./card.css";
 import { icons, iconsSingle } from "./icons";
 import MaskedInput from "./MaskedInput";
+import conektaHelper from "../../../../helpers/conektaHelper";
+import axios from "axios";
+import OrdenContext from "../../../../context/OrdenContext";
+
 
 export default function CreditCardForm() {
     const [flipped, setFlipped] = useState(false);
+    const {state, dispatch } = useContext(OrdenContext)
 
-    const [cardNumber, setCardNumber] = useState("");
-    const [cardOwner, setCardOwner] = useState("");
-    const [expirationMonth, setExpirationMonth] = useState("");
-    const [expirationYear, setExpirationYear] = useState("");
-    const [cvv, setCvv] = useState("");
+    const [cardNumber, setCardNumber] = useState("4242424242424242");
+    const [cardOwner, setCardOwner] = useState("Jesus Gonzalez Ramon");
+    const [expirationMonth, setExpirationMonth] = useState("12");
+    const [expirationYear, setExpirationYear] = useState("25");
+    const [cvv, setCvv] = useState("123");
+    const [errorMessage, setErrorMessage] = useState('')
 
     //* Define the color swap function
     const swapColor = function (basecolor) {
@@ -23,6 +29,63 @@ export default function CreditCardForm() {
             input.setAttribute("class", "darkcolor " + basecolor + "dark");
         });
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        if(state.total === 0) return setErrorMessage('Indique la cantidad de personas')
+
+        conektaHelper.tokenize(
+            cardNumber,
+            cardOwner,
+            expirationMonth,
+            expirationYear,
+            cvv,
+            (event) => {
+                dispatch({payLoading: true})
+                setErrorMessage('')
+                try {
+                    axios
+                        .post("https://totem-local.mx/api/pago", {
+                            token: event.id,
+                            ...state
+                        })
+                        .then(function (response) {
+                            dispatch({payLoading: false})
+                            let data = response.data;
+
+                            if(data.error) {
+                                setErrorMessage(data.error)
+                                return;
+                            }
+
+                            if(data.orden_folio) {
+                                dispatch({redirectTo: '/resumen/'+data.orden_folio})
+                            }
+                        })
+                        .catch(function (error) {
+                            dispatch({payLoading: false})
+                            console.log(error);
+                        });
+                } catch (error) {
+                    dispatch({payLoading: false})
+                    console.log(error);
+                }
+            },
+            (event) => console.log(event)
+        );
+    };
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://cdn.conekta.io/js/latest/conekta.js";
+        script.async = true;
+        document.body.appendChild(script);
+
+        setTimeout(() => {
+            conektaHelper.initConekta();
+        }, 1000);
+    }, []);
 
     return (
         <>
@@ -47,7 +110,12 @@ export default function CreditCardForm() {
                     </div>
                 </div>
                 <div className="text-left">
-                    <form className="md:pl-8 pt-6 pb-8 mb-4">
+                    {errorMessage && (
+                        <div className="bg-red-500 md:ml-8 text-white p-3">
+                            {errorMessage}
+                        </div>
+                    )}
+                    <form onSubmit={handleSubmit} className="md:pl-8 pt-6 pb-8 mb-4">
                         <div className="mb-4 relative">
                             <MaskedInput
                                 onChange={(value, mask) => {
@@ -229,6 +297,7 @@ export default function CreditCardForm() {
                                 onChange={(ev) => {
                                     setCardOwner(ev.target.value);
                                 }}
+                                value={cardOwner}
                                 className="bg-transparent border-2 border-verdigris text-white text-sm block w-full p-2.5 placeholder:text-white"
                                 id="cardOwner"
                                 type="text"
@@ -283,12 +352,16 @@ export default function CreditCardForm() {
                             </div>
                         </div>
                         <div className="flex items-center justify-between">
-                            <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                type="button"
-                            >
-                                Pagar
-                            </button>
+                        <button
+                            type="button"
+                            onClick={() => dispatch({pasoActual: "reservacion"})}
+                            className="px-8 py-3 mb-3 mr-2 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto"
+                        >
+                            Regresar
+                        </button>
+                        <button type="submit" className="px-8 py-3 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto">
+                            Pagar
+                        </button>
                         </div>
                     </form>
                 </div>

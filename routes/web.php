@@ -22,6 +22,7 @@ Route::view('/membresia', 'welcome')->where('path', '.*');
 Route::view('/politicas', 'welcome')->where('path', '.*');
 Route::view('/daypass', 'welcome')->where('path', '.*');
 Route::view('/daypass/orden', 'welcome')->where('path', '.*');
+Route::view('/resumen/{folio}', 'welcome')->where('path', '.*');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
