@@ -1,13 +1,13 @@
-import React, { useEffect, useReducer, useState } from "react";
-import PoliticasOrden from "./orden/PoliticasOrden";
-import BgOrden from "./orden/BgOrden";
-import PublicForm from "./orden/Publicform";
-import PayForm from "./orden/Payform";
-import OrdenContext from '../../context/OrdenContext'
 import { DateTime } from "luxon";
-import { Navigate  } from 'react-router-dom';
+import React, { useReducer } from "react";
+import { Navigate } from "react-router-dom";
+import BgOrden from "./orden/BgOrden";
+import SocioAuth from "./orden/SocioAuth";
+import OrdenContext from "../../context/OrdenContext";
+import SocioForm from "./orden/SocioForm";
+import PaySocio from "./orden/PaySocio";
 
-export default function PublicOrden() {
+export default function SocioOrden(){
     const tomorrow = DateTime.now()
         .setZone("America/Merida")
         .plus({ days: 1 })
@@ -18,20 +18,17 @@ export default function PublicOrden() {
         .toFormat("yyyy-MM-dd");
 	const reducer = (prev, next) => ({...prev, ...next})
 	const initialArgs = {
-		payLoading: false,
-		pasoActual: 'politicas',
-		politicasAccept: false,
+        payLoading: false,
+		pasoActual: 'login',
 		startDate: tomorrow,
 		tomorrow: tomorrow,
 		reservacion: tomorrowFormat,
-		nombre: '',
-		correo: '',
-		telefono: '',
 		adultos: 0,
 		ninos: 0,
 		ninos_menores: 0,
-		total: 0,
-		redirectTo: ''
+		redirectTo: '',
+        auth: false,
+        socio: null
 	}
 	const [state, dispatch] = useReducer(reducer, initialArgs)
 
@@ -43,28 +40,29 @@ export default function PublicOrden() {
     return (
         <div className="relative">
 			<OrdenContext.Provider value={{state, dispatch}}>
-				{state.pasoActual === "politicas" && (
-					<PoliticasOrden
-					/>
+				{state.pasoActual === "login" && (
+                    <BgOrden>
+                        <SocioAuth />
+                    </BgOrden>
 				)}
 
-				{state.pasoActual === "reservacion" && (
+				{state.auth && state.pasoActual === "reservacion" && (
 					<BgOrden>
-						<PublicForm />
+						<SocioForm />
 					</BgOrden>
 				)}
-				{state.pasoActual === "informacion" && (
+				{state.auth && state.pasoActual === "informacion" && (
 					<BgOrden>
-						<PayForm />
+						<PaySocio />
 					</BgOrden>
 				)}
 
 				{state.payLoading && (
 					<div className="h-full w-full absolute top-0 left-0 z-10 bg-white bg-opacity-80 backdrop-blur flex items-center justify-center text-oxfordblue font-semibold p-4">
-						Finalizando compra, espere un momento...
+						Finalizando reservación, espere un momento...
 					</div>
 				)}
 			</OrdenContext.Provider>
         </div>
-    );
+    )
 }

@@ -63,7 +63,7 @@ class CompraController extends Controller
 				'p_ninos' => $request->ninos,
 				'p_ninos_menores' => $request->ninos_menores,
 				'total' => $request->total,
-				'status' => 1
+				'status' => 1 // En proceso
 			]);
 
 			if ($success_customer) {
@@ -113,6 +113,7 @@ class CompraController extends Controller
 					switch ($status) {
 						case 'paid':
 							$orden->status = 2;
+							$orden->pago_referencia = $order->id;
 							$orden->save();
 
 							Movimientos::create([
@@ -140,5 +141,46 @@ class CompraController extends Controller
 			}
 		}
 		return response(["status" => 'error desconocido', 'error' => 'Ni idea'], 200);
+	}
+
+	public function compraSocios(Request $request)
+	{
+		// dd($request->socio['id']);
+		try {
+
+			$daypass = Daypass::find(1);
+			$socio = Socios::find($request->socio['id']);
+			$orden = Orden::create([
+				'socio_id' => $socio->id,
+				'daypass_id' => $daypass->id,
+				'folio' => strtoupper('TBC' . Str::random(8)),
+				'nombre_completo' => $socio->nombre_completo,
+				'correo' => $socio->correo,
+				'telefono' => $socio->telefono,
+				'fecha_reservacion' => $request->reservacion,
+				'p_adultos' => $request->adultos,
+				'p_ninos' => $request->ninos,
+				'p_ninos_menores' => $request->ninos_menores,
+				'total' => 0,
+				'pago_metodo' => 'incluido',
+				'is_socio' => true,
+				'status' => 6 //Estatus para Socios
+			]);
+
+			Movimientos::create([
+				'socio_id' => $socio->id,
+				'daypass_id' => $daypass->id,
+				'orden_id' => $orden->id,
+				'fecha_reservacion' => $request->reservacion,
+				'precio_adulto' => $daypass->precio_adultos,
+				'precio_ninio' => $daypass->precio_ninos,
+				'precio_ninio_menor' => $daypass->precio_ninos_menores,
+				'cantidad' => $request->adultos + $request->ninos + $request->ninos_menores
+			]);
+
+			return response(["status" => 'paid', 'orden_folio' => $orden->folio], 200);
+		} catch (\Throwable $th) {
+			return response(["status" => 'error', 'error' => 'Hubo un problema en el proceso', 'er' => $th], 200);
+		}
 	}
 }

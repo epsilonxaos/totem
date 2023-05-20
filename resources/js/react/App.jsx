@@ -8,12 +8,11 @@ import Page404 from "./components/pages/Page404";
 import Politicas from "./components/pages/Politicas";
 import Restaurante from "./components/pages/Resturante";
 import Daypass from "./components/pages/Daypass";
-import Orden from "./components/pages/Orden";
-import Test from "./components/pages/Test";
 import PublicOrden from "./components/pages/PublicOrden";
 import { useInicialStore } from "./store/useInicialStore";
 import Resumen from "./components/pages/Resumen";
 import ScrollToTop from "./components/ScrollToTop";
+import SocioOrden from "./components/pages/SocioOrden";
 
 export default function App() {
     const [loading, setData, setLoading] = useInicialStore(state => [state.loading, state.setData, state.setLoading]);
@@ -41,6 +40,7 @@ export default function App() {
                 <Route path="/restaurante" element={<Restaurante />} />
                 <Route path="/daypass" element={<Daypass />} />
                 <Route path="/daypass/orden" element={<PublicOrden />} />
+                <Route path="/daypass/socio" element={<SocioOrden />} />
                 <Route path="/resumen/:folio" element={<Resumen />} />
                 <Route path="/membresia" element={<Membresia />} />
                 <Route path="/politicas" element={<Politicas />} />

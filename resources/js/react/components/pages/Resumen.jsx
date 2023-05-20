@@ -32,7 +32,9 @@ export default function Resumen() {
                 <p>Adultos: {orden.p_adultos}</p>
                 <p>Niños: {orden.p_ninos}</p>
                 <p className="mb-5">Niños menores: {orden.p_ninos_menores}</p>
-                <p className="mb-8">Total: ${numberWithCommas(orden.total)} MXN</p>
+                {!orden.is_socio && (
+                    <p className="mb-8">Total: ${numberWithCommas(orden.total)} MXN</p>
+                )}
 
                 <button type="button" className="px-8 py-3 mb-3 inline text-sm mt-2 mr-1 max-w-max bg-teal-400 text-black rounded-md mx-auto">Descargar PDF</button>
                 <Link to={'/'} className="px-8 py-3 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto">Regresar</Link>

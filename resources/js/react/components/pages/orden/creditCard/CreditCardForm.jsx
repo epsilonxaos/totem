@@ -347,7 +347,8 @@ export default function CreditCardForm() {
                                     value={cvv}
                                     titulo={"CVV"}
                                     forInput={"cvv"}
-                                    mask={"0000"}
+                                    mask={Number}
+                                    max={9999}
                                 />
                             </div>
                         </div>

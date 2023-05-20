@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
-import CreditCardForm from "./creditCard/CreditCardForm";
 import OrdenContext from "../../../context/OrdenContext";
 import { useInicialStore } from "../../../store/useInicialStore";
+import axios from "axios";
 
-export default function PayForm() {
+export default function PaySocio() {
     const {state, dispatch} = useContext(OrdenContext)
     const [loading, getDaypass] = useInicialStore(state=>[state.loading, state.getDaypass])
     const [data, setData] = useState(null)
+    const [errorMessage, setErrorMessage] = useState();
     const [maximo, setMaximo] = useState(false)
 
     useEffect(()=> {
@@ -17,36 +18,47 @@ export default function PayForm() {
         }
     }, [loading])
 
-    
-
-    function subtotal(count, precie) {
-        return count * precie
-    }
-
-    function total() {
-        let adultos = subtotal(state.adultos, data?.precio_adultos ?? 0);
-        let ninos = subtotal(state.ninos, data?.precio_ninos ?? 0);
-        let ninos_menores = subtotal(state.ninos_menores, data?.precio_ninos_menores ?? 0);
-
-        return adultos + ninos + ninos_menores
-    }
-
-    function numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-
     useEffect(() => {
-        let _total = total()
         let personas = state.adultos + state.ninos
         if(data) {
-            console.log(personas == data.limite_compra_personas)
-            console.log(personas)
-            console.log(data)
             personas == data.limite_compra_personas ? setMaximo(true) : setMaximo(false)
         }
-        dispatch({total: _total})
     }, [state.pasoActual, state.adultos, state.ninos, state.ninos_menores])
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        if(state.total === 0) return setErrorMessage('Indique la cantidad de personas')
+
+        dispatch({payLoading: true})
+        setErrorMessage('')
+        try {
+            axios
+                .post(import.meta.env.VITE_APP_URL+"/api/socio/reservacion", {
+                    ...state
+                })
+                .then(function (response) {
+                    dispatch({payLoading: false})
+                    let data = response.data;
+
+                    if(data.error) {
+                        setErrorMessage(data.error)
+                        return;
+                    }
+
+                    if(data.orden_folio) {
+                        dispatch({redirectTo: '/resumen/'+data.orden_folio})
+                    }
+                })
+                .catch(function (error) {
+                    dispatch({payLoading: false})
+                    console.log(error);
+                });
+        } catch (error) {
+            dispatch({payLoading: false})
+            console.log(error);
+        }
+    };
 
     return (
         <div className="max-w-design mx-auto px-4 py-12 md:py-32">
@@ -60,17 +72,11 @@ export default function PayForm() {
                                         <th scope="col" className="px-6 py-3">
                                             PASES
                                         </th>
-                                        <th scope="col" className="px-6 py-3">
-                                            PRECIO
-                                        </th>
                                         <th
                                             scope="col"
                                             className="px-6 py-3 w-[200px]"
                                         >
                                             CANTIDAD
-                                        </th>
-                                        <th scope="col" className="px-6 py-3">
-                                            TOTAL
                                         </th>
                                     </tr>
                                 </thead>
@@ -82,11 +88,9 @@ export default function PayForm() {
                                         >
                                             Adulto 13+
                                         </th>
-                                        <td className="px-6 py-4">${data?.precio_adultos ?? 0} {data?.moneda ?? ''}</td>
                                         <td className="px-6 py-4">
                                             <Count value={state.adultos} handlerUpdate={(count) => dispatch({adultos: count})} disabled={maximo} />
                                         </td>
-                                        <td className="px-6 py-4">${numberWithCommas(subtotal(state.adultos, data?.precio_adultos ?? 0))} {data?.moneda ?? ''}</td>
                                     </tr>
                                     <tr className="">
                                         <th
@@ -95,11 +99,9 @@ export default function PayForm() {
                                         >
                                             Niño de 7-12
                                         </th>
-                                        <td className="px-6 py-4">${data?.precio_ninos ?? 0} {data?.moneda ?? ''}</td>
                                         <td className="px-6 py-4">
                                             <Count value={state.ninos} handlerUpdate={(count) => dispatch({ninos: count})}  disabled={maximo} />
                                         </td>
-                                        <td className="px-6 py-4">${numberWithCommas(subtotal(state.ninos, data?.precio_ninos ?? 0))} {data?.moneda ?? ''}</td>
                                     </tr>
                                     <tr className="">
                                         <th
@@ -109,40 +111,20 @@ export default function PayForm() {
                                             Infante 0-6
                                         </th>
                                         <td className="px-6 py-4 pb-14">
-                                            ${data?.precio_ninos_menores ?? 0} {data?.moneda ?? ''}
-                                        </td>
-                                        <td className="px-6 py-4 pb-14">
                                             <Count value={state.ninos_menores} handlerUpdate={(count) => dispatch({ninos_menores: count})}  disabled={maximo} />
                                         </td>
-                                        <td className="px-6 py-4 pb-14">
-                                            ${numberWithCommas(subtotal(state.ninos_menores, data?.precio_ninos_menores ?? 0))} {data?.moneda ?? ''}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tbody className="border-t border-verdigris">
-                                    <tr>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3"
-                                        ></th>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3"
-                                        ></th>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 w-[200px]"
-                                        ></th>
-                                        <th scope="col" className="px-6 py-3">
-                                            ${numberWithCommas(total())} {data?.moneda ?? ''}
-                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    {errorMessage && <p className="bg-red-500 md:ml-8 text-white p-3">{errorMessage}</p>}
                     <div className="col-span-1 text-right pt-10">
-                        <CreditCardForm />
+                        <form onSubmit={handleSubmit}>
+                            <button type="submit" className="px-8 py-3 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto">
+                                Finalizar
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

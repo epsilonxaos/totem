@@ -28,3 +28,5 @@ Route::get('/inicial', [AppController::class, 'documentoInicial']);
 Route::post('/disponibilidad/daypass', [MovimientosController::class, 'verificarDisponibilidad']);
 Route::post('/pago', [CompraController::class, 'compraConekta']);
 Route::post('/resumen', [AppController::class, 'obtenerOrden']);
+Route::post('/socio/login', [AppController::class, 'validarSocio']);
+Route::post('/socio/reservacion', [CompraController::class, 'compraSocios']);
