@@ -11,11 +11,11 @@ export default function CreditCardForm() {
     const [flipped, setFlipped] = useState(false);
     const {state, dispatch } = useContext(OrdenContext)
 
-    const [cardNumber, setCardNumber] = useState("4242424242424242");
-    const [cardOwner, setCardOwner] = useState("Jesus Gonzalez Ramon");
-    const [expirationMonth, setExpirationMonth] = useState("12");
-    const [expirationYear, setExpirationYear] = useState("25");
-    const [cvv, setCvv] = useState("123");
+    const [cardNumber, setCardNumber] = useState("");
+    const [cardOwner, setCardOwner] = useState("");
+    const [expirationMonth, setExpirationMonth] = useState("");
+    const [expirationYear, setExpirationYear] = useState("");
+    const [cvv, setCvv] = useState("");
     const [errorMessage, setErrorMessage] = useState('')
 
     //* Define the color swap function
