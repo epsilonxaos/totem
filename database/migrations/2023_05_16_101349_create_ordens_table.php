@@ -23,7 +23,7 @@ return new class extends Migration
 			$table->string('apellido_materno')->nullable();
 			$table->string('nombre_completo');
 			$table->string('correo');
-			$table->string('telefono', 12);
+			$table->string('telefono', 20);
 			$table->date('fecha_reservacion');
 			$table->integer('p_adultos')->nullable();
 			$table->integer('p_ninos')->nullable();
