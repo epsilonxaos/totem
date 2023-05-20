@@ -4,10 +4,11 @@ import logoFooter from "../../../img/app/logo-footer.svg";
 import iconIn from "../../../img/app/icon-in.svg";
 import iconFb from "../../../img/app/icon-fb.svg";
 import iconLocation from "../../../img/app/icon-location.svg";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     return (
-        <footer className="bg-oxfordblue pt-10 md:pt-16 pb-8 md:pb-11 text-white px-6">
+        <footer className="bg-oxfordblue pt-10 md:pt-16 pb-8 md:pb-11 text-white px-6" id="contacto">
             <div className="max-w-6xl mx-auto font-light text-sm leading-5">
                 <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 items-center">
                     <div className="col-span-1 sm:col-span-2 md:col-span-3">
@@ -80,11 +81,11 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-5 text-sm items-center py-4">
                     <div className="col-span-1 md:col-span-3 mb-8 md:mb-0">
                         <ul className="flex flex-wrap justify-center md:justify-start gap-4 font-medium text-center md:text-left ">
-                            <li>Daypass</li>
-                            <li>Resturante</li>
-                            <li>Membresia</li>
-                            <li>Contacto</li>
-                            <li>Privacy Policy</li>
+                            <li><Link to="/daypass">Daypass</Link></li>
+                            <li><Link to="/restaurante">Resturante</Link></li>
+                            <li><Link to="/membresia">Membresia</Link></li>
+                            <li><a href="#contacto">Contacto</a></li>
+                            <li><Link to="/politicas">Privacy Policy</Link></li>
                         </ul>
                     </div>
                     <div className="col-span-1 md:col-span-2 text-center md:text-right text-xs md:text-xs lg:text-sm">

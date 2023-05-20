@@ -6,8 +6,7 @@ const ScrollToTop = () => {
 
     useEffect(
         () => {
-            const element = document.getElementById(location.hash.replace("#", ""));
-
+            const element = document.getElementById(location.hash.replace("#", ""));console.log(element)
             setTimeout(() => {
                 window.scrollTo({
                     behavior: element ? "smooth" : "auto",

@@ -269,7 +269,7 @@ export default function Home() {
                 </div>
 
                 {/* Santuario */}
-                <div className="max-w-6xl mx-auto md:px-4 pt-8 md:py-44">
+                <div className="max-w-6xl mx-auto md:px-4 pt-8 md:py-44" id="santuario">
                     <div className="grid grid-cols-1 md:grid-cols-5 bg-verdigris rounded-t-[36px] md:rounded-bl-[36px] overflow-hidden">
                         <div className="col-span-1 md:col-span-2 py-16 px-4 md:pl-16 md:pr-8 text-center md:text-left">
                             <Textos.Subtitulo className="md:text-2xl mb-8 md:mb-0">

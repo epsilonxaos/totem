@@ -1,33 +1,34 @@
 import React, { useState } from "react";
 import "../../../css/custom/header.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import logo from "../../../img/app/logo.svg";
+const activeClass = `relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:right-0 after:mx-auto after:w-4 rounded after:h-[2px] after:bg-verdigris`
 
-function MenuList() {
+function MenuList({updateMenu}) {
     return (
         <ul className="flex flex-col md:flex-row gap-10 md:gap-5 lg:gap-8 justify-end font-medium text-raisinblack text-sm">
             <li className="">
-                <Link to={"/daypass"}>Daypass</Link>
+                <NavLink onClick={() => updateMenu(false)} to={"/daypass"} className={({ isActive }) => isActive ? activeClass : "" }>Daypass</NavLink>
             </li>
             <li className="">
-                <Link to={"/restaurante"}>Restaurante</Link>
+                <NavLink onClick={() => updateMenu(false)} to={"/restaurante"} className={({ isActive }) => isActive ? activeClass : "" }>Restaurante</NavLink>
             </li>
             <li className="">
-                <Link to={"/membresia"}>Membresía</Link>
+                <NavLink onClick={() => updateMenu(false)} to={"/membresia"} className={({ isActive }) => isActive ? activeClass : "" }>Membresía</NavLink>
             </li>
-            <li className="">Contacto</li>
-            <li className="text-verdigris">Santuario del Tapir</li>
+            <li className=""><a href="#contacto">Contacto</a></li>
+            <li className="text-verdigris"><Link to={"/#santuario"}>Santuario del Tapir</Link></li>
         </ul>
     );
 }
 
-function MenuMovil({ open }) {
+function MenuMovil({ open, updateMenu }) {
     return (
         <>
             {open && (
                 <nav className="h-screen md:hidden w-full max-w-xs fixed top-0 left-0 bg-white px-5 pt-36 z-20 shadow-sm">
-                    <MenuList />
+                    <MenuList updateMenu={updateMenu} />
                 </nav>
             )}
 
@@ -68,13 +69,13 @@ export default function Header() {
                             </div>
                         </div>
                         <div className="hidden md:block md:col-span-2">
-                            <MenuList />
+                            <MenuList updateMenu={(val) => setOpen(val)} />
                         </div>
                     </div>
                 </div>
             </header>
 
-            <MenuMovil open={open} />
+            <MenuMovil open={open} updateMenu={(val) => setOpen(val)} />
         </>
     );
 }
