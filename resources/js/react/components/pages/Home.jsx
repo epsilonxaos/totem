@@ -9,6 +9,13 @@ import bannerInicial from "../../../../img/app/banner-1.jpg";
 import galeriaTest from "../../../../img/app/galeria-test.jpg";
 import arrowDown from "../../../../img/app/icon-arrow-down.png";
 
+import galeria_1 from "../../../../img/app/galeria-home/1.jpg";
+import galeria_2 from "../../../../img/app/galeria-home/2.jpg";
+import galeria_3 from "../../../../img/app/galeria-home/3.jpg";
+import galeria_4 from "../../../../img/app/galeria-home/4.jpg";
+import galeria_5 from "../../../../img/app/galeria-home/5.jpg";
+import galeria_6 from "../../../../img/app/galeria-home/6.jpg";
+
 import anemidad_1 from "../../../../img/app/icons/icon-1.png";
 import anemidad_2 from "../../../../img/app/icons/icon-2.png";
 import anemidad_3 from "../../../../img/app/icons/icon-3.png";
@@ -307,15 +314,48 @@ function Galeria() {
                 lazyLoad: true,
             }}
         >
-            {[1, 2, 3, 4].map((item) => (
-                <SplideSlide key={item}>
-                    <img
-                        className="aspect-square sm:aspect-video object-cover"
-                        src={galeriaTest}
-                        alt="Galeria 1"
-                    />
-                </SplideSlide>
-            ))}
+            <SplideSlide>
+                <img
+                    className="aspect-square sm:aspect-video object-cover"
+                    src={galeria_1}
+                    alt="Galeria 1"
+                />
+            </SplideSlide>
+            <SplideSlide>
+                <img
+                    className="aspect-square sm:aspect-video object-cover"
+                    src={galeria_2}
+                    alt="Galeria 1"
+                />
+            </SplideSlide>
+            <SplideSlide>
+                <img
+                    className="aspect-square sm:aspect-video object-cover"
+                    src={galeria_3}
+                    alt="Galeria 1"
+                />
+            </SplideSlide>
+            <SplideSlide>
+                <img
+                    className="aspect-square sm:aspect-video object-cover"
+                    src={galeria_4}
+                    alt="Galeria 1"
+                />
+            </SplideSlide>
+            <SplideSlide>
+                <img
+                    className="aspect-square sm:aspect-video object-cover"
+                    src={galeria_5}
+                    alt="Galeria 1"
+                />
+            </SplideSlide>
+            <SplideSlide>
+                <img
+                    className="aspect-square sm:aspect-video object-cover"
+                    src={galeria_6}
+                    alt="Galeria 1"
+                />
+            </SplideSlide>
         </Splide>
     );
 }

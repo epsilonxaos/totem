@@ -10,7 +10,7 @@ export default function Resumen() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.post( "https://totem-local.mx:443/api/resumen", {folio: folio});
+            const response = await axios.post( import.meta.env.VITE_APP_URL+"/api/resumen", {folio: folio});
             setOrden(response.data);
             console.log(response.data)
           }

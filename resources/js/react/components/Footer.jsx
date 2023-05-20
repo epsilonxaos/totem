@@ -34,10 +34,14 @@ export default function Footer() {
 
                                 <ul className="flex gap-3 justify-center pt-5 md:hidden">
                                     <li>
-                                        <img src={iconIn} alt="Instagram" />
+                                        <a href="https://www.instagram.com/totem.beachclub/" target="_blank" rel="noopener noreferrer">
+                                            <img src={iconIn} alt="Instagram" />
+                                        </a>
                                     </li>
                                     <li>
-                                        <img src={iconFb} alt="Facebook" />
+                                        <a href="https://www.facebook.com/TotemBeachClub" target="_blank" rel="noopener noreferrer">
+                                            <img src={iconFb} alt="Facebook" />
+                                        </a>
                                     </li>
                                     <li>
                                         <img
