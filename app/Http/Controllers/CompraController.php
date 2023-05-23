@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Daypass;
 use App\Models\Movimientos;
 use App\Models\Orden;
+use App\Models\Reservacion;
 use App\Models\Socios;
 use Conekta\Conekta;
 use Conekta\Customer;
@@ -51,17 +52,10 @@ class CompraController extends Controller
 
 		if (true) {
 			$daypass = Daypass::find(1);
-
 			$orden = Orden::create([
 				'daypass_id' => $daypass->id,
-				'folio' => strtoupper('TBC' . Str::random(8)),
-				'nombre_completo' => $request->nombre,
-				'correo' => $request->correo,
-				'telefono' => $request->telefono,
-				'fecha_reservacion' => $request->reservacion,
-				'p_adultos' => $request->adultos,
-				'p_ninos' => $request->ninos,
-				'p_ninos_menores' => $request->ninos_menores,
+				'pago_metodo' => 'tarjeta',
+				'pago_realizado' => 'website',
 				'total' => $request->total,
 				'status' => 1 // En proceso
 			]);
@@ -116,9 +110,25 @@ class CompraController extends Controller
 							$orden->pago_referencia = $order->id;
 							$orden->save();
 
+							$reservacion = Reservacion::create([
+								'folio' => strtoupper('TBC' . Str::random(8)),
+								'nombre_completo' => $request->nombre,
+								'correo' => $request->correo,
+								'telefono' => $request->telefono,
+								'fecha_reservacion' => $request->reservacion,
+								'p_adultos' => $request->adultos,
+								'p_ninos' => $request->ninos,
+								'p_ninos_menores' => $request->ninos_menores,
+								'is_socio' => false
+							]);
+
+							$orden->reservacion_id = $reservacion->id;
+							$orden->save();
+
 							Movimientos::create([
 								'daypass_id' => $daypass->id,
 								'orden_id' => $orden->id,
+								'reservacion_id' => $reservacion->id,
 								'fecha_reservacion' => $request->reservacion,
 								'precio_adulto' => $daypass->precio_adultos,
 								'precio_ninio' => $daypass->precio_ninos,
@@ -126,7 +136,7 @@ class CompraController extends Controller
 								'cantidad' => $request->adultos + $request->ninos + $request->ninos_menores
 							]);
 
-							return response(["status" => 'paid', 'orden_folio' => $orden->folio], 200);
+							return response(["status" => 'paid', 'orden_folio' => $reservacion->folio], 200);
 						default:
 							return response(["status" => 'fail', 'error' => $error], 200);
 							break;
@@ -145,14 +155,12 @@ class CompraController extends Controller
 
 	public function compraSocios(Request $request)
 	{
-		// dd($request->socio['id']);
 		try {
 
 			$daypass = Daypass::find(1);
 			$socio = Socios::find($request->socio['id']);
-			$orden = Orden::create([
-				'socio_id' => $socio->id,
-				'daypass_id' => $daypass->id,
+
+			$reservacion = Reservacion::create([
 				'folio' => strtoupper('TBC' . Str::random(8)),
 				'nombre_completo' => $socio->nombre_completo,
 				'correo' => $socio->correo,
@@ -161,16 +169,22 @@ class CompraController extends Controller
 				'p_adultos' => $request->adultos,
 				'p_ninos' => $request->ninos,
 				'p_ninos_menores' => $request->ninos_menores,
+				'is_socio' => true,
+			]);
+
+			$orden = Orden::create([
+				'reservacion_id' => $reservacion->id,
+				'daypass_id' => $daypass->id,
 				'total' => 0,
 				'pago_metodo' => 'incluido',
-				'is_socio' => true,
+				'pago_realizado' => 'website',
 				'status' => 6 //Estatus para Socios
 			]);
 
 			Movimientos::create([
-				'socio_id' => $socio->id,
 				'daypass_id' => $daypass->id,
 				'orden_id' => $orden->id,
+				'reservacion_id' => $reservacion->id,
 				'fecha_reservacion' => $request->reservacion,
 				'precio_adulto' => $daypass->precio_adultos,
 				'precio_ninio' => $daypass->precio_ninos,
@@ -178,7 +192,7 @@ class CompraController extends Controller
 				'cantidad' => $request->adultos + $request->ninos + $request->ninos_menores
 			]);
 
-			return response(["status" => 'paid', 'orden_folio' => $orden->folio], 200);
+			return response(["status" => 'paid', 'orden_folio' => $reservacion->folio], 200);
 		} catch (\Throwable $th) {
 			return response(["status" => 'error', 'error' => 'Hubo un problema en el proceso', 'er' => $th], 200);
 		}

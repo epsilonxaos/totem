@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Daypass;
 use App\Models\Orden;
+use App\Models\Reservacion;
 use App\Models\Socios;
 use Illuminate\Http\Request;
 
@@ -20,9 +21,10 @@ class AppController extends Controller
 
     public function obtenerOrden(Request $request)
     {
-        $orden = Orden::where('folio', $request->folio)->first();
+        $reservacion = Reservacion::where('folio', $request->folio)->first();
+        $orden = Orden::where('reservacion_id', $reservacion->id)->first();
 
-        return response($orden, 200);
+        return response(['orden' => $orden, "reservacion" => $reservacion], 200);
     }
 
     public function validarSocio(Request $request)

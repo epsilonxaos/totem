@@ -27,13 +27,13 @@ export default function Resumen() {
             <div className="bg-oxfordblue text-white p-8 md:p-20">
                 <Textos.Subtitulo className={'text-verdigris mb-8'}>Compra completada!</Textos.Subtitulo>
                 
-                <p>Folio: {orden.folio}</p>
-                <p>Fecha reservacion: {orden.fecha_reservacion}</p>
-                <p>Adultos: {orden.p_adultos}</p>
-                <p>Niños: {orden.p_ninos}</p>
-                <p className="mb-5">Niños menores: {orden.p_ninos_menores}</p>
-                {!orden.is_socio && (
-                    <p className="mb-8">Total: ${numberWithCommas(orden.total)} MXN</p>
+                <p>Folio: {orden.reservacion.folio}</p>
+                <p>Fecha reservacion: {orden.reservacion.fecha_reservacion}</p>
+                <p>Adultos: {orden.reservacion.p_adultos}</p>
+                <p>Niños: {orden.reservacion.p_ninos}</p>
+                <p className="mb-5">Niños menores: {orden.reservacion.p_ninos_menores}</p>
+                {!orden.reservacion.is_socio && (
+                    <p className="mb-8">Total: ${numberWithCommas(orden.orden.total)} MXN</p>
                 )}
 
                 <button type="button" className="px-8 py-3 mb-3 inline text-sm mt-2 mr-1 max-w-max bg-teal-400 text-black rounded-md mx-auto">Descargar PDF</button>

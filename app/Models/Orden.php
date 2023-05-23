@@ -12,24 +12,12 @@ class Orden extends Model
 	protected $table = 'orden';
 	protected $primaryKey = 'id';
 	protected $fillable = [
-		'socio_id',
-		'compra',
-		'folio',
-		'nombre',
-		'apellido_paterno',
-		'apellido_materno',
-		'nombre_completo',
-		'correo',
-		'telefono',
-		'p_adultos',
-		'p_ninos',
-		'p_ninos_menores',
+		'reservacion_id',
+		'daypass_id',
 		'total',
-		'is_socio',
 		'pago_metodo',
 		'pago_realizado',
 		'pago_referencia',
-		'fecha_reservacion',
 		'status'
 	];
 }

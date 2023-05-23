@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('daypass_id');
             $table->unsignedBigInteger('orden_id');
-            $table->unsignedBigInteger('socio_id')->nullable();
+            $table->unsignedBigInteger('reservacion_id')->nullable();
             $table->date('fecha_reservacion');
             $table->decimal('precio_adulto')->nullable();
             $table->decimal('precio_ninio')->nullable();
@@ -29,9 +29,9 @@ return new class extends Migration
             $table->foreign('orden_id')
                 ->references('id')
                 ->on('orden');
-            $table->foreign('socio_id')
+            $table->foreign('reservacion_id')
                 ->references('id')
-                ->on('socios');
+                ->on('reservacions');
         });
     }
 

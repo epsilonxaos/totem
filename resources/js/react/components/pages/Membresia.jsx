@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 import bg from "../../../../img/app/membresia-bg.jpg";
 import bgM from "../../../../img/app/membresia-bg-m.jpg";
@@ -25,9 +26,11 @@ export default function Membresia() {
                         <span className="text-verdigris">haz clic</span> para
                         reservar.
                     </p>
-                    <button className="px-8 py-3 inline text-sm mt-2 max-w-max bg-verdigris text-white rounded-md mx-auto">
-                        ¡Reserva Ahora!
-                    </button>
+                    <Link to={'/daypass/socio'}>
+                        <button className="px-8 py-3 inline text-sm mt-2 max-w-max bg-verdigris text-white rounded-md mx-auto">
+                            ¡Reserva Ahora!
+                        </button>
+                    </Link>
                     <hr className="max-w-[1273px] w-[95%] border-oxfordblue mx-auto my-9" />
                     <Textos.Subtitulo className="font-murecho mb-8">
                         No te quedes fuera, ¡aún tenemos un lugar para ti!
