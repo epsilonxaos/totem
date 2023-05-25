@@ -7,6 +7,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/css/plugins/datepicker.css',
                 'resources/js/admin/reservaciones/app.js',
             ],
             refresh: [

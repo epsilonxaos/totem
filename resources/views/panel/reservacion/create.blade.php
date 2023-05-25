@@ -215,9 +215,9 @@
 @endsection
 
 @push('script')
-    <script>
-        const daypass = @json($daypass)
-        const MODE = 'Create'
+    <script type="text/javascript">
+        const daypass = @json($daypass);
+        const MODE = 'Create';
     </script>
     @vite(['resources/css/plugins/datepicker.css', 'resources/js/admin/reservaciones/app.js'])
 @endpush
