@@ -103,4 +103,11 @@ class SociosController extends Controller
 	{
 		Socios::find($id)->delete();
 	}
+
+	public function getSocio(Request $request)
+	{
+		$data = Socios::find($request->id);
+
+		return response(['socio' => $data], 200);
+	}
 }

@@ -13,7 +13,16 @@ class OrdenController extends Controller
 	 */
 	public function index()
 	{
-		//
+		return view('panel.orden.index', [
+			"title" => "Ordenes",
+			"breadcrumb" => [
+				[
+					'title' => 'Ordenes',
+					'active' => true,
+				]
+			],
+			'data' => Orden::orderBy('created_at', 'desc')->paginate(30)
+		]);
 	}
 
 	/**

@@ -10,11 +10,13 @@ let container = null;
 document.addEventListener("DOMContentLoaded", function () {
     if (!container) {
         container = document.getElementById("root");
-        const root = createRoot(container);
-        root.render(
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
-        );
+        if(container) {
+            const root = createRoot(container);
+            root.render(
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            );
+        }
     }
 });

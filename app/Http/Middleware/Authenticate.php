@@ -15,9 +15,9 @@ class Authenticate extends Middleware
 
         if (!$request->expectsJson()) {
             //? Info: si el nombre de la ruta empieza con panel hara el redirect
-            if(preg_match("/\bpanel\b/", $request->route()->getName())){
+            if (preg_match("/\badmin\b/", $request->route()->getName())) {
                 return route('panel.access');
-            }else{
+            } else {
                 return route('login'); //Debes verificar que esta ruta exista!
             }
         }

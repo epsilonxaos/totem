@@ -4,6 +4,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ConektaController;
 use App\Http\Controllers\MovimientosController;
+use App\Http\Controllers\SociosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,5 +29,7 @@ Route::get('/inicial', [AppController::class, 'documentoInicial']);
 Route::post('/disponibilidad/daypass', [MovimientosController::class, 'verificarDisponibilidad']);
 Route::post('/pago', [CompraController::class, 'compraConekta']);
 Route::post('/resumen', [AppController::class, 'obtenerOrden']);
+Route::post('/socio', [SociosController::class, 'getSocio']);
 Route::post('/socio/login', [AppController::class, 'validarSocio']);
 Route::post('/socio/reservacion', [CompraController::class, 'compraSocios']);
+Route::post('/admin/reservacion', [CompraController::class, 'compraAdmin']);

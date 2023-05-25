@@ -138,6 +138,8 @@ class CompraController extends Controller
 
 							return response(["status" => 'paid', 'orden_folio' => $reservacion->folio], 200);
 						default:
+							$orden->status = 3;
+							$orden->save();
 							return response(["status" => 'fail', 'error' => $error], 200);
 							break;
 					}
@@ -161,6 +163,7 @@ class CompraController extends Controller
 			$socio = Socios::find($request->socio['id']);
 
 			$reservacion = Reservacion::create([
+				'socio_id' => $socio->id,
 				'folio' => strtoupper('TBC' . Str::random(8)),
 				'nombre_completo' => $socio->nombre_completo,
 				'correo' => $socio->correo,
@@ -193,6 +196,54 @@ class CompraController extends Controller
 			]);
 
 			return response(["status" => 'paid', 'orden_folio' => $reservacion->folio], 200);
+		} catch (\Throwable $th) {
+			return response(["status" => 'error', 'error' => 'Hubo un problema en el proceso', 'er' => $th], 200);
+		}
+	}
+
+	public function compraAdmin(Request $request)
+	{
+		try {
+			$daypass = Daypass::find(1);
+
+			$reservacion = Reservacion::create([
+				'folio' => strtoupper('TBC' . Str::random(8)),
+				'nombre_completo' => $request->nombre,
+				'correo' => $request->correo,
+				'telefono' => $request->telefono,
+				'fecha_reservacion' => $request->fecha_reservacion,
+				'p_adultos' => $request->adultos,
+				'p_ninos' => $request->ninos,
+				'p_ninos_menores' => $request->ninos_menores,
+				'is_socio' => $request->isSocio,
+			]);
+
+			if ($request->isSocio) {
+				$reservacion->socio_id = $request->socio['id'];
+				$reservacion->save();
+			}
+
+			$orden = Orden::create([
+				'reservacion_id' => $reservacion->id,
+				'daypass_id' => $daypass->id,
+				'total' => $request->total,
+				'pago_metodo' => $request->isSocio ? 'incluido' : $request->pago_metodo,
+				'pago_realizado' => 'club',
+				'status' => $request->isSocio ? 6 : 2 //Estatus para Socios
+			]);
+
+			Movimientos::create([
+				'daypass_id' => $daypass->id,
+				'orden_id' => $orden->id,
+				'reservacion_id' => $reservacion->id,
+				'fecha_reservacion' => $request->fecha_reservacion,
+				'precio_adulto' => $daypass->precio_adultos,
+				'precio_ninio' => $daypass->precio_ninos,
+				'precio_ninio_menor' => $daypass->precio_ninos_menores,
+				'cantidad' => $request->adultos + $request->ninos + $request->ninos_menores
+			]);
+			return route('panel.reservacion.show', ['id' => $reservacion->id]);
+			// return response(["status" => 'paid', 'orden_folio' => $reservacion->folio], 200);
 		} catch (\Throwable $th) {
 			return response(["status" => 'error', 'error' => 'Hubo un problema en el proceso', 'er' => $th], 200);
 		}
