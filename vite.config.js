@@ -9,7 +9,12 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/admin/reservaciones/app.js',
             ],
-            refresh: true,
+            refresh: [
+                'resources/css/**',
+                'resources/js/**',
+                'routes/**',
+                'resources/views/**',
+            ],
         }),
     ],
 });
