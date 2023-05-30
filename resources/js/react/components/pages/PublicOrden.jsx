@@ -6,24 +6,19 @@ import PayForm from "./orden/Payform";
 import OrdenContext from '../../context/OrdenContext'
 import { DateTime } from "luxon";
 import { Navigate  } from 'react-router-dom';
+import { obtenerFecha } from "../../helpers/Utils";
+import { useInicialStore } from "../../store/useInicialStore";
 
 export default function PublicOrden() {
-    const tomorrow = DateTime.now()
-        .setZone("America/Merida")
-        .plus({ days: 1 })
-        .toJSDate();
-    const tomorrowFormat = DateTime.now()
-        .setZone("America/Merida")
-        .plus({ days: 1 })
-        .toFormat("yyyy-MM-dd");
+	const [loadingInitial, getDaypass] = useInicialStore(state => [state.loading, state.getDaypass])
 	const reducer = (prev, next) => ({...prev, ...next})
 	const initialArgs = {
 		payLoading: false,
-		pasoActual: 'politicas',
+		pasoActual: 'reservacion',
 		politicasAccept: false,
-		startDate: tomorrow,
-		tomorrow: tomorrow,
-		reservacion: tomorrowFormat,
+		startDate: '',
+		tomorrow: '',
+		reservacion: '',
 		nombre: '',
 		correo: '',
 		telefono: '',
@@ -34,6 +29,28 @@ export default function PublicOrden() {
 		redirectTo: ''
 	}
 	const [state, dispatch] = useReducer(reducer, initialArgs)
+	const [daypass, setDaypass] = useState();
+    const [fechasExcluidas, setFechasExcluidas] = useState([]);
+
+	useEffect(()=> {
+        if(!loadingInitial) {
+            let daypass = getDaypass();
+            let fechasEX = daypass.fechas_excluidas;
+            let fechasExFormated = []
+            fechasEX.forEach(fecha => {fechasExFormated.push( new Date(fecha + 'T00:00:00') )})
+
+			const tomorrow = obtenerFecha(fechasEX).dateCurrent;
+    		const tomorrowFormat = obtenerFecha(fechasEX).dateCurrentFormat;
+
+			dispatch({
+				startDate: tomorrow,
+				tomorrow: tomorrow,
+				reservacion: tomorrowFormat,
+			})
+            setFechasExcluidas(fechasExFormated)
+            setDaypass(daypass);
+        }
+    }, [loadingInitial])
 
 	// Si se establece el estado de redirección, redirige a la ruta especificada
 	if (state.redirectTo) {
@@ -42,7 +59,7 @@ export default function PublicOrden() {
 
     return (
         <div className="relative">
-			<OrdenContext.Provider value={{state, dispatch}}>
+			<OrdenContext.Provider value={{state, dispatch, daypass, fechasExcluidas}}>
 				{state.pasoActual === "politicas" && (
 					<PoliticasOrden
 					/>

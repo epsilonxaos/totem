@@ -1,28 +1,23 @@
 import { DateTime } from "luxon";
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { Navigate } from "react-router-dom";
 import BgOrden from "./orden/BgOrden";
 import SocioAuth from "./orden/SocioAuth";
 import OrdenContext from "../../context/OrdenContext";
 import SocioForm from "./orden/SocioForm";
 import PaySocio from "./orden/PaySocio";
+import { obtenerFecha } from "../../helpers/Utils";
+import { useInicialStore } from "../../store/useInicialStore";
 
 export default function SocioOrden(){
-    const tomorrow = DateTime.now()
-        .setZone("America/Merida")
-        .plus({ days: 1 })
-        .toJSDate();
-    const tomorrowFormat = DateTime.now()
-        .setZone("America/Merida")
-        .plus({ days: 1 })
-        .toFormat("yyyy-MM-dd");
+	const [loadingInitial, getDaypass] = useInicialStore(state => [state.loading, state.getDaypass])
 	const reducer = (prev, next) => ({...prev, ...next})
 	const initialArgs = {
         payLoading: false,
 		pasoActual: 'login',
-		startDate: tomorrow,
-		tomorrow: tomorrow,
-		reservacion: tomorrowFormat,
+		startDate: '',
+		tomorrow: '',
+		reservacion: '',
 		adultos: 0,
 		ninos: 0,
 		ninos_menores: 0,
@@ -31,6 +26,28 @@ export default function SocioOrden(){
         socio: null
 	}
 	const [state, dispatch] = useReducer(reducer, initialArgs)
+	const [daypass, setDaypass] = useState();
+    const [fechasExcluidas, setFechasExcluidas] = useState([]);
+
+	useEffect(()=> {
+        if(!loadingInitial) {
+            let daypass = getDaypass();
+            let fechasEX = daypass.fechas_excluidas;
+            let fechasExFormated = []
+            fechasEX.forEach(fecha => {fechasExFormated.push( new Date(fecha + 'T00:00:00') )})
+
+			const tomorrow = obtenerFecha(fechasEX).dateCurrent;
+    		const tomorrowFormat = obtenerFecha(fechasEX).dateCurrentFormat;
+
+			dispatch({
+				startDate: tomorrow,
+				tomorrow: tomorrow,
+				reservacion: tomorrowFormat,
+			})
+            setFechasExcluidas(fechasExFormated)
+            setDaypass(daypass);
+        }
+    }, [loadingInitial])
 
 	// Si se establece el estado de redirección, redirige a la ruta especificada
 	if (state.redirectTo) {
@@ -39,7 +56,7 @@ export default function SocioOrden(){
 
     return (
         <div className="relative">
-			<OrdenContext.Provider value={{state, dispatch}}>
+			<OrdenContext.Provider value={{state, dispatch, daypass, fechasExcluidas}}>
 				{state.pasoActual === "login" && (
                     <BgOrden>
                         <SocioAuth />
