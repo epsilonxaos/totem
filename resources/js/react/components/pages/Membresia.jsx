@@ -45,7 +45,7 @@ export default function Membresia() {
                         </span>
                     </p>
                     <p className="mb-6">
-                        Acceso de 10:00 a 21:00 hrs <br /> 5 integrantes por
+                        Acceso de 10:00 a 19:00 hrs <br /> 5 integrantes por
                         membresía <br />
                         Acceso a áreas exclusivas del club <br /> Toallas y
                         lockers sin costo
