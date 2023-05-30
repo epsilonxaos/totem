@@ -12,8 +12,11 @@ class AppController extends Controller
 {
     public function documentoInicial()
     {
+        $daypass = Daypass::find(1);
+        $daypass->fechas_excluidas = json_decode($daypass->fechas_excluidas);
+
         $datos = [
-            'daypass' => Daypass::find(1)
+            'daypass' => $daypass
         ];
 
         return response($datos, 200);
