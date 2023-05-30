@@ -12,8 +12,6 @@ class Daypass extends Model
 	protected $primaryKey = 'id';
 	protected $fillable = [
 		'limite_total',
-		'limite_publico',
-		'limite_socios',
 		'precio_adultos',
 		'precio_ninos',
 		'precio_ninos_menores',

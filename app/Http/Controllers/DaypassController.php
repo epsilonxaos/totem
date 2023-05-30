@@ -54,8 +54,6 @@ class DaypassController extends Controller
 	{
 		$source = Daypass::find(1);
 		$source->limite_total = $request->limite_total;
-		$source->limite_publico = $request->limite_publico;
-		$source->limite_socios = $request->limite_socios;
 		$source->precio_adultos = $request->precio_adultos;
 		$source->precio_ninos = $request->precio_ninos;
 		$source->precio_ninos_menores = $request->precio_ninos_menores;

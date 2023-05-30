@@ -13,9 +13,7 @@ return new class extends Migration
 	{
 		Schema::create('daypass', function (Blueprint $table) {
 			$table->id();
-			$table->integer('limite_total')->default(50);
-			$table->integer('limite_publico')->default(0);
-			$table->integer('limite_socios')->default(0);
+			$table->integer('limite_total')->default(280);
 			$table->decimal('precio_adultos');
 			$table->decimal('precio_ninos');
 			$table->decimal('precio_ninos_menores');
