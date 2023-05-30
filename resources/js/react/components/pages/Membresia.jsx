@@ -84,8 +84,7 @@ export default function Membresia() {
                         eventos <br /> organizados por el Club.
                     </p>
                     <p className="text-verdigris font-bold text-sm mb-6">
-                        {" "}
-                        $30,000 MXN
+                        $15,000 MXN
                     </p>
                     <button className="px-8 py-3 inline text-sm mt-2 max-w-max bg-oxfordblue text-white rounded-md mx-auto">
                         ¡Quiero mi membresía!
