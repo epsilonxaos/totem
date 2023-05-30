@@ -93,7 +93,7 @@ export default function PayForm() {
                                             scope="row"
                                             className="px-6 py-4 text-white whitespace-nowrap dark:text-white"
                                         >
-                                            Niño de 7-12
+                                            Niño de 6-12
                                         </th>
                                         <td className="px-6 py-4">${data?.precio_ninos ?? 0} {data?.moneda ?? ''}</td>
                                         <td className="px-6 py-4">
@@ -106,7 +106,7 @@ export default function PayForm() {
                                             scope="row"
                                             className="px-6 py-4 pb-14 text-white whitespace-nowrap dark:text-white"
                                         >
-                                            Infante 0-6
+                                            Infante 0-5
                                         </th>
                                         <td className="px-6 py-4 pb-14">
                                             ${data?.precio_ninos_menores ?? 0} {data?.moneda ?? ''}

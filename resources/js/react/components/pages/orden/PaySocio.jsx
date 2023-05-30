@@ -97,7 +97,7 @@ export default function PaySocio() {
                                             scope="row"
                                             className="px-6 py-4 text-white whitespace-nowrap dark:text-white"
                                         >
-                                            Niño de 7-12
+                                            Niño de 6-12
                                         </th>
                                         <td className="px-6 py-4">
                                             <Count value={state.ninos} handlerUpdate={(count) => dispatch({ninos: count})}  disabled={maximo} />
@@ -108,7 +108,7 @@ export default function PaySocio() {
                                             scope="row"
                                             className="px-6 py-4 pb-14 text-white whitespace-nowrap dark:text-white"
                                         >
-                                            Infante 0-6
+                                            Infante 0-5
                                         </th>
                                         <td className="px-6 py-4 pb-14">
                                             <Count value={state.ninos_menores} handlerUpdate={(count) => dispatch({ninos_menores: count})}  disabled={maximo} />
