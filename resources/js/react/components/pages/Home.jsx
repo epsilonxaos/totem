@@ -33,6 +33,7 @@ import daypass from "../../../../img/app/daypass.png";
 import bannerEventos from "../../../../img/app/banner-eventos.jpg";
 import tapir from "../../../../img/app/tapir.jpg";
 import Textos from "../Textos";
+import { Link } from "react-router-dom";
 
 export default function Home() {
     return (
@@ -203,6 +204,7 @@ export default function Home() {
                             <CardExperiencia
                                 img={resturante}
                                 titulo={"Restaurante"}
+                                url={'/restaurante'}
                                 text={
                                     "Disfruta de las mejores especialidades gastronómicas de la costa en nuestro restaurante."
                                 }
@@ -212,6 +214,7 @@ export default function Home() {
                             <CardExperiencia
                                 img={daypass}
                                 titulo={"DayPass"}
+                                url={'/daypass'}
                                 text={
                                     "Visítanos las veces que quieras con nuestro Day Pass."
                                 }
@@ -222,6 +225,7 @@ export default function Home() {
                             <CardExperiencia
                                 img={membresia}
                                 titulo={"Membresía"}
+                                url={'/membresia'}
                                 text={
                                     "Únete a nuestro club y disfruta tu propio paraíso siempre que quieras."
                                 }
@@ -360,7 +364,7 @@ function Galeria() {
     );
 }
 
-function CardExperiencia({ img, titulo, text, bgAzul = false }) {
+function CardExperiencia({ img, titulo, text, bgAzul = false, url = '/' }) {
     return (
         <div className="bg-white max-w-[350px] mx-auto py-8 px-9 rounded-[45px] h-full flex flex-col justify-between">
             <main>
@@ -375,13 +379,14 @@ function CardExperiencia({ img, titulo, text, bgAzul = false }) {
                 <p className="text-sm">{text}</p>
             </main>
 
-            <button
+            <Link
+            to={url}
                 className={`px-8 py-3 mt-2 text-sm ${
                     bgAzul ? "bg-oxfordblue" : "bg-verdigris"
                 } text-white rounded-md max-w-[185px] mx-auto`}
             >
                 ¡Más información!
-            </button>
+            </Link>
         </div>
     );
 }
