@@ -90,7 +90,7 @@ export default function CreditCardForm() {
     return (
         <>
             <div className="w-full text-center">
-                <p className="text-white uppercase mb-5">Informacion de pago</p>
+                <p className="text-white uppercase mb-5">Información de pago</p>
             </div>
             <div className="flex flex-col md:flex-row gap-2">
                 <div className="container mx-auto">
