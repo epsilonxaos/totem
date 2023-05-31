@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Socios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class SociosController extends Controller
@@ -45,7 +46,7 @@ class SociosController extends Controller
 			'nombre_completo' => $request->nombre . ' ' . $request->apellido_paterno . ' ' . $request->apellido_materno,
 			'correo' => $request->correo,
 			'telefono' => $request->telefono,
-			'token_access' => 'SCT' . Str::random(10),
+			'password' => Hash::make($request->password),
 			'fecha_inicio' => $request->fecha_inicio,
 			'fecha_finalizacion' => $request->fecha_finalizacion,
 			'status' => 1
@@ -76,7 +77,6 @@ class SociosController extends Controller
 		$request->validate([
 			'nombre' => 'required',
 			'apellido_paterno' => 'required',
-			'correo' => 'required|email|unique:socios,correo',
 			'telefono' => 'required|min:10|max:12',
 			'fecha_inicio' => 'required|date',
 			'fecha_finalizacion' => 'required|date'
@@ -87,9 +87,7 @@ class SociosController extends Controller
 		$source->apellido_paterno = $request->apellido_paterno;
 		$source->apellido_materno = $request->apellido_materno;
 		$source->nombre_completo = $request->nombre_completo;
-		$source->correo = $request->correo;
 		$source->telefono = $request->telefono;
-		$source->token_access = $request->token_access;
 		$source->fecha_inicio = $request->fecha_inicio;
 		$source->fecha_finalizacion = $request->fecha_finalizacion;
 		$source->status = $request->status;

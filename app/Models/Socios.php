@@ -18,7 +18,7 @@ class Socios extends Model
 		'nombre_completo',
 		'correo',
 		'telefono',
-		'token_access',
+		'password',
 		'fecha_inicio',
 		'fecha_finalizacion',
 		'status'

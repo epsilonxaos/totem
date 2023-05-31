@@ -19,7 +19,7 @@ return new class extends Migration
 			$table->string('nombre_completo');
 			$table->string('correo')->unique();
 			$table->string('telefono', 20);
-			$table->text('token_access');
+			$table->string('password');
 			$table->date('fecha_inicio');
 			$table->date('fecha_finalizacion');
 			$table->tinyInteger('status')->default(1);

@@ -7,6 +7,7 @@ use App\Models\Orden;
 use App\Models\Reservacion;
 use App\Models\Socios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AppController extends Controller
 {
@@ -32,12 +33,12 @@ class AppController extends Controller
 
     public function validarSocio(Request $request)
     {
-        $socio = Socios::select('id', 'nombre_completo', 'telefono', 'correo', 'token_access')
+        $socio = Socios::select('id', 'nombre_completo', 'telefono', 'correo', 'password')
             ->where('correo', $request->correo)->first();
 
         if (!$socio) return response(['acceso' => false, 'error' => 'Usuario no encontrado']);
 
-        if ($request->token_access == decrypt($socio->token_access)) {
+        if (Hash::check($request->password, $socio->password)) {
             return response(['acceso' => true, 'socio' => $socio]);
         } else {
             return response(['acceso' => false, 'error' => 'ID de acceso no es correcto']);

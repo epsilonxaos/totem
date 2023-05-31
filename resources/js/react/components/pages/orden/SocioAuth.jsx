@@ -6,7 +6,7 @@ import OrdenContext from "../../../context/OrdenContext";
 export default function SocioAuth() {
     const {state, dispatch} = useContext(OrdenContext)
     const [correo, setCorreo] = useState('');
-    const [token, setToken] = useState('');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
 
@@ -14,7 +14,7 @@ export default function SocioAuth() {
         e.preventDefault();
         const response = await axios.post(
             import.meta.env.VITE_APP_URL+"/api/socio/login",
-            { correo: correo, token_access: token }
+            { correo: correo, password: password }
         );
         let data = response.data
         if(data?.error) {
@@ -57,15 +57,15 @@ export default function SocioAuth() {
                             />
                         </div>
                         <div className="mb-6 col-span-1">
-                            <label htmlFor="token" className="block mb-2 text-sm font-medium text-white" >
-                                *ID de acceso
+                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-white" >
+                                *Contraseña
                             </label>
                             <input
-                                type="text"
-                                name="token"
-                                id="token"
-                                onChange={(e) => setToken(e.target.value)}
-                                value={token}
+                                type="password"
+                                name="password"
+                                id="password"
+                                onChange={(e) => setPassword(e.target.value)}
+                                value={password}
                                 required
                                 className="bg-transparent border-2 border-verdigris text-white text-sm block w-full p-2.5"
                             />

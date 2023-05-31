@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Socios;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Socios>
@@ -27,8 +27,7 @@ class SociosFactory extends Factory
             'nombre_completo' => fake()->name(),
             'correo' => fake()->unique()->safeEmail(),
             'telefono' => fake()->phoneNumber(),
-            'token_access' => encrypt('password'),
-            // 'token_access' => encrypt(Str::random(12)),
+            'password' => Hash::make('password'),
             'fecha_inicio' => now(),
             'fecha_finalizacion' => '2023-12-12',
             'status' => 1
