@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+	return $request->user();
 });
 Route::get('/webhook', [ConektaController::class, 'webhook']);
 Route::post('/webhook', [ConektaController::class, 'webhook']);
@@ -31,5 +31,6 @@ Route::post('/pago', [CompraController::class, 'compraConekta']);
 Route::post('/resumen', [AppController::class, 'obtenerOrden']);
 Route::post('/socio', [SociosController::class, 'getSocio']);
 Route::post('/socio/login', [AppController::class, 'validarSocio']);
+Route::post('/socio/recuperarPassword', [AppController::class, 'recuperarPasswordSocio']);
 Route::post('/socio/reservacion', [CompraController::class, 'compraSocios']);
 Route::post('/admin/reservacion', [CompraController::class, 'compraAdmin']);

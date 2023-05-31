@@ -11,37 +11,47 @@ use Illuminate\Support\Facades\Hash;
 
 class AppController extends Controller
 {
-    public function documentoInicial()
-    {
-        $daypass = Daypass::find(1);
-        $daypass->fechas_excluidas = json_decode($daypass->fechas_excluidas);
+	public function documentoInicial()
+	{
+		$daypass = Daypass::find(1);
+		$daypass->fechas_excluidas = json_decode($daypass->fechas_excluidas);
 
-        $datos = [
-            'daypass' => $daypass
-        ];
+		$datos = [
+			'daypass' => $daypass
+		];
 
-        return response($datos, 200);
-    }
+		return response($datos, 200);
+	}
 
-    public function obtenerOrden(Request $request)
-    {
-        $reservacion = Reservacion::where('folio', $request->folio)->first();
-        $orden = Orden::where('reservacion_id', $reservacion->id)->first();
+	public function obtenerOrden(Request $request)
+	{
+		$reservacion = Reservacion::where('folio', $request->folio)->first();
+		$orden = Orden::where('reservacion_id', $reservacion->id)->first();
 
-        return response(['orden' => $orden, "reservacion" => $reservacion], 200);
-    }
+		return response(['orden' => $orden, "reservacion" => $reservacion], 200);
+	}
 
-    public function validarSocio(Request $request)
-    {
-        $socio = Socios::select('id', 'nombre_completo', 'telefono', 'correo', 'password')
-            ->where('correo', $request->correo)->first();
+	public function validarSocio(Request $request)
+	{
+		$socio = Socios::select('id', 'nombre_completo', 'telefono', 'correo', 'password')
+			->where('correo', $request->correo)->first();
 
-        if (!$socio) return response(['acceso' => false, 'error' => 'Usuario no encontrado']);
+		if (!$socio) return response(['acceso' => false, 'error' => 'Usuario no encontrado']);
 
-        if (Hash::check($request->password, $socio->password)) {
-            return response(['acceso' => true, 'socio' => $socio]);
-        } else {
-            return response(['acceso' => false, 'error' => 'ID de acceso no es correcto']);
-        }
-    }
+		if (Hash::check($request->password, $socio->password)) {
+			return response(['acceso' => true, 'socio' => $socio]);
+		} else {
+			return response(['acceso' => false, 'error' => 'ID de acceso no es correcto']);
+		}
+	}
+
+	public function recuperarPasswordSocio(Request $request)
+	{
+		$socio = Socios::select('id')
+			->where('correo', $request->correo)->first();
+
+		if (!$socio) return response(['exist' => false, 'error' => 'La cuenta no existe']);
+
+		return response(['exist' => true, 'socio' => $socio]);
+	}
 }
