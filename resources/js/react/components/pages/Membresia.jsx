@@ -71,10 +71,10 @@ export default function Membresia() {
                         </div>
                         <div className="col-span-1">
                             <h4 className="font-murecho text-3xl font-bold text-oxfordblue">
-                                2
+                                1 + 4
                             </h4>
                             <p>
-                                Invitados sin <br /> costo.
+                                Un titular más 4 invitados sin <br /> costo.
                             </p>
                         </div>
                     </div>
