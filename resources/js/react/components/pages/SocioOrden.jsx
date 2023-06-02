@@ -61,6 +61,13 @@ export default function SocioOrden() {
 		}
 	}, [loadingInitial])
 
+	useEffect(() => {
+		window.scrollTo({
+			behavior: 'auto',
+			top: 0,
+		})
+	}, [state.pasoActual])
+
 	// Si se establece el estado de redirección, redirige a la ruta especificada
 	if (state.redirectTo) {
 		return <Navigate to={state.redirectTo} />
