@@ -8,7 +8,7 @@ export default function SocioAuth() {
 	const [correo, setCorreo] = useState('')
 	const [password, setPassword] = useState('')
 	const [error, setError] = useState('')
-	const [isOpenModal, setIsOpenModal] = useState(true)
+	const [isOpenModal, setIsOpenModal] = useState(false)
 
 	async function handleSubmit(e) {
 		e.preventDefault()

@@ -8,6 +8,7 @@ use App\Models\Reservacion;
 use App\Models\Socios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 
 class AppController extends Controller
 {
@@ -39,7 +40,7 @@ class AppController extends Controller
 		if (!$socio) return response(['acceso' => false, 'error' => 'Usuario no encontrado']);
 
 		if (Hash::check($request->password, $socio->password)) {
-			return response(['acceso' => true, 'socio' => $socio]);
+			return response(['acceso' => true, 'socio' => ['nombre_completo' => $socio->nombre_completo, 'telefono' => $socio->telefono, 'correo' => $socio->correo]]);
 		} else {
 			return response(['acceso' => false, 'error' => 'ID de acceso no es correcto']);
 		}

@@ -17,9 +17,20 @@ export default function SocioOrden() {
 		startDate: '',
 		tomorrow: '',
 		reservacion: '',
-		adultos: 0,
+
+		adultos: 0, //Totales
 		ninos: 0,
 		ninos_menores: 0,
+
+		addExtras: false,
+		personasTotales: 0,
+		pay_adultos: 0,
+		pay_ninos: 0,
+		inv_adultos: 0,
+		inv_ninos: 0,
+		payInvitados: false,
+
+		total: 0,
 		redirectTo: '',
 		auth: false,
 		socio: null,

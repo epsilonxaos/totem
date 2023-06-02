@@ -20,6 +20,7 @@ return new class extends Migration
 			$table->decimal('precio_ninos_menores');
 			$table->string('moneda')->default('MXN');
 			$table->integer('limite_compra_personas')->default(15);
+			$table->integer('limite_invitados_socios')->default(5);
 			$table->decimal('maximo_pago_tarjeta')->default(8000);
 			$table->timestamps();
 		});

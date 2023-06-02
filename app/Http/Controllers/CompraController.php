@@ -25,10 +25,26 @@ class CompraController extends Controller
 		Conekta::setApiVersion('2.0.0');
 		Conekta::setLocale('es');
 		$success_customer = false;
+		$socioIsPay = isset($request->socio) ? true : false;
+		if ($socioIsPay) {
+			$socio = Socios::where('correo', $request->socio['correo'])->first();
+		}
 
 		try {
-			$customerConekta = Customer::create(
-				array(
+			if ($socioIsPay) {
+				$arrayCustomerConekta = array(
+					"name" => $socio->nombre_completo,
+					"email" => $socio->correo,
+					"phone" => $socio->telefono,
+					"payment_sources" => [
+						[
+							"type" => "card",
+							"token_id" => $request->token
+						]
+					]
+				);
+			} else {
+				$arrayCustomerConekta = array(
 					"name" => $request->nombre,
 					"email" => $request->correo,
 					"phone" => $request->telefono,
@@ -38,8 +54,10 @@ class CompraController extends Controller
 							"token_id" => $request->token
 						]
 					]
-				) //customer
-			);
+				);
+			}
+
+			$customerConekta = Customer::create($arrayCustomerConekta);
 
 			$success_customer = true;
 		} catch (ProcessingError $error) {
@@ -112,15 +130,20 @@ class CompraController extends Controller
 
 							$reservacion = Reservacion::create([
 								'folio' => strtoupper('TBC' . Str::random(8)),
-								'nombre_completo' => $request->nombre,
-								'correo' => $request->correo,
-								'telefono' => $request->telefono,
+								'nombre_completo' => $socioIsPay ? $socio->nombre_completo : $request->nombre,
+								'correo' => $socioIsPay ? $socio->correo : $request->correo,
+								'telefono' => $socioIsPay ? $socio->telefono : $request->telefono,
 								'fecha_reservacion' => $request->reservacion,
 								'p_adultos' => $request->adultos,
 								'p_ninos' => $request->ninos,
 								'p_ninos_menores' => $request->ninos_menores,
 								'is_socio' => false
 							]);
+
+							if ($socioIsPay) {
+								$reservacion->socio_id = $socio->id;
+								$reservacion->save();
+							}
 
 							$orden->reservacion_id = $reservacion->id;
 							$orden->save();
@@ -140,16 +163,16 @@ class CompraController extends Controller
 						default:
 							$orden->status = 3;
 							$orden->save();
-							return response(["status" => 'fail', 'error' => $error], 200);
+							return response(["status" => 'fail', 'error' => $error], 500);
 							break;
 					}
 				} else {
-					return response(["status" => 'error', 'error' => $error], 200);
+					return response(["status" => 'error', 'error' => $error], 500);
 				}
 			} else {
 				$orden->status = 4;
 				$orden->save();
-				return response(["status" => 'Orden error', 'error' => $er], 200);
+				return response(["status" => 'Orden error', 'error' => $er], 500);
 			}
 		}
 		return response(["status" => 'error desconocido', 'error' => 'Ni idea'], 200);
@@ -160,7 +183,7 @@ class CompraController extends Controller
 		try {
 
 			$daypass = Daypass::find(1);
-			$socio = Socios::find($request->socio['id']);
+			$socio = Socios::where('correo', $request->socio['correo'])->first();
 
 			$reservacion = Reservacion::create([
 				'socio_id' => $socio->id,

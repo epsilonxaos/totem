@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movimientos extends Model
 {
-    use HasFactory;
-    protected $table = 'movimientos';
-    protected $primaryKey = 'id';
-    protected $fillable = [
-        'daypass_id',
-        'orden_id',
-        'socio_id',
-        'fecha_reservacion',
-        'precio_adulto',
-        'precio_ninio',
-        'precio_ninio_menor',
-        'cantidad',
-    ];
+	use HasFactory;
+	protected $table = 'movimientos';
+	protected $primaryKey = 'id';
+	protected $fillable = [
+		'daypass_id',
+		'orden_id',
+		'reservacion_id',
+		'fecha_reservacion',
+		'precio_adulto',
+		'precio_ninio',
+		'precio_ninio_menor',
+		'cantidad',
+	];
 }

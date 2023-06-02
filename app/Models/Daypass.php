@@ -17,6 +17,7 @@ class Daypass extends Model
 		'precio_ninos_menores',
 		'moneda',
 		'limite_compra_personas',
+		'limite_invitados_socios',
 		'maximo_pago_tarjeta',
 		'fechas_excluidas'
 	];
