@@ -32,5 +32,6 @@ Route::post('/resumen', [AppController::class, 'obtenerOrden']);
 Route::post('/socio', [SociosController::class, 'getSocio']);
 Route::post('/socio/login', [AppController::class, 'validarSocio']);
 Route::post('/socio/recuperarPassword', [AppController::class, 'recuperarPasswordSocio']);
+Route::post('/socio/updatePassword', [AppController::class, 'updatePasswordSocio']);
 Route::post('/socio/reservacion', [CompraController::class, 'compraSocios']);
 Route::post('/admin/reservacion', [CompraController::class, 'compraAdmin']);

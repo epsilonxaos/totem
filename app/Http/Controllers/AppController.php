@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailRecoveryPasswordSocio;
 use App\Models\Daypass;
 use App\Models\Orden;
 use App\Models\Reservacion;
 use App\Models\Socios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class AppController extends Controller
 {
@@ -48,11 +50,40 @@ class AppController extends Controller
 
 	public function recuperarPasswordSocio(Request $request)
 	{
-		$socio = Socios::select('id')
+		$socio = Socios::select('id', 'correo', 'token', 'nombre')
 			->where('correo', $request->correo)->first();
 
-		if (!$socio) return response(['exist' => false, 'error' => 'La cuenta no existe']);
+		if (!$socio) return response(['exist' => false, 'error' => 'Lo sentimos, la cuenta que ingreso no existe, verifique que los datos sean correctos.']);
 
-		return response(['exist' => true, 'socio' => $socio]);
+		$urlRecovery = url('/membresia/passwordRecovery/' . encrypt($socio->correo) . '/' . $socio->token);
+		$data = [
+			'nombre' => $socio->nombre,
+			'urlRecovery' => $urlRecovery
+		];
+
+		Mail::to($request->correo)->send(new MailRecoveryPasswordSocio($data));
+
+		return response(['exist' => true]);
+	}
+
+	public function updatePasswordSocio(Request $request)
+	{
+		try {
+			$correo = decrypt($request->socio);
+			$socio = Socios::where([
+				['correo', '=', $correo],
+				['token', '=', $request->token],
+			])->first();
+
+			if (!$socio) return response(['success' => false, 'message' => 'Lo sentimos, se presento un error, la sesión expiro, los datos para la recuperación no son correctos o la cuenta no existe, vuelva a intentar el proceso. Si el proble persiste contacte a soporte apra brindarle ayuda'], 500);
+
+			$socio->password = Hash::make($request->password);
+			$socio->token = Str::random(10);
+			$socio->save();
+
+			return response(['success' => true, 'socio' => $socio, 'message' => 'Contraseña actualizada, ahora ya puede iniciar sesión con la nueva contraseña.'], 200);
+		} catch (\Throwable $th) {
+			return response(['success' => false, 'message' => 'Lo sentimos, se presento un error, la sesión expiro, los datos para la recuperación no son correctos o la cuenta no existe, vuelva a intentar el proceso. Si el proble persiste contacte a soporte apra brindarle ayuda'], 500);
+		}
 	}
 }

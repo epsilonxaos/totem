@@ -4,28 +4,35 @@ import { createPortal } from 'react-dom'
 export default function MoodalRecoveryPassword({ isOpen = false, handleCloseFn }) {
 	const [message, setMessage] = useState('')
 	const [correo, setCorreo] = useState('')
+	const [isSend, setSend] = useState(false)
 
 	async function handleSubmit(e) {
 		console.log('here')
 		e.preventDefault()
+		setSend(true)
 		try {
 			const response = await axios.post(import.meta.env.VITE_APP_URL + '/api/socio/recuperarPassword', {
 				correo: correo,
 			})
 			let data = response.data
-			if (data?.error) {
-				setMessage(data?.error)
-				setTimeout(() => {
-					setMessage('')
-				}, 4000)
+			if (!data.exist) {
+				setMessage({ text: data.error, success: false })
+				setSend(false)
 				return
 			}
 
-			setMessage(
-				'Hemos enviado un correo con los pasos para recuperar tu cuenta, revisa tu bandeja de entrada o en el apartado de spam.'
-			)
+			setMessage({
+				text: 'Hemos enviado un correo con los pasos para recuperar tu cuenta, revisa tu bandeja de entrada o en el apartado de spam.',
+				success: true,
+			})
+			setSend(false)
 		} catch (error) {
 			console.log(error)
+			setMessage({
+				text: 'Estamos presentando problemas en nuestro servicio, por favor intente más tarde.',
+				success: false,
+			})
+			setSend(false)
 		}
 	}
 
@@ -37,9 +44,9 @@ export default function MoodalRecoveryPassword({ isOpen = false, handleCloseFn }
 					tabIndex='-1'
 					className='fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full flex items-center justify-center bg-black bg-opacity-30'>
 					<div className='relative w-full max-w-md max-h-full'>
-						<div className='relative bg-white rounded-lg shadow dark:bg-gray-700'>
-							<div className='flex items-center justify-between p-5 border-b rounded-t dark:border-gray-600'>
-								<h3 className='text-xl font-medium text-gray-900 dark:text-white'>Recuperar contraseña</h3>
+						<div className='relative bg-white shadow dark:bg-gray-700'>
+							<div className='flex items-center justify-between p-5 border-b bg-delftblue'>
+								<h3 className='text-xl font-medium text-white'>Recuperar contraseña</h3>
 								<button
 									onClick={handleCloseFn}
 									type='button'
@@ -61,7 +68,7 @@ export default function MoodalRecoveryPassword({ isOpen = false, handleCloseFn }
 							</div>
 							<form onSubmit={handleSubmit}>
 								<div className='p-6 space-y-6'>
-									<p className='text-base leading-relaxed text-gray-500 dark:text-gray-400'>
+									<p className='text-sm text-oxfordblue leading-relaxed'>
 										Ingresa tu correo electrónico para buscar tu cuenta socio Club Totem.
 									</p>
 
@@ -70,12 +77,19 @@ export default function MoodalRecoveryPassword({ isOpen = false, handleCloseFn }
 										name='email'
 										id='email'
 										onChange={ev => setCorreo(ev.target.value)}
-										className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white'
+										className='bg-transparent border-2 !border-verdigris text-oxfordblue text-sm block w-full p-2.5 focus:outline-none !ring-transparent focus:shadow-none'
 										placeholder='Correo electrónico'
 										required
 									/>
 
-									{message && <p className='text-xs'>{message}</p>}
+									{message && (
+										<p
+											className={`text-xs text-center font-medium ${
+												message?.success ? 'text-oxfordblue' : 'text-pink-600'
+											}`}>
+											{message?.text}
+										</p>
+									)}
 								</div>
 								<div className='flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600'>
 									<button
@@ -85,12 +99,21 @@ export default function MoodalRecoveryPassword({ isOpen = false, handleCloseFn }
 										className='text-gray-500 bg-white hover:bg-gray-100 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600'>
 										Cancelar
 									</button>
-									<button
-										data-modal-hide='small-modal'
-										type='submit'
-										className='text-white bg-verdigris font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
-										Buscar
-									</button>
+									{isSend ? (
+										<button
+											data-modal-hide='small-modal'
+											type='button'
+											className='text-white opacity-60 pointer-events-none bg-verdigris font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+											Buscando...
+										</button>
+									) : (
+										<button
+											data-modal-hide='small-modal'
+											type='submit'
+											className='text-white bg-verdigris font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+											Buscar
+										</button>
+									)}
 								</div>
 							</form>
 						</div>

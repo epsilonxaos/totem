@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Textos from '../Textos'
 import { Link } from 'react-router-dom'
+import { numberWithCommas } from '../../helpers/Utils'
 
 export default function Resumen() {
 	let { folio } = useParams()
@@ -16,10 +17,6 @@ export default function Resumen() {
 		}
 		fetchData()
 	}, [])
-
-	function numberWithCommas(x) {
-		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-	}
 
 	return (
 		<div className='text-center flex items-center justify-center p-4'>

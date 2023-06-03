@@ -20,6 +20,7 @@ return new class extends Migration
 			$table->string('correo')->unique();
 			$table->string('telefono', 20);
 			$table->string('password');
+			$table->string('token');
 			$table->date('fecha_inicio');
 			$table->date('fecha_finalizacion');
 			$table->tinyInteger('status')->default(1);

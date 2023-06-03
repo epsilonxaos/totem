@@ -20,6 +20,7 @@ class Socios extends Model
 		'telefono',
 		'password',
 		'fecha_inicio',
+		'token',
 		'fecha_finalizacion',
 		'status'
 	];
