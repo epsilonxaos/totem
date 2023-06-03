@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
+use App\Mail\MailConfirmOrden;
 use App\Models\Daypass;
 use App\Models\Movimientos;
 use App\Models\Orden;
@@ -15,6 +17,7 @@ use Conekta\ParameterValidationError;
 use Conekta\ProcessingError;
 use Conekta\ResourceNotFoundError;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class CompraController extends Controller
@@ -142,6 +145,8 @@ class CompraController extends Controller
 
 							if ($socioIsPay) {
 								$reservacion->socio_id = $socio->id;
+								$reservacion->pay_adultos = $request->pay_adultos;
+								$reservacion->pay_ninos = $request->pay_ninos;
 								$reservacion->save();
 							}
 
@@ -158,6 +163,26 @@ class CompraController extends Controller
 								'precio_ninio_menor' => $daypass->precio_ninos_menores,
 								'cantidad' => $request->adultos + $request->ninos + $request->ninos_menores
 							]);
+
+							$data = [
+								'nombre' => $reservacion->nombre_completo,
+								'folio' => $reservacion->folio,
+								'fechaCompra' => Helpers::dateSpanishComplete($reservacion->created_at),
+								'fechaReservacion' => Helpers::dateSpanishComplete($reservacion->fecha_reservacion),
+								'adultos' => $reservacion->p_adultos,
+								'ninos' => $reservacion->p_ninos,
+								'ninosMenores' => $reservacion->p_ninos_menores,
+								'payAdultos' => $reservacion->pay_adultos,
+								'payNinos' => $reservacion->pay_ninos,
+								'precioAdultos' => $daypass->precio_adultos,
+								'precioNinos' => $daypass->precio_ninos,
+								'precioNinosMenores' => $daypass->precio_ninos_menores,
+								'total' => $orden->total,
+								'isSocio' => $socioIsPay,
+								'referencia' => $orden->pago_referencia
+							];
+
+							Mail::to($reservacion->correo)->send(new MailConfirmOrden($data));
 
 							return response(["status" => 'paid', 'orden_folio' => $reservacion->folio], 200);
 						default:
@@ -217,6 +242,27 @@ class CompraController extends Controller
 				'precio_ninio_menor' => $daypass->precio_ninos_menores,
 				'cantidad' => $request->adultos + $request->ninos + $request->ninos_menores
 			]);
+
+			$data = [
+				'nombre' => $reservacion->nombre_completo,
+				'folio' => $reservacion->folio,
+				'fechaCompra' => Helpers::dateSpanishComplete($reservacion->created_at),
+				'fechaReservacion' => Helpers::dateSpanishComplete($reservacion->fecha_reservacion),
+				'adultos' => $reservacion->p_adultos,
+				'ninos' => $reservacion->p_ninos,
+				'ninosMenores' => $reservacion->p_ninos_menores,
+				'payAdultos' => $reservacion->pay_adultos,
+				'payNinos' => $reservacion->pay_ninos,
+				'precioAdultos' => $daypass->precio_adultos,
+				'precioNinos' => $daypass->precio_ninos,
+				'precioNinosMenores' => $daypass->precio_ninos_menores,
+				'total' => $orden->total,
+				'isSocio' => true,
+				'referencia' => $orden->pago_referencia
+			];
+
+			Mail::to($reservacion->correo)->send(new MailConfirmOrden($data));
+
 
 			return response(["status" => 'paid', 'orden_folio' => $reservacion->folio], 200);
 		} catch (\Throwable $th) {

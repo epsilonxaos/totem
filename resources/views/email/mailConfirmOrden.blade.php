@@ -1,9 +1,9 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
   <head>
-	<title>
-		{{env('APP_NAME')}}
-	  </title>
+    <title>
+      {{env('APP_NAME')}}
+    </title>
     <!--[if !mso]><!-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--<![endif]-->
@@ -68,7 +68,10 @@
   </head>
   <body style="word-spacing:normal;background-color:#F8F8F8;">
     
-     
+    <div style="display:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+      Pre-header Text
+    </div>
+  
     
       <div style="background-color:#F8F8F8;">
         
@@ -102,9 +105,9 @@
           <tr>
             <td style="width:98px;">
               
-      <img alt height="auto" src="{{ Vite::asset('resources/img/app/logo.png') }}" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="98">
-    
-            </td>
+				<img alt height="auto" src="{{ Vite::asset('resources/img/app/logo.png') }}" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="98">
+			  
+			</td>
           </tr>
         </tbody>
       </table>
@@ -163,7 +166,7 @@
               <tr>
                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                   
-      <div style="font-family:Inter;font-size:20px;font-weight:bold;line-height:24px;text-align:left;color:#75B5B0;">Recuperación de contraseña</div>
+      <div style="font-family:Inter;font-size:20px;font-weight:bold;line-height:24px;text-align:left;color:#75B5B0;">Confirmación de compra</div>
     
                 </td>
               </tr>
@@ -171,7 +174,7 @@
               <tr>
                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                   
-      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;">Hola {{$nombre}},</div>
+      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;">Hola,</div>
     
                 </td>
               </tr>
@@ -179,7 +182,164 @@
               <tr>
                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                   
-      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;">Hemos recibido una solicitud para restablecer la contraseña de tu cuenta. Si no has solicitado esto, puedes ignorar este mensaje.</div>
+      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;">Gracias por tu compra en <span class="text-verde" style="color: #75B5B0; font-weight: 800;">Tótem Beach Club</span>. Estamos emocionados de informarte que tu compra ha sido completada con éxito. A continuación, encontrarás los detalles de tu orden:</div>
+    
+                </td>
+              </tr>
+            
+              <tr>
+                <td align="center" style="font-size:0px;padding:10px 25px;padding-top:30px;padding-bottom:5px;word-break:break-word;">
+                  
+      <div style="font-family:Inter;font-size:18px;font-weight:800;line-height:24px;text-align:center;color:#75B5B0;">Daypass</div>
+    
+                </td>
+              </tr>
+            
+              <tr>
+                <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:5px;word-break:break-word;">
+                  
+      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;"><span style="font-weight: 600">Nombre completo:</span> {{$nombre}}</div>
+    
+                </td>
+              </tr>
+            
+              <tr>
+                <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0px;padding-bottom:5px;word-break:break-word;">
+                  
+      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;"><span style="font-weight: 600">Número de folio:</span> {{$folio}}</div>
+    
+                </td>
+              </tr>
+            
+              <tr>
+                <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0px;padding-bottom:5px;word-break:break-word;">
+                  
+      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;"><span style="font-weight: 600">Fecha de compra:</span> {{$fechaCompra}}</div>
+    
+                </td>
+              </tr>
+            
+              <tr>
+                <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0px;word-break:break-word;">
+                  
+      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;"><span style="font-weight: 600">Fecha de reservación:</span> {{$fechaReservacion}}</div>
+    
+                </td>
+              </tr>
+            
+        </tbody>
+      </table>
+    
+      </div>
+    
+          <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:570px;" ><![endif]-->
+            
+      <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+        
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+        <tbody>
+          <tr>
+            <td style="vertical-align:top;padding-top:20px;">
+              
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style width="100%">
+        <tbody>
+          
+              <tr>
+                <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                  
+      <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#000000;font-family:Inter;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none;">
+        <tr style="border-bottom:1px solid #ecedee;text-align:left;padding:15px 0; width: 100%;">
+              <th style="padding: 0 15px 0 0;">Pases</th>
+              <th style="padding: 0 15px;">Cantidad</th>
+              <th style="padding: 0 15px;">Precio</th>
+              <th style="padding: 0 15px;">Subtotal</th>
+            </tr>
+            <tr>
+              <td style="padding: 0 15px 0 0;">Adultos</td>
+              <td style="padding: 0 15px;">{{$adultos}}{{$payAdultos > 0 ? ' (+ '.$payAdultos.' extras)' : ''}}</td>
+              <td style="padding: 0 0 0 15px;">${{$precioAdultos}} MXN</td>
+			  @if ($isSocio)
+              	<td style="padding: 0 0 0 15px;">${{$payAdultos > 0 ? ($payAdultos * $precioAdultos) : 0}} MXN</td>
+			  @else
+			  	<td style="padding: 0 0 0 15px;">${{$adultos * $precioAdultos}} MXN</td>
+			  @endif
+            </tr>
+            <tr>
+              <td style="padding: 0 15px 0 0;">Menores +6</td>
+              <td style="padding: 0 15px;">{{$ninos}}{{$payNinos > 0 ? ' (+ '.$payNinos.' extras)' : ''}}</td>
+              <td style="padding: 0 0 0 15px;">${{$precioNinos}} MXN</td>
+              @if ($isSocio)
+              	<td style="padding: 0 0 0 15px;">${{$payNinos > 0 ? ($payNinos * $precioAdultos) : 0}} MXN</td>
+			  @else
+			  	<td style="padding: 0 0 0 15px;">${{$ninos * $precioAdultos}} MXN</td>
+			  @endif
+            </tr>
+            <tr>
+              <td style="padding: 0 15px 20px 0;">Infantes</td>
+              <td style="padding: 0 15px 20px ;">{{$ninosMenores}}</td>
+              <td style="padding: 0 0 20px 15px;">${{$precioNinosMenores}} MXN</td>
+              <td style="padding: 0 0 20px 15px;">$0 MXN</td>
+            </tr>
+            <tr style="border-bottom:1px solid #ecedee; border-top:1px solid #ecedee;text-align:left;padding:15px 0; width: 100%">
+              <th style="padding: 0 15px 0 0;">Total</th>
+              <th style="padding: 0 15px;"></th>
+              <th style="padding: 0 15px;"></th>
+			  @if ($isSocio)
+              	<th style="padding: 0 15px;">{{$total > 0 ? '$'.$total.' MXN' : 'MEMBRESÍA CLUB'}}</th>  
+			  @else
+              	<th style="padding: 0 15px;">${{$total}} MXN</th>
+			  @endif
+            </tr>
+      </table>
+    
+                </td>
+              </tr>
+            
+        </tbody>
+      </table>
+    
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    
+      </div>
+    
+          <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:570px;" ><![endif]-->
+            
+      <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+        
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+        <tbody>
+          <tr>
+            <td style="vertical-align:top;padding-top:20px;">
+              
+      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style width="100%">
+        <tbody>
+
+			@if ($total > 0)
+				<tr>
+					<td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:5px;word-break:break-word;">
+						
+			<div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;"><span style="font-weight: 600">Metodo de pago:</span> Tarjeta</div>
+		
+					</td>
+					</tr>
+				
+					<tr>
+					<td align="left" style="font-size:0px;padding:10px 25px;padding-top:0px;padding-bottom:20px;word-break:break-word;">
+						
+			<div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;"><span style="font-weight: 600">Número de referncia:</span> {{$referencia}}]</div>
+		
+					</td>
+				</tr>
+			@endif
+          
+            
+              <tr>
+                <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                  
+      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;">Nos gustaría agradecerte por tu confianza y apoyo. Si tienes alguna pregunta sobre tu compra o necesitas asistencia adicional, no dudes en contactar a nuestro equipo de servicio al cliente a través de gerencia@clubdeplayatotem.com.</div>
     
                 </td>
               </tr>
@@ -187,43 +347,16 @@
               <tr>
                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                   
-      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;">Si deseas restablecer tu contraseña, haz clic en el siguiente enlace o cópialo y pégalo en tu navegador:</div>
+      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;">¡Esperamos que disfrutes de tu pasadía! y esperamos atenderte nuevamente en el futuro.</div>
     
                 </td>
               </tr>
             
-              <tr>
-                <td align="left" style="font-size:0px;padding:10px 25px;padding-top:30px;padding-bottom:30px;word-break:break-word;">
-                  
-      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#637381;"><a class="text-link" href="{{$urlRecovery}}" style="color: #5e6ebf;">{{$urlRecovery}}</a></div>
+        </tbody>
+      </table>
     
-                </td>
-              </tr>
-            
-              <tr>
-                <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                  
-      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;">Si el enlace no funciona, también puedes copiar y pegarlo en el navegador.</div>
-    
-                </td>
-              </tr>
-            
-              <tr>
-                <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                  
-      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;">Recuerda que este enlace y código de verificación son válidos por 12 horas. Pasado este tiempo, deberás solicitar nuevamente el restablecimiento de contraseña. Si necesitas ayuda o tienes alguna pregunta, no dudes en contactar a nuestro equipo de soporte a través de gerencia@clubdeplayatotem.com o visitando nuestra página de ayuda en {{env('APP_URL')}}.</div>
-    
-                </td>
-              </tr>
-            
-              <tr>
-                <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                  
-      <div style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;"></div>
-    
-                </td>
-              </tr>
-            
+            </td>
+          </tr>
         </tbody>
       </table>
     
