@@ -143,7 +143,7 @@ export default function Resumen() {
 									<th
 										scope='col'
 										class='px-6 py-3 pt-5'>
-										${numberWithCommas(orden.orden.total)} MXN
+										{orden.orden.total > 0 ? <>${numberWithCommas(orden.orden.total)} MXN</> : 'MEMBRESÍA CLUB'}
 									</th>
 								</tr>
 							</thead>

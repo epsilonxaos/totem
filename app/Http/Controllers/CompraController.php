@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helpers;
 use App\Mail\MailConfirmOrden;
+use App\Mail\MailStaffNewOrden;
 use App\Models\Daypass;
 use App\Models\Movimientos;
 use App\Models\Orden;
@@ -182,6 +183,14 @@ class CompraController extends Controller
 								'referencia' => $orden->pago_referencia
 							];
 
+							$dataStaff = [
+								'cliente' => $reservacion->nombre_completo,
+								'orden' => $orden->id,
+								'folio' => $reservacion->folio,
+								'fechaCompra' => Helpers::dateSpanishComplete($reservacion->created_at)
+							];
+
+							Mail::to('wilberthg16@gmail.com')->send(new MailStaffNewOrden($dataStaff));
 							Mail::to($reservacion->correo)->send(new MailConfirmOrden($data));
 
 							return response(["status" => 'paid', 'orden_folio' => $reservacion->folio], 200);
@@ -261,6 +270,14 @@ class CompraController extends Controller
 				'referencia' => $orden->pago_referencia
 			];
 
+			$dataStaff = [
+				'cliente' => $reservacion->nombre_completo,
+				'orden' => $orden->id,
+				'folio' => $reservacion->folio,
+				'fechaCompra' => Helpers::dateSpanishComplete($reservacion->created_at)
+			];
+
+			Mail::to('wilberthg16@gmail.com')->send(new MailStaffNewOrden($dataStaff));
 			Mail::to($reservacion->correo)->send(new MailConfirmOrden($data));
 
 
