@@ -45,12 +45,12 @@ class AppController extends Controller
 		$socio = Socios::select('id', 'nombre_completo', 'telefono', 'correo', 'password')
 			->where('correo', $request->correo)->first();
 
-		if (!$socio) return response(['acceso' => false, 'error' => 'Usuario no encontrado']);
+		if (!$socio) return response(['acceso' => false, 'error' => 'El usuario ingresado no existe, por favor verifique su información.']);
 
 		if (Hash::check($request->password, $socio->password)) {
 			return response(['acceso' => true, 'socio' => ['nombre_completo' => $socio->nombre_completo, 'telefono' => $socio->telefono, 'correo' => $socio->correo]]);
 		} else {
-			return response(['acceso' => false, 'error' => 'ID de acceso no es correcto']);
+			return response(['acceso' => false, 'error' => 'La contraseña no es correcta, por favor intente nuevamente.']);
 		}
 	}
 
@@ -87,7 +87,7 @@ class AppController extends Controller
 			$socio->token = Str::random(10);
 			$socio->save();
 
-			return response(['success' => true, 'socio' => $socio, 'message' => 'Contraseña actualizada, ahora ya puede iniciar sesión con la nueva contraseña.'], 200);
+			return response(['success' => true, 'socio' => $socio, 'message' => 'Contraseña actualizada, ahora puede iniciar sesión con su nueva contraseña.'], 200);
 		} catch (\Throwable $th) {
 			return response(['success' => false, 'message' => 'Lo sentimos, se presento un error, la sesión expiro, los datos para la recuperación no son correctos o la cuenta no existe, vuelva a intentar el proceso. Si el proble persiste contacte a soporte apra brindarle ayuda'], 500);
 		}

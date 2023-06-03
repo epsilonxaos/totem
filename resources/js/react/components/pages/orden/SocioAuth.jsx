@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import OrdenContext from '../../../context/OrdenContext'
 import MoodalRecoveryPassword from '../../Modals/ModalRecoveryPassword'
+import { RiCloseCircleLine } from 'react-icons/ri'
 
 export default function SocioAuth() {
 	const { dispatch } = useContext(OrdenContext)
@@ -84,7 +85,15 @@ export default function SocioAuth() {
 						¿Olvidaste tu contraseña?
 					</p>
 
-					{error && <p className='bg-red-500 md:ml-8 text-white p-3'>{error}</p>}
+					{error && (
+						<p className='bg-delftblue bg-opacity-80 backdrop-blur-sm md:ml-8 text-pink-500 font-medium p-3 rounded'>
+							<RiCloseCircleLine
+								size={16}
+								className='inline-block mr-1'
+							/>{' '}
+							{error}
+						</p>
+					)}
 
 					<div className='text-center pt-5'>
 						<button
