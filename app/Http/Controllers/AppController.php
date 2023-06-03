@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Mail\MailRecoveryPasswordSocio;
 use App\Models\Daypass;
 use App\Models\Orden;
@@ -28,10 +29,15 @@ class AppController extends Controller
 
 	public function obtenerOrden(Request $request)
 	{
-		$reservacion = Reservacion::where('folio', $request->folio)->first();
-		$orden = Orden::where('reservacion_id', $reservacion->id)->first();
+		$reservacion = Reservacion::select('id', 'socio_id', 'folio', 'fecha_reservacion', 'p_adultos', 'pay_adultos', 'p_ninos', 'pay_ninos', 'p_ninos_menores')
+			->where('folio', $request->folio)->first();
+		$orden = Orden::select('total')->where('reservacion_id', $reservacion->id)->first();
+		$daypass = Daypass::select('precio_adultos', 'precio_ninos', 'precio_ninos_menores')->find(1);
 
-		return response(['orden' => $orden, "reservacion" => $reservacion], 200);
+		$reservacion->socio_id = $reservacion->socio_id ? true : false;
+		$reservacion->fecha_reservacion = Helpers::dateSpanishComplete($reservacion->fecha_reservacion);
+
+		return response(['orden' => $orden, "reservacion" => $reservacion, 'daypass' => $daypass], 200);
 	}
 
 	public function validarSocio(Request $request)
