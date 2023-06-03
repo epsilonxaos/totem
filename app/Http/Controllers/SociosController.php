@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
+use App\Mail\MailNewSocio;
 use App\Models\Socios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class SociosController extends Controller
@@ -35,11 +38,12 @@ class SociosController extends Controller
 			'apellido_paterno' => 'required',
 			'correo' => 'required|email|unique:socios,correo',
 			'telefono' => 'required|min:10|max:12',
+			'password' => 'required',
 			'fecha_inicio' => 'required|date|after_or_equal:today',
 			'fecha_finalizacion' => 'required|date|after_or_equal:today'
 		]);
 
-		Socios::create([
+		$socio = Socios::create([
 			'nombre' => $request->nombre,
 			'apellido_paterno' => $request->apellido_paterno,
 			'apellido_materno' => $request->apellido_materno,
@@ -51,6 +55,17 @@ class SociosController extends Controller
 			'fecha_finalizacion' => $request->fecha_finalizacion,
 			'status' => 1
 		]);
+
+		$data = [
+			'nombre' => $socio->nombre,
+			'nombreCompleto' => $socio->nombre_completo,
+			'correo' => $socio->correo,
+			'password' => $request->password,
+			'fechaRegistro' => Helpers::dateSpanishComplete($socio->fecha_inicio),
+			'fechaVencimiento' => Helpers::dateSpanishComplete($socio->fecha_finalizacion),
+		];
+
+		Mail::to($socio->correo)->send(new MailNewSocio($data));
 	}
 
 	/**
