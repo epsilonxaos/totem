@@ -14,7 +14,7 @@ export default function PublicOrden() {
 	const reducer = (prev, next) => ({ ...prev, ...next })
 	const initialArgs = {
 		payLoading: false,
-		pasoActual: 'politicas',
+		pasoActual: 'informacion',
 		politicasAccept: false,
 		startDate: '',
 		tomorrow: '',

@@ -5,6 +5,8 @@ import MaskedInput from './MaskedInput'
 import conektaHelper from '../../../../helpers/conektaHelper'
 import axios from 'axios'
 import OrdenContext from '../../../../context/OrdenContext'
+import { toast } from 'react-hot-toast'
+import { RiCloseCircleLine } from 'react-icons/ri'
 
 export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 	const [flipped, setFlipped] = useState(false)
@@ -32,7 +34,18 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 	const handleSubmit = e => {
 		e.preventDefault()
 
-		if (state.total === 0) return setErrorMessage('Indique la cantidad de personas')
+		let personasTotales = state.adultos + state.ninos + state.ninos_menores
+		console.log(personasTotales)
+		if (personasTotales === 0) {
+			setErrorMessage('Por favor, indique al menos una persona para la compra.')
+			toast.error('Ups, parece que hubo un error.')
+			return
+		}
+		if (state.total === 0) {
+			setErrorMessage('Lo sentimos, el cargo no puede ser cero, por favor revise su compra.')
+			toast.error('Ups, parece que hubo un error.')
+			return
+		}
 
 		conektaHelper.tokenize(
 			cardNumber,
@@ -54,6 +67,7 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 							let data = response.data
 
 							if (data.error) {
+								toast.error('Ups, parece que hubo un error.')
 								setErrorMessage(data.error)
 								return
 							}
@@ -63,15 +77,21 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 							}
 						})
 						.catch(function (error) {
+							toast.error('Ups, parece que hubo un error.')
 							dispatch({ payLoading: false })
+							setErrorMessage(error.response.data.error)
 							console.log(error)
 						})
 				} catch (error) {
+					toast.error('Ups, parece que hubo un error.')
 					dispatch({ payLoading: false })
-					console.log(error)
 				}
 			},
-			event => console.log(event)
+			event => {
+				toast.error('Ups, parece que hubo un error.')
+				dispatch({ payLoading: false })
+				setErrorMessage('Lo sentimos, alguno de los datos ingresados no son correctos.')
+			}
 		)
 	}
 
@@ -88,8 +108,18 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 
 	return (
 		<>
-			<div className='w-full text-center'>
+			<div className='w-full text-center pb-6'>
 				<p className='text-white uppercase mb-5'>Información de pago</p>
+
+				{errorMessage && (
+					<div className='bg-delftblue bg-opacity-80 backdrop-blur-sm md:ml-8 text-pink-500 font-medium p-3 rounded'>
+						<RiCloseCircleLine
+							size={16}
+							className='inline-block mr-1'
+						/>{' '}
+						{errorMessage}
+					</div>
+				)}
 			</div>
 			<div className='flex flex-col md:flex-row gap-2'>
 				<div className='container mx-auto'>
@@ -112,7 +142,6 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 					</div>
 				</div>
 				<div className='text-left'>
-					{errorMessage && <div className='bg-red-500 md:ml-8 text-white p-3'>{errorMessage}</div>}
 					<form
 						onSubmit={handleSubmit}
 						className='md:pl-8 pt-6 pb-8 mb-4'>

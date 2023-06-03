@@ -72,7 +72,7 @@ class CompraController extends Controller
 			$er = $error->getMessage();
 		}
 
-		if (true) {
+		if ($success_customer) {
 			$daypass = Daypass::find(1);
 			$orden = Orden::create([
 				'daypass_id' => $daypass->id,
@@ -209,7 +209,7 @@ class CompraController extends Controller
 				return response(["status" => 'Orden error', 'error' => $er], 500);
 			}
 		}
-		return response(["status" => 'error desconocido', 'error' => 'Ni idea'], 200);
+		return response(["status" => 'error desconocido', 'error' => 'Lo sentimos, tenemos problemas con nuestro sistema.'], 500);
 	}
 
 	public function compraSocios(Request $request)

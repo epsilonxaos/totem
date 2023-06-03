@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 export default function Footer() {
 	return (
 		<footer
-			className='bg-oxfordblue pt-10 md:pt-16 pb-8 md:pb-11 text-white px-6'
+			className='bg-oxfordblue pt-10 md:pt-16 pb-8 md:pb-11 text-white px-6 relative z-10'
 			id='contacto'>
 			<div className='max-w-6xl mx-auto font-light text-sm leading-5'>
 				<div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 items-center'>
