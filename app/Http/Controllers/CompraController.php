@@ -301,6 +301,8 @@ class CompraController extends Controller
 				'p_adultos' => $request->adultos,
 				'p_ninos' => $request->ninos,
 				'p_ninos_menores' => $request->ninos_menores,
+				'pay_adultos' => $request->pay_adultos,
+				'pay_ninos' => $request->pay_ninos,
 				'is_socio' => $request->isSocio,
 			]);
 
@@ -309,11 +311,19 @@ class CompraController extends Controller
 				$reservacion->save();
 			}
 
+			if (!$request->isSocio) {
+				$metodo = $request->pago_metodo;
+				$cantidad = $request->adultos + $request->ninos;
+			} else {
+				$metodo = $request->total > 0 ? $request->pago_metodo : 'incluido';
+				$cantidad = $request->adultos + $request->ninos + $request->pay_adultos + $request->pay_ninos;
+			}
+
 			$orden = Orden::create([
 				'reservacion_id' => $reservacion->id,
 				'daypass_id' => $daypass->id,
 				'total' => $request->total,
-				'pago_metodo' => $request->isSocio ? 'incluido' : $request->pago_metodo,
+				'pago_metodo' => $metodo,
 				'pago_realizado' => 'club',
 				'status' => $request->isSocio ? 6 : 2 //Estatus para Socios
 			]);
@@ -326,7 +336,7 @@ class CompraController extends Controller
 				'precio_adulto' => $daypass->precio_adultos,
 				'precio_ninio' => $daypass->precio_ninos,
 				'precio_ninio_menor' => $daypass->precio_ninos_menores,
-				'cantidad' => $request->adultos + $request->ninos + $request->ninos_menores
+				'cantidad' => $cantidad
 			]);
 			return route('panel.reservacion.show', ['id' => $reservacion->id]);
 			// return response(["status" => 'paid', 'orden_folio' => $reservacion->folio], 200);

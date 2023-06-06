@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="relative overflow-x-auto pt-6 px-1">
+    <div class="relative pt-6 px-1">
 
         <div class="max-w-7xl mx-auto">
             <form action="{{ route('panel.usuarios.store') }}" method="POST" id="saveReservacion">
@@ -19,25 +19,41 @@
                 </div>
 
                 <div class="w-full">
+                    <div class="w-full flex items-center mb-6">
+                        <div class="w-full">
+                            <label for="socios"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><span
+								class="text-red-800">*</span> Socios</label>
+                            <select id="socios"
+							required
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+                                <option selected>Selecciones una opcion</option>
+                                @foreach ($socios as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nombre_completo }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
                         <div class="col-span-1">
                             <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><span
                                     class="text-red-800">*</span> Nombre
                                 completo</label>
-                            <input id="nombre" name="nombre" required
+                            <input id="nombre" name="nombre" required disabled
                                 autocomplete="off"
                                 class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><span
                                     class="text-red-800">*</span> Correo
                                 electrónico</label>
-                            <input type="email" id="email" name="email" required autocomplete="off"
+                            <input type="email" id="email" name="email" required disabled autocomplete="off"
                                 class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="correo@prueba.com">
 
                             <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><span
                                     class="text-red-800">*</span> Teléfono</label>
-                            <input type="text" id="telefono" name="telefono" required autocomplete="off"
+                            <input type="text" id="telefono" name="telefono" required disabled autocomplete="off"
                                 class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div class="col-span-1">
@@ -57,22 +73,21 @@
 
                 
                 <div class="relative overflow-x-auto">
-					<span class="text-xs mb-2 block"><span class="text-yellow-800">*</span> El limite recomendado por personas en un
-                    Daypass
-                    es de
-                    <span class="font-semibold text-emerald-800">{{ $daypass->limite_compra_personas }}</span></span>
-					<p id="errorMessage" class="text-pink-600"></p>
+					<span class="text-xs mb-2 block"><span class="text-red-800">*</span> El limite de invitados en una membresia aplicados a un daypass es de <span class="font-semibold text-emerald-800">{{ $daypass->limite_invitados_socios }}</span> incluyendo al titular</span>
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
                                     Pases
                                 </th>
+								<th scope="col" class="px-6 py-3 w-[180px]">
+                                    Pases socio
+                                </th>
                                 <th scope="col" class="px-6 py-3">
                                     Precio
                                 </th>
                                 <th scope="col" class="px-6 py-3 w-[180px]">
-                                    Cantidad
+                                    Extras
                                 </th>
                                 <th scope="col" class="px-6 py-3 w-[180px]">
                                     Subtotal
@@ -85,11 +100,14 @@
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     Adultos(+12)
                                 </th>
+								<td class="px-6 py-4">
+									<input type="number" id="adultos" name="adultos" class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="0" max="{{$daypass->limite_invitados_socios}}">
+								</td>
                                 <td class="px-6 py-4 text-emerald-700 font-semibold">
                                     ${{ $daypass->precio_adultos }} MXN
                                 </td>
                                 <td class="px-6 py-4">
-									<input type="number" id="adultos" name="adultos" class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="0" max="100">
+									<input type="number" id="pay_adultos" name="pay_adultos" class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="0" max="{{$daypass->limite_invitados_socios}}">
                                 </td>
                                 <td class="px-6 py-4">
                                     $<span id="subtotal_adultos">0</span> MXN
@@ -100,11 +118,14 @@
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     Menores(+6)
                                 </th>
+								<td class="px-6 py-4">
+									<input type="number" id="ninos" name="ninos" class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="0" max="80">
+                                </td>
                                 <td class="px-6 py-4 text-emerald-700 font-semibold">
                                     ${{ $daypass->precio_ninos }} MXN
                                 </td>
                                 <td class="px-6 py-4">
-									<input type="number" id="ninos" name="ninos" class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="0" max="100">
+									<input type="number" id="pay_ninos" name="pay_ninos" class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="0" max="80">
                                 </td>
                                 <td class="px-6 py-4">
                                     $<span id="subtotal_ninos">0</span> MXN
@@ -115,12 +136,13 @@
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     Infantes(-6)
                                 </th>
+								<td class="px-6 py-4">
+									<input type="number" id="ninos_menores" name="ninos_menores" class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="0" max="100">
+                                </td>
                                 <td class="px-6 py-4 text-emerald-700 font-semibold">
                                     ${{ $daypass->precio_ninos_menores }} MXN
                                 </td>
-                                <td class="px-6 py-4">
-									<input type="number" id="ninos_menores" name="ninos_menores" class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="0" max="100">
-                                </td>
+                                <td class="px-6 py-4"> </td>
                                 <td class="px-6 py-4">
                                     $<span id="subtotal_ninos_menores">0</span> MXN
                                 </td>
@@ -128,6 +150,9 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th scope="col" class="px-6 py-3">
+
+                                </th>
                                 <th scope="col" class="px-6 py-3">
 
                                 </th>
@@ -150,7 +175,8 @@
                         class="text-red-800">*</span> Metodo
                         de pago</label>
                     <select id="pago_metodo"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+						disabled
+                        class="bg-gray-50 disabled:opacity-50 disabled:pointer-events-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected value="tarjeta">Tarjeta Debito / Credito</option>
                         <option value="efectivo">Efectivo</option>
                     </select>
@@ -158,6 +184,7 @@
 
 
                 <div class="text-center pt-8 mt-16">
+					<p id="errorMessage" class="text-pink-600 mb-3"></p>
                     <button type="submit"
                         class="px-4 py-2 bg-gray-800 mx-auto border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 flex items-center">
                         <svg class="w-5 inline-block mr-1" aria-hidden="true" fill="none" stroke="currentColor"
@@ -175,7 +202,7 @@
 @push('script')
     <script type="text/javascript">
         const daypass = @json($daypass);
-        const MODE = 'Create';
+        const MODE = 'CreateSocio';
     </script>
     @vite(['resources/css/plugins/datepicker.css', 'resources/js/admin/reservaciones/app.js'])
 @endpush
