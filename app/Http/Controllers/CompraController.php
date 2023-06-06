@@ -144,11 +144,15 @@ class CompraController extends Controller
 								'is_socio' => false
 							]);
 
+							$cantidad = $request->adultos + $request->ninos;
+
 							if ($socioIsPay) {
 								$reservacion->socio_id = $socio->id;
 								$reservacion->pay_adultos = $request->pay_adultos;
 								$reservacion->pay_ninos = $request->pay_ninos;
 								$reservacion->save();
+
+								$cantidad = $request->adultos + $request->ninos + $request->pay_adultos + $request->pay_ninos;
 							}
 
 							$orden->reservacion_id = $reservacion->id;
@@ -162,7 +166,7 @@ class CompraController extends Controller
 								'precio_adulto' => $daypass->precio_adultos,
 								'precio_ninio' => $daypass->precio_ninos,
 								'precio_ninio_menor' => $daypass->precio_ninos_menores,
-								'cantidad' => $request->adultos + $request->ninos + $request->ninos_menores
+								'cantidad' => $cantidad
 							]);
 
 							$data = [
@@ -249,7 +253,7 @@ class CompraController extends Controller
 				'precio_adulto' => $daypass->precio_adultos,
 				'precio_ninio' => $daypass->precio_ninos,
 				'precio_ninio_menor' => $daypass->precio_ninos_menores,
-				'cantidad' => $request->adultos + $request->ninos + $request->ninos_menores
+				'cantidad' => $request->adultos + $request->ninos
 			]);
 
 			$data = [
