@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AppController extends Controller
 {
@@ -91,5 +92,36 @@ class AppController extends Controller
 		} catch (\Throwable $th) {
 			return response(['success' => false, 'message' => 'Lo sentimos, se presento un error, la sesión expiro, los datos para la recuperación no son correctos o la cuenta no existe, vuelva a intentar el proceso. Si el proble persiste contacte a soporte apra brindarle ayuda'], 500);
 		}
+	}
+
+	public function pdfGenerate(Request $request)
+	{
+		$imagePath = public_path('img/logo.png');
+		$image = "data:image/png;base64," . base64_encode(file_get_contents($imagePath));
+
+		$reservacion = Reservacion::where('folio', 'TBCK0VZ6XYS')->first();
+		$daypass = Daypass::find(1);
+		$orden = Orden::where('reservacion_id', $reservacion->id)->first();
+
+		$data = [
+			'nombre' => $reservacion->nombre_completo,
+			'folio' => $reservacion->folio,
+			'fechaCompra' => Helpers::dateSpanishComplete($reservacion->created_at),
+			'fechaReservacion' => Helpers::dateSpanishComplete($reservacion->fecha_reservacion),
+			'adultos' => $reservacion->p_adultos,
+			'ninos' => $reservacion->p_ninos,
+			'ninosMenores' => $reservacion->p_ninos_menores,
+			'payAdultos' => $reservacion->pay_adultos,
+			'payNinos' => $reservacion->pay_ninos,
+			'precioAdultos' => $daypass->precio_adultos,
+			'precioNinos' => $daypass->precio_ninos,
+			'precioNinosMenores' => $daypass->precio_ninos_menores,
+			'total' => $orden->total,
+			'isSocio' => true,
+			'metodoPago' => $orden->pago_metodo,
+			'referencia' => $orden->pago_referencia,
+			"logo" => $image
+		];
+		return Pdf::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pdf.compra', $data)->stream();
 	}
 }

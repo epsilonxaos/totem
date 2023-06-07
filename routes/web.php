@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AppController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservacionController;
@@ -26,6 +27,8 @@ Route::view('/daypass/orden', 'welcome')->where('path', '.*');
 Route::view('/daypass/socio', 'welcome')->where('path', '.*');
 Route::view('/resumen/{folio}', 'welcome')->where('path', '.*');
 Route::view('/membresia/passwordRecovery/{correo}/{token}', 'welcome')->where('path', '.*');
+
+Route::get('/daypass/reservacion/pdf', [AppController::class, 'pdfGenerate']);
 
 Route::get('/dashboard', function () {
 	return view('dashboard');
