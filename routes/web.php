@@ -28,7 +28,7 @@ Route::view('/daypass/socio', 'welcome')->where('path', '.*');
 Route::view('/resumen/{folio}', 'welcome')->where('path', '.*');
 Route::view('/membresia/passwordRecovery/{correo}/{token}', 'welcome')->where('path', '.*');
 
-Route::get('/daypass/reservacion/pdf', [AppController::class, 'pdfGenerate']);
+Route::get('/daypass/reservacion/pdf/{folio}', [AppController::class, 'pdfGenerate']);
 
 Route::get('/dashboard', function () {
 	return view('dashboard');

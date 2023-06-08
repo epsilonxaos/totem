@@ -152,7 +152,7 @@ export default function Resumen() {
 
 					<div className='flex items-center justify-center mb-12'>
 						<a
-							href={import.meta.env.VITE_APP_URL + '/daypass/reservacion/pdf'}
+							href={import.meta.env.VITE_APP_URL + '/daypass/reservacion/pdf/' + orden.reservacion.folio}
 							target='_blank'
 							className='px-8 py-3 mb-3 flex items-center text-sm mt-2 mr-1 max-w-max bg-orange-600 text-white rounded-md'>
 							<BsFileEarmarkPdf

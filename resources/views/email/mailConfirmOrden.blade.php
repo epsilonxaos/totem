@@ -280,7 +280,8 @@
                                                                     <div
                                                                         style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;">
                                                                         <span style="font-weight: 600">Nombre
-                                                                            completo:</span> {{ $nombre }}</div>
+                                                                            completo:</span> {{ $nombre }}
+                                                                    </div>
 
                                                                 </td>
                                                             </tr>
@@ -292,7 +293,8 @@
                                                                     <div
                                                                         style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;">
                                                                         <span style="font-weight: 600">Número de
-                                                                            folio:</span> {{ $folio }}</div>
+                                                                            folio:</span> {{ $folio }}
+                                                                    </div>
 
                                                                 </td>
                                                             </tr>
@@ -304,7 +306,8 @@
                                                                     <div
                                                                         style="font-family:Inter;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#0E1A3D;">
                                                                         <span style="font-weight: 600">Fecha de
-                                                                            compra:</span> {{ $fechaCompra }}</div>
+                                                                            compra:</span> {{ $fechaCompra }}
+                                                                    </div>
 
                                                                 </td>
                                                             </tr>
@@ -405,12 +408,12 @@
                                                                                             @if ($isSocio)
                                                                                                 <td
                                                                                                     style="padding: 0 0 0 15px;">
-                                                                                                    ${{ $payNinos > 0 ? $payNinos * $precioAdultos : 0 }}
+                                                                                                    ${{ $payNinos > 0 ? $payNinos * $precioNinos : 0 }}
                                                                                                     MXN</td>
                                                                                             @else
                                                                                                 <td
                                                                                                     style="padding: 0 0 0 15px;">
-                                                                                                    ${{ $ninos * $precioAdultos }}
+                                                                                                    ${{ $ninos * $precioNinos }}
                                                                                                     MXN</td>
                                                                                             @endif
                                                                                         </tr>
@@ -508,7 +511,8 @@
                                                                                             <span
                                                                                                 style="font-weight: 600">Número
                                                                                                 de referncia:</span>
-                                                                                            {{ $referencia }}]</div>
+                                                                                            {{ $referencia }}]
+                                                                                        </div>
 
                                                                                     </td>
                                                                                 </tr>

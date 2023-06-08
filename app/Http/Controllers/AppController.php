@@ -94,12 +94,12 @@ class AppController extends Controller
 		}
 	}
 
-	public function pdfGenerate(Request $request)
+	public function pdfGenerate(String $folio)
 	{
 		$imagePath = public_path('img/logo.png');
 		$image = "data:image/png;base64," . base64_encode(file_get_contents($imagePath));
 
-		$reservacion = Reservacion::where('folio', 'TBCK0VZ6XYS')->first();
+		$reservacion = Reservacion::where('folio', $folio)->first();
 		$daypass = Daypass::find(1);
 		$orden = Orden::where('reservacion_id', $reservacion->id)->first();
 
@@ -122,6 +122,6 @@ class AppController extends Controller
 			'referencia' => $orden->pago_referencia,
 			"logo" => $image
 		];
-		return Pdf::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pdf.compra', $data)->stream();
+		return Pdf::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pdf.compra', $data)->stream('reservacion.pdf');
 	}
 }

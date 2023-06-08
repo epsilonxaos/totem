@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>PDF test</title>
+    <title>Daypass - {{ $folio }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet"
         type="text/css">
     <style type="text/css">
@@ -117,11 +117,11 @@
                                                         <td style="padding: 0 0 0 15px;">${{ $precioNinos }} MXN</td>
                                                         @if ($isSocio)
                                                             <td style="padding: 0 0 0 15px;">
-                                                                ${{ $payNinos > 0 ? $payNinos * $precioAdultos : 0 }}
+                                                                ${{ $payNinos > 0 ? $payNinos * $precioNinos : 0 }}
                                                                 MXN</td>
                                                         @else
                                                             <td style="padding: 0 0 0 15px;">
-                                                                ${{ $ninos * $precioAdultos }} MXN</td>
+                                                                ${{ $ninos * $precioNinos }} MXN</td>
                                                         @endif
                                                     </tr>
                                                     <tr>
