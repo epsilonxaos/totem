@@ -162,9 +162,34 @@
             <h3 style="text-align: center; font-weight: 600; font-size: 14px; color: #202E56; margin-top: 40px">En caso
                 de
                 cancelación o cambio de reserva:</h3>
-            <p style="text-align: center; margin-bottom: 20px">Consectetur adipiscing elit. Nullam pellentesque
-                efficitur lorem sit amet aliquam. Suspendisse pharetra sapien at
-                pretium fringilla. Vestibulum ultrices nisl sit amet mauris tempus, ac tempor ipsum vehicula.</p>
+            <p style="margin: 0px; font-size: 10px">
+                Se puede realizar un cambio de fecha de la visita hasta 3 días antes de la fecha originalmente
+                reservada. Este
+                cambio solo será aceptado en una ocasión dentro del mes posterior.
+            </p>
+            <p style="margin: 0px; font-size: 10px">
+                Los cambios solicitados el mismo día de la fecha reservada no serán permitidos y por lo tanto se
+                considerarán
+                como un No show.
+            </p>
+            <p style="margin: 0px; font-size: 10px">
+                Los no shows, es decir no presentarse el día reservado, tiene un cargo de cancelación del 100% del
+                valor.
+            </p>
+            <p></p>
+            <p style="margin: 0px; font-size: 10px">Todas las cancelaciones están sujetas a cargos los cuales son:</p>
+            <ul style="margin: 0px; padding-top: 0px">
+                <li>
+                    <p style="margin: 0px; font-size: 10px">Un 20% efectuando la cancelación con un tiempo mayor a 3
+                        días previos a la
+                        fecha de visita.</p>
+                </li>
+                <li>
+                    <p style="margin: 0px; font-size: 10px">Un 20% efectuando la cancelación con un tiempo mayor a 3
+                        días previos a la
+                        fecha de visita.</p>
+                </li>
+            </ul>
 
         </div>
     </div>
