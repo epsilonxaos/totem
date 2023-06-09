@@ -5,7 +5,7 @@
 
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-end pb-4 gap-2 bg-white dark:bg-gray-900">
-                <a href="{{ url()->previous() }}"
+                <a href="{{ route('panel.reservacion.index') }}"
                     class="px-4 h-[38px] bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 flex items-center max-w-max">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="icon icon-tabler icon-tabler-arrow-back-up w-[20px] inline-block mr-1" width="24"
@@ -60,6 +60,9 @@
                                 No. personas
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Precio
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Subtotal
                             </th>
                         </tr>
@@ -71,11 +74,19 @@
                                 Adultos(+12)
                             </th>
                             <td class="px-6 py-4">
-                                {{ $data->p_adultos }}
+                                {{ $data->p_adultos }}{{ $data->pay_adultos > 0 ? ' (+ ' . $data->pay_adultos . ' extras)' : '' }}
                             </td>
                             <td class="px-6 py-4">
-                                $ {{ $data->p_adultos * $movimiento->precio_adulto }}MXN
+                                $ {{ $movimiento->precio_adulto }}MXN
                             </td>
+                            @if ($data->is_socio)
+                                <td style="padding: 0 0 0 15px;">
+                                    ${{ $data->pay_adultos > 0 ? $data->pay_adultos * $movimiento->precio_adulto : 0 }}
+                                    MXN</td>
+                            @else
+                                <td style="padding: 0 0 0 15px;">
+                                    ${{ $data->p_adultos * $movimiento->precio_adultos }} MXN</td>
+                            @endif
                         </tr>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th scope="row"
@@ -83,11 +94,19 @@
                                 Menores(+6)
                             </th>
                             <td class="px-6 py-4">
-                                {{ $data->p_ninos }}
+                                {{ $data->p_ninos }}{{ $data->pay_ninos > 0 ? ' (+ ' . $data->pay_ninos . ' extras)' : '' }}
                             </td>
                             <td class="px-6 py-4">
-                                $ {{ $data->p_adultos * $movimiento->precio_ninio }}MXN
+                                $ {{ $movimiento->precio_ninio }}MXN
                             </td>
+                            @if ($data->is_socio)
+                                <td style="padding: 0 0 0 15px;">
+                                    ${{ $data->pay_ninos > 0 ? $data->pay_ninos * $movimiento->precio_ninio : 0 }}
+                                    MXN</td>
+                            @else
+                                <td style="padding: 0 0 0 15px;">
+                                    ${{ $data->p_ninos * $movimiento->precio_ninio }} MXN</td>
+                            @endif
                         </tr>
                         <tr class="bg-white dark:bg-gray-800">
                             <th scope="row"
@@ -98,23 +117,30 @@
                                 {{ $data->p_ninos_menores }}
                             </td>
                             <td class="px-6 py-4">
-                                $ {{ $data->p_adultos * $movimiento->precio_ninio_menor }}MXN
+                                ${{ $movimiento->precio_ninio_menores ?? '0' }}MXN
+                            </td>
+                            <td class="px-6 py-4">
+                                $ {{ $data->p_ninos_menores * $movimiento->precio_ninio_menores }}MXN
                             </td>
                         </tr>
                     </tbody>
                     <tfoot class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-
-                            </th>
-                            <th scope="col" class="px-6 py-3">
                                 TOTAL
                             </th>
                             <th scope="col" class="px-6 py-3">
+
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 @if ($data->is_socio)
-                                    <p class="tracking-widest font-bold">Incluido Socio Club</p>
+                                    <p class="tracking-widest font-bold">
+                                        {{ $orden->total > 0 ? '$' . $orden->total . ' MXN' : 'MEMBRESÍA CLUB' }}</p>
                                 @else
-                                    <p class="font-bold text-sm">$ {{ $orden->total }}MXN</p>
+                                    <p class="font-bold text-sm">${{ $orden->total }}MXN</p>
                                 @endif
                             </th>
                         </tr>
