@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Helpers\Helpers;
 use App\Models\Reservacion;
 use App\Models\Reservacione;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
@@ -36,6 +37,9 @@ class ReservacionesDataTable extends DataTable
 						</svg>
 					</a>';
 				}
+			})
+			->addColumn('fecha_reservacion', function (Reservacion $reservacion) {
+				return Helpers::dateSpanishComplete($reservacion->fecha_reservacion);
 			})
 			->addColumn('acciones', function (Reservacion $reservacion) {
 
@@ -103,15 +107,15 @@ class ReservacionesDataTable extends DataTable
 	{
 		return [
 
-			Column::make('id'),
-			Column::computed('socio')
+			Column::make('id')->searchable(true),
+			Column::computed('socio')->searchable(false)
 				->exportable(false)
 				->printable(false)
 				->addClass('text-center'),
 			Column::make('folio'),
-			Column::make('nombre_completo'),
-			Column::make('fecha_reservacion'),
-			Column::computed('acciones')
+			Column::make('nombre_completo')->searchable(true),
+			Column::make('fecha_reservacion')->searchable(true)->data('fecha_reservacion')->name('fecha_reservacion'),
+			Column::computed('acciones')->searchable(false)
 				->exportable(false)
 				->printable(false)
 				->addClass('text-center'),

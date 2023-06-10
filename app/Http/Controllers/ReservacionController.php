@@ -36,7 +36,7 @@ class ReservacionController extends Controller
 			"title" => "Reservaciones",
 			"breadcrumb" => [
 				[
-					'title' => 'Ordenes',
+					'title' => 'Reservaciones',
 					'active' => true,
 				]
 			]
@@ -83,10 +83,10 @@ class ReservacionController extends Controller
 		}
 
 		return view('panel.reservacion.calendar', [
-			"title" => "Reservaciones",
+			"title" => "Calendario Reservaciones",
 			"breadcrumb" => [
 				[
-					'title' => 'Ordenes',
+					'title' => 'Calendario Reservaciones',
 					'active' => true,
 				]
 			],
