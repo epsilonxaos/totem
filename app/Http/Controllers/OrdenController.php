@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\OrdenDataTable;
 use App\Models\Orden;
 use App\Models\Socios;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class OrdenController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index()
+	public function indesx()
 	{
 		return view('panel.orden.index', [
 			"title" => "Ordenes",
@@ -22,6 +23,19 @@ class OrdenController extends Controller
 				]
 			],
 			'data' => Orden::orderBy('created_at', 'desc')->paginate(30)
+		]);
+	}
+
+	public function index(OrdenDataTable $dataTable)
+	{
+		return $dataTable->render('panel.orden.index', [
+			"title" => "Ordenes",
+			"breadcrumb" => [
+				[
+					'title' => 'Ordenes',
+					'active' => true,
+				]
+			],
 		]);
 	}
 

@@ -50,7 +50,7 @@ class Helpers
 				return ['estado' => 'Error al pagar', 'color' => 'red'];
 				break;
 			case '6':
-				return ['estado' => 'Club socio', 'color' => 'indigo'];
+				return ['estado' => 'Membresia Club', 'color' => 'indigo'];
 				break;
 
 			default:

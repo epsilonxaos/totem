@@ -27,5 +27,6 @@ class Reservacion extends Model
 		'pay_adultos',
 		'pay_ninos',
 		'is_socio',
+		'asistencia',
 	];
 }

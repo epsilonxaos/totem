@@ -1,16 +1,14 @@
-import "./bootstrap";
+import './bootstrap'
+import 'laravel-datatables-vite'
+import './react/main.jsx'
+import 'flowbite'
 
+import Alpine from 'alpinejs'
+window.Alpine = Alpine
 
-import "./react/main.jsx";
+Alpine.start()
 
-import "flowbite";
-
-import Alpine from "alpinejs";
-window.Alpine = Alpine;
-
-Alpine.start();
-
-import { DateTime } from "luxon";
+import { DateTime } from 'luxon'
 window.DateTime = DateTime
 
-import.meta.glob(["../img/**"]);
+import.meta.glob(['../img/**'])

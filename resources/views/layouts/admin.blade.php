@@ -15,7 +15,10 @@
     <!-- Scripts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('css/admin/app.css') }}">
     @livewireStyles
+    @stack('style')
 </head>
 
 <body class="font-sans text-gray-900 bg-slate-100 antialiased">
@@ -42,6 +45,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @stack('script')
+    @livewireScripts
 </body>
 
 </html>
