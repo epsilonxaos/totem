@@ -53,7 +53,7 @@ class ReservacionesDataTable extends DataTable
 						<path d="M12 11h.01"></path>
 					</svg>
 				</a>
-				<a title="Editar" href="' . route("panel.reservacion.edit", ["id" => $reservacion->id]) . '" class="text-white bg-yellow-700 hover:bg-yellow-800 font-medium rounded-lg text-xs px-2 py-1 mr-2 inline-flex items-center justify-center" style="width: 36px">
+				<a title="Editar" href="' . route("panel.reservacion.edit", ["id" => $reservacion->id]) . '" class="text-white bg-yellow-700 hover:bg-yellow-800 font-medium rounded-lg text-xs px-2 py-1 mr-2 inline-flex items-center justify-center" style="width: 36px; background-color: rgb(180, 52, 3)">
 					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit w-[20px] inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
 						<path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
@@ -81,7 +81,7 @@ class ReservacionesDataTable extends DataTable
 		return $this->builder()
 			->columns($this->getColumns())
 			->minifiedAjax()
-			->orderBy(1)
+			->orderBy(0)
 			->parameters([
 				'info' => true,
 				"lengthMenu" => [10, 25, 50, 75, 100],

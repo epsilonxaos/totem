@@ -104,7 +104,7 @@ class OrdenDataTable extends DataTable
 		return $this->builder()
 			->columns($this->getColumns())
 			->minifiedAjax()
-			->orderBy(1)
+			->orderBy(0)
 			->parameters([
 				'info' => true,
 				"lengthMenu" => [10, 25, 50, 75, 100],

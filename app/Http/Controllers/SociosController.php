@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\SociosDataTable;
 use App\Helpers\Helpers;
 use App\Mail\MailNewSocio;
 use App\Models\Socios;
@@ -15,9 +16,17 @@ class SociosController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index()
+	public function index(SociosDataTable $dataTable)
 	{
-		//
+		return $dataTable->render('panel.socios.index', [
+			"title" => "Socios",
+			"breadcrumb" => [
+				[
+					'title' => 'Socios',
+					'active' => true,
+				]
+			],
+		]);
 	}
 
 	/**
@@ -25,7 +34,20 @@ class SociosController extends Controller
 	 */
 	public function create()
 	{
-		//
+		return view('panel.socios.create', [
+			"title" => "Nuevo socio",
+			"breadcrumb" => [
+				[
+					'title' => 'Socios',
+					'route' => 'panel.socios.index',
+					'active' => false,
+				],
+				[
+					'title' => 'Nuevo socio',
+					'active' => true
+				]
+			]
+		]);
 	}
 
 	/**
@@ -38,7 +60,7 @@ class SociosController extends Controller
 			'apellido_paterno' => 'required',
 			'correo' => 'required|email|unique:socios,correo',
 			'telefono' => 'required|min:10|max:12',
-			'password' => 'required',
+			'contrasenia' => 'required|min:6|confirmed',
 			'fecha_inicio' => 'required|date|after_or_equal:today',
 			'fecha_finalizacion' => 'required|date|after_or_equal:today'
 		]);
@@ -50,9 +72,10 @@ class SociosController extends Controller
 			'nombre_completo' => $request->nombre . ' ' . $request->apellido_paterno . ' ' . $request->apellido_materno,
 			'correo' => $request->correo,
 			'telefono' => $request->telefono,
-			'password' => Hash::make($request->password),
+			'password' => Hash::make($request->contrasenia),
 			'fecha_inicio' => $request->fecha_inicio,
 			'fecha_finalizacion' => $request->fecha_finalizacion,
+			'token' => Str::random(10),
 			'status' => 1
 		]);
 
@@ -66,6 +89,8 @@ class SociosController extends Controller
 		];
 
 		Mail::to($socio->correo)->send(new MailNewSocio($data));
+
+		return redirect()->back()->with('success', 'Socio registrado correctamente!');
 	}
 
 	/**
@@ -82,6 +107,22 @@ class SociosController extends Controller
 	public function edit(Int $id)
 	{
 		$source = Socios::find($id);
+
+		return view('panel.socios.edit', [
+			"title" => "Editar socio",
+			"breadcrumb" => [
+				[
+					'title' => 'Socios',
+					'route' => 'panel.socios.index',
+					'active' => false,
+				],
+				[
+					'title' => 'Editar socio',
+					'active' => true
+				]
+			],
+			'data' => $source
+		]);
 	}
 
 	/**
@@ -97,16 +138,39 @@ class SociosController extends Controller
 			'fecha_finalizacion' => 'required|date'
 		]);
 
-		$source = Socios::find(1);
+		$source = Socios::find($id);
+
+		if ($request->has('actualizar_correo')) {
+			if ($request->actualizar_correo) {
+				$request->validate([
+					'correo' => 'required|email|unique:socios,correo',
+				]);
+
+				$source->correo = $request->correo;
+				$source->save();
+			}
+		}
+		if ($request->has('contrasenia')) {
+			if ($request->contrasenia) {
+				$request->validate([
+					'contrasenia' => 'required|min:6|confirmed',
+				]);
+
+				$source->password = $request->contrasenia;
+				$source->save();
+			}
+		}
+
 		$source->nombre = $request->nombre;
 		$source->apellido_paterno = $request->apellido_paterno;
 		$source->apellido_materno = $request->apellido_materno;
-		$source->nombre_completo = $request->nombre_completo;
+		$source->nombre_completo = $request->nombre . ' ' . $request->apellido_paterno . ' ' . $request->apellido_materno;
 		$source->telefono = $request->telefono;
 		$source->fecha_inicio = $request->fecha_inicio;
 		$source->fecha_finalizacion = $request->fecha_finalizacion;
-		$source->status = $request->status;
 		$source->save();
+
+		return redirect()->back()->with('success', 'Datos actualizados correctamente!');
 	}
 
 	/**
@@ -115,6 +179,8 @@ class SociosController extends Controller
 	public function destroy(Int $id)
 	{
 		Socios::find($id)->delete();
+
+		return redirect()->back()->with('success', 'Datos eliminado correctamente!');
 	}
 
 	public function getSocio(Request $request)
@@ -122,5 +188,14 @@ class SociosController extends Controller
 		$data = Socios::find($request->id);
 
 		return response(['socio' => $data], 200);
+	}
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function changeStatus(Request $request)
+	{
+		//
 	}
 }

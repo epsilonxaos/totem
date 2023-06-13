@@ -40,8 +40,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.3.0/luxon.min.js"
         integrity="sha512-KKbQg5o92MwtJKR9sfm/HkREzfyzNMiKPIQ7i7SZOxwEdiNCm4Svayn2DBq7MKEdrqPJUOSIpy1v6PpFlCQ0YA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         var DateTime = luxon.DateTime;
+
+        function deleteSubmitForm(id) {
+            Swal.fire({
+                title: "¿Finalizar eliminación?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Eliminar',
+                denyButtonText: `Cancelar`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Eliminado!', '', 'success')
+                    document.querySelector('.delete-form-' + id).submit();
+                }
+            });
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @stack('script')

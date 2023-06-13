@@ -5,6 +5,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservacionController;
+use App\Http\Controllers\SociosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,6 +86,17 @@ Route::middleware(['auth:admin', 'verified'])->prefix('/admin')->group(function 
 		Route::get('/show/pdf/{folio}', [AppController::class, 'pdfGenerate'])->name('panel.reservacion.show.pdf');
 		Route::get('/edit/{id}', [ReservacionController::class, 'edit'])->name('panel.reservacion.edit');
 		Route::post('/update/{id}', [ReservacionController::class, 'update'])->name('panel.reservacion.update');
+	});
+
+	// Socios
+	Route::prefix('/socios')->group(function () {
+		Route::get('/', [SociosController::class, 'index'])->name('panel.socios.index');
+		Route::get('/create', [SociosController::class, 'create'])->name('panel.socios.create');
+		Route::post('/create/store', [SociosController::class, 'store'])->name('panel.socios.store');
+		Route::get('/edit/{id}', [SociosController::class, 'edit'])->name('panel.socios.edit');
+		Route::put('/update/{id}', [SociosController::class, 'update'])->name('panel.socios.update');
+		Route::delete('/destroy/{id}', [SociosController::class, 'destroy'])->name('panel.socios.destroy');
+		Route::post('/change/status', [SociosController::class, 'changeStatus'])->name('panel.socios.changeStatus');
 	});
 });
 

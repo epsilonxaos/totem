@@ -29,9 +29,9 @@ class SociosFactory extends Factory
 			'correo' => fake()->unique()->safeEmail(),
 			'telefono' => fake()->phoneNumber(),
 			'password' => Hash::make('password'),
-			'fecha_inicio' => now(),
+			'fecha_inicio' => '2023-05-01',
 			'token' => Str::random(10),
-			'fecha_finalizacion' => '2023-12-12',
+			'fecha_finalizacion' => '2023-05-28',
 			'status' => 1
 		];
 	}
