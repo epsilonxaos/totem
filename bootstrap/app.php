@@ -15,22 +15,6 @@ $app = new Illuminate\Foundation\Application(
 	$_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
-
-/*
-|--------------------------------------------------------------------------
-| Load Environment File on Startup
-|--------------------------------------------------------------------------
-|
-| This will determine, which environment will be loaded for our application.
-|
-*/
-$env = $app->detectEnvironment(function () {
-	return $_ENV['APP_ENV'] ?: 'local';
-});
-
-
-$app->loadEnvironmentFrom(".env.{$env}");
-
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
