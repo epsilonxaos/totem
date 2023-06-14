@@ -6,6 +6,7 @@ use App\Http\Controllers\DaypassController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservacionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SociosController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,16 @@ Route::middleware('guest')->prefix('/admin')->group(function () {
 Route::middleware(['auth:admin', 'verified'])->prefix('/admin')->group(function () {
 	Route::post('/logout', [AdminController::class, 'logout'])->name('panel.logout');
 	Route::get('/dashboard', [AdminController::class, 'dashboardAdmin'])->name('panel.dashboard');
+
+	//Roles
+	Route::prefix('/roles')->group(function () {
+		Route::get('/', [RoleController::class, 'index'])->name('panel.roles.index');
+		Route::get('/nuevo', [RoleController::class, 'create'])->name('panel.roles.create');
+		Route::get('/editar/{id}', [RoleController::class, 'edit'])->name('panel.roles.edit');
+		Route::post('/store', [RoleController::class, 'store'])->name('panel.roles.store');
+		Route::put('/update/{id}', [RoleController::class, 'update'])->name('panel.roles.update');
+		Route::delete('/destroy/{id}', [RoleController::class, 'destroy'])->name('panel.roles.destroy');
+	});
 
 
 	Route::prefix('/perfil')->group(function () {

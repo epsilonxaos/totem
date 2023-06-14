@@ -170,6 +170,9 @@ return [
 		App\Providers\RouteServiceProvider::class,
 
 		Yajra\DataTables\DataTablesServiceProvider::class,
+
+		Spatie\Permission\PermissionServiceProvider::class,
+		App\Providers\PermissionKey::class,
 	])->toArray(),
 
 	/*
@@ -185,6 +188,7 @@ return [
 
 	'aliases' => Facade::defaultAliases()->merge([
 		// 'Example' => App\Facades\Example::class,
+		'PermissionKey' => App\Providers\PermissionKey::class,
 	])->toArray(),
 
 ];
