@@ -17,14 +17,16 @@
                     </svg>
                     Regresar
                 </a>
-                <a href="{{ route('panel.reservacion.edit', ['id' => $data->id]) }}"
-                    class="px-4 h-[38px] bg-yellow-800 max-w-max border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-700 focus:bg-yellow-700 active:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 flex items-center">
-                    <svg class="w-[20px] inline-block mr-1" aria-hidden="true" fill="none" stroke="currentColor"
-                        stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                    Editar
-                </a>
+				@can(PermissionKey::Reservaciones['permissions']['update']['name'])
+					<a href="{{ route('panel.reservacion.edit', ['id' => $data->id]) }}"
+						class="px-4 h-[38px] bg-yellow-800 max-w-max border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-700 focus:bg-yellow-700 active:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 flex items-center">
+						<svg class="w-[20px] inline-block mr-1" aria-hidden="true" fill="none" stroke="currentColor"
+							stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
+						</svg>
+						Editar
+					</a>
+				@endcan
             </div>
 
             <h3 class="font-bold text-lg text-center uppercase mb-6 pt-6">Informacion general</h3>

@@ -57,38 +57,41 @@
 		@endcan
 		{{-- * Modulos --}}
 		<ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+			@can(PermissionKey::Reservaciones['permissions']['index']['name'])
+				<li>
+					<a href="{{ route('panel.reservacion.index') }}" class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
+						<svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+							<path d="M20 6v12a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2z">
+							</path>
+							<path d="M10 16h6"></path>
+							<path d="M13 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+							<path d="M4 8h3"></path>
+							<path d="M4 12h3"></path>
+							<path d="M4 16h3"></path>
+						</svg>
 
-			<li>
-				<a href="{{ route('panel.reservacion.index') }}" class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
-					<svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-						<path d="M20 6v12a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2z">
-						</path>
-						<path d="M10 16h6"></path>
-						<path d="M13 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-						<path d="M4 8h3"></path>
-						<path d="M4 12h3"></path>
-						<path d="M4 16h3"></path>
-					</svg>
+						<span class="ml-4">Reservaciones</span>
+					</a>
+				</li>
+			@endcan
+			@can(PermissionKey::Calendario['permissions']['index']['name'])
+				<li>
+					<a href="{{ route('panel.reservacion.calendar') }}" class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
+						<svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+							<path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"></path>
+							<path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+							<path d="M15 3v4"></path>
+							<path d="M7 3v4"></path>
+							<path d="M3 11h16"></path>
+							<path d="M18 16.496v1.504l1 1"></path>
+						</svg>
 
-					<span class="ml-4">Reservaciones</span>
-				</a>
-			</li>
-			<li>
-				<a href="{{ route('panel.reservacion.calendar') }}" class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
-					<svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-						<path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4"></path>
-						<path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-						<path d="M15 3v4"></path>
-						<path d="M7 3v4"></path>
-						<path d="M3 11h16"></path>
-						<path d="M18 16.496v1.504l1 1"></path>
-					</svg>
-
-					<span class="ml-4">Calendario</span>
-				</a>
-			</li>
+						<span class="ml-4">Calendario</span>
+					</a>
+				</li>
+			@endcan
 
 			@can(PermissionKey::Ordenes['permissions']['index']['name'])
 				<li>

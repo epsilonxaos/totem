@@ -75,4 +75,102 @@ class PermissionKey extends ServiceProvider
 			],
 		]
 	];
+
+	const Socios = [
+		'name' => 'Módulo Socios',
+		'permissions' => [
+			'index' => [
+				'display_name' => 'Ver modulo',
+				'name' => 'socios.index'
+			],
+			'create' => [
+				'display_name' => 'Creación',
+				'name' => 'socios.create'
+			],
+			'edit' => [
+				'display_name' => 'Ver detalles',
+				'name' => 'socios.edit'
+			],
+			'update' => [
+				'display_name' => 'Modificar',
+				'name' => 'socios.update'
+			],
+			'destroy' => [
+				'display_name' => 'Eliminar',
+				'name' => 'socios.destroy'
+			],
+		]
+	];
+
+	const Daypass = [
+		'name' => 'Módulo Daypass',
+		'permissions' => [
+			'index' => [
+				'display_name' => 'Ver modulo',
+				'name' => 'daypass.index'
+			],
+			'edit' => [
+				'display_name' => 'Ver detalles',
+				'name' => 'daypass.edit'
+			],
+			'update' => [
+				'display_name' => 'Modificar',
+				'name' => 'daypass.update'
+			],
+		]
+	];
+
+	const Ordenes = [
+		'name' => 'Módulo Ordenes',
+		'permissions' => [
+			'index' => [
+				'display_name' => 'Ver modulo',
+				'name' => 'ordenes.index'
+			]
+		]
+	];
+
+	const Reservaciones = [
+		'name' => 'Módulo Reservaciones',
+		'permissions' => [
+			'index' => [
+				'display_name' => 'Ver modulo',
+				'name' => 'reservacion.index'
+			],
+			'create' => [
+				'display_name' => 'Creación',
+				'name' => 'reservacion.create'
+			],
+			'show' => [
+				'display_name' => 'Ver detalles',
+				'name' => 'reservacion.edit'
+			],
+			'update' => [
+				'display_name' => 'Modificar',
+				'name' => 'reservacion.update'
+			]
+			// 'cancelation' => [
+			// 	'display_name' => 'Cancelación',
+			// 	'name' => 'reservacion.cancelation'
+			// ]
+		]
+	];
+
+	const Calendario = [
+		'name' => 'Módulo Calendario',
+		'permissions' => [
+			'index' => [
+				'display_name' => 'Ver modulo',
+				'name' => 'calendario.index'
+			],
+			'asistencia' => [
+				'display_name' => 'Ver Asistencia',
+				'name' => 'calendario.asistencia'
+			],
+			'update' => [
+				'display_name' => 'Modificar',
+				'name' => 'calendario.update'
+			]
+		]
+	];
 }
