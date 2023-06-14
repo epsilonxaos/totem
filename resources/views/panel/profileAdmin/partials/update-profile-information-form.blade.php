@@ -13,14 +13,19 @@
         @csrf
     </form>
 
-    @if ($profile)
-        <form method="post" action="{{ route('panel.profile.update') }}" class="mt-6 space-y-6">
-        @else
-            <form method="post" action="{{ route('panel.usuarios.update', ['id' => $user->id]) }}"
-                class="mt-6 space-y-6">
-    @endif
-    @csrf
-    @method('patch')
+	@can(PermissionKey::Admin['permissions']['update']['name'])
+	
+		@if ($profile)
+			<form method="post" action="{{ route('panel.profile.update') }}" class="mt-6 space-y-6">
+			@else
+				<form method="post" action="{{ route('panel.usuarios.update', ['id' => $user->id]) }}"
+					class="mt-6 space-y-6">
+		@endif
+		@csrf
+		@method('patch')
+	@elsecan
+		<form action="">
+	@endcan
 
     <div class="mb-6">
 
@@ -74,7 +79,9 @@
     </div>
 
     <div class="flex items-center gap-4">
-        <x-primary-button>{{ __('Guardar') }}</x-primary-button>
+		@can(PermissionKey::Admin['permissions']['update']['name'])
+        	<x-primary-button>{{ __('Guardar') }}</x-primary-button>
+		@endcan
 
         @if (session('status') === 'profile-updated')
             <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"

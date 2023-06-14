@@ -23,7 +23,9 @@
 
 
         <div class="p-4 sm:p-8">
-            @include('panel.profileAdmin.partials.delete-user-form')
+			@can(PermissionKey::Admin['permissions']['destroy']['name'])
+            	@include('panel.profileAdmin.partials.delete-user-form')
+			@endcan
         </div>
     </div>
 </div>

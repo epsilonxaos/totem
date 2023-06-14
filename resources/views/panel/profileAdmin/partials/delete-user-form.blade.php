@@ -9,19 +9,25 @@
         </p>
     </header>
 
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Eliminar cuenta') }}</x-danger-button>
+	@can(PermissionKey::Admin['permissions']['destroy']['name'])
+		<x-danger-button
+			x-data=""
+			x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+		>{{ __('Eliminar cuenta') }}</x-danger-button>
+	@endcan
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        @if ($profile)
-            <form method="post" action="{{ route('panel.profile.destroy') }}" class="p-6">
-        @else
-            <form method="post" action="{{ route('panel.usuarios.destroy' , ['id' => $user->id]) }}" class="p-6">
-        @endif
-            @csrf
-            @method('delete')
+		@can(PermissionKey::Admin['permissions']['destroy']['name'])
+			@if ($profile)
+				<form method="post" action="{{ route('panel.profile.destroy') }}" class="p-6">
+			@else
+				<form method="post" action="{{ route('panel.usuarios.destroy' , ['id' => $user->id]) }}" class="p-6">
+			@endif
+				@csrf
+				@method('delete')
+		@elsecan
+			<form>
+		@endcan
 
             <h2 class="text-lg font-medium text-gray-900">
                 {{ __('¿Estás seguro de que quieres eliminar tu cuenta?') }}
@@ -50,9 +56,11 @@
                     {{ __('Cancelar') }}
                 </x-secondary-button>
 
-                <x-danger-button class="ml-3">
-                    {{ __('Eliminar cuenta') }}
-                </x-danger-button>
+				@can(PermissionKey::Admin['permissions']['destory']['name'])
+					<x-danger-button class="ml-3">
+						{{ __('Eliminar cuenta') }}
+					</x-danger-button>
+				@endcan
             </div>
         </form>
     </x-modal>
