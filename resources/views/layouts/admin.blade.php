@@ -60,6 +60,10 @@
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/es.min.js"></script>
+    <script>
+        flatpickr.localize(flatpickr.l10ns.es);
+    </script>
     @stack('script')
     @livewireScripts
 </body>

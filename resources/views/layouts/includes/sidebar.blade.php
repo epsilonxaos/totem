@@ -4,7 +4,7 @@
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800 text-sm">
         <ul class="space-y-2 font-medium">
             <li>
-                <a href="#"
+                <a href="{{ route('panel.dashboard') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <svg aria-hidden="true"
                         class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -35,6 +35,32 @@
                     </svg>
 
                     <span class="ml-4">Socios</span>
+                </a>
+            </li>
+        </ul>
+        {{-- * Modulos --}}
+        <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+            <li>
+                <a href="{{ route('panel.daypass.edit') }}"
+                    class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                        <path d="M6 4v4"></path>
+                        <path d="M6 12v8"></path>
+                        <path d="M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                        <path d="M12 4v10"></path>
+                        <path d="M12 18v2"></path>
+                        <path d="M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                        <path d="M18 4v1"></path>
+                        <path d="M18 9v11"></path>
+                    </svg>
+
+                    <span class="ml-4">Daypass</span>
                 </a>
             </li>
         </ul>

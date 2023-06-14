@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\DaypassController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservacionController;
@@ -97,6 +98,12 @@ Route::middleware(['auth:admin', 'verified'])->prefix('/admin')->group(function 
 		Route::put('/update/{id}', [SociosController::class, 'update'])->name('panel.socios.update');
 		Route::delete('/destroy/{id}', [SociosController::class, 'destroy'])->name('panel.socios.destroy');
 		Route::post('/change/status', [SociosController::class, 'changeStatus'])->name('panel.socios.changeStatus');
+	});
+
+	// Daypass
+	Route::prefix('/daypass')->group(function () {
+		Route::get('/edit', [DaypassController::class, 'edit'])->name('panel.daypass.edit');
+		Route::put('/update', [DaypassController::class, 'update'])->name('panel.daypass.update');
 	});
 });
 

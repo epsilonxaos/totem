@@ -12,6 +12,7 @@ class Daypass extends Model
 	protected $primaryKey = 'id';
 	protected $fillable = [
 		'limite_total',
+		'fechas_excluidas',
 		'precio_adultos',
 		'precio_ninos',
 		'precio_ninos_menores',
@@ -19,6 +20,5 @@ class Daypass extends Model
 		'limite_compra_personas',
 		'limite_invitados_socios',
 		'maximo_pago_tarjeta',
-		'fechas_excluidas'
 	];
 }

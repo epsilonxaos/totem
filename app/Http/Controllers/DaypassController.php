@@ -45,6 +45,18 @@ class DaypassController extends Controller
 	public function edit()
 	{
 		$source = Daypass::find(1);
+		$source->fechas_excluidas = json_decode($source->fechas_excluidas);
+
+		return view('panel.daypass.edit', [
+			"title" => "Actualizar Daypass",
+			"breadcrumb" => [
+				[
+					'title' => 'Daypass',
+					'active' => true,
+				]
+			],
+			'data' => $source
+		]);
 	}
 
 	/**
@@ -53,13 +65,20 @@ class DaypassController extends Controller
 	public function update(Request $request, Daypass $daypass)
 	{
 		$source = Daypass::find(1);
+
+		$fechas_excluidas = explode(" ", $request->fechas_excluidas);
+
 		$source->limite_total = $request->limite_total;
+		$source->fechas_excluidas = $fechas_excluidas;
 		$source->precio_adultos = $request->precio_adultos;
 		$source->precio_ninos = $request->precio_ninos;
 		$source->precio_ninos_menores = $request->precio_ninos_menores;
-		$source->moneda = $request->moneda;
-		$source->maximo_pago_tarjeta = $request->maximo_pago_tarjeta;
+		// $source->moneda = $request->moneda;
+		// $source->maximo_pago_tarjeta = $request->maximo_pago_tarjeta;
 		$source->save();
+
+		return redirect()->back()
+			->with('success', 'Datos actualizados correctamente!');
 	}
 
 	/**
