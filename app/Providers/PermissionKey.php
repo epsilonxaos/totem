@@ -28,15 +28,15 @@ class PermissionKey extends ServiceProvider
 		'name' => 'Módulo administradores',
 		'permissions' => [
 			'index' => [
-				'display_name' => 'Ver todos',
+				'display_name' => 'Ver modulo',
 				'name' => 'admins.index'
 			],
 			'create' => [
-				'display_name' => 'Crear',
+				'display_name' => 'Creación',
 				'name' => 'admins.create'
 			],
 			'edit' => [
-				'display_name' => 'Ver detalle',
+				'display_name' => 'Ver detalles',
 				'name' => 'admins.edit'
 			],
 			'update' => [
@@ -54,15 +54,15 @@ class PermissionKey extends ServiceProvider
 		'name' => 'Módulo roles',
 		'permissions' => [
 			'index' => [
-				'display_name' => 'Ver todos',
+				'display_name' => 'Ver modulo',
 				'name' => 'roles.index'
 			],
 			'create' => [
-				'display_name' => 'Crear',
+				'display_name' => 'Creación',
 				'name' => 'roles.create'
 			],
 			'edit' => [
-				'display_name' => 'Ver detalle',
+				'display_name' => 'Ver detalles',
 				'name' => 'roles.edit'
 			],
 			'update' => [
