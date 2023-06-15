@@ -86,7 +86,7 @@ export default function SocioAuth() {
 					</p>
 
 					{error && (
-						<p className='bg-delftblue bg-opacity-80 backdrop-blur-sm md:ml-8 text-pink-500 font-medium p-3 rounded'>
+						<p className='bg-delftblue bg-opacity-80 backdrop-blur-sm md:ml-8 text-pink-500 font-medium p-3 rounded mt-3'>
 							<RiCloseCircleLine
 								size={16}
 								className='inline-block mr-1'

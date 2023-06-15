@@ -71,7 +71,9 @@ export default function Resumen() {
 										Adultos (+12)
 									</th>
 									<td class='px-6 py-4'>
-										{orden.reservacion.p_adultos}
+										{orden.reservacion.pay_adultos > 0
+											? orden.reservacion.p_adultos - orden.reservacion.pay_adultos
+											: orden.reservacion.p_adultos}
 										{orden.reservacion.pay_adultos > 0 ? ` (+${orden.reservacion.pay_adultos} extras)` : ''}
 									</td>
 									<td class='px-6 py-4'>${numberWithCommas(orden.daypass.precio_adultos)} MXN</td>
@@ -98,7 +100,9 @@ export default function Resumen() {
 										Menores (+6)
 									</th>
 									<td class='px-6 py-4'>
-										{orden.reservacion.p_ninos}
+										{orden.reservacion.pay_ninos > 0
+											? orden.reservacion.p_ninos - orden.reservacion.pay_ninos
+											: orden.reservacion.p_ninos}
 										{orden.reservacion.pay_ninos > 0 ? ` (+${orden.reservacion.pay_ninos} extras)` : ''}
 									</td>
 									<td class='px-6 py-4'>${numberWithCommas(orden.daypass.precio_ninos)} MXN</td>

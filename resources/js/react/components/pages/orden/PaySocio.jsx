@@ -237,7 +237,7 @@ export default function PaySocio() {
 											<Count
 												value={state.ninos_menores}
 												handlerUpdate={count => dispatch({ ninos_menores: count })}
-												disabled={false}
+												disabled={state.ninos_menores >= 15 ? true : false}
 											/>
 										</td>
 										{state.addExtras && (

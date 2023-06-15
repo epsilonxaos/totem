@@ -8,13 +8,14 @@ import { DateTime } from 'luxon'
 import { Navigate } from 'react-router-dom'
 import { obtenerFecha } from '../../helpers/Utils'
 import { useInicialStore } from '../../store/useInicialStore'
+import '../../../../css/custom/datepicker.css'
 
 export default function PublicOrden() {
 	const [loadingInitial, getDaypass] = useInicialStore(state => [state.loading, state.getDaypass])
 	const reducer = (prev, next) => ({ ...prev, ...next })
 	const initialArgs = {
 		payLoading: false,
-		pasoActual: 'informacion',
+		pasoActual: 'politicas',
 		politicasAccept: false,
 		startDate: '',
 		tomorrow: '',

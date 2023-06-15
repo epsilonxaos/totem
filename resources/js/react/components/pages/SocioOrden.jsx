@@ -8,6 +8,8 @@ import PaySocio from './orden/PaySocio'
 import { obtenerFecha } from '../../helpers/Utils'
 import { useInicialStore } from '../../store/useInicialStore'
 
+import '../../../../css/custom/datepicker.css'
+
 export default function SocioOrden() {
 	const [loadingInitial, getDaypass] = useInicialStore(state => [state.loading, state.getDaypass])
 	const reducer = (prev, next) => ({ ...prev, ...next })

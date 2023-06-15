@@ -1,6 +1,5 @@
 .react-datepicker {
 	text-transform: uppercase;
-	font-family: 'Barlow';
 	font-size: 10px;
 	border: 1px solid #e1e1e1;
 }
@@ -28,9 +27,13 @@
 .react-datepicker__current-month,
 .react-datepicker-time__header,
 .react-datepicker-year-header {
-	color: #3f83f8;
+	color: #202e56;
 }
 
+.react-datepicker__day--keyboard-selected:hover,
+.react-datepicker__month-text--keyboard-selected:hover,
+.react-datepicker__quarter-text--keyboard-selected:hover,
+.react-datepicker__year-text--keyboard-selected:hover,
 .react-datepicker__day--selected,
 .react-datepicker__day--in-selecting-range,
 .react-datepicker__day--in-range,
@@ -43,12 +46,34 @@
 .react-datepicker__year-text--selected,
 .react-datepicker__year-text--in-selecting-range,
 .react-datepicker__year-text--in-range {
-	background-color: #3f83f8;
+	background-color: #75b5b0;
+}
+
+.react-datepicker__day--selected:hover,
+.react-datepicker__day--in-selecting-range:hover,
+.react-datepicker__day--in-range:hover,
+.react-datepicker__month-text--selected:hover,
+.react-datepicker__month-text--in-selecting-range:hover,
+.react-datepicker__month-text--in-range:hover,
+.react-datepicker__quarter-text--selected:hover,
+.react-datepicker__quarter-text--in-selecting-range:hover,
+.react-datepicker__quarter-text--in-range:hover,
+.react-datepicker__year-text--selected:hover,
+.react-datepicker__year-text--in-selecting-range:hover,
+.react-datepicker__year-text--in-range:hover {
+	background-color: #49706d;
+}
+
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__month-text--keyboard-selected,
+.react-datepicker__quarter-text--keyboard-selected,
+.react-datepicker__year-text--keyboard-selected {
+	background-color: #c5f3ef;
 }
 
 .dark .react-datepicker {
-	background-color: #334155;
-	border-color: #33415500;
+	background-color: #49706d;
+	border-color: #49706d00;
 }
 
 .dark .react-datepicker__header {
@@ -108,7 +133,7 @@
 .dark .react-datepicker__month-text:hover,
 .dark .react-datepicker__quarter-text:hover,
 .dark .react-datepicker__year-text:hover {
-	background-color: #3f83f8;
+	background-color: #75b5b0;
 }
 
 .dark .react-datepicker__header__dropdown.react-datepicker__header__dropdown--scroll {
@@ -125,5 +150,5 @@
 .dark .react-datepicker__year-option:hover,
 .dark .react-datepicker__month-option:hover,
 .dark .react-datepicker__month-year-option:hover {
-	background-color: #3f83f86f;
+	background-color: #75b5b06f;
 }

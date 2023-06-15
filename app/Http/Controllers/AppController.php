@@ -44,15 +44,19 @@ class AppController extends Controller
 
 	public function validarSocio(Request $request)
 	{
-		$socio = Socios::select('id', 'nombre_completo', 'telefono', 'correo', 'password')
+		$socio = Socios::select('id', 'nombre_completo', 'telefono', 'correo', 'password', 'fecha_finalizacion')
 			->where('correo', $request->correo)->first();
 
-		if (!$socio) return response(['acceso' => false, 'error' => 'El usuario ingresado no existe, por favor verifique su información.']);
+		if (!$socio) return response(['acceso' => false, 'error' => 'El usuario ingresado no existe, por favor, verifique su información.']);
 
 		if (Hash::check($request->password, $socio->password)) {
-			return response(['acceso' => true, 'socio' => ['nombre_completo' => $socio->nombre_completo, 'telefono' => $socio->telefono, 'correo' => $socio->correo]]);
+			if ($socio->fecha_finalizacion >= now()) {
+				return response(['acceso' => true, 'socio' => ['nombre_completo' => $socio->nombre_completo, 'telefono' => $socio->telefono, 'correo' => $socio->correo]]);
+			} else {
+				return response(['acceso' => false, 'error' => 'Lo sentimos, la membresía ha expirado el día ' . Helpers::dateSpanishShort($socio->fecha_finalizacion) . ', por favor, contáctate con nosotros.']);
+			}
 		} else {
-			return response(['acceso' => false, 'error' => 'La contraseña no es correcta, por favor intente nuevamente.']);
+			return response(['acceso' => false, 'error' => 'La contraseña no es correcta, por favor, intente nuevamente.']);
 		}
 	}
 
