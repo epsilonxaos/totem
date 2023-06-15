@@ -15,9 +15,11 @@ import ScrollToTop from './components/ScrollToTop'
 import SocioOrden from './components/pages/SocioOrden'
 import RecoveryPassword from './components/pages/RecoveryPassword'
 import { Toaster } from 'react-hot-toast'
+import { AnimatePresence } from 'framer-motion'
+import Loading from './Loading'
 
 export default function App() {
-	const [loading, setData, setLoading] = useInicialStore(state => [state.loading, state.setData, state.setLoading])
+	const [setData, setLoading] = useInicialStore(state => [state.setData, state.setLoading])
 
 	useEffect(() => {
 		async function fetchData() {
@@ -30,16 +32,9 @@ export default function App() {
 		fetchData()
 	}, [])
 
-	if (loading)
-		return (
-			<div className='h-screen w-full bg-oxfordblue text-verdigris font-medium flex items-center justify-center'>
-				{' '}
-				Cargando ...
-			</div>
-		)
-
 	return (
 		<>
+			<Loading />
 			<Toaster position='top-right' />
 			<Header />
 			<ScrollToTop />

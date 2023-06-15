@@ -4,3 +4,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.progress {
+	height: 3.2px;
+	width: 104px;
+	background: linear-gradient(#75b5b0 0 0), linear-gradient(#75b5b0 0 0), #dbdcef;
+	background-size: 60% 100%;
+	background-repeat: no-repeat;
+	animation: progress-7x9cg2 3.5999999999999996s infinite;
+}
+
+@keyframes progress-7x9cg2 {
+	0% {
+		background-position: -150% 0, -150% 0;
+	}
+
+	66% {
+		background-position: 250% 0, -150% 0;
+	}
+
+	100% {
+		background-position: 250% 0, 250% 0;
+	}
+}
