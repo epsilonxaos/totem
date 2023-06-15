@@ -79,7 +79,7 @@
                                 Adultos(+12)
                             </th>
                             <td class="px-6 py-4">
-                                {{ $data->p_adultos }}{{ $data->pay_adultos > 0 ? ' (+ ' . $data->pay_adultos . ' extras)' : '' }}
+                                {{ $data->p_adultos - $data->pay_adultos }}{{ $data->pay_adultos > 0 ? ' (+ ' . $data->pay_adultos . ' extras)' : '' }}
                             </td>
                             <td class="px-6 py-4">
                                 $ {{ $movimiento->precio_adulto }}MXN
@@ -99,7 +99,7 @@
                                 Menores(+6)
                             </th>
                             <td class="px-6 py-4">
-                                {{ $data->p_ninos }}{{ $data->pay_ninos > 0 ? ' (+ ' . $data->pay_ninos . ' extras)' : '' }}
+                                {{ $data->p_ninos - $data->pay_ninos }}{{ $data->pay_ninos > 0 ? ' (+ ' . $data->pay_ninos . ' extras)' : '' }}
                             </td>
                             <td class="px-6 py-4">
                                 $ {{ $movimiento->precio_ninio }}MXN
