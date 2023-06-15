@@ -152,7 +152,10 @@ class CompraController extends Controller
 								$reservacion->pay_ninos = $request->pay_ninos;
 								$reservacion->save();
 
-								$cantidad = $request->adultos + $request->ninos + $request->pay_adultos + $request->pay_ninos;
+
+								$cantidadAdultosReal = $request->adultos - $request->pay_adultos;
+								$cantidadNinosReal = $request->ninos - $request->pay_ninos;
+								$cantidad = $cantidadAdultosReal + $request->pay_adultos + $cantidadNinosReal + $request->pay_ninos;
 							}
 
 							$orden->reservacion_id = $reservacion->id;
@@ -320,7 +323,9 @@ class CompraController extends Controller
 				$cantidad = $request->adultos + $request->ninos;
 			} else {
 				$metodo = $request->total > 0 ? $request->pago_metodo : 'incluido';
-				$cantidad = $request->adultos + $request->ninos + $request->pay_adultos + $request->pay_ninos;
+				$cantidadAdultosReal = $request->adultos - $request->pay_adultos;
+				$cantidadNinosReal = $request->ninos - $request->pay_ninos;
+				$cantidad = $cantidadAdultosReal + $request->pay_adultos + $cantidadNinosReal + $request->pay_ninos;
 			}
 
 			$orden = Orden::create([
