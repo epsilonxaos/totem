@@ -73,7 +73,7 @@ class AppController extends Controller
 			'urlRecovery' => $urlRecovery
 		];
 
-		Mail::to($request->correo)->send(new MailRecoveryPasswordSocio($data));
+		// Mail::to($request->correo)->send(new MailRecoveryPasswordSocio($data));
 
 		return response(['exist' => true]);
 	}

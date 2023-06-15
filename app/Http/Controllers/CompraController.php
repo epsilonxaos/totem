@@ -194,8 +194,8 @@ class CompraController extends Controller
 								'fechaCompra' => Helpers::dateSpanishComplete($reservacion->created_at)
 							];
 
-							Mail::to('wilberthg16@gmail.com')->send(new MailStaffNewOrden($dataStaff));
-							Mail::to($reservacion->correo)->send(new MailConfirmOrden($data));
+							// Mail::to('wilberthg16@gmail.com')->send(new MailStaffNewOrden($dataStaff));
+							// Mail::to($reservacion->correo)->send(new MailConfirmOrden($data));
 
 							return response(["status" => 'paid', 'orden_folio' => $reservacion->folio], 200);
 						default:
@@ -281,8 +281,8 @@ class CompraController extends Controller
 				'fechaCompra' => Helpers::dateSpanishComplete($reservacion->created_at)
 			];
 
-			Mail::to('wilberthg16@gmail.com')->send(new MailStaffNewOrden($dataStaff));
-			Mail::to($reservacion->correo)->send(new MailConfirmOrden($data));
+			// Mail::to('wilberthg16@gmail.com')->send(new MailStaffNewOrden($dataStaff));
+			// Mail::to($reservacion->correo)->send(new MailConfirmOrden($data));
 
 
 			return response(["status" => 'paid', 'orden_folio' => $reservacion->folio], 200);

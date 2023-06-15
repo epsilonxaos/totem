@@ -88,7 +88,7 @@ class SociosController extends Controller
 			'fechaVencimiento' => Helpers::dateSpanishComplete($socio->fecha_finalizacion),
 		];
 
-		Mail::to($socio->correo)->send(new MailNewSocio($data));
+		// Mail::to($socio->correo)->send(new MailNewSocio($data));
 
 		return redirect()->back()->with('success', 'Socio registrado correctamente!');
 	}
