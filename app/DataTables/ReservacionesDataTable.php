@@ -5,6 +5,7 @@ namespace App\DataTables;
 use App\Helpers\Helpers;
 use App\Models\Reservacion;
 use App\Models\Reservacione;
+use App\Providers\PermissionKey;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -42,11 +43,11 @@ class ReservacionesDataTable extends DataTable
 				return Helpers::dateSpanishComplete($reservacion->fecha_reservacion);
 			})
 			->addColumn('acciones', function (Reservacion $reservacion) {
-				$acciones = '';
+				$acciones = '<div class="flex items-start justify-center mx-auto" style="min-width: 100px">';
 
-				if (auth()->user()->hasDirectPermission(PermissionKey::Socios['permissions']['show']['name'])) {
+				if (auth()->user()->hasPermissionTo(PermissionKey::Reservaciones['permissions']['show']['name'])) {
 					$acciones .= '
-						<a href="' . route("panel.reservacion.show", ["id" => $reservacion->id]) . '" class="font-medium text-blue-600 dark:text-blue-500 " title="Ver detalle">
+						<a href="' . route("panel.reservacion.show", ["id" => $reservacion->id]) . '" class="font-medium text-blue-600 dark:text-blue-500 mr-2" title="Ver detalle">
 							<svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 								<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
 								<path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
@@ -58,18 +59,18 @@ class ReservacionesDataTable extends DataTable
 						</a>';
 				}
 
-				if (auth()->user()->hasDirectPermission(PermissionKey::Socios['permissions']['update']['name'])) {
+				if (auth()->user()->hasPermissionTo(PermissionKey::Reservaciones['permissions']['update']['name'])) {
 					$acciones .= '
-						<a href="' . route("panel.reservacion.edit", ["id" => $reservacion->id]) . '" class="font-medium text-orange-600 dark:text-orange-500 " title="Editar">
-							<svg class="w-5 inline" aria-hidden="true"
-								fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-								xmlns="http://www.w3.org/2000/svg">
-								<path
-									d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-									stroke-linecap="round" stroke-linejoin="round"></path>
+						<a href="' . route("panel.reservacion.edit", ["id" => $reservacion->id]) . '" class="font-medium text-emerald-600 dark:text-emerald-500 mr-2" title="Editar">
+							<svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+								<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+								<path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+								<path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+								<path d="M16 5l3 3"></path>
 							</svg>
 						</a>';
 				}
+				$acciones .= '</div>';
 
 				return $acciones;
 			})

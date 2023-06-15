@@ -61,8 +61,17 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/es.min.js"></script>
+    <script src="https://unpkg.com/imask"></script>
     <script>
         flatpickr.localize(flatpickr.l10ns.es);
+        if (document.getElementById('telefono')) {
+
+            var element = document.getElementById('telefono');
+            var maskOptions = {
+                mask: '0000000000'
+            };
+            var mask = IMask(element, maskOptions);
+        }
     </script>
     @stack('script')
     @livewireScripts

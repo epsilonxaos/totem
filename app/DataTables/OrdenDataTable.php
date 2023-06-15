@@ -26,19 +26,16 @@ class OrdenDataTable extends DataTable
 			->setRowId('ID')
 			->addColumn('reservacion', function (Orden $orden) {
 				if ($orden->reservacion_id) {
-					return '<a title="Ver info"
+					return '<a title="Ver reservación"
 						href="' . route("panel.reservacion.show", ["id" => $orden->reservacion_id]) . '"
-						class="text-white bg-sky-700 hover:bg-sky-800 font-medium rounded-lg text-xs px-2 pl-1 py-1 mr-2 inline-flex items-center justify-center" style="width: 60px">
-						<svg xmlns="http://www.w3.org/2000/svg"
-							class="icon icon-tabler icon-tabler-info-small w-[20px] inline-block mr-1"
-							width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-							fill="none" stroke-linecap="round" stroke-linejoin="round">
+						class="font-medium text-blue-600 dark:text-blue-500 inline-block">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 							<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-							<path
-								d="M12 2c5.523 0 10 4.477 10 10a10 10 0 0 1 -19.995 .324l-.005 -.324l.004 -.28c.148 -5.393 4.566 -9.72 9.996 -9.72zm0 9h-1l-.117 .007a1 1 0 0 0 0 1.986l.117 .007v3l.007 .117a1 1 0 0 0 .876 .876l.117 .007h1l.117 -.007a1 1 0 0 0 .876 -.876l.007 -.117l-.007 -.117a1 1 0 0 0 -.764 -.857l-.112 -.02l-.117 -.006v-3l-.007 -.117a1 1 0 0 0 -.876 -.876l-.117 -.007zm.01 -3l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007z"
-								stroke-width="0" fill="currentColor"></path>
+							<path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+							<path d="M12 21h-5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v4.5"></path>
+							<path d="M16.5 17.5m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"></path>
+							<path d="M18.5 19.5l2.5 2.5"></path>
 						</svg>
-						Ver
 					</a>';
 				}
 			})
@@ -132,6 +129,7 @@ class OrdenDataTable extends DataTable
 			Column::make('id'),
 			Column::computed('reservacion')
 				->exportable(false)
+				->addClass('text-center')
 				->printable(false),
 			Column::computed('total')
 				->exportable(false)

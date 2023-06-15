@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Helpers;
 use App\Mail\MailRecoveryPasswordSocio;
 use App\Models\Daypass;
+use App\Models\Movimientos;
 use App\Models\Orden;
 use App\Models\Reservacion;
 use App\Models\Socios;
@@ -100,8 +101,8 @@ class AppController extends Controller
 		$image = "data:image/png;base64," . base64_encode(file_get_contents($imagePath));
 
 		$reservacion = Reservacion::where('folio', $folio)->first();
-		$daypass = Daypass::find(1);
 		$orden = Orden::where('reservacion_id', $reservacion->id)->first();
+		$movimiento = Movimientos::where('orden_id', $orden->id)->first();
 
 		$data = [
 			'nombre' => $reservacion->nombre_completo,
@@ -113,11 +114,11 @@ class AppController extends Controller
 			'ninosMenores' => $reservacion->p_ninos_menores,
 			'payAdultos' => $reservacion->pay_adultos,
 			'payNinos' => $reservacion->pay_ninos,
-			'precioAdultos' => $daypass->precio_adultos,
-			'precioNinos' => $daypass->precio_ninos,
-			'precioNinosMenores' => $daypass->precio_ninos_menores,
+			'precioAdultos' => $movimiento->precio_adulto,
+			'precioNinos' => $movimiento->precio_ninio,
+			'precioNinosMenores' => $movimiento->precio_ninio_menor,
 			'total' => $orden->total,
-			'isSocio' => true,
+			'isSocio' => $reservacion->socio_id ? true : false,
 			'metodoPago' => $orden->pago_metodo,
 			'referencia' => $orden->pago_referencia,
 			"logo" => $image

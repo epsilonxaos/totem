@@ -9,25 +9,23 @@
         </p>
     </header>
 
-	@can(PermissionKey::Admin['permissions']['destroy']['name'])
-		<x-danger-button
-			x-data=""
-			x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-		>{{ __('Eliminar cuenta') }}</x-danger-button>
-	@endcan
+    @can(PermissionKey::Admin['permissions']['destroy']['name'])
+        <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
+            {{ __('Eliminar cuenta') }}</x-danger-button>
+    @endcan
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-		@can(PermissionKey::Admin['permissions']['destroy']['name'])
-			@if ($profile)
-				<form method="post" action="{{ route('panel.profile.destroy') }}" class="p-6">
-			@else
-				<form method="post" action="{{ route('panel.usuarios.destroy' , ['id' => $user->id]) }}" class="p-6">
-			@endif
-				@csrf
-				@method('delete')
-		@elsecan
-			<form>
-		@endcan
+        @can(PermissionKey::Admin['permissions']['destroy']['name'])
+            @if ($profile)
+                <form method="post" action="{{ route('panel.profile.destroy') }}" class="p-6">
+                @else
+                    <form method="post" action="{{ route('panel.usuarios.destroy', ['id' => $user->id]) }}" class="p-6">
+            @endif
+            @csrf
+            @method('delete')
+            @elsecan
+            <form>
+            @endcan
 
             <h2 class="text-lg font-medium text-gray-900">
                 {{ __('¿Estás seguro de que quieres eliminar tu cuenta?') }}
@@ -40,13 +38,8 @@
             <div class="mt-6">
                 <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
 
-                <x-text-input
-                    id="password"
-                    name="password"
-                    type="password"
-                    class="mt-1 block w-3/4"
-                    placeholder="{{ __('Contraseña') }}"
-                />
+                <x-text-input id="password" name="password" type="password" class="mt-1 block w-3/4"
+                    placeholder="{{ __('Contraseña') }}" />
 
                 <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
             </div>
@@ -56,11 +49,11 @@
                     {{ __('Cancelar') }}
                 </x-secondary-button>
 
-				@can(PermissionKey::Admin['permissions']['destory']['name'])
-					<x-danger-button class="ml-3">
-						{{ __('Eliminar cuenta') }}
-					</x-danger-button>
-				@endcan
+                @can(PermissionKey::Admin['permissions']['destroy']['name'])
+                    <x-danger-button class="ml-3">
+                        {{ __('Eliminar cuenta') }}
+                    </x-danger-button>
+                @endcan
             </div>
         </form>
     </x-modal>

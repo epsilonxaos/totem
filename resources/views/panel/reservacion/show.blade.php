@@ -4,29 +4,32 @@
     <div class="relative overflow-x-auto pt-6 px-1">
 
         <div class="max-w-7xl mx-auto">
-            <div class="flex items-center justify-end pb-4 gap-2 bg-white dark:bg-gray-900">
+            <div class="flex items-center justify-end pb-4 bg-white dark:bg-gray-900">
                 <a href="{{ route('panel.reservacion.index') }}"
-                    class="px-4 h-[38px] bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 flex items-center max-w-max">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-arrow-back-up w-[20px] inline-block mr-1" width="24"
-                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
+                    class="px-2 py-1 mr-2 bg-slate-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-wide transition ease-in-out duration-150 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 inline-block mr-1" width="24" height="24"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M9 14l-4 -4l4 -4"></path>
                         <path d="M5 10h11a4 4 0 1 1 0 8h-1"></path>
                     </svg>
                     Regresar
                 </a>
-				@can(PermissionKey::Reservaciones['permissions']['update']['name'])
-					<a href="{{ route('panel.reservacion.edit', ['id' => $data->id]) }}"
-						class="px-4 h-[38px] bg-yellow-800 max-w-max border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-700 focus:bg-yellow-700 active:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 flex items-center">
-						<svg class="w-[20px] inline-block mr-1" aria-hidden="true" fill="none" stroke="currentColor"
-							stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-							<path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-						</svg>
-						Editar
-					</a>
-				@endcan
+                @can(PermissionKey::Reservaciones['permissions']['update']['name'])
+                    <a href="{{ route('panel.reservacion.edit', ['id' => $data->id]) }}"
+                        class="px-2 py-1 mr-2 bg-emerald-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-wide transition ease-in-out duration-150 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 inline-block mr-1" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+                            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+                            <path d="M16 5l3 3"></path>
+                        </svg>
+                        Editar
+                    </a>
+                @endcan
             </div>
 
             <h3 class="font-bold text-lg text-center uppercase mb-6 pt-6">Informacion general</h3>
@@ -87,7 +90,7 @@
                                     MXN</td>
                             @else
                                 <td style="padding: 0 0 0 15px;">
-                                    ${{ $data->p_adultos * $movimiento->precio_adultos }} MXN</td>
+                                    ${{ $data->p_adultos * $movimiento->precio_adulto }} MXN</td>
                             @endif
                         </tr>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -152,11 +155,11 @@
 
             <div class="flex items-center justify-center pt-10">
                 <a href="{{ route('panel.reservacion.show.pdf', ['folio' => $data->folio]) }}" target="_blank"
-                    class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 flex items-center">
+                    class="text-white bg-orange-700 hover:bg-orange-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="icon icon-tabler icon-tabler-pdf w-[20px] inline-block mr-1" width="24" height="24"
-                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M10 8v8h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-2z"></path>
                         <path d="M3 12h2a2 2 0 1 0 0 -4h-2v8"></path>
