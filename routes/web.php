@@ -89,7 +89,6 @@ Route::middleware(['auth:admin', 'verified'])->prefix('/admin')->group(function 
 	// Reservaciones
 	Route::prefix('/reservaciones')->group(function () {
 		Route::get('/', [ReservacionController::class, 'index'])->name('panel.reservacion.index');
-		Route::get('/calendar', [ReservacionController::class, 'calendar'])->name('panel.reservacion.calendar');
 		Route::get('/create', [ReservacionController::class, 'create'])->name('panel.reservacion.create');
 		Route::get('/create/socio', [ReservacionController::class, 'createSocio'])->name('panel.reservacion.create_socio');
 		Route::get('/show/{id}', [ReservacionController::class, 'show'])->name('panel.reservacion.show');
@@ -98,6 +97,9 @@ Route::middleware(['auth:admin', 'verified'])->prefix('/admin')->group(function 
 		Route::get('/show/pdf/{folio}', [AppController::class, 'pdfGenerate'])->name('panel.reservacion.show.pdf');
 		Route::get('/edit/{id}', [ReservacionController::class, 'edit'])->name('panel.reservacion.edit');
 		Route::post('/update/{id}', [ReservacionController::class, 'update'])->name('panel.reservacion.update');
+	});
+	Route::prefix('/calendar')->group(function () {
+		Route::get('/', [ReservacionController::class, 'calendar'])->name('panel.reservacion.calendar');
 	});
 
 	// Socios
