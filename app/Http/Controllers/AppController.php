@@ -33,6 +33,8 @@ class AppController extends Controller
 	{
 		$reservacion = Reservacion::select('id', 'socio_id', 'folio', 'fecha_reservacion', 'p_adultos', 'pay_adultos', 'p_ninos', 'pay_ninos', 'p_ninos_menores')
 			->where('folio', $request->folio)->first();
+		if (!$reservacion) return response(false, 400);
+
 		$orden = Orden::select('total')->where('reservacion_id', $reservacion->id)->first();
 		$daypass = Daypass::select('precio_adultos', 'precio_ninos', 'precio_ninos_menores')->find(1);
 
@@ -95,7 +97,7 @@ class AppController extends Controller
 
 			return response(['success' => true, 'socio' => $socio, 'message' => 'Contraseña actualizada, ahora puede iniciar sesión con su nueva contraseña.'], 200);
 		} catch (\Throwable $th) {
-			return response(['success' => false, 'message' => 'Lo sentimos, se presento un error, la sesión expiro, los datos para la recuperación no son correctos o la cuenta no existe, vuelva a intentar el proceso. Si el proble persiste contacte a soporte apra brindarle ayuda'], 500);
+			return response(['success' => false, 'message' => 'Lo sentimos, se presento un error, vuelva a intentar más tarde. Si el proble persiste contacte a soporte para brindarle ayuda'], 500);
 		}
 	}
 

@@ -37,9 +37,6 @@ export default function PayForm() {
 		let _total = total()
 		let personas = state.adultos + state.ninos
 		if (data) {
-			console.log(personas == data.limite_compra_personas)
-			console.log(personas)
-			console.log(data)
 			personas == data.limite_compra_personas ? setMaximo(true) : setMaximo(false)
 		}
 		dispatch({ total: _total })
