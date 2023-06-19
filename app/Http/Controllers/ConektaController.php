@@ -20,8 +20,9 @@ class ConektaController extends Controller
 		switch ($request->type) {
 			case 'order.paid':
 				$source = Orden::find($request->data['object']['metadata']['pago_id']);
-				$source->status = 3; //* Estado 3 - completado o pagado
-				$source->save();
+				// Enviar mails
+				// $source->status = 3; //* Estado 3 - completado o pagado
+				// $source->save();
 				logger('Realizado', ['pago' => $source, 'status' => $request->data['object']['payment_status']]);
 				break;
 			case 'charge.paid':

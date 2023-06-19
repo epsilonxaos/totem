@@ -14,15 +14,6 @@ export default function PaySocio() {
 
 	const [maximoInv, setMaximoInv] = useState(false)
 	const [maximo, setMaximo] = useState(false)
-	// const [addExtras, setAddExtras] = useState(false)
-
-	// const [personasTotales, setPersonasTotales] = useState(0)
-
-	// const [adultosInv, setAdultosInv] = useState(0)
-	// const [ninosInv, setNinosInv] = useState(0)
-
-	// const [adultos, setAdultos] = useState(0)
-	// const [ninos, setNinos] = useState(0)
 
 	const [subAdultos, setSubAdultos] = useState(0)
 	const [subNinos, setSubNinos] = useState(0)
