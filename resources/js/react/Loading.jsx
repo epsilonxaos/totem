@@ -54,7 +54,7 @@ export default function Loading() {
 					<motion.div
 						animate={loading ? variant2.in : variant2.out}
 						variants={variant2}
-						class='progress'></motion.div>
+						className='progress'></motion.div>
 					{/* <motion.span
 						animate={loading ? variant2.in : variant2.out}
 						variants={variant2}>

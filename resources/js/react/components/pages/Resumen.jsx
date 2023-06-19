@@ -37,48 +37,48 @@ export default function Resumen() {
 						<span className='font-semibold'>Fecha de reservación:</span> {orden.reservacion.fecha_reservacion}
 					</p>
 
-					<div class='relative overflow-x-auto mb-12'>
-						<table class='w-full text-xs text-left text-gray-500 dark:text-gray-400'>
-							<thead class='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+					<div className='relative overflow-x-auto mb-12'>
+						<table className='w-full text-xs text-left text-gray-500 dark:text-gray-400'>
+							<thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
 								<tr>
 									<th
 										scope='col'
-										class='px-6 py-3'>
+										className='px-6 py-3'>
 										Pases
 									</th>
 									<th
 										scope='col'
-										class='px-6 py-3'>
+										className='px-6 py-3'>
 										Cantidad
 									</th>
 									<th
 										scope='col'
-										class='px-6 py-3'>
+										className='px-6 py-3'>
 										Precio
 									</th>
 									<th
 										scope='col'
-										class='px-6 py-3'>
+										className='px-6 py-3'>
 										Subtotal
 									</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr class='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
+								<tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
 									<th
 										scope='row'
-										class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
+										className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
 										Adultos (+12)
 									</th>
-									<td class='px-6 py-4'>
+									<td className='px-6 py-4'>
 										{orden.reservacion.pay_adultos > 0
 											? orden.reservacion.p_adultos - orden.reservacion.pay_adultos
 											: orden.reservacion.p_adultos}
 										{orden.reservacion.pay_adultos > 0 ? ` (+${orden.reservacion.pay_adultos} extras)` : ''}
 									</td>
-									<td class='px-6 py-4'>${numberWithCommas(orden.daypass.precio_adultos)} MXN</td>
+									<td className='px-6 py-4'>${numberWithCommas(orden.daypass.precio_adultos)} MXN</td>
 									{orden.reservacion.socio_id ? (
-										<td class='px-6 py-4'>
+										<td className='px-6 py-4'>
 											$
 											{numberWithCommas(
 												orden.reservacion.pay_adultos > 0
@@ -88,26 +88,26 @@ export default function Resumen() {
 											MXN
 										</td>
 									) : (
-										<td class='px-6 py-4'>
+										<td className='px-6 py-4'>
 											${numberWithCommas(orden.reservacion.p_adultos * orden.daypass.precio_adultos)} MXN
 										</td>
 									)}
 								</tr>
-								<tr class='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
+								<tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
 									<th
 										scope='row'
-										class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
+										className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
 										Menores (+6)
 									</th>
-									<td class='px-6 py-4'>
+									<td className='px-6 py-4'>
 										{orden.reservacion.pay_ninos > 0
 											? orden.reservacion.p_ninos - orden.reservacion.pay_ninos
 											: orden.reservacion.p_ninos}
 										{orden.reservacion.pay_ninos > 0 ? ` (+${orden.reservacion.pay_ninos} extras)` : ''}
 									</td>
-									<td class='px-6 py-4'>${numberWithCommas(orden.daypass.precio_ninos)} MXN</td>
+									<td className='px-6 py-4'>${numberWithCommas(orden.daypass.precio_ninos)} MXN</td>
 									{orden.reservacion.socio_id ? (
-										<td class='px-6 py-4'>
+										<td className='px-6 py-4'>
 											$
 											{numberWithCommas(
 												orden.reservacion.pay_ninos > 0 ? orden.reservacion.pay_ninos * orden.daypass.precio_ninos : 0
@@ -115,38 +115,38 @@ export default function Resumen() {
 											MXN
 										</td>
 									) : (
-										<td class='px-6 py-4'>
+										<td className='px-6 py-4'>
 											${numberWithCommas(orden.reservacion.p_ninos * orden.daypass.precio_ninos)} MXN
 										</td>
 									)}
 								</tr>
-								<tr class='bg-white dark:bg-gray-800'>
+								<tr className='bg-white dark:bg-gray-800'>
 									<th
 										scope='row'
-										class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
+										className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
 										Infantes
 									</th>
-									<td class='px-6 py-4'>{orden.reservacion.p_ninos_menores}</td>
-									<td class='px-6 py-4'>${numberWithCommas(orden.daypass.precio_ninos_menores)} MXN</td>
-									<td class='px-6 py-4'>$0 MXN</td>
+									<td className='px-6 py-4'>{orden.reservacion.p_ninos_menores}</td>
+									<td className='px-6 py-4'>${numberWithCommas(orden.daypass.precio_ninos_menores)} MXN</td>
+									<td className='px-6 py-4'>$0 MXN</td>
 								</tr>
 							</tbody>
-							<thead class='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+							<thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
 								<tr>
 									<th
 										scope='col'
-										class='px-6 py-3 pt-5'>
+										className='px-6 py-3 pt-5'>
 										Total
 									</th>
 									<th
 										scope='col'
-										class='px-6 py-3 pt-5'></th>
+										className='px-6 py-3 pt-5'></th>
 									<th
 										scope='col'
-										class='px-6 py-3 pt-5'></th>
+										className='px-6 py-3 pt-5'></th>
 									<th
 										scope='col'
-										class='px-6 py-3 pt-5'>
+										className='px-6 py-3 pt-5'>
 										{orden.orden.total > 0 ? <>${numberWithCommas(orden.orden.total)} MXN</> : 'MEMBRESÍA CLUB'}
 									</th>
 								</tr>

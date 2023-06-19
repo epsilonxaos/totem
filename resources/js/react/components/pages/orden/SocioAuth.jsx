@@ -40,7 +40,7 @@ export default function SocioAuth() {
 							type='text'
 							name='tipo'
 							id='tipo'
-							defaultValue={'Membresia'}
+							defaultValue={'Membresía'}
 							className='bg-transparent pointer-events-none border-2 border-verdigris text-white text-sm block w-full p-2.5'
 						/>
 					</div>
@@ -49,7 +49,7 @@ export default function SocioAuth() {
 							<label
 								htmlFor='correo'
 								className='block mb-2 text-sm font-medium text-white'>
-								*Correo electronico
+								*Correo electrónico
 							</label>
 							<input
 								type='email'

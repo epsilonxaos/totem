@@ -244,15 +244,15 @@ export default function Home() {
 					<div className='grid grid-cols-1 md:grid-cols-5 bg-verdigris rounded-t-[36px] md:rounded-bl-[36px] overflow-hidden'>
 						<div className='col-span-1 md:col-span-2 py-16 px-4 md:pl-16 md:pr-8 text-center md:text-left'>
 							<Textos.Subtitulo className='md:text-2xl mb-8 md:mb-0'>
-								Apoyemos al Santuario del Tapír de Yucatán.
+								Apoyemos al Santuario del Tapir de Yucatán.
 							</Textos.Subtitulo>
 							<p className='text-white text-justify md:text-left mb-2'>
-								Con tu donativo apoyamos y promovemos el proyecto, que se enfoca en el Rescate, Manejo, Reproducción,
-								Reintroducción, Investigación y Conservación de esta especie endémica del sureste de México y
+								Con tu donativo apoyamos y promovemos el proyecto que se enfoca en el rescate, manejo, reproducción,
+								reintroducción, investigación y conservación de esta especie nativa del sureste de México y
 								Centroamérica.
 							</p>
 							<button className='px-8 py-3 inline text-sm mt-2 max-w-[165px] bg-oxfordblue text-white rounded-md mx-auto'>
-								¡Quiero Donar!
+								¡Quiero donar!
 							</button>
 						</div>
 						<div className='col-span-1 md:col-span-3'>
