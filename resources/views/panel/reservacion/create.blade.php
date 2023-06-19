@@ -67,7 +67,7 @@
                     <div class="relative overflow-x-auto">
                         <span class="text-xs mb-2 block"><span class="text-yellow-800">*</span> El limite recomendado por
                             personas en un
-                            Daypass
+                            Day Pass
                             es de
                             <span class="font-semibold text-emerald-800">{{ $daypass->limite_compra_personas }}</span></span>
                         <p id="errorMessage" class="text-pink-600"></p>

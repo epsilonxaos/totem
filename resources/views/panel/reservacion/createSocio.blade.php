@@ -80,7 +80,7 @@
 
                     <div class="relative overflow-x-auto">
                         <span class="text-xs mb-2 block"><span class="text-red-800">*</span> El limite de invitados en una
-                            membresia aplicados a un daypass es de <span
+                            membresia aplicados a un Day Pass es de <span
                                 class="font-semibold text-emerald-800">{{ $daypass->limite_invitados_socios }}</span> incluyendo
                             al titular</span>
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

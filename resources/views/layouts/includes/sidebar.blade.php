@@ -63,7 +63,7 @@
                             <path d="M18 9v11"></path>
                         </svg>
 
-                        <span class="ml-4">Daypass</span>
+                        <span class="ml-4">Day Pass</span>
                     </a>
                 </li>
             </ul>

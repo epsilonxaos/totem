@@ -100,7 +100,7 @@ export default function Footer() {
 					<div className='col-span-1 md:col-span-3 mb-8 md:mb-0'>
 						<ul className='flex flex-wrap justify-center md:justify-start gap-4 font-medium text-center md:text-left '>
 							<li>
-								<Link to='/daypass'>Daypass</Link>
+								<Link to='/daypass'>Day Pass</Link>
 							</li>
 							<li>
 								<Link to='/restaurante'>Restaurante</Link>

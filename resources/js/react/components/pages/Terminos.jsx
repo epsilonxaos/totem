@@ -73,8 +73,8 @@ export default function Terminos({ className = '' }) {
 				</li>
 			</ul>
 
-			<h3 className='font-semibold text-verdigris mb-3'>TÉRMINOS Y CONDICIONES PARA EL DAYPASS</h3>
-			<p className='mb-3'>El daypass incluye:</p>
+			<h3 className='font-semibold text-verdigris mb-3'>TÉRMINOS Y CONDICIONES PARA EL DAY PASS</h3>
+			<p className='mb-3'>El Day Pass incluye:</p>
 			<ul className='list-disc pl-8 mb-6'>
 				<li className='mb-1'>Acceso de 11:00 a 18:00 horas</li>
 				<li className='mb-1'>Toallas</li>

@@ -268,7 +268,7 @@
 
                                                                     <div
                                                                         style="font-family:Inter;font-size:18px;font-weight:800;line-height:24px;text-align:center;color:#75B5B0;">
-                                                                        Daypass</div>
+                                                                        Day Pass</div>
 
                                                                 </td>
                                                             </tr>

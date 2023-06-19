@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Daypass - {{ $folio }}</title>
+    <title>Day Pass - {{ $folio }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet"
         type="text/css">
     <style type="text/css">
