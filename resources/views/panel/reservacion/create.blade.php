@@ -65,7 +65,7 @@
 
 
                     <div class="relative overflow-x-auto">
-                        <span class="text-xs mb-2 block"><span class="text-yellow-800">*</span> El limite recomendado por
+                        <span class="text-xs mb-2 block"><span class="text-yellow-800">*</span> El límite recomendado por
                             personas en un
                             Day Pass
                             es de

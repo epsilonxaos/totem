@@ -15,10 +15,10 @@ class OrdenController extends Controller
 	public function indesx()
 	{
 		return view('panel.orden.index', [
-			"title" => "Ordenes",
+			"title" => "Órdenes",
 			"breadcrumb" => [
 				[
-					'title' => 'Ordenes',
+					'title' => 'Órdenes',
 					'active' => true,
 				]
 			],
@@ -29,10 +29,10 @@ class OrdenController extends Controller
 	public function index(OrdenDataTable $dataTable)
 	{
 		return $dataTable->render('panel.orden.index', [
-			"title" => "Ordenes",
+			"title" => "Órdenes",
 			"breadcrumb" => [
 				[
-					'title' => 'Ordenes',
+					'title' => 'Órdenes',
 					'active' => true,
 				]
 			],

@@ -128,6 +128,7 @@ class OrdenDataTable extends DataTable
 		return [
 			Column::make('id'),
 			Column::computed('reservacion')
+				->title('Reservación')
 				->exportable(false)
 				->addClass('text-center')
 				->printable(false),
@@ -135,6 +136,7 @@ class OrdenDataTable extends DataTable
 				->exportable(false)
 				->printable(false),
 			Column::computed('metodo_pago')
+				->title('Método de pago')
 				->exportable(false)
 				->printable(false),
 			Column::computed('pago_realizado')

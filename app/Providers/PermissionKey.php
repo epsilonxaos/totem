@@ -121,7 +121,7 @@ class PermissionKey extends ServiceProvider
 	];
 
 	const Ordenes = [
-		'name' => 'Módulo Ordenes',
+		'name' => 'Módulo Órdenes',
 		'permissions' => [
 			'index' => [
 				'display_name' => 'Ver modulo',

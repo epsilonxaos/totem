@@ -49,7 +49,7 @@ class AppController extends Controller
 		$socio = Socios::select('id', 'nombre_completo', 'telefono', 'correo', 'password', 'fecha_finalizacion')
 			->where('correo', $request->correo)->first();
 
-		if (!$socio) return response(['acceso' => false, 'error' => 'El usuario ingresado no existe, por favor, verifique su información.']);
+		if (!$socio) return response(['acceso' => false, 'error' => 'El usuario ingresado no existe, por favor verifica la información.']);
 
 		if (Hash::check($request->password, $socio->password)) {
 			if ($socio->fecha_finalizacion >= now()) {
@@ -58,7 +58,7 @@ class AppController extends Controller
 				return response(['acceso' => false, 'error' => 'Lo sentimos, la membresía ha expirado el día ' . Helpers::dateSpanishShort($socio->fecha_finalizacion) . ', por favor, contáctate con nosotros.']);
 			}
 		} else {
-			return response(['acceso' => false, 'error' => 'La contraseña no es correcta, por favor, intente nuevamente.']);
+			return response(['acceso' => false, 'error' => 'La contraseña no es correcta, por favor intenta nuevamente.']);
 		}
 	}
 
@@ -67,7 +67,7 @@ class AppController extends Controller
 		$socio = Socios::select('id', 'correo', 'token', 'nombre')
 			->where('correo', $request->correo)->first();
 
-		if (!$socio) return response(['exist' => false, 'error' => 'Lo sentimos, la cuenta que ingreso no existe, verifique que los datos sean correctos.']);
+		if (!$socio) return response(['exist' => false, 'error' => 'Lo sentimos, la cuenta que ingresaste no existe. Por favor verifica que los datos sean correctos.']);
 
 		$urlRecovery = url('/membresia/passwordRecovery/' . encrypt($socio->correo) . '/' . $socio->token);
 		$data = [
@@ -89,15 +89,15 @@ class AppController extends Controller
 				['token', '=', $request->token],
 			])->first();
 
-			if (!$socio) return response(['success' => false, 'message' => 'Lo sentimos, se presento un error, la sesión expiro, los datos para la recuperación no son correctos o la cuenta no existe, vuelva a intentar el proceso. Si el proble persiste contacte a soporte apra brindarle ayuda'], 500);
+			if (!$socio) return response(['success' => false, 'message' => 'Lo sentimos la sesión expiró, los datos para la recuperación no son correctos o la cuenta no existe. Por favor vuelve a intentar el proceso. Si el problema persiste, contacta a soporte para solicitar ayuda.'], 500);
 
 			$socio->password = Hash::make($request->password);
 			$socio->token = Str::random(10);
 			$socio->save();
 
-			return response(['success' => true, 'socio' => $socio, 'message' => 'Contraseña actualizada, ahora puede iniciar sesión con su nueva contraseña.'], 200);
+			return response(['success' => true, 'socio' => $socio, 'message' => 'Contraseña actualizada. Ya puedes iniciar sesión con tu nueva contraseña.'], 200);
 		} catch (\Throwable $th) {
-			return response(['success' => false, 'message' => 'Lo sentimos, se presento un error, vuelva a intentar más tarde. Si el proble persiste contacte a soporte para brindarle ayuda'], 500);
+			return response(['success' => false, 'message' => 'Lo sentimos, se presentó un error. Por favor vuelve a intentar más tarde. Si el problema persiste, contacta a soporte para solicitar ayuda.'], 500);
 		}
 	}
 

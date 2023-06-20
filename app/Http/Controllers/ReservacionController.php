@@ -22,7 +22,7 @@ class ReservacionController extends Controller
 			"title" => "Reservaciones",
 			"breadcrumb" => [
 				[
-					'title' => 'Ordenes',
+					'title' => 'Órdenes',
 					'active' => true,
 				]
 			],

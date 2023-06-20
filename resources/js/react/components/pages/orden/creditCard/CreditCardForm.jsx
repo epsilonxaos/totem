@@ -37,12 +37,12 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 		let personasTotales = state.adultos + state.ninos + state.ninos_menores
 		console.log(personasTotales)
 		if (personasTotales === 0) {
-			setErrorMessage('Por favor, indique al menos una persona para la compra.')
+			setErrorMessage('Por favor indica al menos una persona para la compra.')
 			toast.error('Ups, parece que hubo un error.')
 			return
 		}
 		if (state.total === 0) {
-			setErrorMessage('Lo sentimos, el cargo no puede ser cero, por favor revise su compra.')
+			setErrorMessage('Lo sentimos, el cargo no puede ser en ceros. Por favor revisa tu compra.')
 			toast.error('Ups, parece que hubo un error.')
 			return
 		}
@@ -90,7 +90,7 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 			event => {
 				toast.error('Ups, parece que hubo un error.')
 				dispatch({ payLoading: false })
-				setErrorMessage('Lo sentimos, alguno de los datos ingresados no son correctos.')
+				setErrorMessage('Lo sentimos, alguno de los datos ingresados de la tarjeta no es correcto.')
 			}
 		)
 	}

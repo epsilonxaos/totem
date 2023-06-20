@@ -91,7 +91,7 @@ export default function PublicForm() {
 										<label
 											htmlFor='nombre'
 											className='block mb-2 text-sm font-medium text-white'>
-											*Nombre Completo
+											*Nombre completo
 										</label>
 										<input
 											type='text'
@@ -163,12 +163,13 @@ export default function PublicForm() {
 												<p>
 													{data?.disponibilidad
 														? 'Disponible'
-														: 'Lo sentimos ya no hay disponibilidad para la fecha seleccionada'}
+														: 'Lo sentimos, ya no contamos con disponibilidad para la fecha seleccionada'}
 												</p>
 
 												{data?.cupo_disponible && (
 													<p>
-														Tenemos <span className='text-verdigris font-bold'>{data.cupo_disponible}</span> espacios.
+														Tenemos <span className='text-verdigris font-bold'>{data.cupo_disponible}</span> espacios
+														disponibles.
 													</p>
 												)}
 											</div>

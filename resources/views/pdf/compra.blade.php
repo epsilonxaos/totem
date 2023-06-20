@@ -56,7 +56,7 @@
             </p>
             <p style="text-align: center;"><span style="font-weight: 600">Método de pago:</span>
                 @if ($total > 0)
-                    {{ $metodoPago }}
+                    {{ ucfirst($metodoPago) }}
                 @else
                     {{ Membresía }}
                 @endif

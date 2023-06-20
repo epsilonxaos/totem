@@ -140,8 +140,8 @@ class SociosDataTable extends DataTable
 			Column::make('nombre_completo'),
 			// Column::make('correo'),
 			Column::make('fecha_inicio'),
-			Column::make('fecha_finalizacion'),
-			Column::computed('membresia')
+			Column::make('fecha_finalizacion')->title('Fecha finalización'),
+			Column::computed('membresia')->title('Membresía')
 				->exportable(false)
 				->printable(false)
 				->addClass('text-center'),

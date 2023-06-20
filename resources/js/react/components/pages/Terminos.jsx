@@ -88,10 +88,10 @@ export default function Terminos({ className = '' }) {
 			</p>
 
 			<h3 className='font-semibold text-verdigris mb-3'>TÉRMINOS Y CONDICIONES PARA LA MEMBRESÍA</h3>
-			<p className='mb-3'>Disfruta de la playa en cualquier dia del año y con beneficios especiales como: </p>
+			<p className='mb-3'>Disfruta de la playa en cualquier día del año y con beneficios especiales como: </p>
 			<ul className='list-disc pl-8'>
 				<li className='mb-1'>Acceso de 10:00 am a 19:00 horas.</li>
-				<li className='mb-1'>Disponibilidad privilegiada de reservas del club cualquier dia del año.</li>
+				<li className='mb-1'>Disponibilidad privilegiada de reservas del club cualquier día del año.</li>
 				<li className='mb-1'>Acceso a áreas exclusivas del club</li>
 				<li className='mb-1'>Toallas.</li>
 				<li className='mb-1'>Uso de instalaciones (Albercas, camastros, hamacas, baños, cambiadores y regaderas)</li>

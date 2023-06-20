@@ -1,5 +1,15 @@
 @extends('layouts.admin')
 
+@push('style')
+    <style>
+        @media (max-width: 640px) {
+            .flatpickr-calendar {
+                transform: scale(0.9);
+            }
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="relative overflow-x-auto pt-6 px-1">
 
@@ -36,7 +46,7 @@
                                     <div class="col-span-1">
                                         <label for="limite_total"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><span
-                                                class="text-red-800">*</span> Cupo de personas por dia</label>
+                                                class="text-red-800">*</span> Cupo de personas por día</label>
                                         <input id="limite_total" name="limite_total" required autocomplete="off" type="number"
                                             min="0"
                                             value="{{ old('limite_total') ? old('limite_total') : $data->limite_total }}"
@@ -45,7 +55,7 @@
                                     <div class="col-span-1">
                                         <label for="limite_compra_personas"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><span
-                                                class="text-red-800">*</span> Limite de compra para público general</label>
+                                                class="text-red-800">*</span> Límite de compra para público general</label>
                                         <input id="limite_compra_personas" name="limite_compra_personas" required
                                             autocomplete="off" type="number" min="0"
                                             value="{{ old('limite_compra_personas') ? old('limite_compra_personas') : $data->limite_compra_personas }}"
@@ -54,7 +64,7 @@
                                     <div class="col-span-1">
                                         <label for="limite_invitados_socios"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><span
-                                                class="text-red-800">*</span> Limite de invitados incluidos en la membresía
+                                                class="text-red-800">*</span> Límite de invitados incluidos en la membresía
                                             (incluyendo titular)
                                         </label>
                                         <input id="limite_invitados_socios" name="limite_invitados_socios" required

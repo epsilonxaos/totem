@@ -80,7 +80,7 @@ export default function PaySocio() {
 	const handleSubmitOnlyInvitados = e => {
 		e.preventDefault()
 
-		if (state.personasTotales === 0) return setErrorMessage('Indique al menos una persona')
+		if (state.personasTotales === 0) return setErrorMessage('Por favor indica al menos una persona para la compra.')
 
 		dispatch({ payLoading: true })
 		setErrorMessage('')

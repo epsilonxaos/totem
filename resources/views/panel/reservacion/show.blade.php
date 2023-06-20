@@ -38,10 +38,10 @@
                     <p class="font-semibold text-blue-900 mb-1">Nombre:</p>
                     <p class="mb-6">{{ $data->nombre_completo }}</p>
 
-                    <p class="font-semibold text-blue-900 mb-1">Correo eelctronico:</p>
+                    <p class="font-semibold text-blue-900 mb-1">Correo electrónico:</p>
                     <p class="mb-6">{{ $data->correo }}</p>
 
-                    <p class="font-semibold text-blue-900 mb-1">Telefono:</p>
+                    <p class="font-semibold text-blue-900 mb-1">Teléfono:</p>
                     <p class="mb-6">{{ $data->telefono }}</p>
                 </div>
                 <div class="col-span-1">
