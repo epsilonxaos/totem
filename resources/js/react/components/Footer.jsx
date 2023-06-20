@@ -87,7 +87,7 @@ export default function Footer() {
 							</div>
 						</div>
 					</div>
-					<div className='col-span-1 pt-4 text-center md:text-right px-4 md:pl-12 lg:pl-16 pt-8 md:pt-0'>
+					<div className='col-span-1 pt-4 text-center md:text-right px-4 md:pl-12 lg:pl-16 md:pt-0'>
 						<img
 							src={logoFooter}
 							alt='Tótem Beach Club'
