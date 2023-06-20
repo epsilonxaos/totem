@@ -5,6 +5,7 @@ import { useInicialStore } from '../../../store/useInicialStore'
 import axios from 'axios'
 import { numberWithCommas } from '../../../helpers/Utils'
 import CreditCardForm from './creditCard/CreditCardForm'
+import CardPaseSocio from './CardPaseSocio'
 
 export default function PaySocio() {
 	const { state, dispatch } = useContext(OrdenContext)
@@ -121,7 +122,74 @@ export default function PaySocio() {
 						<div className='relative overflow-x-auto'>
 							<p className='text-white mb-4'>Por favor ingrese la seleccione la cantidad de personas</p>
 
-							<table className='w-full text-sm text-left text-white'>
+							<div className='block sm:hidden'>
+								<CardPaseSocio
+									title='Adulto 13+'
+									countInv={
+										<Count
+											value={state.inv_adultos}
+											handlerUpdate={count => dispatch({ inv_adultos: count })}
+											disabled={maximoInv}
+										/>
+									}
+									addExtras={state.addExtras}
+									precio={data?.precio_adultos}
+									moneda={data?.moneda ?? ''}
+									countExtras={
+										<Count
+											value={state.pay_adultos}
+											handlerUpdate={count => dispatch({ pay_adultos: count })}
+											disabled={maximo}
+										/>
+									}
+									subtotal={subAdultos}
+								/>
+								<CardPaseSocio
+									title='Niño de 6-12'
+									countInv={
+										<Count
+											value={state.inv_ninos}
+											handlerUpdate={count => dispatch({ inv_ninos: count })}
+											disabled={maximoInv}
+										/>
+									}
+									addExtras={state.addExtras}
+									precio={data?.precio_ninos}
+									moneda={data?.moneda ?? ''}
+									countExtras={
+										<Count
+											value={state.pay_ninos}
+											handlerUpdate={count => dispatch({ pay_ninos: count })}
+											disabled={maximo}
+										/>
+									}
+									subtotal={subNinos}
+								/>
+								<CardPaseSocio
+									title='Infante 0-5'
+									countInv={
+										<Count
+											value={state.ninos_menores}
+											handlerUpdate={count => dispatch({ ninos_menores: count })}
+											disabled={state.ninos_menores >= 15 ? true : false}
+										/>
+									}
+									addExtras={false}
+								/>
+
+								{state.addExtras && (
+									<div className={'relative bg-white bg-opacity-5 py-2 px-1 backdrop-blur-sm mb-6'}>
+										<div className='flex items-center justify-between border-y border-verdigris px-4 py-2'>
+											<span className='text-sm text-white'>Total</span>
+											<span className='text-white whitespace-nowrap dark:text-white font-bold'>
+												${numberWithCommas(state.total)} {data?.moneda ?? ''}
+											</span>
+										</div>
+									</div>
+								)}
+							</div>
+
+							<table className='w-full text-sm text-left text-white max-sm:hidden'>
 								<thead className='text-xs border-y border-verdigris'>
 									<tr>
 										<th
@@ -149,7 +217,7 @@ export default function PaySocio() {
 												<th
 													scope='col'
 													className='px-6 py-3'>
-													TOTAL
+													SUBTOTAL
 												</th>
 											</>
 										)}
@@ -319,13 +387,13 @@ function Count({ value, handlerUpdate, disabled }) {
 	}
 
 	return (
-		<div className={`flex items-center max-w-max mx-auto select-none`}>
+		<div className={`flex items-center justify-between max-w-xs sm:max-w-[200px] mx-auto gap-4 select-none`}>
 			<AiOutlineMinusCircle
 				size={24}
 				onClick={decrementar}
-				className='cursor-pointer w-[24px]'
+				className='cursor-pointer'
 			/>
-			<p className='text-center appearance-none bg-transparent border-2 border-verdigris text-white text-sm w-16 block p-2.5 mx-2'>
+			<p className='text-center appearance-none bg-transparent border-2 border-verdigris text-white text-sm w-48 sm:w-32 block p-2.5'>
 				{value}
 			</p>
 			{disabled ? (
@@ -337,7 +405,7 @@ function Count({ value, handlerUpdate, disabled }) {
 				<AiOutlinePlusCircle
 					size={24}
 					onClick={incrementar}
-					className='cursor-pointer w-[24px]'
+					className='cursor-pointer'
 				/>
 			)}
 		</div>

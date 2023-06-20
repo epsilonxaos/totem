@@ -3,6 +3,7 @@ import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai'
 import CreditCardForm from './creditCard/CreditCardForm'
 import OrdenContext from '../../../context/OrdenContext'
 import { useInicialStore } from '../../../store/useInicialStore'
+import CardPase from './CardPase'
 
 export default function PayForm() {
 	const { state, dispatch } = useContext(OrdenContext)
@@ -48,7 +49,51 @@ export default function PayForm() {
 				<div className='grid grid-cols-1'>
 					<div className='col-span-1 '>
 						<div className='relative overflow-x-auto'>
-							<table className='w-full text-sm text-left text-white'>
+							<div className='block sm:hidden'>
+								<CardPase
+									title='Adultos 13+'
+									precio={data?.precio_adultos ?? 0}
+									moneda={data?.moneda ?? ''}
+									subtotal={subtotal(state.adultos, data?.precio_adultos ?? 0)}>
+									<Count
+										value={state.adultos}
+										handlerUpdate={count => dispatch({ adultos: count })}
+										disabled={maximo}
+									/>
+								</CardPase>
+								<CardPase
+									title='Niño de 6-12'
+									precio={data?.precio_ninos ?? 0}
+									moneda={data?.moneda ?? ''}
+									subtotal={subtotal(state.ninos, data?.precio_ninos ?? 0)}>
+									<Count
+										value={state.ninos}
+										handlerUpdate={count => dispatch({ ninos: count })}
+										disabled={maximo}
+									/>
+								</CardPase>
+								<CardPase
+									title='Infante 0-5'
+									precio={data?.precio_ninos_menores ?? 0}
+									moneda={data?.moneda ?? ''}
+									subtotal={subtotal(state.ninos_menores, data?.precio_ninos_menores ?? 0)}>
+									<Count
+										value={state.ninos_menores}
+										handlerUpdate={count => dispatch({ ninos_menores: count })}
+										disabled={state.ninos_menores >= 15 ? true : false}
+									/>
+								</CardPase>
+								<div className={'relative bg-white bg-opacity-5 py-2 px-1 backdrop-blur-sm mb-6'}>
+									<div className='flex items-center justify-between border-y border-verdigris px-4 py-2'>
+										<span className='text-sm text-white'>Total</span>
+										<span className='text-white whitespace-nowrap dark:text-white font-bold'>
+											${numberWithCommas(total())} {data?.moneda ?? ''}
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<table className='w-full text-sm text-left text-white max-sm:hidden'>
 								<thead className='text-xs border-y border-verdigris'>
 									<tr>
 										<th
