@@ -126,7 +126,7 @@ class ReservacionesDataTable extends DataTable
 				->addClass('text-center'),
 			Column::make('folio'),
 			Column::make('nombre_completo')->searchable(true),
-			Column::make('fecha_reservacion')->searchable(true)->data('fecha_reservacion')->name('fecha_reservacion'),
+			Column::make('fecha_reservacion')->title('Fecha reservación')->searchable(true)->data('fecha_reservacion')->name('fecha_reservacion'),
 			Column::computed('acciones')->searchable(false)
 				->exportable(false)
 				->printable(false)

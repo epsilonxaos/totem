@@ -22,7 +22,7 @@ export default function Restaurante() {
 			</div>
 
 			<div className='py-12 md:py-20 px-4'>
-				<Textos.Subtitulo className=' font-murecho'>Conoce nuestro menú</Textos.Subtitulo>
+				<Textos.Subtitulo className=' font-murecho mb-2'>Conoce nuestro menú</Textos.Subtitulo>
 				<p className='text-delftblue mb-14'>
 					En <span className='text-verdigris'>Tótem Beach Club</span> tenemos el menú ideal para ti y tu familia.
 				</p>

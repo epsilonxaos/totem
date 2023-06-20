@@ -37,48 +37,49 @@ export default function App() {
 		<>
 			<Loading />
 			<Toaster position='top-right' />
-			<Header />
 			<ScrollToTop />
 
-			<Routes>
-				<Route
-					path='/'
-					element={<Home />}
-				/>
-				<Route
-					path='/restaurante'
-					element={<Restaurante />}
-				/>
-				<Route
-					path='/daypass'
-					element={<Daypass />}
-				/>
-				<Route
-					path='/daypass/orden'
-					element={<PublicOrden />}
-				/>
-				<Route
-					path='/daypass/socio'
-					element={<SocioOrden />}
-				/>
-				<Route
-					path='/resumen/:folio'
-					element={<Resumen />}
-				/>
-				<Route
-					path='/membresia/passwordRecovery/:correo/:token'
-					element={<RecoveryPassword />}
-				/>
-				<Route
-					path='/membresia'
-					element={<Membresia />}
-				/>
-				<Route
-					path='/politicas'
-					element={<Politicas />}
-				/>
-			</Routes>
-
+			<Header />
+			<AnimatePresence>
+				<Routes>
+					<Route
+						path='/'
+						element={<Home />}
+					/>
+					<Route
+						path='/restaurante'
+						element={<Restaurante />}
+					/>
+					<Route
+						path='/daypass'
+						element={<Daypass />}
+					/>
+					<Route
+						path='/daypass/orden'
+						element={<PublicOrden />}
+					/>
+					<Route
+						path='/daypass/socio'
+						element={<SocioOrden />}
+					/>
+					<Route
+						path='/resumen/:folio'
+						element={<Resumen />}
+					/>
+					<Route
+						path='/membresia/passwordRecovery/:correo/:token'
+						element={<RecoveryPassword />}
+					/>
+					<Route
+						path='/membresia'
+						element={<Membresia />}
+					/>
+					<Route
+						path='/politicas'
+						element={<Politicas />}
+					/>
+				</Routes>
+			</AnimatePresence>
 			<Footer />
 		</>
 	)

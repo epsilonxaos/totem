@@ -48,10 +48,10 @@ class DaypassController extends Controller
 		$source->fechas_excluidas = json_decode($source->fechas_excluidas);
 
 		return view('panel.daypass.edit', [
-			"title" => "Actualizar Daypass",
+			"title" => "Actualizar Day Pass",
 			"breadcrumb" => [
 				[
-					'title' => 'Daypass',
+					'title' => 'Day Pass',
 					'active' => true,
 				]
 			],
