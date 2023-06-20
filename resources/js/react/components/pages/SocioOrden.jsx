@@ -15,7 +15,7 @@ export default function SocioOrden() {
 	const reducer = (prev, next) => ({ ...prev, ...next })
 	const initialArgs = {
 		payLoading: false,
-		pasoActual: 'informacion',
+		pasoActual: 'login',
 		startDate: '',
 		tomorrow: '',
 		reservacion: '',
@@ -34,7 +34,7 @@ export default function SocioOrden() {
 
 		total: 0,
 		redirectTo: '',
-		auth: true,
+		auth: false,
 		socio: null,
 	}
 	const [state, dispatch] = useReducer(reducer, initialArgs)

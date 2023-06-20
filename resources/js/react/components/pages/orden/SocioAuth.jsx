@@ -80,7 +80,7 @@ export default function SocioAuth() {
 					</div>
 
 					<p
-						className='text-center underline text-white hover:text-verdigris transition-all cursor-pointer'
+						className='text-center max-w-max mx-auto underline text-white hover:text-verdigris transition-all cursor-pointer'
 						onClick={() => setIsOpenModal(true)}>
 						¿Olvidaste tu contraseña?
 					</p>
