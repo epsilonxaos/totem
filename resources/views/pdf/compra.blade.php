@@ -58,7 +58,7 @@
                 @if ($total > 0)
                     {{ ucfirst($metodoPago) }}
                 @else
-                    {{ Membresía }}
+                    Membresía
                 @endif
             </p>
             <p style="text-align: center; margin-bottom: 20px"><span style="font-weight: 600">Fecha de
