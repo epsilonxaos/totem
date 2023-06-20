@@ -79,12 +79,14 @@ export default function Terminos({ className = '' }) {
 				<li className='mb-1'>Acceso de 11:00 a 18:00 horas</li>
 				<li className='mb-1'>Toallas</li>
 				<li className='mb-1'>Uso de instalaciones (Albercas, camastros, baños, hamacas, cambiadores y regaderas)</li>
-				<li className='mb-1'>Uso de Kayaks (sujeto a disponibilidad y condiciones climatológicas adecuadas)</li>
 			</ul>
-			<p className='mb-12'>
+			<p className='mb-3'>
 				Lunes a Domingo <br />
-				$300 adultos/$150 mayores a 6 años (menores de 6 años sin costo) <br />
+				$300 MXN adultos/$150 MXN mayores a 6 años (menores de 6 años sin costo) <br />
 				(Disponibilidad limitada)
+			</p>
+			<p className='mb-12'>
+				Uso del Kayak individual, $100 MXN por 2 horas (sujeto a disponibilidad y condiciones climatológicas adecuadas)
 			</p>
 
 			<h3 className='font-semibold text-verdigris mb-3'>TÉRMINOS Y CONDICIONES PARA LA MEMBRESÍA</h3>
@@ -98,7 +100,7 @@ export default function Terminos({ className = '' }) {
 				<li className='mb-1'>Uso de Kayaks (sujeto a disponibilidad y condiciones climatológicas adecuadas)</li>
 				<li className='mb-1'>5 integrantes por membresía sin costo.</li>
 				<li className='mb-1'>10% descuento en consumos del restaurante.</li>
-				<li className='mb-1'>Costo anual de la membresía: $15,000.00 + IVA</li>
+				<li className='mb-1'>Costo anual de la membresía: $15,000.00 MXN + IVA</li>
 			</ul>
 		</div>
 	)
