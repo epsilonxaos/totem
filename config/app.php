@@ -191,4 +191,7 @@ return [
 		'PermissionKey' => App\Providers\PermissionKey::class,
 	])->toArray(),
 
+
+	'conektaSecret' => env('CONEKTA_KEY_SECRET')
+
 ];

@@ -22,7 +22,6 @@ export default function App() {
 	const [setData, setLoading] = useInicialStore(state => [state.setData, state.setLoading])
 
 	useEffect(() => {
-		console.log(import.meta.env.VITE_APP_URL)
 		async function fetchData() {
 			const response = await axios.get(import.meta.env.VITE_APP_URL + '/api/inicial')
 			setData(response.data)

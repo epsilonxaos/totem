@@ -51,7 +51,14 @@ export default function Restaurante() {
 				<p className='mb-14'>
 					<small className='text-xs'>Disponibilidad limitada.</small>
 				</p>
-				<p className=' font-murecho font-extrabold text-xl text-oxfordblue'>¡RESERVA AQUÍ!</p>
+				<p className=' font-murecho font-extrabold text-xl text-oxfordblue mb-8'>Reserva vía WhatsApp</p>
+				{/* <p className=' font-murecho font-extrabold text-xl text-oxfordblue'>¡RESERVA AQUÍ!</p> */}
+				<a
+					href='https://wa.me/+529993264940?text=%C2%A1Hola%21%20Me%20interesa%20hacer%20una%20reservaci%C3%B3n%20en%20el%20restaurante%20de%20T%C3%B3tem%20Beach%20Cub.'
+					target='_blank'
+					className='px-8 py-3 inline text-sm mt-2 bg-verdigris text-oxfordblue font-bold rounded-md mx-auto'>
+					(999) 326 4940
+				</a>
 			</div>
 		</main>
 	)

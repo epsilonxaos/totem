@@ -240,9 +240,12 @@ export default function Home() {
 								</Textos.Subtitulo>
 							</div>
 							<div className='col-span-1 text-center md:text-right'>
-								<button className='px-8 py-3 inline text-sm mt-2 bg-verdigris text-oxfordblue rounded-md mx-auto'>
+								<a
+									href='https://wa.me/+529993264940?text=%C2%A1Hola%21%20Me%20interesa%20conocer%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20realizar%20mi%20evento%20en%20T%C3%B3tem%20Beach%20Club.'
+									target='_blank'
+									className='px-8 py-3 inline text-sm mt-2 bg-verdigris text-oxfordblue rounded-md mx-auto'>
 									¡Contáctanos para planear tu evento!
-								</button>
+								</a>
 							</div>
 						</div>
 					</div>

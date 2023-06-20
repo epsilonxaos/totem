@@ -170,7 +170,7 @@ class SociosController extends Controller
 		$source->fecha_finalizacion = $request->fecha_finalizacion;
 		$source->save();
 
-		return redirect()->back()->with('success', 'Datos actualizados correctamente!');
+		return redirect()->back()->with('success', 'Los datos se han actualizado correctamente');
 	}
 
 	/**

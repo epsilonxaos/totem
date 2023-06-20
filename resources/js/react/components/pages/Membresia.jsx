@@ -68,9 +68,12 @@ export default function Membresia() {
 						<span className='font-bold'>Precios especiales</span> en eventos <br /> organizados por el Club.
 					</p>
 					<p className='text-verdigris font-bold text-sm mb-6'>$15,000 MXN + IVA</p>
-					<button className='px-8 py-3 inline text-sm mt-2 max-w-max bg-oxfordblue text-white rounded-md mx-auto'>
+					<a
+						href='https://wa.me/+529993264940?text=%C2%A1Hola%21%20Me%20interesa%20conocer%20informaci%C3%B3n%20sobre%20las%20membres%C3%ADas%20de%20T%C3%B3tem%20Beach%20Club.'
+						target='_blank'
+						className='px-8 py-3 inline text-sm mt-2 max-w-max bg-oxfordblue text-white rounded-md mx-auto'>
 						¡Quiero mi membresía!
-					</button>
+					</a>
 				</div>
 			</div>
 		</main>

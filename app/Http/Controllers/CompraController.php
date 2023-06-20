@@ -25,7 +25,7 @@ class CompraController extends Controller
 {
 	public function compraConekta(Request $request)
 	{
-		Conekta::setApiKey("key_udNu9b2MboHMhzCi5uYUK7n");
+		Conekta::setApiKey(config('app.conektaSecret'));
 		Conekta::setApiVersion('2.0.0');
 		Conekta::setLocale('es');
 		$success_customer = false;

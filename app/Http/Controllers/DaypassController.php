@@ -78,7 +78,7 @@ class DaypassController extends Controller
 		$source->save();
 
 		return redirect()->back()
-			->with('success', 'Datos actualizados correctamente!');
+			->with('success', 'Los datos se han actualizado correctamente');
 	}
 
 	/**

@@ -130,7 +130,7 @@ class RoleController extends Controller
 		foreach ($request->permission as $key => $value) {
 			$role->givePermissionTo($key);
 		}
-		return redirect()->route('panel.roles.edit', ['id' => $role->id])->with('success', 'Datos actualizados correctamente!');
+		return redirect()->route('panel.roles.edit', ['id' => $role->id])->with('success', 'Los datos se han actualizado correctamente');
 	}
 
 	/**
@@ -143,9 +143,9 @@ class RoleController extends Controller
 	{
 		if (Role::find($id)) {
 			Role::destroy($id);
-			return redirect()->back()->with('success', 'Datos actualizados correctamente!');
+			return redirect()->back()->with('success', 'Los datos se han actualizado correctamente');
 		} else {
-			return redirect()->back()->with('success', 'Datos actualizados correctamente!');
+			return redirect()->back()->with('success', 'Los datos se han actualizado correctamente');
 		}
 	}
 }
