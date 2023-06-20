@@ -221,7 +221,7 @@ export default function Home() {
 						<div className='grid grid-cols-1 md:grid-cols-3 items-center'>
 							<div className='col-span-1 md:col-span-2 md:pr-3'>
 								<Textos.Subtitulo className='hidden md:block text-left mb-0'>
-									Nos encanta ser anfitriones de <span className='text-verdigris'>los eventos más inolvidables</span>{' '}
+									Nos encanta ser anfitriones de <span className='text-verdigris'>los eventos más memorables</span>{' '}
 									teniendo la belleza de la costa como escenario.
 								</Textos.Subtitulo>
 								<Textos.Subtitulo className='md:hidden text-center mb-8'>
