@@ -108,8 +108,8 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 
 	return (
 		<>
-			<div className='w-full text-center pb-6'>
-				<p className='text-white uppercase mb-5'>Información de pago</p>
+			<div className='w-full text-center pb-6 pt-5'>
+				<p className='text-white uppercase mb-5 border-t border-verdigris pt-3'>Información de pago</p>
 
 				{errorMessage && (
 					<div className='bg-delftblue bg-opacity-80 backdrop-blur-sm md:ml-8 text-pink-500 font-medium p-3 rounded'>
@@ -205,7 +205,7 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 								}}
 								focusFn={() => setFlipped(false)}
 								value={cardNumber}
-								titulo={'Número de tarjeta'}
+								titulo={'NÚMERO DE TARJETA'}
 								forInput={'cardNumber'}
 								mask={[
 									{
@@ -297,7 +297,7 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 							<label
 								className='block mb-2 text-sm font-medium text-white'
 								htmlFor='cardOwner'>
-								Titular
+								TITULAR
 							</label>
 							<input
 								onFocus={() => setFlipped(false)}
@@ -311,7 +311,7 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 							/>
 						</div>
 						<div>
-							<p className='text-white'>Expiración</p>
+							<p className='text-white mb-2'>EXPIRACIÓN</p>
 						</div>
 						<div className='mb-4 flex'>
 							<div className='mr-2'>
@@ -322,10 +322,13 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 									}}
 									focusFn={() => setFlipped(false)}
 									value={expirationMonth}
-									titulo={'Mes'}
 									forInput={'expirationMonth'}
-									mask={'00'}
-									placeholder={'MM'}
+									mask={[
+										{
+											mask: '00',
+										},
+									]}
+									placeholder={'MES'}
 									normalizeZeros={true}
 									min={1}
 									max={12}
@@ -339,10 +342,13 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 									}}
 									focusFn={() => setFlipped(false)}
 									value={expirationYear}
-									titulo={'Año'}
 									forInput={'expirationYear'}
-									mask={'00'}
-									placeholder={'YY'}
+									mask={[
+										{
+											mask: '00',
+										},
+									]}
+									placeholder={'AÑO'}
 								/>
 							</div>
 							<div className='mb-6'>
@@ -352,7 +358,7 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 									}}
 									focusFn={() => setFlipped(true)}
 									value={cvv}
-									titulo={'CVV'}
+									placeholder={'CVV'}
 									forInput={'cvv'}
 									mask={Number}
 									max={9999}
@@ -363,13 +369,13 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 							<button
 								type='button'
 								onClick={() => dispatch({ pasoActual: 'reservacion' })}
-								className='px-8 py-3 mb-3 mr-2 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md'>
+								className='px-8 py-2 mb-3 mr-3 inline text-sm mt-2 max-w-max bg-white text-black rounded-md'>
 								Regresar
 							</button>
 							<button
 								type='submit'
-								className='px-8 py-3 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md'>
-								Pagar
+								className='px-8 py-2 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md'>
+								Finalizar
 							</button>
 						</div>
 					</form>

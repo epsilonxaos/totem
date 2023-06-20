@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai'
+import { FcPlus, FcCancel } from 'react-icons/fc'
 import OrdenContext from '../../../context/OrdenContext'
 import { useInicialStore } from '../../../store/useInicialStore'
 import axios from 'axios'
 import { numberWithCommas } from '../../../helpers/Utils'
 import CreditCardForm from './creditCard/CreditCardForm'
 import CardPaseSocio from './CardPaseSocio'
+import { HiMinusSm, HiPlusSm } from 'react-icons/hi'
 
 export default function PaySocio() {
 	const { state, dispatch } = useContext(OrdenContext)
@@ -117,11 +118,10 @@ export default function PaySocio() {
 	return (
 		<div className='max-w-design mx-auto px-4 py-12 md:py-32'>
 			<div className='bg-oxfordblue bg-opacity-90 max-w-5xl mx-auto py-12 px-4 md:px-16'>
+				<h3 className='text-center text-white mb-6'>RESERVA DAY PASS MEMBRESÍA</h3>
 				<div className='grid grid-cols-1'>
 					<div className='col-span-1 '>
 						<div className='relative overflow-x-auto'>
-							<p className='text-white mb-4'>Por favor ingrese la seleccione la cantidad de personas</p>
-
 							<div className='block sm:hidden'>
 								<CardPaseSocio
 									title='Adulto 13+'
@@ -194,154 +194,125 @@ export default function PaySocio() {
 									<tr>
 										<th
 											scope='col'
-											className='px-6 py-3'>
+											className='pr-6 py-6'>
 											PASES
 										</th>
 										<th
 											scope='col'
-											className='px-6 py-3 w-[135px] text-center'>
-											CANTIDAD
+											className='py-6 w-[150px] text-center'>
+											{state.addExtras ? 'CANTIDAD CON MEMBRESÍA' : 'CANTIDAD'}
 										</th>
 										{state.addExtras && (
 											<>
 												<th
 													scope='col'
-													className='px-6 py-3'>
+													className='w-[150px] py-6 text-center'>
+													CANTIDAD EXTRA
+												</th>
+												<th
+													scope='col'
+													className='px-6 py-6 text-center'>
 													PRECIO
 												</th>
 												<th
 													scope='col'
-													className='px-6 py-3 w-[135px] text-center'>
-													EXTRAS
-												</th>
-												<th
-													scope='col'
-													className='px-6 py-3'>
+													className='px-6 py-6 w-[160px]'>
 													SUBTOTAL
 												</th>
 											</>
 										)}
 									</tr>
 								</thead>
-								<tbody>
-									<tr className=''>
-										<th
-											scope='row'
-											className='px-6 py-4 text-white whitespace-nowrap dark:text-white'>
-											Adulto 13+
-										</th>
-										<td className='px-6 py-4'>
+								<tbody className='text-xs md:text-sm'>
+									<TrBody
+										title={'Adulto 13+'}
+										countInv={
 											<Count
 												value={state.inv_adultos}
 												handlerUpdate={count => dispatch({ inv_adultos: count })}
 												disabled={maximoInv}
 											/>
-										</td>
-										{state.addExtras && (
-											<>
-												<td className='px-6 py-4'>
-													${data?.precio_adultos ?? 0} {data?.moneda ?? ''}
-												</td>
-												<td className='px-6 py-4'>
-													<Count
-														value={state.pay_adultos}
-														handlerUpdate={count => dispatch({ pay_adultos: count })}
-														disabled={maximo}
-													/>
-												</td>
-												<td className='px-6 py-4'>
-													$ {numberWithCommas(subAdultos)} {data?.moneda ?? ''}
-												</td>
-											</>
-										)}
-									</tr>
-									<tr className=''>
-										<th
-											scope='row'
-											className='px-6 py-4 text-white whitespace-nowrap dark:text-white'>
-											Niño de 6-12
-										</th>
-										<td className='px-6 py-4'>
+										}
+										addExtras={state.addExtras}
+										precio={data?.precio_adultos ?? 0}
+										moneda={data?.moneda ?? ''}
+										subtotal={subAdultos}
+										countExtras={
+											<Count
+												value={state.pay_adultos}
+												handlerUpdate={count => dispatch({ pay_adultos: count })}
+												disabled={maximo}
+											/>
+										}
+									/>
+									<TrBody
+										title={'Niño de 6-12'}
+										countInv={
 											<Count
 												value={state.inv_ninos}
 												handlerUpdate={count => dispatch({ inv_ninos: count })}
 												disabled={maximoInv}
 											/>
-										</td>
-										{state.addExtras && (
-											<>
-												<td className='px-6 py-4'>
-													${data?.precio_ninos ?? 0} {data?.moneda ?? ''}
-												</td>
-												<td className='px-6 py-4'>
-													<Count
-														value={state.pay_ninos}
-														handlerUpdate={count => dispatch({ pay_ninos: count })}
-														disabled={maximo}
-													/>
-												</td>
-												<td className='px-6 py-4'>
-													$ {numberWithCommas(subNinos)} {data?.moneda ?? ''}
-												</td>
-											</>
-										)}
-									</tr>
-									<tr className=''>
-										<th
-											scope='row'
-											className='px-6 py-4 pb-14 text-white whitespace-nowrap dark:text-white'>
-											Infante 0-5
-										</th>
-										<td className='px-6 py-4 pb-14'>
+										}
+										addExtras={state.addExtras}
+										precio={data?.precio_ninos ?? 0}
+										moneda={data?.moneda ?? ''}
+										subtotal={subNinos}
+										countExtras={
+											<Count
+												value={state.pay_ninos}
+												handlerUpdate={count => dispatch({ pay_ninos: count })}
+												disabled={maximo}
+											/>
+										}
+									/>
+									<TrBody
+										title={'Infante 0-5'}
+										countInv={
 											<Count
 												value={state.ninos_menores}
 												handlerUpdate={count => dispatch({ ninos_menores: count })}
 												disabled={state.ninos_menores >= 15 ? true : false}
 											/>
+										}
+										addExtras={state.addExtras}
+										moneda={data?.moneda ?? ''}
+									/>
+								</tbody>
+							</table>
+							<table className='w-full text-sm text-left text-white max-sm:hidden'>
+								<tfoot className=''>
+									<tr>
+										<td
+											scope='col'
+											colSpan={state.addExtras ? 3 : 2}
+											className='py-3 text-xs'>
+											NOTA: Recuerda que tu membresía te permite reservar 5 espacios sin costo (
+											<span className='font-light italic'>Titular más 4 invitados</span>) <br /> Todos los pases extras
+											tienen costo.
 										</td>
 										{state.addExtras && (
 											<>
-												<td className='px-6 py-4 pb-14'>$ 0 MXN</td>
-												<td className='pb-14'></td>
-												<td className='px-6 py-4 pb-14'>$ 0 MXN</td>
+												<th
+													scope='col'
+													className='px-6 py-3 text-center w-[160px]'>
+													${numberWithCommas(state.total)} {data?.moneda ?? ''}
+												</th>
 											</>
 										)}
 									</tr>
-								</tbody>
-								{state.addExtras && (
-									<tfoot className='border-t border-verdigris'>
-										<tr>
-											<th
-												scope='col'
-												className='px-6 py-3'></th>
-											<th
-												scope='col'
-												className='px-6 py-3'></th>
-											<th
-												scope='col'
-												className='px-6 py-3'></th>
-											<th
-												scope='col'
-												className='px-6 py-3'></th>
-											<th
-												scope='col'
-												className='px-6 py-3'>
-												${numberWithCommas(state.total)} {data?.moneda ?? ''}
-											</th>
-										</tr>
-									</tfoot>
-								)}
+								</tfoot>
 							</table>
 
-							<p className='text-white mb-4 text-xs'>
-								Nota: Recuerda que tu membresia te permite reservar hasta 5 espacios sin costo (Titular mas 4 invitados)
-							</p>
+							<p className='text-white mb-4 '></p>
 
 							{maximoInv && (
 								<p
 									onClick={() => dispatch({ addExtras: !state.addExtras })}
-									className='text-verdigris underline font-medium cursor-pointer'>
-									{!state.addExtras ? '+ Agregar personas extras' : 'Cancelar personas extras'}
+									className={`${
+										!state.addExtras ? 'text-verdigris' : 'text-pink-500'
+									} underline font-medium cursor-pointer flex items-center`}>
+									{!state.addExtras ? <>+ Agregar personas extras</> : <>Cancelar personas extras</>}
 								</p>
 							)}
 						</div>
@@ -353,13 +324,13 @@ export default function PaySocio() {
 							<button
 								type='button'
 								onClick={() => dispatch({ pasoActual: 'reservacion' })}
-								className='px-8 py-3 mb-3 mr-2 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto'>
+								className='px-8 py-2 mb-3 mr-2 inline text-sm mt-2 max-w-max bg-white text-black rounded-md mx-auto'>
 								Regresar
 							</button>
 							<form onSubmit={handleSubmitOnlyInvitados}>
 								<button
 									type='submit'
-									className='px-8 py-3 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto'>
+									className='px-8 py-2 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto'>
 									Finalizar
 								</button>
 							</form>
@@ -387,27 +358,51 @@ function Count({ value, handlerUpdate, disabled }) {
 	}
 
 	return (
-		<div className={`flex items-center justify-between max-w-xs sm:max-w-[200px] mx-auto gap-4 select-none`}>
-			<AiOutlineMinusCircle
-				size={24}
+		<div className={`flex items-center justify-center w-full sm:max-w-[105px] mx-auto select-none`}>
+			<HiMinusSm
+				size={18}
 				onClick={decrementar}
-				className='cursor-pointer'
+				className='cursor-pointer mr-2'
 			/>
-			<p className='text-center appearance-none bg-transparent border-2 border-verdigris text-white text-sm w-48 sm:w-32 block p-2.5'>
+			<p className='text-center appearance-none bg-transparent border border-verdigris text-white text-sm w-[calc(100%-40px)] sm:w-[50px] block py-[6px]'>
 				{value}
 			</p>
 			{disabled ? (
-				<AiOutlinePlusCircle
-					size={24}
+				<HiPlusSm
+					size={18}
 					className={`${disabled ? 'opacity-40' : ''}`}
 				/>
 			) : (
-				<AiOutlinePlusCircle
-					size={24}
+				<HiPlusSm
+					size={18}
 					onClick={incrementar}
-					className='cursor-pointer'
+					className='cursor-pointer ml-2'
 				/>
 			)}
 		</div>
+	)
+}
+
+function TrBody({ title, precio = 0, moneda, subtotal = 0, countInv, countExtras, addExtras }) {
+	return (
+		<tr className='border-b border-verdigris'>
+			<th
+				scope='row'
+				className='py-4 text-white whitespace-nowrap dark:text-white'>
+				{title}
+			</th>
+			<td className='py-4'>{countInv}</td>
+			{addExtras && (
+				<>
+					<td className='py-4'>{countExtras ? countExtras : ''}</td>
+					<td className='py-4 text-center'>
+						${precio} {moneda}
+					</td>
+					<td className='py-4 text-center'>
+						$ {numberWithCommas(subtotal)} {moneda}
+					</td>
+				</>
+			)}
+		</tr>
 	)
 }

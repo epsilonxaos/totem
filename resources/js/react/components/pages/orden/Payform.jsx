@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai'
+import { HiMinusSm, HiPlusSm } from 'react-icons/hi'
 import CreditCardForm from './creditCard/CreditCardForm'
 import OrdenContext from '../../../context/OrdenContext'
 import { useInicialStore } from '../../../store/useInicialStore'
 import CardPase from './CardPase'
+import { numberWithCommas } from '../../../helpers/Utils'
 
 export default function PayForm() {
 	const { state, dispatch } = useContext(OrdenContext)
@@ -46,6 +47,7 @@ export default function PayForm() {
 	return (
 		<div className='max-w-design mx-auto px-4 py-12 md:py-32'>
 			<div className='bg-oxfordblue bg-opacity-90 max-w-5xl mx-auto py-12 px-4 md:px-16'>
+				<h3 className='text-center text-white mb-6'>RESERVA DAY PASS</h3>
 				<div className='grid grid-cols-1'>
 					<div className='col-span-1 '>
 						<div className='relative overflow-x-auto'>
@@ -93,95 +95,73 @@ export default function PayForm() {
 								</div>
 							</div>
 
-							<table className='w-full text-sm text-left text-white max-sm:hidden'>
+							<table className='w-full text-sm font-light text-left text-white max-sm:hidden'>
 								<thead className='text-xs border-y border-verdigris'>
 									<tr>
 										<th
 											scope='col'
-											className='px-6 py-3'>
+											className='pr-6 py-6'>
 											PASES
 										</th>
 										<th
 											scope='col'
-											className='px-6 py-3'>
+											className='px-6 py-6'>
 											PRECIO
 										</th>
 										<th
 											scope='col'
-											className='px-6 py-3 w-[200px]'>
+											className='px-6 py-6 text-center'>
 											CANTIDAD
 										</th>
 										<th
 											scope='col'
-											className='px-6 py-3'>
-											TOTAL
+											className='px-6 py-6 text-center w-[160px]'>
+											SUBTOTAL
 										</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr className=''>
-										<th
-											scope='row'
-											className='px-6 py-4 text-white whitespace-nowrap dark:text-white'>
-											Adulto 13+
-										</th>
-										<td className='px-6 py-4'>
-											${data?.precio_adultos ?? 0} {data?.moneda ?? ''}
-										</td>
-										<td className='px-6 py-4'>
+								<tbody className='text-xs md:text-sm'>
+									<TrBody
+										title={'Adulto 13+'}
+										precio={data?.precio_adultos ?? 0}
+										moneda={data?.moneda ?? ''}
+										subtotal={subtotal(state.adultos, data?.precio_adultos ?? 0)}
+										countPerson={
 											<Count
 												value={state.adultos}
 												handlerUpdate={count => dispatch({ adultos: count })}
 												disabled={maximo}
 											/>
-										</td>
-										<td className='px-6 py-4'>
-											${numberWithCommas(subtotal(state.adultos, data?.precio_adultos ?? 0))} {data?.moneda ?? ''}
-										</td>
-									</tr>
-									<tr className=''>
-										<th
-											scope='row'
-											className='px-6 py-4 text-white whitespace-nowrap dark:text-white'>
-											Niño de 6-12
-										</th>
-										<td className='px-6 py-4'>
-											${data?.precio_ninos ?? 0} {data?.moneda ?? ''}
-										</td>
-										<td className='px-6 py-4'>
+										}
+									/>
+									<TrBody
+										title={'Niño de 6-12'}
+										precio={data?.precio_ninos ?? 0}
+										moneda={data?.moneda ?? ''}
+										subtotal={subtotal(state.ninos, data?.precio_ninos ?? 0)}
+										countPerson={
 											<Count
 												value={state.ninos}
 												handlerUpdate={count => dispatch({ ninos: count })}
 												disabled={maximo}
 											/>
-										</td>
-										<td className='px-6 py-4'>
-											${numberWithCommas(subtotal(state.ninos, data?.precio_ninos ?? 0))} {data?.moneda ?? ''}
-										</td>
-									</tr>
-									<tr className=''>
-										<th
-											scope='row'
-											className='px-6 py-4 pb-14 text-white whitespace-nowrap dark:text-white'>
-											Infante 0-5
-										</th>
-										<td className='px-6 py-4 pb-14'>
-											${data?.precio_ninos_menores ?? 0} {data?.moneda ?? ''}
-										</td>
-										<td className='px-6 py-4 pb-14'>
+										}
+									/>
+									<TrBody
+										title={'Infante 0-5'}
+										precio={data?.precio_ninos_menores ?? 0}
+										moneda={data?.moneda ?? ''}
+										subtotal={subtotal(state.ninos_menores, data?.precio_ninos_menores ?? 0)}
+										countPerson={
 											<Count
 												value={state.ninos_menores}
 												handlerUpdate={count => dispatch({ ninos_menores: count })}
 												disabled={state.ninos_menores >= 15 ? true : false}
 											/>
-										</td>
-										<td className='px-6 py-4 pb-14'>
-											${numberWithCommas(subtotal(state.ninos_menores, data?.precio_ninos_menores ?? 0))}{' '}
-											{data?.moneda ?? ''}
-										</td>
-									</tr>
+										}
+									/>
 								</tbody>
-								<tbody className='border-t border-verdigris'>
+								<tbody className=''>
 									<tr>
 										<th
 											scope='col'
@@ -191,10 +171,10 @@ export default function PayForm() {
 											className='px-6 py-3'></th>
 										<th
 											scope='col'
-											className='px-6 py-3 w-[200px]'></th>
+											className='px-6 py-3'></th>
 										<th
 											scope='col'
-											className='px-6 py-3'>
+											className='px-6 py-3 text-center'>
 											${numberWithCommas(total())} {data?.moneda ?? ''}
 										</th>
 									</tr>
@@ -223,27 +203,46 @@ function Count({ value, handlerUpdate, disabled }) {
 	}
 
 	return (
-		<div className={`flex items-center justify-between max-w-xs sm:max-w-[200px] mx-auto gap-4 select-none`}>
-			<AiOutlineMinusCircle
-				size={24}
+		<div className={`flex items-center justify-center w-full sm:max-w-[105px] mx-auto select-none`}>
+			<HiMinusSm
+				size={18}
 				onClick={decrementar}
-				className='cursor-pointer'
+				className='cursor-pointer mr-2'
 			/>
-			<p className='text-center appearance-none bg-transparent border-2 border-verdigris text-white text-sm w-48 sm:w-32 block p-2.5'>
+			<p className='text-center appearance-none bg-transparent border border-verdigris text-white text-sm w-[calc(100%-40px)] sm:w-[50px] block py-[6px]'>
 				{value}
 			</p>
 			{disabled ? (
-				<AiOutlinePlusCircle
-					size={24}
+				<HiPlusSm
+					size={18}
 					className={`${disabled ? 'opacity-40' : ''}`}
 				/>
 			) : (
-				<AiOutlinePlusCircle
-					size={24}
+				<HiPlusSm
+					size={18}
 					onClick={incrementar}
-					className='cursor-pointer'
+					className='cursor-pointer ml-2'
 				/>
 			)}
 		</div>
+	)
+}
+
+function TrBody({ title, precio, moneda, subtotal, countPerson }) {
+	return (
+		<tr className='border-b border-verdigris'>
+			<th
+				scope='row'
+				className='py-4 text-white whitespace-nowrap dark:text-white'>
+				{title}
+			</th>
+			<td className='py-4'>
+				${precio} {moneda}
+			</td>
+			<td className='py-4'>{countPerson}</td>
+			<td className='py-4 text-center'>
+				${numberWithCommas(subtotal)} {moneda}
+			</td>
+		</tr>
 	)
 }
