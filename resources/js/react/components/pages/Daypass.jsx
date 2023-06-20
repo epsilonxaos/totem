@@ -1,7 +1,6 @@
 import React from 'react'
 
 import banner from '../../../../img/app/banner-03.jpg'
-import bannerM from '../../../../img/app/banner-03-m.jpg'
 import anemidad_1 from '../../../../img/app/icons/icon-5.png'
 import anemidad_2 from '../../../../img/app/icons/icon-2.png'
 import anemidad_3 from '../../../../img/app/icons/icon-9.png'
@@ -25,12 +24,7 @@ export default function Daypass() {
 			<div className='w-full'>
 				<img
 					src={banner}
-					className='hidden sm:block aspect-square md:aspect-video w-full object-cover max-h-[673px]'
-					alt=''
-				/>
-				<img
-					src={bannerM}
-					className='sm:hidden w-full object-cover max-h-[450px]'
+					className='aspect-square md:aspect-video w-full object-cover max-h-[673px]'
 					alt=''
 				/>
 			</div>

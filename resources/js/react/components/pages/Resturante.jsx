@@ -1,7 +1,6 @@
 import React from 'react'
 
 import banner from '../../../../img/app/banner-02.jpg'
-import bannerM from '../../../../img/app/banner-02-m.jpg'
 import menu from '../../../../img/app/menu.png'
 import menuKids from '../../../../img/app/kids.png'
 import Textos from '../Textos'
@@ -17,12 +16,7 @@ export default function Restaurante() {
 			<div className='w-full'>
 				<img
 					src={banner}
-					className='hidden sm:block aspect-square md:aspect-video w-full object-cover max-h-[660px]'
-					alt=''
-				/>
-				<img
-					src={bannerM}
-					className='sm:hidden w-full object-cover max-h-[450px]'
+					className='aspect-square md:aspect-video w-full object-cover max-h-[660px]'
 					alt=''
 				/>
 			</div>

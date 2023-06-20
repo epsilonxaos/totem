@@ -1,5 +1,6 @@
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
+import { CiCircleChevDown } from 'react-icons/ci'
 
 // Default theme
 // import "@splidejs/react-splide/css";
@@ -53,15 +54,25 @@ export default function Home() {
 					Has llegado a Tótem Beach Club, <br /> <span className='text-verdigris'>¡bienvenido!</span>
 				</Textos.Titulo>
 
-				<img
+				{/* <img
 					className='mt-2 inline cursor-pointer'
 					src={arrowDown}
 					alt='desplazar abajo'
-				/>
+				/> */}
+				<Link
+					to={'/#galeria'}
+					className='text-center'>
+					<CiCircleChevDown
+						size={32}
+						className='mt-2 cursor-pointer inline'
+					/>
+				</Link>
 			</div>
 
 			{/* Galeria */}
-			<div className='max-w-6xl mx-auto text-center pt-8 pb-8 md:pb-12 overflow-x-hidden'>
+			<div
+				className='max-w-6xl mx-auto text-center pt-8 pb-8 md:pb-12 overflow-x-hidden'
+				id='galeria'>
 				<Galeria />
 
 				<p className='pt-4 md:pt-8 px-4'>
