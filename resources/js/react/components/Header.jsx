@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import '../../../css/custom/header.css'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 
 import logo from '../../../img/app/logo.svg'
 const activeClass = `relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:right-0 after:mx-auto after:w-4 rounded after:h-[2px] after:bg-verdigris`
 
-function MenuList({ updateMenu }) {
+function MenuList({ updateMenu, location }) {
 	return (
 		<ul className='flex flex-col md:flex-row gap-10 md:gap-5 lg:gap-8 justify-end font-medium text-raisinblack text-sm'>
 			<li className=''>
@@ -33,21 +33,32 @@ function MenuList({ updateMenu }) {
 				</NavLink>
 			</li>
 			<li className=''>
-				<a href='#contacto'>Contacto</a>
+				<NavLink
+					onClick={() => updateMenu(false)}
+					to={location.pathname + '#contacto'}>
+					Contacto
+				</NavLink>
 			</li>
 			<li className='text-verdigris'>
-				<Link to={'/#santuario'}>Santuario del Tapir</Link>
+				<Link
+					onClick={() => updateMenu(false)}
+					to={'/#santuario'}>
+					Santuario del Tapir
+				</Link>
 			</li>
 		</ul>
 	)
 }
 
-function MenuMovil({ open, updateMenu }) {
+function MenuMovil({ open, updateMenu, location }) {
 	return (
 		<>
 			{open && (
 				<nav className='h-screen md:hidden w-full max-w-xs fixed top-0 left-0 bg-white px-5 pt-36 z-20 shadow-sm'>
-					<MenuList updateMenu={updateMenu} />
+					<MenuList
+						location={location}
+						updateMenu={updateMenu}
+					/>
 				</nav>
 			)}
 
@@ -58,10 +69,11 @@ function MenuMovil({ open, updateMenu }) {
 
 export default function Header() {
 	const [open, setOpen] = useState(false)
+	const location = useLocation()
 
 	return (
 		<>
-			<header className='bg-white border-b-[9px] border-b-delftblue py-1 px-6 relative z-30'>
+			<header className='bg-white border-b-[9px] border-b-delftblue py-1 px-6 fixed w-full z-30 top-0 left-0'>
 				<div className='max-w-6xl mx-auto'>
 					<div className='grid grid-cols-2 md:grid-cols-3 items-center'>
 						<div className='col-span-1'>
@@ -83,7 +95,10 @@ export default function Header() {
 							</div>
 						</div>
 						<div className='hidden md:block md:col-span-2'>
-							<MenuList updateMenu={val => setOpen(val)} />
+							<MenuList
+								location={location}
+								updateMenu={val => setOpen(val)}
+							/>
 						</div>
 					</div>
 				</div>
@@ -91,6 +106,7 @@ export default function Header() {
 
 			<MenuMovil
 				open={open}
+				location={location}
 				updateMenu={val => setOpen(val)}
 			/>
 		</>

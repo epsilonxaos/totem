@@ -87,7 +87,7 @@ export default function Footer() {
 							</div>
 						</div>
 					</div>
-					<div className='col-span-1 py-4 text-center md:text-right px-4 md:pl-12 lg:pl-16 pt-8 md:pt-0'>
+					<div className='col-span-1 pt-4 text-center md:text-right px-4 md:pl-12 lg:pl-16 pt-8 md:pt-0'>
 						<img
 							src={logoFooter}
 							alt='Tótem Beach Club'
@@ -96,11 +96,11 @@ export default function Footer() {
 					</div>
 				</div>
 				<div className='border-b border-white opacity-70' />
-				<div className='grid grid-cols-1 md:grid-cols-5 text-sm items-center py-4'>
+				<div className='grid grid-cols-1 md:grid-cols-5 text-sm items-center py-4 pt-8'>
 					<div className='col-span-1 md:col-span-3 mb-8 md:mb-0'>
 						<ul className='flex flex-wrap justify-center md:justify-start gap-4 font-medium text-center md:text-left '>
 							<li>
-								<Link to='/daypass'>Day Pass</Link>
+								<Link to='/daypass'>Day Pz ass</Link>
 							</li>
 							<li>
 								<Link to='/restaurante'>Restaurante</Link>
