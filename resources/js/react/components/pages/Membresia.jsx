@@ -34,8 +34,8 @@ export default function Membresia() {
 						No te quedes fuera, ¡aún tenemos un lugar para ti!
 					</Textos.Subtitulo>
 					<p className='mx-auto w-11/12 mb-6'>
-						<span className='text-verdigris'>Tótem Beach Club</span> ofrece un número limitado de membresías para los
-						que quieren disfrutar de la playa en cualquier día del año y con{' '}
+						<span className='text-verdigris'>Tótem Beach Club</span> ofrece un número limitado de membresías anuales
+						para los que quieren disfrutar de la playa en cualquier día del año y con{' '}
 						<span className='font-bold'>beneficios especiales como:</span>
 					</p>
 					<p className='mb-6'>
@@ -67,7 +67,8 @@ export default function Membresia() {
 					<p className='mb-6 text-sm'>
 						<span className='font-bold'>Precios especiales</span> en eventos <br /> organizados por el Club.
 					</p>
-					<p className='text-verdigris font-bold text-sm mb-6'>$15,000 MXN + IVA</p>
+					<p className='text-verdigris font-bold text-sm'>$15,000 MXN + IVA</p>
+					<p className='font-bold text-xs mb-7 text-oxfordblue'>COSTO ANUAL</p>
 					<a
 						href='https://wa.me/+529993264940?text=%C2%A1Hola%21%20Me%20interesa%20conocer%20informaci%C3%B3n%20sobre%20las%20membres%C3%ADas%20de%20T%C3%B3tem%20Beach%20Club.'
 						target='_blank'

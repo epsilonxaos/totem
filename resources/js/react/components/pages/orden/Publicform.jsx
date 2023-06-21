@@ -25,7 +25,6 @@ export default function PublicForm() {
 			})
 			setData(response.data)
 			setLoading(false)
-			console.log(response.data) // Puedes hacer algo con la respuesta recibida
 		} catch (error) {
 			setLoading(false)
 			console.error(error)

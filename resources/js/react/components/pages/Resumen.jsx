@@ -14,7 +14,6 @@ export default function Resumen() {
 		async function fetchData() {
 			const response = await axios.post(import.meta.env.VITE_APP_URL + '/api/resumen', { folio: folio })
 			setOrden(response.data)
-			console.log(response.data)
 		}
 		fetchData()
 	}, [])

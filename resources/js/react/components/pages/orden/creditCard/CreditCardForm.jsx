@@ -35,7 +35,6 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 		e.preventDefault()
 
 		let personasTotales = state.adultos + state.ninos + state.ninos_menores
-		console.log(personasTotales)
 		if (personasTotales === 0) {
 			setErrorMessage('Por favor indica al menos una persona para la compra.')
 			toast.error('Ups, parece que hubo un error.')
@@ -150,7 +149,6 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 								onChange={(value, mask) => {
 									setCardNumber(value)
 
-									console.log(mask)
 									let ccicon = document.getElementById('ccicon')
 									let ccsingle = document.getElementById('ccsingle')
 
@@ -317,7 +315,6 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 							<div className='mr-2'>
 								<MaskedInput
 									onChange={value => {
-										console.log(value)
 										setExpirationMonth(value)
 									}}
 									focusFn={() => setFlipped(false)}
@@ -337,7 +334,6 @@ export default function CreditCardForm({ pasoActualRoute = 'reservacion' }) {
 							<div className='mr-2'>
 								<MaskedInput
 									onChange={value => {
-										console.log(value)
 										setExpirationYear(value)
 									}}
 									focusFn={() => setFlipped(false)}

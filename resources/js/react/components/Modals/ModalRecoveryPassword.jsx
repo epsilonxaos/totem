@@ -7,7 +7,6 @@ export default function MoodalRecoveryPassword({ isOpen = false, handleCloseFn }
 	const [isSend, setSend] = useState(false)
 
 	async function handleSubmit(e) {
-		console.log('here')
 		e.preventDefault()
 		setSend(true)
 		try {
