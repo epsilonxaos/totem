@@ -39,7 +39,7 @@ export default function Membresia() {
 						<span className='font-bold'>Beneficios especiales como:</span>
 					</p>
 					<p className='mb-6'>
-						Acceso de 10:00 a 19:00 hrs <br /> 5 integrantes por membresía <br />
+						Acceso de 11:00 am a 7:00 pm <br /> 5 integrantes por membresía <br />
 						Acceso a áreas exclusivas del club <br /> Toallas y lockers sin costo
 					</p>
 

@@ -99,7 +99,7 @@ export default function Daypass() {
 							</button>
 						</Link>
 						<p>
-							De Lunes a Domingo de <br className='sm:hidden' /> 11:00 am a 6:00 pm.
+							De Lunes a Domingo de <br className='sm:hidden' /> 11:00 am a 7:00 pm.
 						</p>
 						<p className='font-bold'>Disponibilidad limitada*</p>
 					</div>

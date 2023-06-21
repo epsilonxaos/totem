@@ -47,7 +47,7 @@ export default function Restaurante() {
 				</div>
 
 				<p className='font-murecho font-extrabold text-xl text-oxfordblue'>Horario de servicio:</p>
-				<p className=''>De 11:00 am a 5:30 pm.</p>
+				<p className=''>De 11:00 am a 6:30 pm.</p>
 				<p className='mb-14'>
 					<small className='text-xs'>Disponibilidad limitada.</small>
 				</p>
