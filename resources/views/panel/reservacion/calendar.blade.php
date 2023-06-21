@@ -95,10 +95,10 @@
 @endsection
 
 @push('script')
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6.3.7/themes/light.css">
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src='{{ asset('plugins/fullcalendar/index.global.min.js') }}'></script>
+    <link rel="stylesheet" href="{{ asset('plugins/tippy/light.css') }}">
+    <script src="{{ asset('plugins/tippy/popper.min.js') }}"></script>
+    <script src="{{ asset('plugins/tippy/tippy-bundle.umd.min.js') }}"></script>
 
 
     {{-- <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">

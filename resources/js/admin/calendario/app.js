@@ -47,6 +47,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	var calendarEl = document.getElementById('calendar')
 	var calendar = new FullCalendar.Calendar(calendarEl, {
 		initialView: 'dayGridMonth',
+		locale: 'es',
+		buttonText: {
+			today: 'Hoy',
+			month: 'mes',
+			week: 'semana',
+			day: 'día',
+			list: 'lista',
+		},
 		events: fechasRed,
 		eventDidMount: function (info) {
 			if (info.event.extendedProps?.addEvent) {

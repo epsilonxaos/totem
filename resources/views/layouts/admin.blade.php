@@ -13,9 +13,9 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins/flatpicker/flatpickr.min.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('plugins/flatpicker/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/app.css') }}">
     @livewireStyles
     @stack('style')
@@ -37,10 +37,8 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.3.0/luxon.min.js"
-        integrity="sha512-KKbQg5o92MwtJKR9sfm/HkREzfyzNMiKPIQ7i7SZOxwEdiNCm4Svayn2DBq7MKEdrqPJUOSIpy1v6PpFlCQ0YA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('plugins/luxon/luxon.min.js') }}"></script>
+    <script src="{{ asset('plugins/sweetalert/sweetalert2@11.js') }}"></script>
     <script>
         var DateTime = luxon.DateTime;
 
@@ -59,9 +57,9 @@
             });
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/es.min.js"></script>
-    <script src="https://unpkg.com/imask"></script>
+    <script src="{{ asset('plugins/flatpicker/flatpickr.js') }}"></script>
+    <script src="{{ asset('plugins/flatpicker/es.min.js') }}"></script>
+    <script src="{{ asset('plugins/imask/imask.js') }}"></script>
     <script>
         flatpickr.localize(flatpickr.l10ns.es);
         if (document.getElementById('telefono')) {
