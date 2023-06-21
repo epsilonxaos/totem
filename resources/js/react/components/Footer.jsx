@@ -5,6 +5,9 @@ import iconIn from '../../../img/app/icon-in.svg'
 import iconFb from '../../../img/app/icon-fb.svg'
 import iconLocation from '../../../img/app/icon-location.svg'
 import { Link } from 'react-router-dom'
+import { SlLocationPin } from 'react-icons/sl'
+import { SiInstagram } from 'react-icons/si'
+import { FaFacebookF } from 'react-icons/fa'
 
 export default function Footer() {
 	return (
@@ -39,10 +42,9 @@ export default function Footer() {
 											href='https://www.instagram.com/totem.beachclub/'
 											target='_blank'
 											rel='noopener noreferrer'>
-											<img
-												src={iconIn}
-												alt='Instagram'
-											/>
+											<span className='w-[25px] h-[25px] rounded-full bg-white bg-opacity-10 text-white flex items-center justify-center'>
+												<SiInstagram />
+											</span>
 										</a>
 									</li>
 									<li>
@@ -50,10 +52,9 @@ export default function Footer() {
 											href='https://www.facebook.com/TotemBeachClub'
 											target='_blank'
 											rel='noopener noreferrer'>
-											<img
-												src={iconFb}
-												alt='Facebook'
-											/>
+											<span className='w-[25px] h-[25px] rounded-full bg-white bg-opacity-10 text-white flex items-center justify-center'>
+												<FaFacebookF />
+											</span>
 										</a>
 									</li>
 									<li>
@@ -61,10 +62,9 @@ export default function Footer() {
 											href='https://goo.gl/maps/X3Lc4T4yREKJ51Q36'
 											target='_blank'
 											rel='noopener noreferrer'>
-											<img
-												src={iconLocation}
-												alt='Ubicacion'
-											/>
+											<span className='w-[25px] h-[25px] rounded-full bg-white bg-opacity-10 text-white flex items-center justify-center'>
+												<SlLocationPin />
+											</span>
 										</a>
 									</li>
 								</ul>
@@ -76,19 +76,17 @@ export default function Footer() {
 										href='https://www.instagram.com/totem.beachclub/'
 										target='_blank'
 										rel='noopener noreferrer'>
-										<img
-											src={iconIn}
-											alt='Instagram'
-										/>
+										<span className='w-[25px] h-[25px] rounded-full bg-white bg-opacity-10 text-white flex items-center justify-center'>
+											<SiInstagram />
+										</span>
 									</a>
 									<a
 										href='https://www.facebook.com/TotemBeachClub'
 										target='_blank'
 										rel='noopener noreferrer'>
-										<img
-											src={iconFb}
-											alt='Facebook'
-										/>
+										<span className='w-[25px] h-[25px] rounded-full bg-white bg-opacity-10 text-white flex items-center justify-center'>
+											<FaFacebookF />
+										</span>
 									</a>
 								</div>
 							</div>
@@ -98,10 +96,9 @@ export default function Footer() {
 									href='https://goo.gl/maps/X3Lc4T4yREKJ51Q36'
 									target='_blank'
 									rel='noopener noreferrer'>
-									<img
-										src={iconLocation}
-										alt='Ubicacion'
-									/>
+									<span className='w-[25px] h-[25px] rounded-full bg-white bg-opacity-10 text-white flex items-center justify-center'>
+										<SlLocationPin />
+									</span>
 								</a>
 							</div>
 						</div>

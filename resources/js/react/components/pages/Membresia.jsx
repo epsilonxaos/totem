@@ -34,13 +34,13 @@ export default function Membresia() {
 						No te quedes fuera, ¡aún tenemos un lugar para ti!
 					</Textos.Subtitulo>
 					<p className='mx-auto w-11/12 mb-6'>
-						<span className='text-verdigris'>Tótem Beach Club</span> de Playa ofrece un número limitado de membresías
-						para los que quieren disfrutar de la playa en cualquier día del año y con{' '}
-						<span className='font-bold'>Beneficios especiales como:</span>
+						<span className='text-verdigris'>Tótem Beach Club</span> ofrece un número limitado de membresías para los
+						que quieren disfrutar de la playa en cualquier día del año y con{' '}
+						<span className='font-bold'>beneficios especiales como:</span>
 					</p>
 					<p className='mb-6'>
-						Acceso de 11:00 am a 7:00 pm <br /> 5 integrantes por membresía <br />
-						Acceso a áreas exclusivas del club <br /> Toallas y lockers sin costo
+						Acceso de 11:00 am a 7:00 pm. <br /> 5 integrantes por membresía. <br />
+						Acceso a áreas exclusivas del club. <br /> Toallas y lockers sin costo.
 					</p>
 
 					<div className='grid grid-cols-3 mb-6'>
