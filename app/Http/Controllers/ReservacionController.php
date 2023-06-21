@@ -182,7 +182,7 @@ class ReservacionController extends Controller
 		$m = Movimientos::where('orden_id', $o->id)->first();
 
 		return view('panel.reservacion.show', [
-			"title" => "Informacion de reservación",
+			"title" => "Información de reservación",
 			"breadcrumb" => [
 				[
 					'title' => 'Reservaciones',
@@ -210,7 +210,7 @@ class ReservacionController extends Controller
 		$m = Movimientos::where('orden_id', $o->id)->first();
 
 		return view('panel.reservacion.edit', [
-			"title" => "Informacion de reservación",
+			"title" => "Información de reservación",
 			"breadcrumb" => [
 				[
 					'title' => 'Reservaciones',

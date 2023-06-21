@@ -28,7 +28,7 @@ class PermissionKey extends ServiceProvider
 		'name' => 'Módulo administradores',
 		'permissions' => [
 			'index' => [
-				'display_name' => 'Ver modulo',
+				'display_name' => 'Ver módulo',
 				'name' => 'admins.index'
 			],
 			'create' => [
@@ -51,10 +51,10 @@ class PermissionKey extends ServiceProvider
 	];
 
 	const Role = [
-		'name' => 'Módulo roles',
+		'name' => 'Módulo Roles',
 		'permissions' => [
 			'index' => [
-				'display_name' => 'Ver modulo',
+				'display_name' => 'Ver módulo',
 				'name' => 'roles.index'
 			],
 			'create' => [
@@ -80,7 +80,7 @@ class PermissionKey extends ServiceProvider
 		'name' => 'Módulo Socios',
 		'permissions' => [
 			'index' => [
-				'display_name' => 'Ver modulo',
+				'display_name' => 'Ver módulo',
 				'name' => 'socios.index'
 			],
 			'create' => [
@@ -103,10 +103,10 @@ class PermissionKey extends ServiceProvider
 	];
 
 	const Daypass = [
-		'name' => 'Módulo Daypass',
+		'name' => 'Módulo Day Pass',
 		'permissions' => [
 			'index' => [
-				'display_name' => 'Ver modulo',
+				'display_name' => 'Ver módulo',
 				'name' => 'daypass.index'
 			],
 			'edit' => [
@@ -124,7 +124,7 @@ class PermissionKey extends ServiceProvider
 		'name' => 'Módulo Órdenes',
 		'permissions' => [
 			'index' => [
-				'display_name' => 'Ver modulo',
+				'display_name' => 'Ver módulo',
 				'name' => 'ordenes.index'
 			]
 		]
@@ -134,7 +134,7 @@ class PermissionKey extends ServiceProvider
 		'name' => 'Módulo Reservaciones',
 		'permissions' => [
 			'index' => [
-				'display_name' => 'Ver modulo',
+				'display_name' => 'Ver módulo',
 				'name' => 'reservacion.index'
 			],
 			'create' => [
@@ -160,7 +160,7 @@ class PermissionKey extends ServiceProvider
 		'name' => 'Módulo Calendario',
 		'permissions' => [
 			'index' => [
-				'display_name' => 'Ver modulo',
+				'display_name' => 'Ver módulo',
 				'name' => 'calendario.index'
 			],
 			'asistencia' => [

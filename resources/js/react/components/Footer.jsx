@@ -57,33 +57,52 @@ export default function Footer() {
 										</a>
 									</li>
 									<li>
-										<img
-											src={iconLocation}
-											alt='Ubicacion'
-										/>
+										<a
+											href='https://goo.gl/maps/X3Lc4T4yREKJ51Q36'
+											target='_blank'
+											rel='noopener noreferrer'>
+											<img
+												src={iconLocation}
+												alt='Ubicacion'
+											/>
+										</a>
 									</li>
 								</ul>
 							</div>
 							<div className='hidden md:block max-sm:col-span-1 max-md:col-span-1 md:pl-4'>
 								<p className='font-bold mb-3'>Síguenos:</p>
 								<div className='flex items-center justify-center md:justify-start gap-4'>
-									<img
-										src={iconIn}
-										alt='Instagram'
-									/>
-									<img
-										src={iconFb}
-										alt='Facebook'
-									/>
+									<a
+										href='https://www.instagram.com/totem.beachclub/'
+										target='_blank'
+										rel='noopener noreferrer'>
+										<img
+											src={iconIn}
+											alt='Instagram'
+										/>
+									</a>
+									<a
+										href='https://www.facebook.com/TotemBeachClub'
+										target='_blank'
+										rel='noopener noreferrer'>
+										<img
+											src={iconFb}
+											alt='Facebook'
+										/>
+									</a>
 								</div>
 							</div>
 							<div className='hidden md:block max-sm:col-span-1 max-md:col-span-1 md:pl-16'>
 								<p className='font-bold mb-3'>Ubicación:</p>
-								<img
-									src={iconLocation}
-									alt='Ubicacion'
-									className='inline'
-								/>
+								<a
+									href='https://goo.gl/maps/X3Lc4T4yREKJ51Q36'
+									target='_blank'
+									rel='noopener noreferrer'>
+									<img
+										src={iconLocation}
+										alt='Ubicacion'
+									/>
+								</a>
 							</div>
 						</div>
 					</div>

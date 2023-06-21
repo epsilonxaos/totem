@@ -32,7 +32,7 @@
                 @endcan
             </div>
 
-            <h3 class="font-bold text-lg text-center uppercase mb-6 pt-6">Informacion general</h3>
+            <h3 class="font-bold text-lg text-center uppercase mb-6 pt-6">Información general</h3>
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <div class="col-span-1">
                     <p class="font-semibold text-blue-900 mb-1">Nombre:</p>
@@ -155,7 +155,7 @@
 
             <div class="flex items-center justify-center pt-10">
                 <a href="{{ route('panel.reservacion.show.pdf', ['folio' => $data->folio]) }}" target="_blank"
-                    class="text-white bg-orange-700 hover:bg-orange-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 flex items-center">
+                    class="text-white bg-verdigris font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="icon icon-tabler icon-tabler-pdf w-[20px] inline-block mr-1" width="24" height="24"
                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
