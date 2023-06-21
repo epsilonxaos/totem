@@ -30,7 +30,7 @@ export default function Footer() {
 										(999) 326 4940
 									</a>
 									<br />
-									Horario de 11:00 am a 6:00 pm.
+									Horario de 11:00 am a 7:00 pm.
 								</p>
 
 								<ul className='flex gap-3 justify-center pt-5 md:hidden'>
