@@ -11,127 +11,50 @@ export default function Politicas({ className }) {
 				alt='Tótem Beach Club'
 				className='mx-auto mb-4 w-[200px]'
 			/>
-
 			<h2 className='font-murecho text-3xl font-bold text-oxfordblue mb-14 text-center'>
-				Politicas de Privacidad <br /> Tótem Beach Club
+				Políticas de Privacidad <br /> Tótem Beach Club
 			</h2>
-
-			<p>
-				Lorem ipsum dolor sit amet. Non totam velit et nobis dolore qui temporibus velit vel tempore consequuntur qui
-				velit rerum et enim autem ut iste ullam. Sed repudiandae voluptatem qui laudantium architecto est praesentium
-				sint?
+			<p className='mb-12'>
+				<span className='font-bold text-verdigris'>CLUB DE PLAYA TÓTEM SA DE CV</span> respeta su derecho de privacidad.
+				Esta política resume qué información personal podemos recoger, de qué manera podemos utilizar esta información y
+				otros temas importantes relacionados con su privacidad y protección de datos.
 			</p>
-			<p className='mb-6'>
-				Rem facere facere sit inventore suscipit aut recusandae cumque vel doloribus consequuntur sit porro vitae est
-				natus corporis. Ut molestias voluptas sit voluptates optio est incidunt labore rem cupiditate quis a quia eius.
-				Ad explicabo possimus aut porro molestiae nam cumque neque aut libero optio est fugit provident. Et quibusdam
-				veniam aut quasi tempora qui consequuntur animi cum quasi obcaecati sit deserunt laborum vel mollitia ipsam.
-			</p>
-
-			<p>
-				Sed ratione expedita aut distinctio consequatur et totam galisum quo beatae consequuntur qui perspiciatis
-				voluptatum ab quia quaerat. Qui reiciendis deleniti a praesentium fuga sed mollitia omnis et labore dignissimos.
-				Eos voluptas aliquam quo labore laudantium ex obcaecati voluptatem ut quibusdam Quis.
+			<p className='mb-12'>
+				Es política de <span className='font-bold text-verdigris'>CLUB DE PLAYA TÓTEM SA DE CV</span> cumplir con todas
+				las leyes de privacidad y de protección de datos vigentes. Este compromiso refleja el valor que le damos al
+				hecho de obtener y conservar la confianza de nuestros clientes, socios comerciales y demás personas que
+				comparten su información personal con nosotros.
 			</p>
 			<p>
-				Lorem ipsum dolor sit amet. Sit magni consequuntur eum rerum natus ut esse repellendus. Ad vitae quos sit
-				delectus ipsa et reiciendis vero sit dicta soluta qui veritatis inventore. Sit voluptatem veniam sed harum
-				adipisci id dolores tempore et reiciendis vitae.
+				Esta Política se aplica a todos los sitios de Internet y aplicaciones móviles administrados por{' '}
+				<span className='font-bold text-verdigris'>CLUB DE PLAYA TÓTEM SA DE CV</span> o en su nombre, e incluye las
+				compañías de <span className='font-bold text-verdigris'>CLUB DE PLAYA TÓTEM SA DE CV</span> de todo el mundo
+				(conocidas como “sitio de internet o aplicación móvil de{' '}
+				<span className='font-bold text-verdigris'>CLUB DE PLAYA TÓTEM SA DE CV</span>”). También se aplica a toda la
+				información personal que <span className='font-bold text-verdigris'>CLUB DE PLAYA TÓTEM SA DE CV</span> pueda
+				recoger de cualquier otro modo:
 			</p>
+			<ol className='list-decimal pl-8 mb-12'>
+				<li className='mb-1'>A través de nuestros productos y servicios.</li>
+				<li className='mb-1'>
+					Cuando interactúa con nosotros por medios distintos de un sitio de internet o aplicación móvil de{' '}
+					<span className='font-bold text-verdigris'>CLUB DE PLAYA TÓTEM SA DE CV</span>, por ejemplo, de manera
+					presencial, por teléfono o en una feria de muestras o formación.
+				</li>
+				<li className='mb-1'>
+					A través de nuestros clientes, distribuidores, proveedores, vendedores y otros socios comerciales (en
+					conjunto, “socios comerciales”).
+				</li>
+			</ol>
 			<p>
-				Et reiciendis reprehenderit et vitae incidunt et magnam tempore. Ut modi fugit et deserunt pariatur ut porro
-				consequuntur qui repellat recusandae hic voluptatem aspernatur ut excepturi minima vel reprehenderit nesciunt.
-				Aut laboriosam fugit aut accusantium temporibus non omnis laborum sit sequi odit. Vel nisi officia aut natus
-				consequatur ab iure consectetur et distinctio quae ad molestias recusandae est quisquam voluptatibus
-			</p>
-			<p>
-				Lorem ipsum dolor sit amet. Non totam velit et nobis dolore qui temporibus velit vel tempore consequuntur qui
-				velit rerum et enim autem ut iste ullam. Sed repudiandae voluptatem qui laudantium architecto est praesentium
-				sint?
-			</p>
-			<p className='mb-6'>
-				Rem facere facere sit inventore suscipit aut recusandae cumque vel doloribus consequuntur sit porro vitae est
-				natus corporis. Ut molestias voluptas sit voluptates optio est incidunt labore rem cupiditate quis a quia eius.
-				Ad explicabo possimus aut porro molestiae nam cumque neque aut libero optio est fugit provident. Et quibusdam
-				veniam aut quasi tempora qui consequuntur animi cum quasi obcaecati sit deserunt laborum vel mollitia ipsam.
-			</p>
-			<p>
-				Lorem ipsum dolor sit amet. Non totam velit et nobis dolore qui temporibus velit vel tempore consequuntur qui
-				velit rerum et enim autem ut iste ullam. Sed repudiandae voluptatem qui laudantium architecto est praesentium
-				sint?
-			</p>
-			<p className='mb-6'>
-				Rem facere facere sit inventore suscipit aut recusandae cumque vel doloribus consequuntur sit porro vitae est
-				natus corporis. Ut molestias voluptas sit voluptates optio est incidunt labore rem cupiditate quis a quia eius.
-				Ad explicabo possimus aut porro molestiae nam cumque neque aut libero optio est fugit provident. Et quibusdam
-				veniam aut quasi tempora qui consequuntur animi cum quasi obcaecati sit deserunt laborum vel mollitia ipsam.
-			</p>
-
-			<p>
-				Sed ratione expedita aut distinctio consequatur et totam galisum quo beatae consequuntur qui perspiciatis
-				voluptatum ab quia quaerat. Qui reiciendis deleniti a praesentium fuga sed mollitia omnis et labore dignissimos.
-				Eos voluptas aliquam quo labore laudantium ex obcaecati voluptatem ut quibusdam Quis.
-			</p>
-			<p>
-				Lorem ipsum dolor sit amet. Sit magni consequuntur eum rerum natus ut esse repellendus. Ad vitae quos sit
-				delectus ipsa et reiciendis vero sit dicta soluta qui veritatis inventore. Sit voluptatem veniam sed harum
-				adipisci id dolores tempore et reiciendis vitae.
-			</p>
-			<p>
-				Et reiciendis reprehenderit et vitae incidunt et magnam tempore. Ut modi fugit et deserunt pariatur ut porro
-				consequuntur qui repellat recusandae hic voluptatem aspernatur ut excepturi minima vel reprehenderit nesciunt.
-				Aut laboriosam fugit aut accusantium temporibus non omnis laborum sit sequi odit. Vel nisi officia aut natus
-				consequatur ab iure consectetur et distinctio quae ad molestias recusandae est quisquam voluptatibus
-			</p>
-			<p>
-				Lorem ipsum dolor sit amet. Non totam velit et nobis dolore qui temporibus velit vel tempore consequuntur qui
-				velit rerum et enim autem ut iste ullam. Sed repudiandae voluptatem qui laudantium architecto est praesentium
-				sint?
-			</p>
-			<p className='mb-6'>
-				Rem facere facere sit inventore suscipit aut recusandae cumque vel doloribus consequuntur sit porro vitae est
-				natus corporis. Ut molestias voluptas sit voluptates optio est incidunt labore rem cupiditate quis a quia eius.
-				Ad explicabo possimus aut porro molestiae nam cumque neque aut libero optio est fugit provident. Et quibusdam
-				veniam aut quasi tempora qui consequuntur animi cum quasi obcaecati sit deserunt laborum vel mollitia ipsam.
-			</p>
-			<p>
-				Lorem ipsum dolor sit amet. Non totam velit et nobis dolore qui temporibus velit vel tempore consequuntur qui
-				velit rerum et enim autem ut iste ullam. Sed repudiandae voluptatem qui laudantium architecto est praesentium
-				sint?
-			</p>
-			<p className='mb-6'>
-				Rem facere facere sit inventore suscipit aut recusandae cumque vel doloribus consequuntur sit porro vitae est
-				natus corporis. Ut molestias voluptas sit voluptates optio est incidunt labore rem cupiditate quis a quia eius.
-				Ad explicabo possimus aut porro molestiae nam cumque neque aut libero optio est fugit provident. Et quibusdam
-				veniam aut quasi tempora qui consequuntur animi cum quasi obcaecati sit deserunt laborum vel mollitia ipsam.
-			</p>
-
-			<p>
-				Sed ratione expedita aut distinctio consequatur et totam galisum quo beatae consequuntur qui perspiciatis
-				voluptatum ab quia quaerat. Qui reiciendis deleniti a praesentium fuga sed mollitia omnis et labore dignissimos.
-				Eos voluptas aliquam quo labore laudantium ex obcaecati voluptatem ut quibusdam Quis.
-			</p>
-			<p>
-				Lorem ipsum dolor sit amet. Sit magni consequuntur eum rerum natus ut esse repellendus. Ad vitae quos sit
-				delectus ipsa et reiciendis vero sit dicta soluta qui veritatis inventore. Sit voluptatem veniam sed harum
-				adipisci id dolores tempore et reiciendis vitae.
-			</p>
-			<p>
-				Et reiciendis reprehenderit et vitae incidunt et magnam tempore. Ut modi fugit et deserunt pariatur ut porro
-				consequuntur qui repellat recusandae hic voluptatem aspernatur ut excepturi minima vel reprehenderit nesciunt.
-				Aut laboriosam fugit aut accusantium temporibus non omnis laborum sit sequi odit. Vel nisi officia aut natus
-				consequatur ab iure consectetur et distinctio quae ad molestias recusandae est quisquam voluptatibus
-			</p>
-			<p>
-				Lorem ipsum dolor sit amet. Non totam velit et nobis dolore qui temporibus velit vel tempore consequuntur qui
-				velit rerum et enim autem ut iste ullam. Sed repudiandae voluptatem qui laudantium architecto est praesentium
-				sint?
-			</p>
-			<p className='mb-6'>
-				Rem facere facere sit inventore suscipit aut recusandae cumque vel doloribus consequuntur sit porro vitae est
-				natus corporis. Ut molestias voluptas sit voluptates optio est incidunt labore rem cupiditate quis a quia eius.
-				Ad explicabo possimus aut porro molestiae nam cumque neque aut libero optio est fugit provident. Et quibusdam
-				veniam aut quasi tempora qui consequuntur animi cum quasi obcaecati sit deserunt laborum vel mollitia ipsam.
+				No obstante, los sitios de Internet, aplicaciones móviles, productos y servicios de{' '}
+				<span className='font-bold text-verdigris'>CLUB DE PLAYA TÓTEM SA DE CV</span> pueden tener fines y
+				características distintas. Si se necesita proporcionar información adicional o diferente para un determinado
+				sitio de internet, aplicación móvil, producto o servicio específico de{' '}
+				<span className='font-bold text-verdigris'>CLUB DE PLAYA TÓTEM SA DE CV</span>, se publicará dicha obligación
+				por separado en el sitio de internet, aplicación móvil, producto o servicio que sea pertinente. Cada una de
+				estas obligaciones de proporcionar información adicional, políticas o declaraciones de privacidad específicas
+				(“Declaración de Privacidad Específica”) complementan y enmiendan esta Política.
 			</p>
 		</div>
 	)

@@ -89,19 +89,21 @@ export default function Terminos({ className = '' }) {
 				Uso del Kayak individual, $100 MXN por 2 horas (sujeto a disponibilidad y condiciones climatológicas adecuadas)
 			</p>
 
-			<h3 className='font-semibold text-verdigris mb-3'>TÉRMINOS Y CONDICIONES PARA LA MEMBRESÍA</h3>
+			{/* <h3 className='font-semibold text-verdigris mb-3'>TÉRMINOS Y CONDICIONES PARA LA MEMBRESÍA</h3>
 			<p className='mb-3'>Disfruta de la playa en cualquier día del año y con beneficios especiales como: </p>
 			<ul className='list-disc pl-8'>
-				<li className='mb-1'>Acceso de 10:00 am a 19:00 horas.</li>
+				<li className='mb-1'>Acceso de 11:00 am a 19:00 horas.</li>
 				<li className='mb-1'>Disponibilidad privilegiada de reservas del club cualquier día del año.</li>
 				<li className='mb-1'>Acceso a áreas exclusivas del club</li>
 				<li className='mb-1'>Toallas.</li>
 				<li className='mb-1'>Uso de instalaciones (Albercas, camastros, hamacas, baños, cambiadores y regaderas)</li>
-				<li className='mb-1'>Uso de Kayaks (sujeto a disponibilidad y condiciones climatológicas adecuadas)</li>
+				<li className='mb-1'>
+					Uso de Kayaks (Costo adicional, sujeto a disponibilidad y condiciones climatológicas adecuadas)
+				</li>
 				<li className='mb-1'>5 integrantes por membresía sin costo.</li>
 				<li className='mb-1'>10% descuento en consumos del restaurante.</li>
 				<li className='mb-1'>Costo anual de la membresía: $15,000.00 MXN + IVA</li>
-			</ul>
+			</ul> */}
 		</div>
 	)
 }

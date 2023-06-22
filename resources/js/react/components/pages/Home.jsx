@@ -265,12 +265,14 @@ export default function Home() {
 								reintroducción, investigación y conservación de esta especie nativa del sureste de México y
 								Centroamérica.
 							</p>
-							<a
-								href={import.meta.env.VITE_APP_URL + 'pdf/datos_de_donativo.pdf'}
-								target='_blank'
-								className='px-8 py-3 inline text-sm mt-2 max-w-[165px] bg-oxfordblue text-white rounded-md mx-auto'>
-								¡Quiero donar!
-							</a>
+							<div className='pt-3'>
+								<a
+									href={import.meta.env.VITE_APP_URL + '/pdf/datos_de_donativo.pdf'}
+									target='_blank'
+									className='px-8 py-3 inline text-sm mt-2 max-w-[165px] bg-oxfordblue text-white rounded-md mx-auto'>
+									¡Quiero donar!
+								</a>
+							</div>
 						</div>
 						<div className='col-span-1 md:col-span-3'>
 							<img

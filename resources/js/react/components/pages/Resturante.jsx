@@ -29,21 +29,25 @@ export default function Restaurante() {
 
 				<div className='flex max-sm:flex-col max-sm:items-center items-start justify-center gap-11 mb-14'>
 					<div className=''>
-						<img
-							src={menu}
-							alt='Menu'
-							className='inline'
-						/>
-						<p className='pt-3'>Menú</p>
+						<a
+							href={import.meta.env.VITE_APP_URL + '/pdf/menu.pdf'}
+							target='_blank'>
+							<img
+								src={menu}
+								alt='Menu'
+								className='inline'
+							/>
+							<p className='pt-3'>Menú</p>
+						</a>
 					</div>
-					<div className=''>
+					{/* <div className=''>
 						<img
 							src={menuKids}
 							alt='Menu Kids'
 							className='inline'
 						/>
 						<p className='pt-3'>Menú Kids</p>
-					</div>
+					</div> */}
 				</div>
 
 				<p className='font-murecho font-extrabold text-xl text-oxfordblue'>Horario de servicio:</p>

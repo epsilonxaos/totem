@@ -216,7 +216,7 @@ class CompraController extends Controller
 				return response(["status" => 'Orden error', 'error' => $er], 500);
 			}
 		}
-		return response(["status" => 'error desconocido', 'error' => 'Lo sentimos, tenemos problemas con nuestro sistema.'], 500);
+		return response(["status" => 'error desconocido', 'error' => 'Lo sentimos, tenemos problemas con nuestro sistema.', 'errorConekta' => $er], 500);
 	}
 
 	public function compraSocios(Request $request)
