@@ -68,8 +68,8 @@
                                     class="px-4 py-2 bg-emerald-800 mb-6 mx-auto border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-700 focus:bg-emerald-700 active:bg-emerald-900 focus:outline-none transition ease-in-out duration-150 flex items-center">
                                     Validar disponibilidad
                                 </button>
-                                <p class="hidden text-center" id="messageSuccess">Hay <span id="espacios_disponibles"
-                                        class="text-emerald-700 font-bold">98</span> espacios disponibles</p>
+                                <p class="hidden text-center" id="messageSuccess"><span id="espacios_disponibles"
+                                        class=""></span></p>
                                 <p class="hidden text-center text-red-700 font-medium" id="messageError">No hay disponibilidad
                                 </p>
                             </div>
@@ -120,7 +120,7 @@
                                     <td class="px-6 py-4">
                                         <input type="number" id="pay_adultos" name="pay_adultos"
                                             class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            min="0" max="{{ $daypass->limite_invitados_socios }}">
+                                            min="0" max="15">
                                     </td>
                                     <td class="px-6 py-4">
                                         $<span id="subtotal_adultos">0</span> MXN
@@ -134,7 +134,7 @@
                                     <td class="px-6 py-4">
                                         <input type="number" id="ninos" name="ninos"
                                             class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            min="0" max="80">
+                                            min="0" max="{{ $daypass->limite_invitados_socios }}">
                                     </td>
                                     <td class="px-6 py-4 text-emerald-700 font-semibold">
                                         ${{ $daypass->precio_ninos }} MXN
@@ -142,7 +142,7 @@
                                     <td class="px-6 py-4">
                                         <input type="number" id="pay_ninos" name="pay_ninos"
                                             class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            min="0" max="80">
+                                            min="0" max="15">
                                     </td>
                                     <td class="px-6 py-4">
                                         $<span id="subtotal_ninos">0</span> MXN
@@ -156,7 +156,7 @@
                                     <td class="px-6 py-4">
                                         <input type="number" id="ninos_menores" name="ninos_menores"
                                             class="mb-6 disabled:opacity-50 disabled:pointer-events-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            min="0" max="100">
+                                            min="0" max="5">
                                     </td>
                                     <td class="px-6 py-4 text-emerald-700 font-semibold">
                                         ${{ $daypass->precio_ninos_menores }} MXN

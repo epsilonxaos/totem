@@ -246,7 +246,7 @@ export default function PaySocio() {
 										}
 									/>
 									<TrBody
-										title={'Niño de 6-12'}
+										title={'Niño 6 - 12'}
 										countInv={
 											<Count
 												value={state.inv_ninos}
@@ -267,7 +267,7 @@ export default function PaySocio() {
 										}
 									/>
 									<TrBody
-										title={'Infante 0-5'}
+										title={'Infante'}
 										countInv={
 											<Count
 												value={state.ninos_menores}

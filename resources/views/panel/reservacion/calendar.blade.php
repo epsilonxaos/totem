@@ -62,7 +62,7 @@
                                     <li class="mr-2" role="presentation">
                                         <button class="inline-block p-4 border-b-2 rounded-t-lg" id="dashboard-tab"
                                             data-tabs-target="#dashboard" type="button" role="tab"
-                                            aria-controls="dashboard" aria-selected="false">Publico General</button>
+                                            aria-controls="dashboard" aria-selected="false">Público General</button>
                                     </li>
 
                                 </ul>

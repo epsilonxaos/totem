@@ -208,6 +208,8 @@ class CompraController extends Controller
 							break;
 					}
 				} else {
+					$orden->status = 3;
+					$orden->save();
 					return response(["status" => 'error', 'error' => $error], 500);
 				}
 			} else {
@@ -297,6 +299,7 @@ class CompraController extends Controller
 	public function compraAdmin(Request $request)
 	{
 		try {
+			// dd($request->toArray());
 			$daypass = Daypass::find(1);
 
 			$reservacion = Reservacion::create([
@@ -310,10 +313,18 @@ class CompraController extends Controller
 				'p_ninos_menores' => $request->ninos_menores,
 				'pay_adultos' => $request->pay_adultos,
 				'pay_ninos' => $request->pay_ninos,
-				'is_socio' => $request->isSocio,
 			]);
 
 			if ($request->isSocio) {
+				$reservacion->socio_id = $request->socio['id'];
+				if ($request->pay_adultos) {
+					$reservacion->p_adultos = $request->adultos + $request->pay_adultos;
+					$reservacion->pay_adultos = $request->pay_adultos;
+				}
+				if ($request->pay_ninos) {
+					$reservacion->p_ninos = $request->ninos + $request->pay_ninos;
+					$reservacion->pay_ninos = $request->pay_ninos;
+				}
 				$reservacion->socio_id = $request->socio['id'];
 				$reservacion->save();
 			}
@@ -323,8 +334,8 @@ class CompraController extends Controller
 				$cantidad = $request->adultos + $request->ninos;
 			} else {
 				$metodo = $request->total > 0 ? $request->pago_metodo : 'incluido';
-				$cantidadAdultosReal = $request->adultos - $request->pay_adultos;
-				$cantidadNinosReal = $request->ninos - $request->pay_ninos;
+				$cantidadAdultosReal = $request->adultos;
+				$cantidadNinosReal = $request->ninos;
 				$cantidad = $cantidadAdultosReal + $request->pay_adultos + $cantidadNinosReal + $request->pay_ninos;
 			}
 

@@ -66,7 +66,7 @@ class DaypassController extends Controller
 	{
 		$source = Daypass::find(1);
 
-		$fechas_excluidas = explode(" ", $request->fechas_excluidas);
+		$fechas_excluidas = explode(",", str_replace(" ", "", $request->fechas_excluidas));
 
 		$source->limite_total = $request->limite_total;
 		$source->fechas_excluidas = $fechas_excluidas;

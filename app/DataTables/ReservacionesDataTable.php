@@ -28,7 +28,7 @@ class ReservacionesDataTable extends DataTable
 			->setRowId('ID')
 			->addColumn('socio', function (Reservacion $reservacion) {
 				if ($reservacion->socio_id) {
-					return '<a title="Ver info" href="' . route("panel.reservacion.show", ["id" => $reservacion->id]) . '" class="text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-xs px-2 py-1 mr-2 inline-flex items-center justify-center" style="width: 36px">
+					return '<a title="Ver info" href="' . route("panel.reservacion.show", ["id" => $reservacion->id]) . '" class="font-medium text-blue-600 dark:text-blue-500 mr-2" title="Ver socio">
 						<svg class="icon icon-tabler icon-tabler-user-search w-[20px] mx-auto inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 							<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
 							<path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>

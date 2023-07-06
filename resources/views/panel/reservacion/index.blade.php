@@ -25,6 +25,7 @@
             <div class="hidden text-blue-600 dark:text-blue-500"></div>
             <div class="hidden text-emerald-600 dark:text-emerald-500"></div>
             <div class="hidden text-pink-600 dark:text-pink-500"></div>
+            <div class="hidden text-gray-700 dark:bg-gray-800"></div>
         </div>
 
         {{ $dataTable->table() }}

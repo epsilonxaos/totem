@@ -372,7 +372,7 @@
                                                                                         <tr>
                                                                                             <td
                                                                                                 style="padding: 0 15px 0 0;">
-                                                                                                Adultos</td>
+                                                                                                Adultos 13+</td>
                                                                                             <td
                                                                                                 style="padding: 0 15px;">
                                                                                                 {{ $adultos }}{{ $payAdultos > 0 ? ' (+ ' . $payAdultos . ' extras)' : '' }}
@@ -396,7 +396,7 @@
                                                                                         <tr>
                                                                                             <td
                                                                                                 style="padding: 0 15px 0 0;">
-                                                                                                Menores +6</td>
+                                                                                                Niños 6 - 12</td>
                                                                                             <td
                                                                                                 style="padding: 0 15px;">
                                                                                                 {{ $ninos }}{{ $payNinos > 0 ? ' (+ ' . $payNinos . ' extras)' : '' }}

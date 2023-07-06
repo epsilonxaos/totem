@@ -53,7 +53,7 @@ class AppController extends Controller
 
 		if (Hash::check($request->password, $socio->password)) {
 			if ($socio->fecha_finalizacion >= now()) {
-				return response(['acceso' => true, 'socio' => ['nombre_completo' => $socio->nombre_completo, 'telefono' => $socio->telefono, 'correo' => $socio->correo]]);
+				return response(['acceso' => true, 'socio' => ['id' => $socio->id, 'nombre_completo' => $socio->nombre_completo, 'telefono' => $socio->telefono, 'correo' => $socio->correo]]);
 			} else {
 				return response(['acceso' => false, 'error' => 'Lo sentimos, la membresía ha expirado el día ' . Helpers::dateSpanishShort($socio->fecha_finalizacion) . ', por favor, contáctate con nosotros.']);
 			}

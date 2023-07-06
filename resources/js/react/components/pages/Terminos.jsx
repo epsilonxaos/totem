@@ -76,7 +76,7 @@ export default function Terminos({ className = '' }) {
 			<h3 className='font-semibold text-verdigris mb-3'>TÉRMINOS Y CONDICIONES PARA EL DAY PASS</h3>
 			<p className='mb-3'>El Day Pass incluye:</p>
 			<ul className='list-disc pl-8 mb-6'>
-				<li className='mb-1'>Acceso de 11:00 a 18:00 horas</li>
+				<li className='mb-1'>Acceso de 11:00 a 19:00 horas</li>
 				<li className='mb-1'>Toallas</li>
 				<li className='mb-1'>Uso de instalaciones (Albercas, camastros, baños, hamacas, cambiadores y regaderas)</li>
 			</ul>

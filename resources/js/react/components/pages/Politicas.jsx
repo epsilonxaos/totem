@@ -25,7 +25,7 @@ export default function Politicas({ className }) {
 				hecho de obtener y conservar la confianza de nuestros clientes, socios comerciales y demás personas que
 				comparten su información personal con nosotros.
 			</p>
-			<p>
+			<p className='mb-6'>
 				Esta Política se aplica a todos los sitios de Internet y aplicaciones móviles administrados por{' '}
 				<span className='font-bold text-verdigris'>CLUB DE PLAYA TÓTEM SA DE CV</span> o en su nombre, e incluye las
 				compañías de <span className='font-bold text-verdigris'>CLUB DE PLAYA TÓTEM SA DE CV</span> de todo el mundo

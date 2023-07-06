@@ -90,7 +90,7 @@ class SociosController extends Controller
 
 		// Mail::to($socio->correo)->send(new MailNewSocio($data));
 
-		return redirect()->back()->with('success', 'Socio registrado correctamente!');
+		return redirect()->back()->with('success', 'Socio se ha registrado correctamente');
 	}
 
 	/**
@@ -180,7 +180,7 @@ class SociosController extends Controller
 	{
 		Socios::find($id)->delete();
 
-		return redirect()->back()->with('success', 'Datos eliminado correctamente!');
+		return redirect()->back()->with('success', 'Los datos se han eliminado correctamente');
 	}
 
 	public function getSocio(Request $request)

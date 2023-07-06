@@ -19,6 +19,7 @@ export default function SocioForm() {
 			const response = await axios.post(import.meta.env.VITE_APP_URL + '/api/disponibilidad/daypass', {
 				daypass_id: 1,
 				fecha_reservacion: state.reservacion,
+				socio_id: state.socio.id,
 			})
 			setData(response.data)
 			setLoading(false)
@@ -34,23 +35,22 @@ export default function SocioForm() {
 		// Lógica para verificar disponibilidad antes de enviar el formulario
 		setLoading(true)
 		try {
-			if (!data) {
-				const response = await axios.post(import.meta.env.VITE_APP_URL + '/api/disponibilidad/daypass', {
-					daypass_id: 1,
-					fecha_reservacion: state.reservacion,
-				})
-				if (!response.data.disponibilidad) {
-					setData(response.data)
-					setLoading(false)
-					return
-				}
-				dispatch({ pasoActual: 'informacion' })
-			} else {
-				if (!data.disponibilidad) {
-					return
-				}
-				dispatch({ pasoActual: 'informacion' }) // Puedes hacer algo con la respuesta recibida
+			const response = await axios.post(import.meta.env.VITE_APP_URL + '/api/disponibilidad/daypass', {
+				daypass_id: 1,
+				fecha_reservacion: state.reservacion,
+				socio_id: state.socio.id,
+			})
+			if (!response.data.disponibilidad || response.data.socio.diaReservadoPrev) {
+				setData(response.data)
+				setLoading(false)
+				return
 			}
+			if (response.data.socio.reservacionesMes >= 3) {
+				setData(response.data)
+				setLoading(false)
+				return
+			}
+			dispatch({ pasoActual: 'informacion' })
 
 			// Enviar el formulario si la disponibilidad es satisfactoria
 			// Puedes agregar tu lógica de envío del formulario aquí
@@ -148,15 +148,27 @@ export default function SocioForm() {
 										{data && (
 											<div className='text-white text-center text-xs font-light'>
 												<p>
-													{data?.disponibilidad
+													{data?.disponibilidad && !data?.socio.diaReservadoPrev && data?.socio.reservacionesMes < 3
 														? 'Disponible'
-														: 'Lo sentimos, ya no contamos con disponibilidad para la fecha seleccionada'}
+														: !data?.disponibilidad && !data?.socio.diaReservadoPrev && data?.socio.reservacionesMes < 3
+														? 'Lo sentimos, ya no contamos con disponibilidad para la fecha seleccionada'
+														: ''}
 												</p>
 
-												{data?.cupo_disponible && (
+												{data?.cupo_disponible && !data?.socio.diaReservadoPrev && data?.socio.reservacionesMes < 3 && (
 													<p>
 														Tenemos <span className='text-verdigris font-bold'>{data.cupo_disponible}</span> espacios
 														disponibles.
+													</p>
+												)}
+
+												{data?.socio.diaReservadoPrev && data?.socio.reservacionesMes < 3 && (
+													<p>Ya cuentas con una reservación previa para este día, por favor selecciona otra fecha.</p>
+												)}
+												{data?.socio.reservacionesMes >= 3 && (
+													<p>
+														Haz alcanzado el maximo de reservaciones en el mes de{' '}
+														{DateTime.fromISO(data.fecha_reservacion).monthLong}, por favor selecciona otro mes.
 													</p>
 												)}
 											</div>

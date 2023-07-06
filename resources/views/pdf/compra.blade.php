@@ -95,7 +95,7 @@
                                                             Subtotal</td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="padding: 0 15px 0 0;">Adultos</td>
+                                                        <td style="padding: 0 15px 0 0;">Adultos 13+</td>
                                                         <td style="padding: 0 15px;">
                                                             {{ $adultos }}{{ $payAdultos > 0 ? ' (+ ' . $payAdultos . ' extras)' : '' }}
                                                         </td>
@@ -110,7 +110,7 @@
                                                         @endif
                                                     </tr>
                                                     <tr>
-                                                        <td style="padding: 0 15px 0 0;">Menores +6</td>
+                                                        <td style="padding: 0 15px 0 0;">Niños 6 - 12</td>
                                                         <td style="padding: 0 15px;">
                                                             {{ $ninos }}{{ $payNinos > 0 ? ' (+ ' . $payNinos . ' extras)' : '' }}
                                                         </td>

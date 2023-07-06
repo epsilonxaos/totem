@@ -67,7 +67,7 @@ export default function Resumen() {
 									<th
 										scope='row'
 										className='px-1 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-										Adultos (+12)
+										Adultos 13+
 									</th>
 									<td className='px-1 md:px-6 py-4'>
 										{orden.reservacion.pay_adultos > 0
@@ -96,7 +96,7 @@ export default function Resumen() {
 									<th
 										scope='row'
 										className='px-1 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-										Menores (+6)
+										Niños 6 - 12
 									</th>
 									<td className='px-1 md:px-6 py-4'>
 										{orden.reservacion.pay_ninos > 0

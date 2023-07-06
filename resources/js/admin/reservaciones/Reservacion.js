@@ -178,21 +178,59 @@ class Reservacion {
 		this.total = resultAdultos + resultNinos
 	}
 	async validarDisponibilidad() {
-		const response = await axios.post(import.meta.env.VITE_APP_URL + '/api/disponibilidad/daypass', {
+		let dataSend = {
 			daypass_id: 1,
 			fecha_reservacion: this.fecha_reservacion,
-		})
+		}
+		if (this.isSocio && this.socio) {
+			dataSend.socio_id = this.socio.id
+		}
+		const response = await axios.post(import.meta.env.VITE_APP_URL + '/api/disponibilidad/daypass', dataSend)
 		let data = response.data
+		console.log(data)
 
-		if (data.disponibilidad) {
-			this.disponibilidad = true
-			document.getElementById('espacios_disponibles').innerHTML = data.cupo_disponible
-			document.getElementById('messageSuccess').style.display = 'block'
-			document.getElementById('messageError').style.display = 'none'
+		if (this.isSocio && data?.socio) {
+			let message = ''
+			let success = true
+
+			if (data.disponibilidad && !data.socio.diaReservadoPrev && data.socio.reservacionesMes < 3) {
+				this.disponibilidad = true
+				message = `Tenemos <span className='text-verdigris font-bold'>${data.cupo_disponible}</span> espacios
+				disponibles.`
+			}
+			if (!data.disponibilidad && !data.socio.diaReservadoPrev && data.socio.reservacionesMes < 3) {
+				this.disponibilidad = false
+				message = 'Lo sentimos, ya no contamos con disponibilidad para la fecha seleccionada'
+			}
+			if (data?.socio.diaReservadoPrev && data?.socio.reservacionesMes < 3) {
+				this.disponibilidad = false
+				message = 'Ya cuenta con una reservación previa para este día, por favor selecciona otra fecha.'
+			}
+			if (data?.socio.reservacionesMes >= 3) {
+				this.disponibilidad = false
+				message = `Se alcanzado el maximo de reservaciones en el mes de 
+				${DateTime.fromISO(data.fecha_reservacion).monthLong} para el socio, por favor selecciona otro mes.`
+			}
+
+			document.getElementById('espacios_disponibles').innerHTML = message
+			if (success) {
+				document.getElementById('messageSuccess').style.display = 'block'
+				document.getElementById('messageError').style.display = 'none'
+			} else {
+				document.getElementById('messageSuccess').style.display = 'none'
+				document.getElementById('messageError').style.display = 'block'
+			}
 		} else {
-			this.disponibilidad = false
-			document.getElementById('messageSuccess').style.display = 'none'
-			document.getElementById('messageError').style.display = 'block'
+			if (data.disponibilidad) {
+				this.disponibilidad = true
+				document.getElementById('espacios_disponibles').innerHTML = data.cupo_disponible
+				document.getElementById('messageSuccess').style.display = 'block'
+				document.getElementById('messageError').style.display = 'none'
+			} else {
+				this.disponibilidad = false
+				document.getElementById('messageSuccess').style.display = 'none'
+				document.getElementById('messageError').style.display = 'block'
+			}
 		}
 
 		return data
@@ -239,6 +277,12 @@ class Reservacion {
 						'El limite de invitados por miembros es de ' +
 						this.daypass.limite_invitados_socios +
 						' personas sumando al titular, favor de revisar los pases socios antes de continuar.'
+					this.setMenssaError()
+					return
+				}
+
+				if (this.isSocio && !this.disponibilidad) {
+					this.message = 'Hay un problema relacionado con la fecha seleccionada, por favor revise antes de continuar.'
 					this.setMenssaError()
 					return
 				}

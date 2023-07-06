@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import banner from '../../../../img/app/banner-03.jpg'
 import anemidad_1 from '../../../../img/app/icons/icon-5.png'
@@ -17,8 +17,20 @@ import gal_5 from '../../../../img/app/galeria-day/5.jpg'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Link } from 'react-router-dom'
 import Textos from '../Textos'
+import { useInicialStore } from '../../store/useInicialStore'
 
 export default function Daypass() {
+	const data = useInicialStore(state => state.data)
+	const [precioAdultos, setPrecioAdultos] = useState('--')
+	const [precioNinos, setPrecioNinos] = useState('--')
+
+	useEffect(() => {
+		if (data) {
+			setPrecioAdultos(data.daypass.precio_adultos)
+			setPrecioNinos(data.daypass.precio_ninos)
+		}
+	}, [data])
+
 	return (
 		<main className='w-full text-sm font-medium relative z-[1] text-center'>
 			<div className='w-full'>
@@ -83,28 +95,28 @@ export default function Daypass() {
 					</div>
 					<div className='w-full md:max-w-[800px] flex max-sm:flex-col items-center justify-between gap-4 pb-14 md:pb-24'>
 						<p className='bg-platinum bg-opacity-50 rounded-2xl py-4 px-5 max-w-[200px]'>
-							Visitantes externos <span className='font-bold'>$300</span> pesos adultos
+							Visitantes externos adultos <span className='font-bold'>${precioAdultos}</span> MXN
 						</p>
 						<p className='bg-platinum bg-opacity-50 rounded-2xl py-4 px-5 max-w-[200px]'>
-							Niños mayores a 6 años <span className='font-bold'>$150</span> pesos.
+							Niños mayores a 6 años <span className='font-bold'>${precioNinos}</span> MXN.
 						</p>
 						<p className='bg-platinum bg-opacity-50 rounded-2xl py-4 px-5 max-w-[200px]'>
 							Niños menores a 6 años es <span className='font-bold'>GRATUITO</span>.
 						</p>
 					</div>
 					<div className='w-full'>
-						<a
+						{/* <a
 							href='https://wa.me/+529993264940?text=%C2%A1Hola%21%20Me%20interesa%20obtener%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20reservar%20un%20Day%20Pass%20en%20T%C3%B3tem%20Beach%20Club.'
 							target='_blank'>
 							<button className='px-8 py-3 mb-6 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto'>
 								¡Reserva Ahora!
 							</button>
-						</a>
-						{/* <Link to={'/daypass/orden'}>
+						</a> */}
+						<Link to={'/daypass/orden'}>
 							<button className='px-8 py-3 mb-6 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto'>
 								¡Reserva Ahora!
 							</button>
-						</Link> */}
+						</Link>
 						<p>
 							De Lunes a Domingo de <br className='sm:hidden' /> 11:00 am a 7:00 pm.
 						</p>

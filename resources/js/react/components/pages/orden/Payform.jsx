@@ -64,7 +64,7 @@ export default function PayForm() {
 									/>
 								</CardPase>
 								<CardPase
-									title='Niño de 6-12'
+									title='Niño 6 - 12'
 									precio={data?.precio_ninos ?? 0}
 									moneda={data?.moneda ?? ''}
 									subtotal={subtotal(state.ninos, data?.precio_ninos ?? 0)}>
@@ -75,7 +75,7 @@ export default function PayForm() {
 									/>
 								</CardPase>
 								<CardPase
-									title='Infante 0-5'
+									title='Infante'
 									precio={data?.precio_ninos_menores ?? 0}
 									moneda={data?.moneda ?? ''}
 									subtotal={subtotal(state.ninos_menores, data?.precio_ninos_menores ?? 0)}>
