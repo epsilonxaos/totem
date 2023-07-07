@@ -92,7 +92,7 @@
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Adultos(+12)
+                                        Adultos 13+
                                     </th>
                                     <td class="px-6 py-4 text-emerald-700 font-semibold">
                                         ${{ $daypass->precio_adultos }} MXN
@@ -109,7 +109,7 @@
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Menores(+6)
+                                        Niños 6 - 12
                                     </th>
                                     <td class="px-6 py-4 text-emerald-700 font-semibold">
                                         ${{ $daypass->precio_ninos }} MXN
@@ -126,7 +126,7 @@
                                 <tr class="bg-white dark:bg-gray-800">
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Infantes(-6)
+                                        Infantes
                                     </th>
                                     <td class="px-6 py-4 text-emerald-700 font-semibold">
                                         ${{ $daypass->precio_ninos_menores }} MXN

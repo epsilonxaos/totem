@@ -255,13 +255,13 @@ class Reservacion {
 			this.message = ''
 			if (!this.isSocio) {
 				if (this.total <= 0) {
-					this.message = 'No puede hacer una reservacion vacia'
+					this.message = 'No puede hacer una reservación vacia'
 					this.setMenssaError()
 					return
 				}
 			} else {
 				if (this.adultos <= 0 && this.ninos <= 0) {
-					this.message = 'No puede hacer una reservacion vacia'
+					this.message = 'No puede hacer una reservación vacia'
 					this.setMenssaError()
 					return
 				}

@@ -21,6 +21,7 @@
                 <form method="post" action="{{ route('panel.usuarios.update', ['id' => $user->id]) }}"
                     class="mt-6 space-y-6">
         @endif
+
         @csrf
         @method('patch')
         @elsecan

@@ -70,7 +70,7 @@ class RoleController extends Controller
 				$role->givePermissionTo($key);
 			}
 		}
-		return redirect()->route('panel.roles.edit', ['id' => $role->id])->with('success', 'Rol creado correctamente!');
+		return redirect()->route('panel.roles.edit', ['id' => $role->id])->with('success', 'El rol se ha creado correctamente');
 	}
 
 	/**

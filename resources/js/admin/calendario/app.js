@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				let noDispo = `<span class="w-full block mb-3 mt-2 bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">${extras.infoFecha.cupo_disponible}</span>`
 
 				let html = `<div class="bg-white text-slate-900">
-						<p class="font-semibold mb-2 text-center">Informacion</p>
+						<p class="font-semibold mb-2 text-center">Información</p>
 						<p class="text-xs">Reservaciones: ${extras.infoFecha.total_reservaciones}</p>
 						<p class="text-xs">Total de asistentes: ${extras.infoFecha.total_personas}</p>
 						${extras.infoFecha.disponibilidad ? dispo : noDispo}
