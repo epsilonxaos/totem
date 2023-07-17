@@ -52,7 +52,7 @@ class SociosSeeder extends Seeder
 				"password" => "LT-2614CIRV",
 				"token" => "",
 				"fecha_inicio" => "2023-04-22",
-				"fecha_finalizacion" => "2024-04-242",
+				"fecha_finalizacion" => "2024-04-22",
 				"lote" => "LT-2614",
 			],
 			[

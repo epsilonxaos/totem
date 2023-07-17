@@ -21,7 +21,7 @@ export default function Restaurante() {
 				/>
 			</div>
 
-			<div className='py-12 md:py-20 px-4'>
+			<div className='py-12 md:py-20 px-4 max-w-6xl mx-auto'>
 				<Textos.Subtitulo className=' font-murecho mb-2'>Conoce nuestro menú</Textos.Subtitulo>
 				<p className='text-delftblue mb-14'>
 					En <span className='text-verdigris'>Tótem Beach Club</span> tenemos el menú ideal para ti y tu familia.
@@ -55,14 +55,22 @@ export default function Restaurante() {
 				<p className='mb-14'>
 					<small className='text-xs'>Disponibilidad limitada.</small>
 				</p>
-				<p className=' font-murecho font-extrabold text-xl text-oxfordblue mb-8'>Reserva vía WhatsApp</p>
-				{/* <p className=' font-murecho font-extrabold text-xl text-oxfordblue'>¡RESERVA AQUÍ!</p> */}
+				{/* <p className=' font-murecho font-extrabold text-xl text-oxfordblue mb-8'>Reserva vía WhatsApp</p>
 				<a
 					href='https://wa.me/+529993264940?text=%C2%A1Hola%21%20Me%20interesa%20hacer%20una%20reservaci%C3%B3n%20en%20el%20restaurante%20de%20T%C3%B3tem%20Beach%20Cub.'
 					target='_blank'
 					className='px-8 py-3 inline text-sm mt-2 bg-verdigris text-oxfordblue font-bold rounded-md mx-auto'>
 					(999) 326 4940
-				</a>
+				</a> */}
+				<p className=' font-murecho font-extrabold text-xl text-oxfordblue'>¡RESERVA AQUÍ!</p>
+				<iframe
+					id='totem-celetun'
+					title='Reservas'
+					src='https://www.covermanager.com/reservation/module_restaurant/totem-celetun/spanish'
+					frameborder='0'
+					height='550'
+					width='100%'
+					onload='iFrameResize();'></iframe>
 			</div>
 		</main>
 	)
