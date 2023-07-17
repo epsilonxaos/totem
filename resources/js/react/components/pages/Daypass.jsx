@@ -98,7 +98,7 @@ export default function Daypass() {
 							Visitantes externos adultos <span className='font-bold'>${precioAdultos}</span> MXN
 						</p>
 						<p className='bg-platinum bg-opacity-50 rounded-2xl py-4 px-5 max-w-[200px]'>
-							Niños mayores a 6 años <span className='font-bold'>${precioNinos}</span> MXN.
+							Niños a partir de 6 años <span className='font-bold'>${precioNinos}</span> MXN.
 						</p>
 						<p className='bg-platinum bg-opacity-50 rounded-2xl py-4 px-5 max-w-[200px]'>
 							Niños menores a 6 años es <span className='font-bold'>GRATUITO</span>.
