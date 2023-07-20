@@ -179,13 +179,13 @@ class AdminController extends Controller
 
 		$user = !$id ? $request->user() : Admin::find($id);
 
-		Auth::guard('admin')->logout();
 
 		$user->syncRoles([]);
 		$user->delete();
 
 		if ($id) return Redirect::route('panel.usuarios.index')->with('success', 'Eliminado');
 
+		Auth::guard('admin')->logout();
 		$request->session()->invalidate();
 		$request->session()->regenerateToken();
 

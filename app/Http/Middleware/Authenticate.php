@@ -18,7 +18,7 @@ class Authenticate extends Middleware
 			if (preg_match("/\badmin\b/", $request->route()->getName())) {
 				return route('panel.access');
 			} else {
-				return route('dashboard'); //Debes verificar que esta ruta exista!
+				return route('panel.dashboard'); //Debes verificar que esta ruta exista!
 			}
 		}
 
