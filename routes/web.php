@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservacionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SociosController;
+use App\Http\Controllers\WebsitesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -117,6 +118,12 @@ Route::middleware(['auth:admin', 'verified'])->prefix('/admin')->group(function 
 	Route::prefix('/daypass')->group(function () {
 		Route::get('/edit', [DaypassController::class, 'edit'])->name('panel.daypass.edit');
 		Route::put('/update', [DaypassController::class, 'update'])->name('panel.daypass.update');
+	});
+
+	// Website
+	Route::prefix('/website')->group(function () {
+		Route::get('/', [WebsitesController::class, 'index'])->name('panel.website.index');
+		Route::put('/update', [WebsitesController::class, 'update'])->name('panel.website.update');
 	});
 });
 

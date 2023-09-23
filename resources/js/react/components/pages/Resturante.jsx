@@ -4,8 +4,12 @@ import banner from '../../../../img/app/banner-02.jpg'
 import menu from '../../../../img/app/menu.png'
 import menuKids from '../../../../img/app/kids.png'
 import Textos from '../Textos'
+import { useInicialStore } from '../../store/useInicialStore'
 
+const URL = import.meta.env.VITE_APP_URL + '/'
 export default function Restaurante() {
+	const data = useInicialStore(state => state.data)
+
 	return (
 		<main className='w-full text-sm font-medium relative z-[1] text-center'>
 			<Textos.Subtitulo className='font-murecho my-12 '>
@@ -30,7 +34,7 @@ export default function Restaurante() {
 				<div className='flex max-sm:flex-col max-sm:items-center items-start justify-center gap-11 mb-14'>
 					<div className=''>
 						<a
-							href={import.meta.env.VITE_APP_URL + '/pdf/menu.pdf'}
+							href={URL + data?.website?.menu ?? 'pdf/menu.pdf'}
 							target='_blank'>
 							<img
 								src={menu}

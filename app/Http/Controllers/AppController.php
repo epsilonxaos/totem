@@ -9,6 +9,7 @@ use App\Models\Movimientos;
 use App\Models\Orden;
 use App\Models\Reservacion;
 use App\Models\Socios;
+use App\Models\Websites;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -23,7 +24,8 @@ class AppController extends Controller
 		$daypass->fechas_excluidas = json_decode($daypass->fechas_excluidas);
 
 		$datos = [
-			'daypass' => $daypass
+			'daypass' => $daypass,
+			'website' => Websites::find(1)
 		];
 
 		return response($datos, 200);
