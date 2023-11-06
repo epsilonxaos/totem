@@ -8,6 +8,7 @@ import icons from './icons.svg'
 import Toastify from 'toastify-js'
 import 'toastify-js/src/toastify.css'
 import axios from 'axios'
+import Sortable from 'sortablejs'
 
 $.trumbowyg.svgPath = icons
 $('.trumbowyg-panel').trumbowyg({
@@ -111,5 +112,42 @@ if (document.querySelector('.delete-axios')) {
 				}
 			})
 		})
+	})
+}
+
+if (document.getElementById('sortable-items')) {
+	var el = document.getElementById('sortable-items')
+	var sortable = new Sortable(el, {
+		handle: '.drag',
+		animation: 150,
+		easing: 'cubic-bezier(1, 0, 0, 1)',
+		// Element dragging ended
+		onEnd: function (evt) {
+			var itemEl = evt.item
+			var ordenamiento = []
+			var orden = 0
+
+			el.querySelectorAll('.sort').forEach(item => {
+				ordenamiento.push({ id: item.dataset.idx, orden: orden })
+				orden++
+			})
+
+			console.log(ordenamiento)
+			console.log(el.dataset.url)
+			axios
+				.post(el.dataset.url, ordenamiento)
+				.then(response => {
+					Toastify({
+						text: 'Ordenamiento guardado',
+						className: 'success',
+						style: {
+							background: '#00b09b',
+						},
+					}).showToast()
+				})
+				.catch(err => {
+					console.error('Error: ' + err)
+				})
+		},
 	})
 }

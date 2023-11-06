@@ -51,6 +51,7 @@
         "react-imask": "^6.6.1",
         "react-router-dom": "^6.11.1",
         "simple-zustand-devtools": "^1.1.0",
+        "sortablejs": "^1.15.0",
         "sweetalert2": "^11.9.0",
         "tailwind-merge": "^1.12.0",
         "toastify-js": "^1.12.0",
