@@ -1,0 +1,14 @@
+[
+	{ "title": "Wifi", "icon": "img/hotel/amenidades/wifi.svg" },
+	{ "title": "Alberca", "icon": "img/hotel/amenidades/albercas.svg" },
+	{ "title": "Restaurante", "icon": "img/hotel/amenidades/menu.svg" },
+	{ "title": "Terraza", "icon": "img/hotel/amenidades/terraza.svg" },
+	{ "title": "Camastros", "icon": "img/hotel/amenidades/camastros.svg" },
+	{ "title": "Seguridad", "icon": "img/hotel/amenidades/lockers.svg" },
+	{ "title": "TV", "icon": "img/hotel/amenidades/tv.svg" },
+	{ "title": "Caja fuerte", "icon": "img/hotel/amenidades/cajaf.svg" },
+	{ "title": "Aire acondicionado", "icon": "img/hotel/amenidades/ac.svg" },
+	{ "title": "Bar", "icon": "img/hotel/amenidades/bar.svg" },
+	{ "title": "Servicio de kayaks", "icon": "img/hotel/amenidades/kayaks.svg" },
+	{ "title": "Baños compartidos", "icon": "img/hotel/amenidades/banios.svg" }
+]

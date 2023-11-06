@@ -27,6 +27,14 @@ function MenuList({ updateMenu, location }) {
 			<li className=''>
 				<NavLink
 					onClick={() => updateMenu(false)}
+					to={'/hotel'}
+					className={({ isActive }) => (isActive ? activeClass : '')}>
+					Hotel
+				</NavLink>
+			</li>
+			<li className=''>
+				<NavLink
+					onClick={() => updateMenu(false)}
 					to={'/membresia'}
 					className={({ isActive }) => (isActive ? activeClass : '')}>
 					Membresía

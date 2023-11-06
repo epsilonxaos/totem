@@ -1,6 +1,5 @@
 import './bootstrap'
 import 'laravel-datatables-vite'
-import './react/main.jsx'
 import 'flowbite'
 
 import Alpine from 'alpinejs'

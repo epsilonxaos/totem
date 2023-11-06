@@ -36,7 +36,9 @@
     <script type='text/javascript' src='https://www.covermanager.com/js/iframeResizer.min.js'></script>
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+	@viteReactRefresh
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/react/main.jsx'])
 </head>
 
 <body class="antialiased font-inter">

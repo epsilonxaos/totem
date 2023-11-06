@@ -4,7 +4,7 @@ import Footer from './components/Footer'
 import Home from './components/pages/Home'
 import Membresia from './components/pages/Membresia'
 import { Route, Routes } from 'react-router-dom'
-import Page404 from './components/pages/Page404'
+import Hotel from './components/pages/Hotel'
 import Politicas from './components/pages/Politicas'
 import Restaurante from './components/pages/Resturante'
 import Daypass from './components/pages/Daypass'
@@ -49,6 +49,10 @@ export default function App() {
 					<Route
 						path='/restaurante'
 						element={<Restaurante />}
+					/>
+					<Route
+						path='/hotel'
+						element={<Hotel />}
 					/>
 					<Route
 						path='/daypass'

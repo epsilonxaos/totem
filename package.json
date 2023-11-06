@@ -6,7 +6,7 @@
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
-        "@vitejs/plugin-react": "^4.0.0",
+        "@vitejs/plugin-react": "^4.0.4",
         "alpinejs": "^3.4.2",
         "autoprefixer": "^10.4.14",
         "axios": "^1.1.2",
@@ -38,7 +38,10 @@
         "bootstrap-icons": "^1.10.5",
         "conekta": "^4.2.0",
         "date-fns": "^2.30.0",
+        "dropzone": "^6.0.0-beta.2",
         "framer-motion": "^10.12.16",
+        "fs": "^0.0.1-security",
+        "html-react-parser": "^5.0.4",
         "luxon": "^3.3.0",
         "react-datepicker": "^4.11.0",
         "react-day-picker": "^8.7.1",
@@ -48,7 +51,10 @@
         "react-imask": "^6.6.1",
         "react-router-dom": "^6.11.1",
         "simple-zustand-devtools": "^1.1.0",
+        "sweetalert2": "^11.9.0",
         "tailwind-merge": "^1.12.0",
+        "toastify-js": "^1.12.0",
+        "trumbowyg": "^2.27.3",
         "yup": "^1.1.1",
         "zustand": "^4.3.8"
     }

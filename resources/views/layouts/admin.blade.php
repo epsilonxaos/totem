@@ -60,6 +60,7 @@
     <script src="{{ asset('plugins/flatpicker/flatpickr.js') }}"></script>
     <script src="{{ asset('plugins/flatpicker/es.min.js') }}"></script>
     <script src="{{ asset('plugins/imask/imask.js') }}"></script>
+	@vite(['resources/js/panel/trumbowygInit.js'])
     <script>
         flatpickr.localize(flatpickr.l10ns.es);
         if (document.getElementById('telefono')) {

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\DaypassController;
+use App\Http\Controllers\HabitacionesController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservacionController;
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->where('path', '.*');
 Route::view('/restaurante', 'welcome')->where('path', '.*');
+Route::view('/hotel', 'welcome')->where('path', '.*');
 Route::view('/membresia', 'welcome')->where('path', '.*');
 Route::view('/politicas', 'welcome')->where('path', '.*');
 Route::view('/daypass', 'welcome')->where('path', '.*');
@@ -112,6 +114,25 @@ Route::middleware(['auth:admin', 'verified'])->prefix('/admin')->group(function 
 		Route::put('/update/{id}', [SociosController::class, 'update'])->name('panel.socios.update');
 		Route::delete('/destroy/{id}', [SociosController::class, 'destroy'])->name('panel.socios.destroy');
 		Route::post('/change/status', [SociosController::class, 'changeStatus'])->name('panel.socios.changeStatus');
+	});
+
+	// Habitaciones
+	Route::prefix('/habitaciones')->group(function () {
+		Route::get('/', [HabitacionesController::class, 'index'])->name('panel.habitaciones.index');
+		Route::get('/create', [HabitacionesController::class, 'create'])->name('panel.habitaciones.create');
+		Route::post('/create/store', [HabitacionesController::class, 'store'])->name('panel.habitaciones.store');
+		Route::get('/edit/{id}', [HabitacionesController::class, 'edit'])->name('panel.habitaciones.edit');
+		Route::put('/update/{id}', [HabitacionesController::class, 'update'])->name('panel.habitaciones.update');
+		Route::delete('/destroy/{id}', [HabitacionesController::class, 'destroy'])->name('panel.habitaciones.destroy');
+		Route::post('/change/status', [HabitacionesController::class, 'changeStatus'])->name('panel.habitaciones.changeStatus');
+
+		// Galeria
+		Route::prefix('/galeria')->group(function () {
+			Route::get('/{accion}/{id}', [HabitacionesController::class, 'createGallery'])->name('panel.habitaciones.galeria.acciones');
+			Route::post('/add', [HabitacionesController::class, 'storeGaleria'])->name('panel.habitaciones.galeria.store');
+			Route::post('/ordenamiento', [HabitacionesController::class, 'ordenamientoGaleria'])->name('panel.habitaciones.galeria.ordenamiento');
+			Route::post('/destroy', [HabitacionesController::class, 'deleteOnlyImgGallery'])->name('panel.habitaciones.galeria.destroy');
+		});
 	});
 
 	// Daypass
