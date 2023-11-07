@@ -170,6 +170,14 @@ class HabitacionesController extends Controller
 		return 'true';
 	}
 
+	public function deleteOnlyImgAmenidad(Request $request)
+	{
+		Helpers::deleteFileStorage('amenidades', 'cover', $request->id);
+		Amenidades::where('id', $request->id)->delete();
+
+		return 'true';
+	}
+
 	/**
 	 * Reording files gallery
 	 *
@@ -181,6 +189,24 @@ class HabitacionesController extends Controller
 		$orden = $request->toArray();
 		foreach ($orden as $key => $val) {
 			$gal = Galerias::find($val['id']);
+			$gal->order = $val['orden'];
+			$gal->save();
+		}
+
+		return 'true';
+	}
+
+	/**
+	 * Reording files gallery
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function ordenamientoAmenidades(Request $request)
+	{
+		$orden = $request->toArray();
+		foreach ($orden as $key => $val) {
+			$gal = Amenidades::find($val['id']);
 			$gal->order = $val['orden'];
 			$gal->save();
 		}
@@ -242,11 +268,11 @@ class HabitacionesController extends Controller
 		$galerias = Galerias::where('uid', $source->uid)->get();
 		$amenidades = Amenidades::where('uid', $source->uid)->get();
 		foreach ($galerias as $key => $g) {
-			Helpers::deleteFileStorage('galerias', 'img', $g->id);
+			Helpers::deleteFileStorage('galerias', 'cover', $g->id);
 			$g->delete();
 		}
 		foreach ($amenidades as $key => $a) {
-			Helpers::deleteFileStorage('amenidades', 'img', $a->id);
+			Helpers::deleteFileStorage('amenidades', 'cover', $a->id);
 			$a->delete();
 		}
 		$source->delete();

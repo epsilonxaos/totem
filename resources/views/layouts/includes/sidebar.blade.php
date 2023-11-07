@@ -53,23 +53,12 @@
             </ul>
         @endcan
         {{-- * Modulos --}}
-        @can(PermissionKey::Socios['permissions']['index']['name'])
+        @can(PermissionKey::Habitaciones['permissions']['index']['name'])
             <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                 <li>
                     <a href="{{ route('panel.habitaciones.index') }}"
                         class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group {{ request()->is('admin/socios*') ? 'bg-gray-100' : '' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
-                            <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"></path>
-                            <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
-                            <path d="M17 10h2a2 2 0 0 1 2 2v1"></path>
-                            <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
-                            <path d="M3 13v-1a2 2 0 0 1 2 -2h2"></path>
-                        </svg>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#6b7280" d="M1 19V4h2v10h8V6h8q1.65 0 2.825 1.175T23 10v9h-2v-3H3v3H1Zm6-6q-1.25 0-2.125-.875T4 10q0-1.25.875-2.125T7 7q1.25 0 2.125.875T10 10q0 1.25-.875 2.125T7 13Zm6 1h8v-4q0-.825-.588-1.413T19 8h-6v6Zm-6-3q.425 0 .713-.288T8 10q0-.425-.288-.713T7 9q-.425 0-.713.288T6 10q0 .425.288.713T7 11Zm0 0q-.425 0-.713-.288T6 10q0-.425.288-.713T7 9q.425 0 .713.288T8 10q0 .425-.288.713T7 11Zm6-3h6q.825 0 1.413.588T21 10v4h-8V8Z"/></svg>
 
                         <span class="ml-4">Habitaciones</span>
                     </a>

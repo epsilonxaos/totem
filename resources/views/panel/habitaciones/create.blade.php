@@ -5,7 +5,7 @@
 
         <div class="max-w-7xl mx-auto">
 
-            @can(PermissionKey::Socios['permissions']['create']['name'])
+            @can(PermissionKey::Habitaciones['permissions']['create']['name'])
                 <form action="{{ route('panel.habitaciones.store') }}" method="POST">
                     @csrf
 
@@ -38,7 +38,7 @@
                                 <div class="col-span-1">
                                     <label for="description"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
-                                    <textarea name="description" id="description" class="shorttext" cols="30" rows="10">{{ old('description') }}</textarea>
+                                    <textarea name="description" id="description" class="trumbowyg-panel" cols="30" rows="10">{{ old('description') }}</textarea>
                                 </div>
                                 <div class="col-span-1">
                                     <label for="link"
@@ -50,8 +50,6 @@
                             </div>
                         </div>
                     </div>
-
-
 
                     <div class="text-center pt-6 mt-16">
                         <button type="submit"

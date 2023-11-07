@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Habitaciones;
+use App\Providers\PermissionKey;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -27,8 +28,10 @@ class HabitacionesDataTable extends DataTable
 
 				$acciones = '<div class="flex items-start justify-center mx-auto" style="min-width: 100px">';
 
-				// if (auth()->user()->hasAllPermissions([PermissionKey::Socios['permissions']['edit']['name'], PermissionKey::Socios['permissions']['update']['name']])) {
-				$acciones .= '
+				if (auth()->user()->hasPermissionTo(PermissionKey::Habitaciones['permissions']['update']['name'])) {
+
+
+					$acciones .= '
 						<a  href="' . route("panel.habitaciones.edit", ["id" => $habitaciones->id]) . '" class="font-medium text-emerald-600 dark:text-emerald-500 mr-2" title="Editar">
 							<svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 								<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -38,24 +41,14 @@ class HabitacionesDataTable extends DataTable
 							</svg>
 						</a>';
 
-				// } else {
-				// 	if (auth()->user()->hasPermissionTo(PermissionKey::Socios['permissions']['edit']['name'])) {
-				// 		$acciones .= '
-				// 			<a href="' . route("panel.habitaciones.edit", ["id" => $habitaciones->id]) . '" class="font-medium text-blue-600 dark:text-blue-500 mr-2" title="Ver detalle">
-				// 				<svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-				// 					<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-				// 					<path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
-				// 					<path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
-				// 					<path d="M3 6l0 13"></path>
-				// 					<path d="M12 6l0 13"></path>
-				// 					<path d="M21 6l0 13"></path>
-				// 				</svg>
-				// 			</a>';
-				// 	}
-				// }
+					$acciones .= '
+						<a  href="' . route("panel.habitaciones.galeria.acciones", ['accion' => 'edit', 'id' => $habitaciones->uid]) . '" class="font-medium text-emerald-600 dark:text-emerald-500 mr-2" title="Editar recursos">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#65a30d" d="m22.7 14.3l-1 1l-2-2l1-1c.1-.1.2-.2.4-.2c.1 0 .3.1.4.2l1.3 1.3c.1.2.1.5-.1.7M13 19.9V22h2.1l6.1-6.1l-2-2l-6.2 6m-1.79-4.07l-1.96-2.36L6.5 17h6.62l2.54-2.45l-1.7-2.26l-2.75 3.54M11 19.9v-.85l.05-.05H5V5h14v6.31l2-1.93V5a2 2 0 0 0-2-2H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h6v-1.1Z"/></svg>
+						</a>';
+				}
 
-				// if (auth()->user()->hasPermissionTo(PermissionKey::Socios['permissions']['destroy']['name'])) {
-				$acciones .= '
+				if (auth()->user()->hasPermissionTo(PermissionKey::Socios['permissions']['destroy']['name'])) {
+					$acciones .= '
 						<form action="' . route("panel.habitaciones.destroy", ["id" => $habitaciones->id]) . '" method="post" class="inline delete-form-' . $habitaciones->id . '">
 							<input type="hidden" name="_token" value="' . csrf_token() . '" />
 							<input type="hidden" name="_method" value="DELETE">
@@ -70,7 +63,7 @@ class HabitacionesDataTable extends DataTable
 								</svg>
 							</button>
 						</form>';
-				// }
+				}
 
 				$acciones .= '</div>';
 

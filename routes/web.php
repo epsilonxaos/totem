@@ -133,6 +133,13 @@ Route::middleware(['auth:admin', 'verified'])->prefix('/admin')->group(function 
 			Route::post('/ordenamiento', [HabitacionesController::class, 'ordenamientoGaleria'])->name('panel.habitaciones.galeria.ordenamiento');
 			Route::post('/destroy', [HabitacionesController::class, 'deleteOnlyImgGallery'])->name('panel.habitaciones.galeria.destroy');
 		});
+
+		// Amenidades
+		Route::prefix('/amenidades')->group(function () {
+			Route::post('/add', [HabitacionesController::class, 'storeAmenidades'])->name('panel.habitaciones.amenidades.store');
+			Route::post('/ordenamiento', [HabitacionesController::class, 'ordenamientoAmenidades'])->name('panel.habitaciones.amenidades.ordenamiento');
+			Route::post('/destroy', [HabitacionesController::class, 'deleteOnlyImgAmenidad'])->name('panel.habitaciones.amenidades.destroy');
+		});
 	});
 
 	// Daypass

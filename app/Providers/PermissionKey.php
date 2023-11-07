@@ -173,4 +173,26 @@ class PermissionKey extends ServiceProvider
 			]
 		]
 	];
+
+	const Habitaciones = [
+		'name' => 'Módulo habitaciones',
+		'permissions' => [
+			'index' => [
+				'display_name' => 'Ver módulo',
+				'name' => 'habitaciones.index'
+			],
+			'create' => [
+				'display_name' => 'Creación',
+				'name' => 'habitaciones.create'
+			],
+			'update' => [
+				'display_name' => 'Modificar',
+				'name' => 'habitaciones.update'
+			],
+			'destroy' => [
+				'display_name' => 'Eliminar',
+				'name' => 'habitaciones.destroy'
+			],
+		]
+	];
 }
