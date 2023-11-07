@@ -15,6 +15,25 @@ import logoWhite from '../../../../img/hotel/logo-white.svg'
 import logo from '../../../../img/app/logo.svg'
 
 const URL = import.meta.env.VITE_APP_URL + '/'
+const GaleriaJSON = [
+	'img/hotel/galeria/1.jpg',
+	'img/hotel/galeria/2.jpg',
+	'img/hotel/galeria/3.jpg',
+	'img/hotel/galeria/4.jpg',
+	'img/hotel/galeria/5.jpg',
+	'img/hotel/galeria/6.jpg',
+	'img/hotel/galeria/7.jpg',
+	'img/hotel/galeria/8.jpg',
+	'img/hotel/galeria/9.jpg',
+	'img/hotel/galeria/10.jpg',
+	'img/hotel/galeria/11.jpg',
+	'img/hotel/galeria/12.jpg',
+	'img/hotel/galeria/13.jpg',
+	'img/hotel/galeria/14.jpg',
+	'img/hotel/galeria/15.jpg',
+	'img/hotel/galeria/16.jpg',
+	'img/hotel/galeria/17.jpg',
+]
 
 export default function Hotel() {
 	const InicialStore = useInicialStore(({ data }) => ({ data }))
@@ -101,6 +120,46 @@ export default function Hotel() {
 					/>
 				))}
 			</div>
+
+			<div className='px-0 py-8 md:py-14 mb-6'>
+				<div className='max-w-design mx-auto'>
+					<Textos.Subtitulo className='font-murecho mb-2'>¡Hospédate con nosotros!</Textos.Subtitulo>
+					<p className='mb-10'>
+						LNuestras amenidades han sido pensadas para que disfrutes de una
+						<span className='text-verdigris'>estancia inolvidable.</span>
+					</p>
+
+					<Swiper
+						spaceBetween={0}
+						slidesPerView={1}
+						modules={[Autoplay]}
+						autoplay={{
+							delay: 4000,
+						}}
+						speed={1500}
+						loop={true}>
+						{GaleriaJSON.map((g, key) => (
+							<SwiperSlide key={'galeria-final-' + key}>
+								<img
+									src={g}
+									alt='Imagen de galeria'
+									className='h-[550px] md:h-[750px] 2xl:h-[850px] object-cover w-full'
+								/>
+							</SwiperSlide>
+						))}
+					</Swiper>
+				</div>
+			</div>
+
+			<iframe
+				src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.0738433602355!2d-90.39863732474777!3d20.869073680740655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85f8c5883a007aad%3A0xb7025e609b3338c!2sT%C3%B3tem%20Beach%20Club!5e0!3m2!1sen!2smx!4v1699058636426!5m2!1sen!2smx'
+				width='100%'
+				height='500'
+				style={{ border: 0 }}
+				allowFullScreen=''
+				loading='lazy'
+				referrerPolicy='no-referrer-when-downgrade'
+			/>
 		</main>
 	)
 }

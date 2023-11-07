@@ -119,6 +119,9 @@ export default function Footer() {
 								<Link to='/daypass'>Day Pass</Link>
 							</li>
 							<li>
+								<Link to='/hotel'>Hotel</Link>
+							</li>
+							<li>
 								<Link to='/restaurante'>Restaurante</Link>
 							</li>
 							<li>
