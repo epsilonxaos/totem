@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helpers;
 use App\Mail\MailRecoveryPasswordSocio;
+use App\Models\Amenidades;
 use App\Models\Daypass;
+use App\Models\Galerias;
+use App\Models\Habitaciones;
 use App\Models\Movimientos;
 use App\Models\Orden;
 use App\Models\Reservacion;
@@ -20,12 +23,29 @@ class AppController extends Controller
 {
 	public function documentoInicial()
 	{
-		$daypass = Daypass::find(1);
+		$daypass = Daypass::select(
+			'limite_total',
+			'fechas_excluidas',
+			'precio_adultos',
+			'precio_ninos',
+			'precio_ninos_menores',
+			'moneda',
+			'limite_compra_personas',
+			'limite_invitados_socios',
+			'maximo_pago_tarjeta',
+		)->find(1);
+		$habitaciones = Habitaciones::select('title', 'link', 'description')->get();
 		$daypass->fechas_excluidas = json_decode($daypass->fechas_excluidas);
+
+		foreach ($habitaciones as $key => $room) {
+			$room->galeria = Galerias::select('id', 'cover', 'order')->where('uid', $room->uid)->get();
+			$room->amenidades = Amenidades::select('id', 'cover', 'order')->where('uid', $room->uid)->get();
+		}
 
 		$datos = [
 			'daypass' => $daypass,
-			'website' => Websites::find(1)
+			'website' => Websites::seelct('menu')->find(1),
+			'habitaciones' => $habitaciones
 		];
 
 		return response($datos, 200);
