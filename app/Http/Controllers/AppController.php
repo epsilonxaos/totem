@@ -34,7 +34,7 @@ class AppController extends Controller
 			'limite_invitados_socios',
 			'maximo_pago_tarjeta',
 		)->find(1);
-		$habitaciones = Habitaciones::select('title', 'link', 'description')->get();
+		$habitaciones = Habitaciones::select('title', 'link', 'description', 'uid')->get();
 		$daypass->fechas_excluidas = json_decode($daypass->fechas_excluidas);
 
 		foreach ($habitaciones as $key => $room) {
@@ -44,8 +44,8 @@ class AppController extends Controller
 
 		$datos = [
 			'daypass' => $daypass,
-			'website' => Websites::seelct('menu')->find(1),
-			'habitaciones' => $habitaciones
+			'website' => Websites::select('menu')->find(1),
+			'habitaciones' => $habitaciones->makeHidden(['uid'])
 		];
 
 		return response($datos, 200);

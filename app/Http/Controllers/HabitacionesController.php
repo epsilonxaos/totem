@@ -257,6 +257,8 @@ class HabitacionesController extends Controller
 		$source->description = $request->description;
 		$source->link = $request->link;
 		$source->save();
+
+		return redirect()->back()->with('success', 'Los datos se han actualizado correctamente');
 	}
 
 	/**

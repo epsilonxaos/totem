@@ -1,14 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Textos from '../Textos'
 import parse from 'html-react-parser'
 import amenidades from '../../data/amenidades-hotel.json'
+import { useInicialStore } from '../../store/useInicialStore'
+
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/autoplay'
 
 import banner from '../../../../img/hotel/banner.jpg'
 import playa from '../../../../img/hotel/playa.jpg'
 import logoWhite from '../../../../img/hotel/logo-white.svg'
 import logo from '../../../../img/app/logo.svg'
 
+const URL = import.meta.env.VITE_APP_URL + '/'
+
 export default function Hotel() {
+	const InicialStore = useInicialStore(({ data }) => ({ data }))
+	const [rooms, setRooms] = useState([])
+
+	useEffect(() => {
+		if (InicialStore.data?.habitaciones) {
+			setRooms(InicialStore.data.habitaciones)
+		}
+	}, [InicialStore.data])
+
 	return (
 		<main className='w-full text-sm font-medium relative z-[1] text-center'>
 			{/*//? Banner */}
@@ -59,6 +76,7 @@ export default function Hotel() {
 					<ul className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-16'>
 						{amenidades.map(item => (
 							<Amenidad
+								key={'amenidad-' + item.title}
 								img={item.icon}
 								title={item.title}
 							/>
@@ -71,20 +89,17 @@ export default function Hotel() {
 			<div className='bg-[#F8F8F8] w-full xl:w-[80%] max-w-[1420px] mx-auto py-[40px] md:px-12 xl:px-20 2xl:px-[130px]'>
 				<Textos.Titulo className={'text-center'}>Vive al máximo la experiencia de Celestún</Textos.Titulo>
 				<div className='border-t-2 border-t-verdigris max-w-[230px] w-[80%] mx-auto mb-[40px] md:mb-[60px] mt-4'></div>
-				<Habitacion
-					cover='https://images.pexels.com/photos/1329711/pexels-photo-1329711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-					title='Suite Tótem'
-					description={`<p>
-							Nuestra suite familiar Tótem consta de dos habitaciones: una en la planta baja con dos camas individuales,
-							mientras que en la segunda planta se encuentra la suite equipada con una cama king size con una vista
-							espectacular.
-						</p>
-						<br />
-						<p>
-							Además esta habitación tiene baño privado y cuenta con amenidades como aire acondicionado, cortinas black
-							out, caja de seguridad, frigobar, televisión, entre otras.
-						</p>`}
-				/>
+				{rooms.map((r, idx) => (
+					<Habitacion
+						key={'room-' + r.title}
+						gallery={r.galeria}
+						title={r.title}
+						description={r.description}
+						amenidades={r.amenidades}
+						link={r.link}
+						changeTheme={idx % 2 !== 0 ? true : false}
+					/>
+				))}
 			</div>
 		</main>
 	)
@@ -105,37 +120,56 @@ function Amenidad({ img, title }) {
 	)
 }
 
-function Habitacion({ cover = '', title = '', description = '', amenidades = [], link = '', changeTheme = false }) {
+function Habitacion({ gallery = [], title = '', description = '', amenidades = [], link = '', changeTheme = false }) {
 	return (
 		<div className='flex flex-wrap mb-[80px] lg:mb-[140px] items-center'>
-			<img
-				src={cover}
-				alt={title}
-				className='w-full lg:w-1/2 h-[400px] object-cover'
-			/>
+			<div className='w-full lg:w-1/2'>
+				<Swiper
+					spaceBetween={0}
+					slidesPerView={1}
+					modules={[Autoplay]}
+					autoplay={{
+						delay: 4000,
+					}}
+					speed={1500}
+					loop={true}>
+					{gallery.map(g => (
+						<SwiperSlide key={'galeria-' + g.id}>
+							<img
+								src={g.cover}
+								alt='Imagen de galeria'
+								className='h-[400px] md:h-[400px] object-cover w-full'
+							/>
+						</SwiperSlide>
+					))}
+				</Swiper>
+			</div>
 			<article className='w-full pt-10 lg:w-1/2 px-5 md:px-0 lg:py-0 lg:pl-[60px] text-left'>
 				<Textos.Titulo>{title}</Textos.Titulo>
 				<div className='font-medium text-delftblue tracking-wide'>{parse(description)}</div>
 				<div className='flex flex-wrap items-start pt-8'>
 					<div className='grid grid-cols-5 md:grid-cols-7 lg:grid-cols-5 gap-1 w-3/4 lg:w-3/5'>
-						{amenidades.map(() => (
+						{amenidades.map(a => (
 							<img
-								src='img/hotel/amenidades/ac.svg'
+								key={'amenidad-' + a.id}
+								src={URL + a.cover}
 								alt=''
 								className='max-w-[40px] h-[30px] mb-3'
 							/>
 						))}
 					</div>
 					<div className='w-1/4 lg:w-2/5 text-right'>
-						<a
-							href={link}
-							target='_blank'
-							rel='noopener noreferrer'
-							className={`px-4 md:px-6 py-3 inline text-sm max-w-max ${
-								!changeTheme ? 'bg-delftblue text-white' : 'bg-verdigris text-white'
-							} rounded-md mx-auto`}>
-							Reservar
-						</a>
+						{link && (
+							<a
+								href={link}
+								target='_blank'
+								rel='noopener noreferrer'
+								className={`px-4 md:px-6 py-3 inline text-sm max-w-max ${
+									!changeTheme ? 'bg-delftblue text-white' : 'bg-verdigris text-white'
+								} rounded-md mx-auto`}>
+								Reservar
+							</a>
+						)}
 					</div>
 				</div>
 			</article>

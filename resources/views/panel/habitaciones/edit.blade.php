@@ -5,7 +5,7 @@
 
         <div class="max-w-7xl mx-auto">
             @can(PermissionKey::Habitaciones['permissions']['update']['name'])
-                <form action="{{ route('panel.socios.update', ['id' => $data->id]) }}" method="POST">
+                <form action="{{ route('panel.habitaciones.update', ['id' => $data->id]) }}" method="POST">
                     @csrf
                     @method('PUT')
                     @elsecan

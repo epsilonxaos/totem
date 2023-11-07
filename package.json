@@ -53,6 +53,7 @@
         "simple-zustand-devtools": "^1.1.0",
         "sortablejs": "^1.15.0",
         "sweetalert2": "^11.9.0",
+        "swiper": "^11.0.3",
         "tailwind-merge": "^1.12.0",
         "toastify-js": "^1.12.0",
         "trumbowyg": "^2.27.3",
