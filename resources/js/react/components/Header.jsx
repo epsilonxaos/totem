@@ -86,6 +86,8 @@ function MenuMovil({ open, updateMenu, location }) {
 export default function Header() {
 	const [open, setOpen] = useState(false)
 	const location = useLocation()
+	console.log('%c >>> location ', 'background: #03071e; color: #ffba08; font-weight: bold')
+	console.log(location.pathname)
 
 	return (
 		<>
@@ -118,7 +120,7 @@ export default function Header() {
 						</div>
 					</div>
 				</div>
-				<FormReservaciones />
+				{location.pathname === '/hotel' && <FormReservaciones />}
 				<MenuMovil
 					open={open}
 					location={location}
