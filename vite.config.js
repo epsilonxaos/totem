@@ -29,6 +29,7 @@ export default defineConfig(({ command, mode }) => {
 					'resources/js/admin/reservaciones/app.js',
 					'resources/js/admin/calendario/app.js',
 					'resources/js/panel/trumbowygInit.js',
+					'resources/js/react/main.jsx',
 				],
 				refresh: true,
 			}),
