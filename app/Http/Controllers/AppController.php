@@ -38,8 +38,8 @@ class AppController extends Controller
 		$daypass->fechas_excluidas = json_decode($daypass->fechas_excluidas);
 
 		foreach ($habitaciones as $key => $room) {
-			$room->galeria = Galerias::select('id', 'cover', 'order')->where('uid', $room->uid)->get();
-			$room->amenidades = Amenidades::select('id', 'cover', 'order')->where('uid', $room->uid)->get();
+			$room->galeria = Galerias::select('id', 'cover', 'order')->where('uid', $room->uid)->orderBy('order', 'asc')->get();
+			$room->amenidades = Amenidades::select('id', 'cover', 'order')->where('uid', $room->uid)->orderBy('order', 'asc')->get();
 		}
 
 		$datos = [

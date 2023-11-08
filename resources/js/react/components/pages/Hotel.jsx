@@ -121,7 +121,7 @@ export default function Hotel() {
 				))}
 			</div>
 
-			<div className='px-0 py-8 md:py-14 mb-6'>
+			<div className='px-0 py-8 md:py-14 !pb-5'>
 				<div className='max-w-design mx-auto'>
 					<Textos.Subtitulo className='font-murecho mb-2'>¡Hospédate con nosotros!</Textos.Subtitulo>
 					<p className='mb-10'>

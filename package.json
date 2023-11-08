@@ -43,7 +43,7 @@
         "fs": "^0.0.1-security",
         "html-react-parser": "^5.0.4",
         "luxon": "^3.3.0",
-        "react-datepicker": "^4.11.0",
+        "react-datepicker": "^4.21.0",
         "react-day-picker": "^8.7.1",
         "react-hook-form": "^7.44.3",
         "react-hot-toast": "^2.4.1",
