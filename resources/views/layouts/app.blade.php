@@ -48,8 +48,7 @@
 	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 	})(window,document,'script','dataLayer','GTM-W2VJXKH4');</script>
 	<!-- End Google Tag Manager -->
-	
-	<script async src="https://booking.zaviaerp.com/widgets/booking.js"></script>
+
 
 	<script type="text/javascript">
 		(function(c,l,a,r,i,t,y){
@@ -62,6 +61,10 @@
 </head>
 
 <body class="antialiased font-inter">
+	{{-- <script
+			async
+			src="https://booking.zaviaerp.com/widgets/booking.js"></script> --}}
+
     @yield('content')
 
 
@@ -88,6 +91,8 @@
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->
 	
+
+	<script async src="https://booking.zaviaerp.com/widgets/booking.js"></script>
 </body>
 
 </html>

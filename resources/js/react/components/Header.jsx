@@ -175,6 +175,12 @@ const FormReservaciones = () => {
 					className='relative px-2 bg-delftblue shadow rounded-b z-[1]'>
 					<form
 						action='https://rbe.zaviaerp.com/'
+						onSubmit={ev => {
+							// ev.preventDefault()
+							// setTimeout(() => {
+							// 	ev.target.submit()
+							// }, 14000)
+						}}
 						method='get'>
 						<input
 							type='hidden'

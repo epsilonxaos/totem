@@ -29,7 +29,7 @@ const GaleriaJSON = [
 	'img/hotel/galeria/11.jpg',
 	'img/hotel/galeria/12.jpg',
 	'img/hotel/galeria/13.jpg',
-	'img/hotel/galeria/14.jpg',
+	// 'img/hotel/galeria/14.jpg',
 	'img/hotel/galeria/15.jpg',
 	'img/hotel/galeria/16.jpg',
 	'img/hotel/galeria/17.jpg',
@@ -72,7 +72,7 @@ export default function Hotel() {
 							Celestún está lleno de aventuras por descubrir y queremos ser tus anfitriones.
 						</Textos.Subtitulo>
 						<Textos.Subtitulo className='mb-2'>
-							<span className='text-verdigris'>Somos un club de playa</span> en el que podrás gozar e maravilloso
+							<span className='text-verdigris'>Somos un club de playa</span> en el que podrás gozar del maravilloso
 							espectáculo de la costa con total comodidad.
 						</Textos.Subtitulo>
 					</div>
@@ -125,7 +125,7 @@ export default function Hotel() {
 				<div className='max-w-design mx-auto'>
 					<Textos.Subtitulo className='font-murecho mb-2'>¡Hospédate con nosotros!</Textos.Subtitulo>
 					<p className='mb-10'>
-						LNuestras amenidades han sido pensadas para que disfrutes de una
+						Nuestras amenidades han sido pensadas para que disfrutes de una{' '}
 						<span className='text-verdigris'>estancia inolvidable.</span>
 					</p>
 
@@ -197,7 +197,7 @@ function Habitacion({ gallery = [], title = '', description = '', amenidades = [
 							<img
 								src={g.cover}
 								alt='Imagen de galeria'
-								className='h-[400px] md:h-[400px] object-cover w-full'
+								className='h-[400px] md:h-[400px] object-contain w-full'
 							/>
 						</SwiperSlide>
 					))}

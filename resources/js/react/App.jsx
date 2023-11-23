@@ -17,6 +17,7 @@ import RecoveryPassword from './components/pages/RecoveryPassword'
 import { Toaster } from 'react-hot-toast'
 import { AnimatePresence } from 'framer-motion'
 import Loading from './Loading'
+import Reservacion from './components/pages/Reservacion'
 
 export default function App() {
 	const [setData, setLoading] = useInicialStore(state => [state.setData, state.setLoading])
@@ -53,6 +54,10 @@ export default function App() {
 					<Route
 						path='/hotel'
 						element={<Hotel />}
+					/>
+					<Route
+						path='/reservacion'
+						element={<Reservacion />}
 					/>
 					<Route
 						path='/daypass'
