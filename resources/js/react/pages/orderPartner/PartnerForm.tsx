@@ -1,28 +1,29 @@
+import axios from 'axios'
 import es from 'date-fns/locale/es'
 import { DateTime } from 'luxon'
 
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import ReactDatePicker from 'react-datepicker'
 
-import OrdenContext from '../../../context/OrdenContext'
-import { useInicialStore } from '../../../store/useInicialStore'
+import type { IDisponibilidadResponse, StatePartnerOrder } from '../../types/order'
 
-export default function SocioForm() {
-	const { state, dispatch, daypass, fechasExcluidas } = useContext(OrdenContext)
+import OrderContext from '../../context/OrderContext'
 
+export default function PartnerForm() {
+	const { state: appState, dispatch, daypass, fechasExcluidas } = useContext(OrderContext)
+	const state = useMemo<StatePartnerOrder | null>(() => (appState ? (appState as StatePartnerOrder) : null), [appState])
 	const [loading, setLoading] = useState(false)
-	const [data, setData] = useState(null)
-	const [errors, setErrors] = useState({})
-	const [loadingInitial, getDaypass] = useInicialStore(state => [state.loading, state.getDaypass])
+	const [data, setData] = useState<IDisponibilidadResponse>()
 
 	const verificarDisponibilidad = async () => {
 		setLoading(true)
 		try {
-			const response = await axios.post(import.meta.env.VITE_APP_URL + '/api/disponibilidad/daypass', {
+			const response = await axios.post(APP_ENV.APP_URL + '/api/disponibilidad/daypass', {
 				daypass_id: 1,
-				fecha_reservacion: state.reservacion,
-				socio_id: state.socio.id,
+				fecha_reservacion: state?.reservacion,
+				socio_id: state?.socio.id,
 			})
+
 			setData(response.data)
 			setLoading(false)
 		} catch (error) {
@@ -37,10 +38,10 @@ export default function SocioForm() {
 		// Lógica para verificar disponibilidad antes de enviar el formulario
 		setLoading(true)
 		try {
-			const response = await axios.post(import.meta.env.VITE_APP_URL + '/api/disponibilidad/daypass', {
+			const response = await axios.post(APP_ENV.APP_URL + '/api/disponibilidad/daypass', {
 				daypass_id: 1,
-				fecha_reservacion: state.reservacion,
-				socio_id: state.socio.id,
+				fecha_reservacion: state?.reservacion,
+				socio_id: state?.socio.id,
 			})
 			if (!response.data.disponibilidad || response.data.socio.diaReservadoPrev) {
 				setData(response.data)
@@ -52,7 +53,7 @@ export default function SocioForm() {
 				setLoading(false)
 				return
 			}
-			dispatch({ pasoActual: 'informacion' })
+			dispatch({ pasoActual: 'orden' })
 
 			// Enviar el formulario si la disponibilidad es satisfactoria
 			// Puedes agregar tu lógica de envío del formulario aquí
@@ -65,7 +66,7 @@ export default function SocioForm() {
 
 	return (
 		<>
-			{daypass && (
+			{daypass && state && (
 				<div className='max-w-design mx-auto px-4 py-12 md:py-32'>
 					<div className='bg-oxfordblue bg-opacity-90 max-w-5xl mx-auto py-12 px-4 md:px-16'>
 						<h3 className='text-center text-white mb-6'>RESERVA DAY PASS MEMBRESÍA</h3>
@@ -147,7 +148,7 @@ export default function SocioForm() {
 											{!loading ? 'Verificar disponibilidad' : 'Verificando espere...'}
 										</button>
 
-										{data && (
+										{data && data.socio && (
 											<div className='text-white text-center text-xs font-light'>
 												<p>
 													{data?.disponibilidad && !data?.socio.diaReservadoPrev && data?.socio.reservacionesMes < 3

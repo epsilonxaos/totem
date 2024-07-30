@@ -6,7 +6,7 @@ import type { ActionPublicOrder, StatePublicOrder } from '../../types/order'
 import BgOrden from '../../components/BgOrden'
 import PoliticasTexto from '../../components/PoliticasTexto'
 import AppContext from '../../context/AppContext'
-import OrdenContext from '../../context/OrdenContext'
+import OrderContext from '../../context/OrderContext'
 import { obtenerFecha } from '../../helpers/Utils'
 import OrderForm from './OrderForm'
 import UserForm from './UserForm'
@@ -70,7 +70,7 @@ const StepForOrderPublic = () => {
 
 	return (
 		<div className='relative'>
-			<OrdenContext.Provider value={{ state, dispatch, daypass, fechasExcluidas }}>
+			<OrderContext.Provider value={{ state, dispatch, daypass, fechasExcluidas }}>
 				{state.pasoActual === 'politicas' && <PoliticasTexto />}
 
 				{state.pasoActual === 'reservacion' && (
@@ -89,7 +89,7 @@ const StepForOrderPublic = () => {
 						Finalizando compra, espere un momento...
 					</div>
 				)}
-			</OrdenContext.Provider>
+			</OrderContext.Provider>
 		</div>
 	)
 }

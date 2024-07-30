@@ -1,4 +1,4 @@
-export type TStep = 'politicas' | 'reservacion' | 'orden'
+export type TStep = 'politicas' | 'reservacion' | 'orden' | 'login'
 
 export interface StatePublicOrder {
 	payLoading: boolean
@@ -29,3 +29,39 @@ export interface IDisponibilidadResponse {
 	socio: null | { diaReservadoPrev: boolean; reservacionesMes: number }
 	cupo_disponible?: number
 }
+
+// * Socios
+
+export interface StatePartnerOrder {
+	payLoading: boolean
+	pasoActual: TStep
+	startDate: string
+	tomorrow: string
+	reservacion: string
+
+	adultos: number //Totales
+	ninos: number
+	ninos_menores: number
+
+	addExtras: boolean
+	personasTotales: number
+	pay_adultos: number
+	pay_ninos: number
+	inv_adultos: number
+	inv_ninos: number
+	payInvitados: boolean
+
+	total: number
+	redirectTo: string
+	auth: boolean
+	socio: Socio
+}
+
+export type Socio = {
+	id: number
+	nombre_completo: string
+	telefono: string
+	correo: string
+}
+
+export type ActionPartnerOrder = Partial<StatePartnerOrder>
