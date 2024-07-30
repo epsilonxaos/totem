@@ -3,8 +3,8 @@ import { Navigate } from 'react-router-dom'
 
 import type { ActionPublicOrder, StatePublicOrder } from '../../types/order'
 
-import BgOrden from '../../components/BgOrden'
-import PoliticasTexto from '../../components/PoliticasTexto'
+import BgOrden from '../../components/orden/BgOrden'
+import PoliticasOrden from '../../components/orden/PoliticasOrden'
 import AppContext from '../../context/AppContext'
 import OrderContext from '../../context/OrderContext'
 import { obtenerFecha } from '../../helpers/Utils'
@@ -71,7 +71,7 @@ const StepForOrderPublic = () => {
 	return (
 		<div className='relative'>
 			<OrderContext.Provider value={{ state, dispatch, daypass, fechasExcluidas }}>
-				{state.pasoActual === 'politicas' && <PoliticasTexto />}
+				{state.pasoActual === 'politicas' && <PoliticasOrden />}
 
 				{state.pasoActual === 'reservacion' && (
 					<BgOrden>

@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 import type { Daypass } from '../../types/main'
 import type { ActionPartnerOrder, Socio, StatePartnerOrder } from '../../types/order'
 
-import BgOrden from '../../components/BgOrden'
+import BgOrden from '../../components/orden/BgOrden'
 import AppContext from '../../context/AppContext'
 import OrderContext from '../../context/OrderContext'
 import { obtenerFecha } from '../../helpers/Utils'

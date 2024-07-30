@@ -2,18 +2,21 @@ import axios, { type AxiosResponse } from 'axios'
 import es from 'date-fns/locale/es'
 import { DateTime } from 'luxon'
 
-import { useContext, useState } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import ReactDatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-import type { IDisponibilidadResponse } from '../../types/order'
+import type { IDisponibilidadResponse, StatePublicOrder } from '../../types/order'
 
 import MaskedInput from '../../components/MaskedInput'
-import OrdenContext from '../../context/OrdenContext'
+import OrderContext from '../../context/OrderContext'
 
 export default function UserForm() {
-	const { state, dispatch, daypass, fechasExcluidas } = useContext(OrdenContext)
-
+	const { state: appState, dispatch, daypass, fechasExcluidas } = useContext(OrderContext)
+	const state = useMemo<StatePublicOrder>(
+		() => (appState ? (appState as StatePublicOrder) : ({} as StatePublicOrder)),
+		[appState]
+	) // TODO: No se si funciona
 	const [loading, setLoading] = useState<boolean>(false)
 	const [data, setData] = useState<IDisponibilidadResponse>()
 

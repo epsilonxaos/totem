@@ -1,18 +1,22 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { HiMinusSm, HiPlusSm } from 'react-icons/hi'
 
 import type { Daypass } from '../../types/main'
+import type { StatePublicOrder } from '../../types/order'
 
-import CardPase from '../../components/pages/orden/CardPase'
-import StripeForm from '../../components/pages/orden/creditCard/StripeForm'
+import CardPase from '../../components/orden/CardPase'
+import StripeForm from '../../components/orden/stripe/StripeForm'
 import AppContext from '../../context/AppContext'
-import OrdenContext from '../../context/OrdenContext'
+import OrderContext from '../../context/OrderContext'
 import { numberWithCommas } from '../../helpers/Utils'
 
 export default function OrderForm() {
-	const { state, dispatch } = useContext(OrdenContext)
+	const { state: appState, dispatch } = useContext(OrderContext)
 	const { loading, data: appData } = useContext(AppContext)
-
+	const state = useMemo<StatePublicOrder>(
+		() => (appState ? (appState as StatePublicOrder) : ({} as StatePublicOrder)),
+		[appState]
+	) // TODO: No se si funciona
 	const [data, setData] = useState<Daypass>()
 	const [maximo, setMaximo] = useState<boolean>(false)
 
@@ -25,11 +29,15 @@ export default function OrderForm() {
 	}
 
 	function total(): number {
-		let adultos = subtotal(state.adultos, data?.precio_adultos ?? 0)
-		let ninos = subtotal(state.ninos, data?.precio_ninos ?? 0)
-		let ninos_menores = subtotal(state.ninos_menores, data?.precio_ninos_menores ?? 0)
+		if (state) {
+			let adultos = subtotal(state.adultos, data?.precio_adultos ?? 0)
+			let ninos = subtotal(state.ninos, data?.precio_ninos ?? 0)
+			let ninos_menores = subtotal(state.ninos_menores, data?.precio_ninos_menores ?? 0)
 
-		return adultos + ninos + ninos_menores
+			return adultos + ninos + ninos_menores
+		}
+
+		return 0
 	}
 
 	useEffect(() => {
