@@ -11,6 +11,7 @@ import { twMerge } from 'tailwind-merge'
 import ReactDatePicker from 'react-datepicker'
 import es from 'date-fns/locale/es'
 import 'react-datepicker/dist/react-datepicker.css'
+import ButtonCloudbed from './ButtonCloudbed'
 const activeClass = `relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:right-0 after:mx-auto after:w-4 rounded after:h-[2px] after:bg-verdigris`
 
 function MenuList({ updateMenu, location }) {
@@ -86,8 +87,6 @@ function MenuMovil({ open, updateMenu, location }) {
 export default function Header() {
 	const [open, setOpen] = useState(false)
 	const location = useLocation()
-	console.log('%c >>> location ', 'background: #03071e; color: #ffba08; font-weight: bold')
-	console.log(location.pathname)
 
 	return (
 		<>
@@ -166,7 +165,7 @@ const FormReservaciones = () => {
 
 	return (
 		<AnimatePresence>
-			<div className='absolute left-0 sm:left-1/2 sm:-translate-x-1/2 top-[80px] z-[-1] w-full sm:max-w-[400px]'>
+			<div className='absolute left-0 sm:left-1/2 sm:-translate-x-1/2 top-[80px] z-[-1] w-full sm:max-w-max'>
 				<motion.div
 					initial={v.close}
 					animate={open ? [v.open, v.show] : v.close}
@@ -174,108 +173,38 @@ const FormReservaciones = () => {
 					transition={{ duration: 0.3 }}
 					className='relative px-2 bg-delftblue shadow rounded-b z-[1]'>
 					<form
-						action='https://rbe.zaviaerp.com/'
+						action='https://hotels.cloudbeds.com/reservation/KS15cS/'
 						onSubmit={ev => {
 							// ev.preventDefault()
 							// setTimeout(() => {
 							// 	ev.target.submit()
 							// }, 14000)
 						}}
-						method='get'>
+						className=''
+						method='post'>
 						<input
 							type='hidden'
-							name='zbe_hotel_id'
-							defaultValue='totembeach'
+							name='date_format'
+							defaultValue='d/m/Y'
 						/>
 						<input
-							type='hidden'
-							name='lng'
-							defaultValue='es'
-						/>
-						<input
-							type='hidden'
-							name='zbe_arrival'
+							type='text'
+							name='widget_date'
 							value={checkIn.dateFormat}
+							className='absolute opacity-0 -z-10'
 						/>
 						<input
-							type='hidden'
-							name='zbe_departure'
+							type='text'
+							name='widget_date_to'
 							value={checkOut.dateFormat}
+							className='absolute opacity-0 -z-10'
 						/>
-						<div className='flex justify-center flex-wrap py-3'>
-							<InputCalendar
-								className='w-auto'
-								selected={checkIn.date}
-								minDate={currentDate}
-								startDate={checkIn.date}
-								endDate={checkOut.date}
-								onChange={dates => {
-									const [start, end] = dates
-									setCheckIn({ date: start, dateFormat: DateTime.fromJSDate(start).toFormat('yyyy-MM-dd') })
-									setCheckOut({ date: end, dateFormat: DateTime.fromJSDate(end).toFormat('yyyy-MM-dd') })
-								}}
-								label='Check in - Check out'
-								name='fechasrange'
-							/>
-							<button
-								className='bg-verdigris text-white py-2 px-2  font-medium text-sm'
-								type='submit'>
-								Reservar ahora
-							</button>
+						<div className='flex justify-center flex-wrap py-3 pt-2 px-4'>
+							<ButtonCloudbed />
 						</div>
 					</form>
 				</motion.div>
-				<button
-					onClick={() => setOpen(!open)}
-					className={`absolute flex items-center -z-[1] -bottom-[27px] left-1/2 -translate-x-1/2 ${
-						!open ? 'bg-delftblue text-white' : 'bg-delftblue text-white'
-					}  py-1 px-2 rounded-b text-sm`}>
-					{!open ? (
-						<>
-							<BsCalendarWeek className='inline mr-1' /> Reservar ahora
-						</>
-					) : (
-						<>
-							<FaTimes className='inline mr-1' /> Ocultar
-						</>
-					)}
-				</button>
 			</div>
 		</AnimatePresence>
-	)
-}
-
-const InputCalendar = ({
-	className = '',
-	name = '',
-	label = '',
-	selected = '',
-	minDate = '',
-	onChange,
-	endDate,
-	startDate,
-	selectsStart,
-}) => {
-	return (
-		<div className={twMerge('relative z-0 w-[190px] group mr-2 sm:mr-3', className)}>
-			<ReactDatePicker
-				{...(name && { name })}
-				{...(selected && { selected })}
-				{...(minDate && { minDate })}
-				{...(onChange && { onChange })}
-				{...(selectsStart && { selectsStart })}
-				{...(startDate && { startDate })}
-				{...(endDate && { endDate })}
-				locale={es}
-				dateFormat='dd/MM/yyyy'
-				selectsRange
-				className='block text-white py-2.5 w-[190px] mx-auto text-sm bg-transparent border border-verdigris appearance-none !focus:outline-none focus:ring-0 focus:border-dorado peer px-1 text-center'
-			/>
-			<label
-				htmlFor={name}
-				className='bg-delftblue text-white peer-focus:font-medium absolute z-[1] text-sm text-dorado left-2 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:left-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'>
-				{label}
-			</label>
-		</div>
 	)
 }

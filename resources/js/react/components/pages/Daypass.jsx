@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import banner from '../../../../img/app/banner-03.jpg'
+import banner from '../../../../img/app/banner-03.webp'
 import anemidad_1 from '../../../../img/app/icons/icon-5.png'
 import anemidad_2 from '../../../../img/app/icons/icon-2.png'
 import anemidad_3 from '../../../../img/app/icons/icon-9.png'
@@ -14,6 +14,9 @@ import gal_2 from '../../../../img/app/galeria-day/2.jpg'
 import gal_3 from '../../../../img/app/galeria-day/3.jpg'
 import gal_4 from '../../../../img/app/galeria-day/4.jpg'
 import gal_5 from '../../../../img/app/galeria-day/5.jpg'
+import gal_7 from '../../../../img/app/galeria-day/7.webp'
+import gal_8 from '../../../../img/app/galeria-day/8.webp'
+import gal_9 from '../../../../img/app/galeria-day/9.webp'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Link } from 'react-router-dom'
 import Textos from '../Textos'
@@ -112,6 +115,7 @@ export default function Daypass() {
 								¡Reserva Ahora!
 							</button>
 						</a> */}
+
 						<Link to={'/daypass/orden'}>
 							<button className='px-8 py-3 mb-6 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto'>
 								¡Reserva Ahora!
@@ -198,6 +202,27 @@ function Galeria() {
 				<img
 					className='object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto'
 					src={gal_5}
+					alt='Galeria 1'
+				/>
+			</SplideSlide>
+			<SplideSlide>
+				<img
+					className='object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto'
+					src={gal_7}
+					alt='Galeria 1'
+				/>
+			</SplideSlide>
+			<SplideSlide>
+				<img
+					className='object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto'
+					src={gal_8}
+					alt='Galeria 1'
+				/>
+			</SplideSlide>
+			<SplideSlide>
+				<img
+					className='object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto'
+					src={gal_9}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>

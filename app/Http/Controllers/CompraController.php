@@ -17,9 +17,13 @@ use Conekta\Order;
 use Conekta\ParameterValidationError;
 use Conekta\ProcessingError;
 use Conekta\ResourceNotFoundError;
+use ErrorException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Stripe\PaymentIntent;
+use Stripe\Stripe;
+use Stripe\StripeClient;
 
 class CompraController extends Controller
 {
@@ -362,6 +366,45 @@ class CompraController extends Controller
 			// return response(["status" => 'paid', 'orden_folio' => $reservacion->folio], 200);
 		} catch (\Throwable $th) {
 			return response(["status" => 'error', 'error' => 'Hubo un problema en el proceso', 'er' => $th], 200);
+		}
+	}
+
+	public function compraStripeGeneral(Request $request)
+	{
+		// $stripe = new StripeClient(config('app.stripePublic'));
+
+		// $stripe = new \Stripe\StripeClient(config('app.stripeSecret'));
+		Stripe::setApiKey(config('app.stripeSecret'));
+		try {
+			// retrieve JSON from POST body
+			$jsonStr = file_get_contents('php://input');
+			$jsonObj = json_decode($jsonStr);
+
+			// Create a PaymentIntent with amount and currency
+			$paymentIntent = PaymentIntent::create([
+				'amount' => $request->amount * 100,
+				'currency' => 'mxn',
+				'description' => 'React Store',
+				'setup_future_usage' => 'on_session'
+			]);
+
+			$output = [
+				'clientSecret' => $paymentIntent->client_secret,
+			];
+			return response()->json($output);
+		} catch (ErrorException $e) {
+			return response()->json(['error' => $e->getMessage()]);
+		}
+	}
+
+	/** Calculate order total for stripe */
+	public function calculateOrderAmount(array $items): int
+	{
+		// Replace this constant with a calculation of the order's amount
+		// Calculate the order total on the server to prevent
+		// people from directly manipulating the amount on the client
+		foreach ($items as $item) {
+			return $item->amount * 100;
 		}
 	}
 }

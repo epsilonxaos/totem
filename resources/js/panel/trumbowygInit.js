@@ -133,8 +133,6 @@ if (document.querySelector('.sortable-items')) {
 					orden++
 				})
 
-				console.log(ordenamiento)
-				console.log(el.dataset.url)
 				axios
 					.post(el.dataset.url, ordenamiento)
 					.then(response => {

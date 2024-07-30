@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import bg from '../../../../img/app/membresia-bg.jpg'
-import bgM from '../../../../img/app/membresia-bg-m.jpg'
+import bg from '../../../../img/app/membresia-bg.webp'
 import Textos from '../Textos'
 
 export default function Membresia() {
@@ -14,7 +13,7 @@ export default function Membresia() {
 				className='hidden sm:block w-full object-cover sm:w-1/2 max-w-full'
 			/>
 			<img
-				src={bgM}
+				src={bg}
 				alt='Membresia'
 				className='sm:hidden max-h-[450px] w-full object-cover'
 			/>

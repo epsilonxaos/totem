@@ -64,9 +64,9 @@ export function obtenerFecha(fechas_excluidas = []) {
 		if (!fechas_excluidas.some(fecha => fecha === fechaActual)) {
 			return {
 				dateCurrent: ahora.toJSDate(),
-				dateCurrentFormat: ahora.toFormat('yyyy-MM-dd'),
+				dateCurrentFormat: ahora.toFormat('dd/MM/yyyy'),
 				dateCurrent2: ahora.plus({ days: 1 }).toJSDate(),
-				dateCurrentFormat2: ahora.plus({ days: 1 }).toFormat('yyyy-MM-dd'),
+				dateCurrentFormat2: ahora.plus({ days: 1 }).toFormat('dd/MM/yyyy'),
 			}
 		}
 	}
@@ -76,9 +76,9 @@ export function obtenerFecha(fechas_excluidas = []) {
 	if (!fechas_excluidas.some(fecha => fecha === fechaManana)) {
 		return {
 			dateCurrent: ahora.plus({ days: 1 }).toJSDate(),
-			dateCurrentFormat: ahora.plus({ days: 1 }).toFormat('yyyy-MM-dd'),
+			dateCurrentFormat: ahora.plus({ days: 1 }).toFormat('dd/MM/yyyy'),
 			dateCurrent2: ahora.plus({ days: 2 }).toJSDate(),
-			dateCurrentFormat2: ahora.plus({ days: 2 }).toFormat('yyyy-MM-dd'),
+			dateCurrentFormat2: ahora.plus({ days: 2 }).toFormat('dd/MM/yyyy'),
 		}
 	}
 
@@ -87,9 +87,9 @@ export function obtenerFecha(fechas_excluidas = []) {
 	while (fechas_excluidas.some(fecha => fecha === fechaSiguiente)) {
 		fechaSiguiente = {
 			dateCurrent: DateTime.fromISO(fechaSiguiente).plus({ days: 1 }).toJSDate(),
-			dateCurrentFormat: DateTime.fromISO(fechaSiguiente).plus({ days: 1 }).toFormat('yyyy-MM-dd'),
+			dateCurrentFormat: DateTime.fromISO(fechaSiguiente).plus({ days: 1 }).toFormat('dd/MM/yyyy'),
 			dateCurrent2: DateTime.fromISO(fechaSiguiente).plus({ days: 2 }).toJSDate(),
-			dateCurrentFormat2: DateTime.fromISO(fechaSiguiente).plus({ days: 2 }).toFormat('yyyy-MM-dd'),
+			dateCurrentFormat2: DateTime.fromISO(fechaSiguiente).plus({ days: 2 }).toFormat('dd/MM/yyyy'),
 		}
 		//   fechaSiguiente = DateTime.fromISO(fechaSiguiente).plus({ days: 1 }).toISODate();
 	}

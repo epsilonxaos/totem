@@ -28,6 +28,7 @@ Route::post('/webhook', [ConektaController::class, 'webhook']);
 Route::get('/inicial', [AppController::class, 'documentoInicial']);
 Route::post('/disponibilidad/daypass', [MovimientosController::class, 'verificarDisponibilidad']);
 Route::post('/pago', [CompraController::class, 'compraConekta']);
+Route::post('/pago/stripe', [CompraController::class, 'compraStripegeneral']);
 Route::post('/resumen', [AppController::class, 'obtenerOrden']);
 Route::post('/socio', [SociosController::class, 'getSocio']);
 Route::post('/socio/login', [AppController::class, 'validarSocio']);

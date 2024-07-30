@@ -16,6 +16,7 @@ import galeria_3 from '../../../../img/app/galeria-home/3.jpg'
 import galeria_4 from '../../../../img/app/galeria-home/4.jpg'
 import galeria_5 from '../../../../img/app/galeria-home/5.jpg'
 import galeria_6 from '../../../../img/app/galeria-home/6.jpg'
+import galeria_7 from '../../../../img/app/galeria-home/7.webp'
 
 import anemidad_1 from '../../../../img/app/icons/icon-1.png'
 import anemidad_2 from '../../../../img/app/icons/icon-2.png'
@@ -340,6 +341,13 @@ function Galeria() {
 				<img
 					className='aspect-square sm:aspect-video object-cover'
 					src={galeria_6}
+					alt='Galeria 1'
+				/>
+			</SplideSlide>
+			<SplideSlide>
+				<img
+					className='aspect-square sm:aspect-video object-cover'
+					src={galeria_7}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>

@@ -192,6 +192,8 @@ return [
 	])->toArray(),
 
 
-	'conektaSecret' => env('CONEKTA_KEY_SECRET')
+	'conektaSecret' => env('CONEKTA_KEY_SECRET'),
+	'stripePublic' => env('VITE_STRIPE_PUBLIC_KEY'),
+	'stripeSecret' => env('STRIPE_SECRET_KEY')
 
 ];

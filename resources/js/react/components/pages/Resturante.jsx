@@ -1,6 +1,6 @@
 import React from 'react'
 
-import banner from '../../../../img/app/banner-02.jpg'
+import banner from '../../../../img/app/banner-02.webp'
 import menu from '../../../../img/app/menu.png'
 import menuKids from '../../../../img/app/kids.png'
 import Textos from '../Textos'
@@ -39,7 +39,7 @@ export default function Restaurante() {
 							<img
 								src={menu}
 								alt='Menu'
-								className='inline'
+								className='inline max-w-[270px]'
 							/>
 							<p className='pt-3'>Menú</p>
 						</a>
@@ -48,7 +48,7 @@ export default function Restaurante() {
 						<img
 							src={menuKids}
 							alt='Menu Kids'
-							className='inline'
+							className='inline max-w-[270px]'
 						/>
 						<p className='pt-3'>Menú Kids</p>
 					</div> */}

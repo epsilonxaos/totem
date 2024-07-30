@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-console.log(import.meta.env.VITE_APP_URL)
-
 class Reservacion {
 	constructor(daypass, isSocio) {
 		this.adultos = 0

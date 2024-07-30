@@ -9,7 +9,7 @@ import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/autoplay'
 
-import banner from '../../../../img/hotel/banner.jpg'
+import banner from '../../../../img/hotel/banner.webp'
 import playa from '../../../../img/hotel/playa.jpg'
 import logoWhite from '../../../../img/hotel/logo-white.svg'
 import logo from '../../../../img/app/logo.svg'
@@ -105,21 +105,23 @@ export default function Hotel() {
 			</div>
 
 			{/* //? habitaciones */}
-			<div className='bg-[#F8F8F8] w-full xl:w-[80%] max-w-[1420px] mx-auto py-[40px] md:px-12 xl:px-20 2xl:px-[130px]'>
-				<Textos.Titulo className={'text-center'}>Vive al máximo la experiencia de Celestún</Textos.Titulo>
-				<div className='border-t-2 border-t-verdigris max-w-[230px] w-[80%] mx-auto mb-[40px] md:mb-[60px] mt-4'></div>
-				{rooms.map((r, idx) => (
-					<Habitacion
-						key={'room-' + r.title}
-						gallery={r.galeria}
-						title={r.title}
-						description={r.description}
-						amenidades={r.amenidades}
-						link={r.link}
-						changeTheme={idx % 2 !== 0 ? true : false}
-					/>
-				))}
-			</div>
+			{rooms.length > 0 && (
+				<div className='bg-[#F8F8F8] w-full xl:w-[80%] max-w-[1420px] mx-auto py-[40px] md:px-12 xl:px-20 2xl:px-[130px]'>
+					<Textos.Titulo className={'text-center'}>Vive al máximo la experiencia de Celestún</Textos.Titulo>
+					<div className='border-t-2 border-t-verdigris max-w-[230px] w-[80%] mx-auto mb-[40px] md:mb-[60px] mt-4'></div>
+					{rooms.map((r, idx) => (
+						<Habitacion
+							key={'room-' + r.title}
+							gallery={r.galeria}
+							title={r.title}
+							description={r.description}
+							amenidades={r.amenidades}
+							link={r.link}
+							changeTheme={idx % 2 !== 0 ? true : false}
+						/>
+					))}
+				</div>
+			)}
 
 			<div className='px-0 py-8 md:py-14 !pb-5'>
 				<div className='max-w-design mx-auto'>
@@ -195,7 +197,7 @@ function Habitacion({ gallery = [], title = '', description = '', amenidades = [
 					{gallery.map(g => (
 						<SwiperSlide key={'galeria-' + g.id}>
 							<img
-								src={g.cover}
+								src={import.meta.env.VITE_APP_URL + '/' + g.cover}
 								alt='Imagen de galeria'
 								className='h-[400px] md:h-[400px] object-contain w-full'
 							/>
