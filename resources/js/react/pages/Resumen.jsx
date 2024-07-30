@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import Textos from '../Textos'
-import { Link } from 'react-router-dom'
-import { numberWithCommas } from '../../helpers/Utils'
 import { BsFileEarmarkPdf } from 'react-icons/bs'
+import { Link, useParams } from 'react-router-dom'
+
+import Textos from '../components/Textos'
+import { numberWithCommas } from '../helpers/Utils'
 
 export default function Resumen() {
-	let { folio } = useParams()
+	const { folio } = useParams()
 
 	const [orden, setOrden] = useState()
 
 	useEffect(() => {
 		async function fetchData() {
-			const response = await axios.post(import.meta.env.VITE_APP_URL + '/api/resumen', { folio: folio })
+			const response = await axios.post(APP_ENV.APP_URL + '/api/resumen', { folio })
 			setOrden(response.data)
 		}
 		fetchData()
@@ -157,7 +157,8 @@ export default function Resumen() {
 						<a
 							href={import.meta.env.VITE_APP_URL + '/daypass/reservacion/pdf/' + orden.reservacion.folio}
 							target='_blank'
-							className='px-8 py-3 mb-3 flex items-center text-sm mt-2 mr-1 max-w-max bg-verdigris text-white rounded-md'>
+							className='px-8 py-3 mb-3 flex items-center text-sm mt-2 mr-1 max-w-max bg-verdigris text-white rounded-md'
+							rel='noreferrer'>
 							<BsFileEarmarkPdf
 								size={16}
 								className='mr-1'

@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
-import AppContext from 'resources/js/react/context/AppContext'
 
-import banner from '../../../../img/app/banner-02.webp'
-import menu from '../../../../img/app/menu.png'
-import Textos from '../Textos'
+import Textos from '../components/Textos'
+import AppContext from '../context/AppContext'
+import banner from '../img/banner-02.webp'
+import menu from '../img/menu.png'
 
-const URL = import.meta.env.VITE_APP_URL + '/'
 export default function Restaurante() {
 	const { data } = useContext(AppContext)
 
@@ -33,7 +32,7 @@ export default function Restaurante() {
 				<div className='flex max-sm:flex-col max-sm:items-center items-start justify-center gap-11 mb-14'>
 					<div className=''>
 						<a
-							href={URL + data?.website?.menu ?? 'pdf/menu.pdf'}
+							href={APP_ENV.APP_URL + '/' + data?.website?.menu ?? 'pdf/menu.pdf'}
 							target='_blank'
 							rel='noreferrer'>
 							<img

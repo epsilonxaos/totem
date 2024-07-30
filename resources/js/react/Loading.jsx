@@ -1,12 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion'
 
-import React, { useContext } from 'react'
-import AppContext from 'resources/js/react/context/AppContext'
+import logo from './img/logo-footer.svg'
 
-import logo from '../../img/app/logo-footer.svg'
-
-export default function Loading() {
-	const { loading } = useContext(AppContext)
+export default function Loading({ loading = true }) {
 	const variant = {
 		in: {
 			// opacity: 1,

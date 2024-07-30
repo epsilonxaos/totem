@@ -1,13 +1,10 @@
 import React from 'react'
-
-import logoFooter from '../../../img/app/logo-footer.svg'
-import iconIn from '../../../img/app/icon-in.svg'
-import iconFb from '../../../img/app/icon-fb.svg'
-import iconLocation from '../../../img/app/icon-location.svg'
-import { Link } from 'react-router-dom'
-import { SlLocationPin } from 'react-icons/sl'
-import { SiInstagram } from 'react-icons/si'
 import { FaFacebookF } from 'react-icons/fa'
+import { SiInstagram } from 'react-icons/si'
+import { SlLocationPin } from 'react-icons/sl'
+import { Link } from 'react-router-dom'
+
+import logoFooter from '../img/logo-footer.svg'
 
 export default function Footer() {
 	return (

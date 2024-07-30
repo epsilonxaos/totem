@@ -1,7 +1,8 @@
+import { twMerge } from 'tailwind-merge'
+
 import React from 'react'
 
-import logo from '../../../../img/app/logo.svg'
-import { twMerge } from 'tailwind-merge'
+import logo from '../img/logo.svg'
 
 export default function Terminos({ className = '' }) {
 	return (

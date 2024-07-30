@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
-import OrderContext from 'resources/js/react/context/OrderContext'
-import Terminos from 'resources/js/react/pages/Terminos'
+
+import OrderContext from '../../context/OrderContext'
+import Terminos from '../../pages/Terminos'
 
 export default function PoliticasOrden() {
 	const { state, dispatch } = useContext(OrderContext)

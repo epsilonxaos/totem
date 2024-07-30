@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge'
 
-import logo from '../../../../img/app/logo.svg'
+import logo from '../../../../img/logo.svg'
 
 export default function PoliticasTexto({ className = '' }) {
 	return (

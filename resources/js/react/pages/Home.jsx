@@ -1,41 +1,34 @@
-import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
-import { CiCircleChevDown } from 'react-icons/ci'
-
 // Default theme
 // import "@splidejs/react-splide/css";
 import '@splidejs/react-splide/css/core'
-
-import bannerInicial from '../../../../img/app/banner-1.jpg'
-import galeriaTest from '../../../../img/app/galeria-test.jpg'
-import arrowDown from '../../../../img/app/icon-arrow-down.png'
-
-import galeria_1 from '../../../../img/app/galeria-home/1.jpg'
-import galeria_2 from '../../../../img/app/galeria-home/2.jpg'
-import galeria_3 from '../../../../img/app/galeria-home/3.jpg'
-import galeria_4 from '../../../../img/app/galeria-home/4.jpg'
-import galeria_5 from '../../../../img/app/galeria-home/5.jpg'
-import galeria_6 from '../../../../img/app/galeria-home/6.jpg'
-import galeria_7 from '../../../../img/app/galeria-home/7.webp'
-
-import anemidad_1 from '../../../../img/app/icons/icon-1.png'
-import anemidad_2 from '../../../../img/app/icons/icon-2.png'
-import anemidad_3 from '../../../../img/app/icons/icon-3.png'
-import anemidad_4 from '../../../../img/app/icons/icon-4.png'
-import anemidad_5 from '../../../../img/app/icons/icon-5.png'
-import anemidad_6 from '../../../../img/app/icons/icon-6.png'
-import anemidad_7 from '../../../../img/app/icons/icon-7.png'
-import bannerAmenidad from '../../../../img/app/banner-amenidad.png'
-import islaClub from '../../../../img/app/isla-club.svg'
-
-import resturante from '../../../../img/app/resturante.png'
-import membresia from '../../../../img/app/membresia.png'
-import daypass from '../../../../img/app/daypass.png'
-
-import bannerEventos from '../../../../img/app/banner-eventos.jpg'
-import tapir from '../../../../img/app/tapir.jpg'
-import Textos from '../Textos'
+import React from 'react'
+import { CiCircleChevDown } from 'react-icons/ci'
 import { Link } from 'react-router-dom'
+
+import Textos from '../components/Textos'
+import bannerInicial from '../img/banner-1.jpg'
+import bannerAmenidad from '../img/banner-amenidad.png'
+import bannerEventos from '../img/banner-eventos.jpg'
+import daypass from '../img/daypass.png'
+import galeria1 from '../img/galeria-home/1.jpg'
+import galeria2 from '../img/galeria-home/2.jpg'
+import galeria3 from '../img/galeria-home/3.jpg'
+import galeria4 from '../img/galeria-home/4.jpg'
+import galeria5 from '../img/galeria-home/5.jpg'
+import galeria6 from '../img/galeria-home/6.jpg'
+import galeria7 from '../img/galeria-home/7.webp'
+import anemidad1 from '../img/icons/icon-1.png'
+import anemidad2 from '../img/icons/icon-2.png'
+import anemidad3 from '../img/icons/icon-3.png'
+import anemidad4 from '../img/icons/icon-4.png'
+import anemidad5 from '../img/icons/icon-5.png'
+import anemidad6 from '../img/icons/icon-6.png'
+import anemidad7 from '../img/icons/icon-7.png'
+import islaClub from '../img/isla-club.svg'
+import membresia from '../img/membresia.png'
+import resturante from '../img/resturante.png'
+import tapir from '../img/tapir.jpg'
 
 export default function Home() {
 	return (
@@ -107,7 +100,7 @@ export default function Home() {
 							<li className=' flex gap-2 sm:col-span-1 justify-start'>
 								<img
 									className='inline w-5'
-									src={anemidad_1}
+									src={anemidad1}
 									alt='Terraza Techada'
 								/>{' '}
 								Terraza Techada
@@ -115,7 +108,7 @@ export default function Home() {
 							<li className=' flex gap-2 sm:col-span-1 justify-start'>
 								<img
 									className='inline w-5'
-									src={anemidad_2}
+									src={anemidad2}
 									alt='Alberca'
 								/>{' '}
 								Alberca
@@ -123,7 +116,7 @@ export default function Home() {
 							<li className=' flex gap-2 sm:col-span-1 justify-start'>
 								<img
 									className='inline w-5'
-									src={anemidad_3}
+									src={anemidad3}
 									alt='Palapas de Playa'
 								/>{' '}
 								Palapas de Playa
@@ -131,7 +124,7 @@ export default function Home() {
 							<li className=' flex gap-2 sm:col-span-1 justify-start'>
 								<img
 									className='inline w-5'
-									src={anemidad_4}
+									src={anemidad4}
 									alt='Baños y regaderas'
 								/>{' '}
 								Baños y regaderas
@@ -139,7 +132,7 @@ export default function Home() {
 							<li className=' flex gap-2 sm:col-span-1 justify-start'>
 								<img
 									className='inline w-5'
-									src={anemidad_5}
+									src={anemidad5}
 									alt='Área de asoleadero'
 								/>
 								Área de asoleadero
@@ -147,7 +140,7 @@ export default function Home() {
 							<li className=' flex gap-2 sm:col-span-1 justify-start'>
 								<img
 									className='inline w-5'
-									src={anemidad_6}
+									src={anemidad6}
 									alt='Área de juegos para niños'
 								/>
 								Área de juegos para niños
@@ -155,7 +148,7 @@ export default function Home() {
 							<li className=' flex gap-2 sm:col-span-1 justify-start'>
 								<img
 									className='inline w-5'
-									src={anemidad_7}
+									src={anemidad7}
 									alt='Área de restaurante'
 								/>
 								Área de restaurante
@@ -244,7 +237,8 @@ export default function Home() {
 								<a
 									href='https://wa.me/+529993264940?text=%C2%A1Hola%21%20Me%20interesa%20conocer%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20realizar%20mi%20evento%20en%20T%C3%B3tem%20Beach%20Club.'
 									target='_blank'
-									className='px-8 py-3 inline text-sm mt-2 bg-verdigris text-oxfordblue rounded-md mx-auto'>
+									className='px-8 py-3 inline text-sm mt-2 bg-verdigris text-oxfordblue rounded-md mx-auto'
+									rel='noreferrer'>
 									¡Contáctanos para planear tu evento!
 								</a>
 							</div>
@@ -270,7 +264,8 @@ export default function Home() {
 								<a
 									href={import.meta.env.VITE_APP_URL + '/pdf/datos_de_donativo.pdf'}
 									target='_blank'
-									className='px-8 py-3 inline text-sm mt-2 max-w-[165px] bg-oxfordblue text-white rounded-md mx-auto'>
+									className='px-8 py-3 inline text-sm mt-2 max-w-[165px] bg-oxfordblue text-white rounded-md mx-auto'
+									rel='noreferrer'>
 									¡Quiero donar!
 								</a>
 							</div>
@@ -305,49 +300,49 @@ function Galeria() {
 			<SplideSlide>
 				<img
 					className='aspect-square sm:aspect-video object-cover'
-					src={galeria_1}
+					src={galeria1}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='aspect-square sm:aspect-video object-cover'
-					src={galeria_2}
+					src={galeria2}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='aspect-square sm:aspect-video object-cover'
-					src={galeria_3}
+					src={galeria3}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='aspect-square sm:aspect-video object-cover'
-					src={galeria_4}
+					src={galeria4}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='aspect-square sm:aspect-video object-cover'
-					src={galeria_5}
+					src={galeria5}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='aspect-square sm:aspect-video object-cover'
-					src={galeria_6}
+					src={galeria6}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='aspect-square sm:aspect-video object-cover'
-					src={galeria_7}
+					src={galeria7}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>

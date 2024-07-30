@@ -1,6 +1,6 @@
 import React from 'react'
 
-import bg from '../../../../../img/app/banner-eventos.jpg'
+import bg from '../../img/banner-eventos.jpg'
 
 export default function BgOrden({ children }) {
 	return (
