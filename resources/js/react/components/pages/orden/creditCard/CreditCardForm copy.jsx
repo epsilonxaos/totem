@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './card.css'
 import { icons, iconsSingle } from './icons'
-import MaskedInput from './MaskedInput'
+import MaskedInput from '../../../MaskedInput'
 import conektaHelper from '../../../../helpers/conektaHelper'
 import axios from 'axios'
 import OrdenContext from '../../../../context/OrdenContext'

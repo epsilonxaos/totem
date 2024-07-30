@@ -1,8 +1,10 @@
-import React from 'react'
-import { numberWithCommas } from '../../../helpers/Utils'
 import { twMerge } from 'tailwind-merge'
 
-export default function CardPase({ className = '', title = '', precio = '', moneda = '', children, subtotal = '' }) {
+import React from 'react'
+
+import { numberWithCommas } from '../../../helpers/Utils'
+
+export default function CardPase({ className = '', title = '', precio = 0, moneda = '', children, subtotal = 0 }) {
 	return (
 		<div className={twMerge('relative bg-white bg-opacity-5 py-2 px-1 backdrop-blur-sm mb-6 rounded', className)}>
 			<div className='flex items-center justify-between border-y border-verdigris px-4 py-2'>

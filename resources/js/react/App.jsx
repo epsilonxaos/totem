@@ -1,23 +1,26 @@
-import React, { useEffect } from 'react'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Home from './components/pages/Home'
-import Membresia from './components/pages/Membresia'
-import { Route, Routes } from 'react-router-dom'
-import Hotel from './components/pages/Hotel'
-import Politicas from './components/pages/Politicas'
-import Restaurante from './components/pages/Resturante'
-import Daypass from './components/pages/Daypass'
-import PublicOrden from './components/pages/PublicOrden'
-import { useInicialStore } from './store/useInicialStore'
-import Resumen from './components/pages/Resumen'
-import ScrollToTop from './components/ScrollToTop'
-import SocioOrden from './components/pages/SocioOrden'
-import RecoveryPassword from './components/pages/RecoveryPassword'
-import { Toaster } from 'react-hot-toast'
 import { AnimatePresence } from 'framer-motion'
+
+import React, { useEffect } from 'react'
+import { Toaster } from 'react-hot-toast'
+import { Route, Routes } from 'react-router-dom'
+import StepForOrderPublic from 'resources/js/react/components/publicPay/StepForOrderPublic'
+
 import Loading from './Loading'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import ScrollToTop from './components/ScrollToTop'
+import Daypass from './components/pages/Daypass'
+import Home from './components/pages/Home'
+import Hotel from './components/pages/Hotel'
+import Membresia from './components/pages/Membresia'
+import Politicas from './components/pages/Politicas'
+// import PublicOrden from './components/pages/PublicOrden'
+import RecoveryPassword from './components/pages/RecoveryPassword'
 import Reservacion from './components/pages/Reservacion'
+import Restaurante from './components/pages/Resturante'
+import Resumen from './components/pages/Resumen'
+import SocioOrden from './components/pages/SocioOrden'
+import { useInicialStore } from './store/useInicialStore'
 
 export default function App() {
 	const [setData, setLoading] = useInicialStore(state => [state.setData, state.setLoading])
@@ -64,8 +67,12 @@ export default function App() {
 					/>
 					<Route
 						path='/daypass/orden'
-						element={<PublicOrden />}
+						element={<StepForOrderPublic />}
 					/>
+					{/* <Route
+						path='/daypass/orden'
+						element={<PublicOrden />}
+					/> */}
 					<Route
 						path='/daypass/socio'
 						element={<SocioOrden />}

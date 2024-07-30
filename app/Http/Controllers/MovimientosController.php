@@ -18,7 +18,7 @@ class MovimientosController extends Controller
 		]);
 
 		$total = $count->sum('cantidad');
-		$socio = false;
+		$socio = null;
 
 		if (isset($request->socio_id)) {
 			$resp = self::verificarReservacionesSocios($request->socio_id, $request->fecha_reservacion);

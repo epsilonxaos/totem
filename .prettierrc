@@ -3,8 +3,22 @@
 	"bracketSameLine": true,
 	"bracketSpacing": true,
 	"embeddedLanguageFormatting": "auto",
+	"importOrder": [
+		"<THIRD_PARTY_MODULES>",
+		"#types",
+		"^(react/(.*)$)|^(react$)|react-*",
+		"/types/|/constants|.json",
+		"/core/",
+		"react-icons",
+		"^[./]"
+	],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true,
 	"insertPragma": false,
 	"jsxSingleQuote": true,
+	"plugins": [
+		"@trivago/prettier-plugin-sort-imports"
+	],
 	"printWidth": 120,
 	"proseWrap": "preserve",
 	"quoteProps": "as-needed",

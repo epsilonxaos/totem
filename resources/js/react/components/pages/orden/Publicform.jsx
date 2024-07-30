@@ -6,7 +6,7 @@ import axios from 'axios'
 import * as Yup from 'yup'
 import OrdenContext from '../../../context/OrdenContext'
 import { DateTime } from 'luxon'
-import MaskedInput from './creditCard/MaskedInput'
+import MaskedInput from '../../MaskedInput'
 import { useInicialStore } from '../../../store/useInicialStore'
 
 export default function PublicForm() {

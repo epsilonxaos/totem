@@ -2,19 +2,18 @@ import React, { useRef } from 'react'
 import { IMaskInput } from 'react-imask'
 
 const MaskedInput = ({
-	onChange = () => {},
-	min,
-	max,
+	onChange = e => {},
+	min = undefined,
+	max = undefined,
 	normalizeZeros = false,
-	focusFn,
+	focusFn = undefined,
 	value = '',
-	dispatch,
-	forInput,
-	mask,
-	placeholder,
-	titulo,
+	dispatch = undefined,
+	forInput = '',
+	mask = '',
+	placeholder = '',
+	titulo = '',
 }) => {
-	// const [val, setValue] = useState(value);
 	const ref = useRef(null)
 	const inputRef = useRef(null)
 
@@ -29,12 +28,12 @@ const MaskedInput = ({
 			)}
 			<IMaskInput
 				{...(focusFn && { onFocus: focusFn })}
-				{...(min && { min: min })}
-				{...(max && { max: max })}
+				{...(min && { min })}
+				{...(max && { max })}
 				normalizeZeros={true}
 				ref={ref}
 				inputRef={inputRef}
-				{...(dispatch && { dispatch: dispatch })}
+				{...(dispatch && { dispatch })}
 				mask={mask}
 				radix='.'
 				value={value}
