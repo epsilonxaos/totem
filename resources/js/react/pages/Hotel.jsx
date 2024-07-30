@@ -118,7 +118,7 @@ export default function Hotel() {
 							description={r.description}
 							amenidades={r.amenidades}
 							link={r.link}
-							changeTheme={idx % 2 !== 0 ? true : false}
+							changeTheme={idx % 2 !== 0}
 						/>
 					))}
 				</div>
@@ -155,6 +155,7 @@ export default function Hotel() {
 			</div>
 
 			<iframe
+				title='Mapa del lugar'
 				src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.0738433602355!2d-90.39863732474777!3d20.869073680740655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85f8c5883a007aad%3A0xb7025e609b3338c!2sT%C3%B3tem%20Beach%20Club!5e0!3m2!1sen!2smx!4v1699058636426!5m2!1sen!2smx'
 				width='100%'
 				height='500'

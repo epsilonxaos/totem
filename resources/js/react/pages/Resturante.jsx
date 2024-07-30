@@ -34,7 +34,8 @@ export default function Restaurante() {
 					<div className=''>
 						<a
 							href={URL + data?.website?.menu ?? 'pdf/menu.pdf'}
-							target='_blank'>
+							target='_blank'
+							rel='noreferrer'>
 							<img
 								src={menu}
 								alt='Menu'
@@ -70,10 +71,10 @@ export default function Restaurante() {
 					id='totem-celetun'
 					title='Reservas'
 					src='https://www.covermanager.com/reservation/module_restaurant/totem-celetun/spanish'
-					frameborder='0'
 					height='550'
 					width='100%'
-					onload='iFrameResize();'></iframe>
+					onLoad='iFrameResize();'
+				/>
 			</div>
 		</main>
 	)

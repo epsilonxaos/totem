@@ -4,22 +4,22 @@ import { Link } from 'react-router-dom'
 import AppContext from 'resources/js/react/context/AppContext'
 
 import banner from '../../../../img/app/banner-03.webp'
-import gal_1 from '../../../../img/app/galeria-day/1.jpg'
-import gal_2 from '../../../../img/app/galeria-day/2.jpg'
-import gal_3 from '../../../../img/app/galeria-day/3.jpg'
-import gal_4 from '../../../../img/app/galeria-day/4.jpg'
-import gal_5 from '../../../../img/app/galeria-day/5.jpg'
-import gal_7 from '../../../../img/app/galeria-day/7.webp'
-import gal_8 from '../../../../img/app/galeria-day/8.webp'
-import gal_9 from '../../../../img/app/galeria-day/9.webp'
-import anemidad_2 from '../../../../img/app/icons/icon-2.png'
-import anemidad_5 from '../../../../img/app/icons/icon-4.png'
-import anemidad_1 from '../../../../img/app/icons/icon-5.png'
-import anemidad_6 from '../../../../img/app/icons/icon-6.png'
-import anemidad_8 from '../../../../img/app/icons/icon-8.png'
-import anemidad_3 from '../../../../img/app/icons/icon-9.png'
-import anemidad_7 from '../../../../img/app/icons/icon-10.png'
-import anemidad_4 from '../../../../img/app/icons/icon-11.png'
+import gal1 from '../../../../img/app/galeria-day/1.jpg'
+import gal2 from '../../../../img/app/galeria-day/2.jpg'
+import gal3 from '../../../../img/app/galeria-day/3.jpg'
+import gal4 from '../../../../img/app/galeria-day/4.jpg'
+import gal5 from '../../../../img/app/galeria-day/5.jpg'
+import gal6 from '../../../../img/app/galeria-day/7.webp'
+import gal7 from '../../../../img/app/galeria-day/8.webp'
+import gal8 from '../../../../img/app/galeria-day/9.webp'
+import anemidad2 from '../../../../img/app/icons/icon-2.png'
+import anemidad5 from '../../../../img/app/icons/icon-4.png'
+import anemidad1 from '../../../../img/app/icons/icon-5.png'
+import anemidad6 from '../../../../img/app/icons/icon-6.png'
+import anemidad8 from '../../../../img/app/icons/icon-8.png'
+import anemidad3 from '../../../../img/app/icons/icon-9.png'
+import anemidad7 from '../../../../img/app/icons/icon-10.png'
+import anemidad4 from '../../../../img/app/icons/icon-11.png'
 import Textos from '../Textos'
 
 export default function Daypass() {
@@ -63,35 +63,35 @@ export default function Daypass() {
 					<div className='w-full md:max-w-[800px] py-10 md:py-24'>
 						<ul className='grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-16'>
 							<Amenidad
-								img={anemidad_1}
+								img={anemidad1}
 								title={'Camastros'}
 							/>
 							<Amenidad
-								img={anemidad_2}
+								img={anemidad2}
 								title={'Albercas'}
 							/>
 							<Amenidad
-								img={anemidad_5}
+								img={anemidad5}
 								title={'Regaderas'}
 							/>
 							<Amenidad
-								img={anemidad_4}
+								img={anemidad4}
 								title={'Paddle boards'}
 							/>
 							<Amenidad
-								img={anemidad_3}
+								img={anemidad3}
 								title={'Kayaks'}
 							/>
 							<Amenidad
-								img={anemidad_7}
+								img={anemidad7}
 								title={'Cambiadores'}
 							/>
 							<Amenidad
-								img={anemidad_6}
+								img={anemidad6}
 								title={'Shampoo y Jabón de baño.'}
 							/>
 							<Amenidad
-								img={anemidad_8}
+								img={anemidad8}
 								title={'Área de Lockers'}
 							/>
 						</ul>
@@ -173,56 +173,56 @@ function Galeria() {
 			<SplideSlide>
 				<img
 					className='object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto'
-					src={gal_1}
+					src={gal1}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto'
-					src={gal_2}
+					src={gal2}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto'
-					src={gal_3}
+					src={gal3}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto'
-					src={gal_4}
+					src={gal4}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto'
-					src={gal_5}
+					src={gal5}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto'
-					src={gal_7}
+					src={gal6}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto'
-					src={gal_8}
+					src={gal7}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
 			<SplideSlide>
 				<img
 					className='object-cover object-center aspect-square h-[450px] md:h-[750px] w-[90%] mx-auto'
-					src={gal_9}
+					src={gal8}
 					alt='Galeria 1'
 				/>
 			</SplideSlide>
