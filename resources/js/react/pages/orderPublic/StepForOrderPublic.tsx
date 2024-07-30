@@ -1,14 +1,14 @@
-import { useEffect, useReducer, useState } from 'react'
+import { useContext, useEffect, useReducer, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 
 import type { ActionPublicOrder, StatePublicOrder } from '../../types/order'
 
+import BgOrden from '../../components/BgOrden'
+import PoliticasTexto from '../../components/PoliticasTexto'
+import AppContext from '../../context/AppContext'
 import OrdenContext from '../../context/OrdenContext'
 import { obtenerFecha } from '../../helpers/Utils'
-import { useInicialStore } from '../../store/useInicialStore'
-import BgOrden from '../BgOrden'
 import OrderForm from './OrderForm'
-import Politicas from './Politicas'
 import UserForm from './UserForm'
 
 const initialState: StatePublicOrder = {
@@ -32,14 +32,14 @@ const reducer = (state: StatePublicOrder, action: ActionPublicOrder): StatePubli
 }
 
 const StepForOrderPublic = () => {
-	const [loadingInitial, getDaypass] = useInicialStore(state => [state.loading, state.getDaypass])
+	const { loading, data: appData } = useContext(AppContext)
 	const [state, dispatch] = useReducer(reducer, initialState)
 	const [daypass, setDaypass] = useState<any>()
 	const [fechasExcluidas, setFechasExcluidas] = useState<any[]>([])
 
 	useEffect(() => {
-		if (!loadingInitial) {
-			let daypass = getDaypass()
+		if (!loading) {
+			let daypass = appData.daypass
 			let fechasEX = daypass.fechas_excluidas
 			let fechasExFormated = fechasEX.map(fecha => new Date(fecha + 'T00:00:00'))
 
@@ -54,7 +54,7 @@ const StepForOrderPublic = () => {
 			setFechasExcluidas(fechasExFormated)
 			setDaypass(daypass)
 		}
-	}, [loadingInitial])
+	}, [loading])
 
 	useEffect(() => {
 		window.scrollTo({
@@ -71,7 +71,7 @@ const StepForOrderPublic = () => {
 	return (
 		<div className='relative'>
 			<OrdenContext.Provider value={{ state, dispatch, daypass, fechasExcluidas }}>
-				{state.pasoActual === 'politicas' && <Politicas />}
+				{state.pasoActual === 'politicas' && <PoliticasTexto />}
 
 				{state.pasoActual === 'reservacion' && (
 					<BgOrden>

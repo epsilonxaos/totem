@@ -8,8 +8,8 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 import type { IDisponibilidadResponse } from '../../types/order'
 
+import MaskedInput from '../../components/MaskedInput'
 import OrdenContext from '../../context/OrdenContext'
-import MaskedInput from '../MaskedInput'
 
 export default function UserForm() {
 	const { state, dispatch, daypass, fechasExcluidas } = useContext(OrdenContext)

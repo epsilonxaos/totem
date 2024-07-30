@@ -1,14 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import AppContext from 'resources/js/react/context/AppContext'
 
 import banner from '../../../../img/app/banner-02.webp'
 import menu from '../../../../img/app/menu.png'
-import menuKids from '../../../../img/app/kids.png'
 import Textos from '../Textos'
-import { useInicialStore } from '../../store/useInicialStore'
 
 const URL = import.meta.env.VITE_APP_URL + '/'
 export default function Restaurante() {
-	const data = useInicialStore(state => state.data)
+	const { data } = useContext(AppContext)
 
 	return (
 		<main className='w-full text-sm font-medium relative z-[1] text-center'>
@@ -35,7 +34,8 @@ export default function Restaurante() {
 					<div className=''>
 						<a
 							href={URL + data?.website?.menu ?? 'pdf/menu.pdf'}
-							target='_blank'>
+							target='_blank'
+							rel='noreferrer'>
 							<img
 								src={menu}
 								alt='Menu'
@@ -44,14 +44,6 @@ export default function Restaurante() {
 							<p className='pt-3'>Menú</p>
 						</a>
 					</div>
-					{/* <div className=''>
-						<img
-							src={menuKids}
-							alt='Menu Kids'
-							className='inline max-w-[270px]'
-						/>
-						<p className='pt-3'>Menú Kids</p>
-					</div> */}
 				</div>
 
 				<p className='font-murecho font-extrabold text-xl text-oxfordblue'>Horario de servicio:</p>

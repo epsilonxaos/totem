@@ -2,7 +2,7 @@ import { twMerge } from 'tailwind-merge'
 
 import logo from '../../../../img/app/logo.svg'
 
-export default function Politicas({ className = '' }) {
+export default function PoliticasTexto({ className = '' }) {
 	return (
 		<div className={twMerge('max-w-4xl mx-auto py-8 px-4 md:py-16 text-sm font-medium', className)}>
 			<img

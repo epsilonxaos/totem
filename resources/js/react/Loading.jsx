@@ -1,10 +1,12 @@
-import React from 'react'
-import { useInicialStore } from './store/useInicialStore'
 import { AnimatePresence, motion } from 'framer-motion'
+
+import React, { useContext } from 'react'
+import AppContext from 'resources/js/react/context/AppContext'
+
 import logo from '../../img/app/logo-footer.svg'
 
 export default function Loading() {
-	const [loading] = useInicialStore(state => [state.loading])
+	const { loading } = useContext(AppContext)
 	const variant = {
 		in: {
 			// opacity: 1,

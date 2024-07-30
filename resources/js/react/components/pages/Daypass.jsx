@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { Splide, SplideSlide } from '@splidejs/react-splide'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import AppContext from 'resources/js/react/context/AppContext'
 
 import banner from '../../../../img/app/banner-03.webp'
-import anemidad_1 from '../../../../img/app/icons/icon-5.png'
-import anemidad_2 from '../../../../img/app/icons/icon-2.png'
-import anemidad_3 from '../../../../img/app/icons/icon-9.png'
-import anemidad_4 from '../../../../img/app/icons/icon-11.png'
-import anemidad_5 from '../../../../img/app/icons/icon-4.png'
-import anemidad_6 from '../../../../img/app/icons/icon-6.png'
-import anemidad_7 from '../../../../img/app/icons/icon-10.png'
-import anemidad_8 from '../../../../img/app/icons/icon-8.png'
 import gal_1 from '../../../../img/app/galeria-day/1.jpg'
 import gal_2 from '../../../../img/app/galeria-day/2.jpg'
 import gal_3 from '../../../../img/app/galeria-day/3.jpg'
@@ -17,13 +12,18 @@ import gal_5 from '../../../../img/app/galeria-day/5.jpg'
 import gal_7 from '../../../../img/app/galeria-day/7.webp'
 import gal_8 from '../../../../img/app/galeria-day/8.webp'
 import gal_9 from '../../../../img/app/galeria-day/9.webp'
-import { Splide, SplideSlide } from '@splidejs/react-splide'
-import { Link } from 'react-router-dom'
+import anemidad_2 from '../../../../img/app/icons/icon-2.png'
+import anemidad_5 from '../../../../img/app/icons/icon-4.png'
+import anemidad_1 from '../../../../img/app/icons/icon-5.png'
+import anemidad_6 from '../../../../img/app/icons/icon-6.png'
+import anemidad_8 from '../../../../img/app/icons/icon-8.png'
+import anemidad_3 from '../../../../img/app/icons/icon-9.png'
+import anemidad_7 from '../../../../img/app/icons/icon-10.png'
+import anemidad_4 from '../../../../img/app/icons/icon-11.png'
 import Textos from '../Textos'
-import { useInicialStore } from '../../store/useInicialStore'
 
 export default function Daypass() {
-	const data = useInicialStore(state => state.data)
+	const { data } = useContext(AppContext)
 	const [precioAdultos, setPrecioAdultos] = useState('--')
 	const [precioNinos, setPrecioNinos] = useState('--')
 

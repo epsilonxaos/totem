@@ -1,14 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import AppContext from 'resources/js/react/context/AppContext'
 
 import banner from '../../../../img/app/banner-02.webp'
 import menu from '../../../../img/app/menu.png'
-import menuKids from '../../../../img/app/kids.png'
 import Textos from '../Textos'
-import { useInicialStore } from '../../store/useInicialStore'
 
 const URL = import.meta.env.VITE_APP_URL + '/'
 export default function Restaurante() {
-	const data = useInicialStore(state => state.data)
+	const { data } = useContext(AppContext)
 
 	return (
 		<main className='w-full text-sm font-medium relative z-[1] text-center'>

@@ -1,43 +1,44 @@
 import { AnimatePresence } from 'framer-motion'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
-import StepForOrderPublic from 'resources/js/react/components/publicPay/StepForOrderPublic'
+import AppContext from 'resources/js/react/context/AppContext'
+// * Pages
+import Daypass from 'resources/js/react/pages/Daypass'
+import Home from 'resources/js/react/pages/Home'
+import Hotel from 'resources/js/react/pages/Hotel'
+import Membresia from 'resources/js/react/pages/Membresia'
+import Politicas from 'resources/js/react/pages/Politicas'
+import Restaurante from 'resources/js/react/pages/Resturante'
+import Resumen from 'resources/js/react/pages/Resumen'
+import StepForOrderPublic from 'resources/js/react/pages/orderPublic/StepForOrderPublic'
 
 import Loading from './Loading'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import ScrollToTop from './components/ScrollToTop'
-import Daypass from './components/pages/Daypass'
-import Home from './components/pages/Home'
-import Hotel from './components/pages/Hotel'
-import Membresia from './components/pages/Membresia'
-import Politicas from './components/pages/Politicas'
-// import PublicOrden from './components/pages/PublicOrden'
 import RecoveryPassword from './components/pages/RecoveryPassword'
 import Reservacion from './components/pages/Reservacion'
-import Restaurante from './components/pages/Resturante'
-import Resumen from './components/pages/Resumen'
 import SocioOrden from './components/pages/SocioOrden'
-import { useInicialStore } from './store/useInicialStore'
 
 export default function App() {
-	const [setData, setLoading] = useInicialStore(state => [state.setData, state.setLoading])
+	const [data, setData] = useState()
+	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		async function fetchData() {
 			const response = await axios.get(import.meta.env.VITE_APP_URL + '/api/inicial')
 			setData(response.data)
-			setTimeout(() => {
-				setLoading(false)
-			}, 1500)
+
+			setTimeout(() => setLoading(false), 1500)
 		}
+
 		fetchData()
 	}, [])
 
 	return (
-		<>
+		<AppContext.Provider value={{ data, loading, setLoading }}>
 			<Loading />
 			<Toaster position='top-right' />
 			<ScrollToTop />
@@ -96,6 +97,6 @@ export default function App() {
 				</Routes>
 			</AnimatePresence>
 			<Footer />
-		</>
+		</AppContext.Provider>
 	)
 }

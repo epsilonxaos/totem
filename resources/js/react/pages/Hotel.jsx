@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import Textos from '../Textos'
-import parse from 'html-react-parser'
-import amenidades from '../../data/amenidades-hotel.json'
-import { useInicialStore } from '../../store/useInicialStore'
-
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/autoplay'
+import { Autoplay } from 'swiper/modules'
 
-import banner from '../../../../img/hotel/banner.webp'
-import playa from '../../../../img/hotel/playa.jpg'
-import logoWhite from '../../../../img/hotel/logo-white.svg'
+import parse from 'html-react-parser'
+import React, { useContext, useEffect, useState } from 'react'
+import AppContext from 'resources/js/react/context/AppContext'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import amenidades from '../../data/amenidades-hotel.json'
+
 import logo from '../../../../img/app/logo.svg'
+import banner from '../../../../img/hotel/banner.webp'
+import logoWhite from '../../../../img/hotel/logo-white.svg'
+import playa from '../../../../img/hotel/playa.jpg'
+import Textos from '../Textos'
 
 const URL = import.meta.env.VITE_APP_URL + '/'
 const GaleriaJSON = [
@@ -36,18 +37,18 @@ const GaleriaJSON = [
 ]
 
 export default function Hotel() {
-	const InicialStore = useInicialStore(({ data }) => ({ data }))
+	const { data } = useContext(AppContext)
 	const [rooms, setRooms] = useState([])
 
 	useEffect(() => {
-		if (InicialStore.data?.habitaciones) {
-			setRooms(InicialStore.data.habitaciones)
+		if (data?.habitaciones) {
+			setRooms(data.habitaciones)
 		}
-	}, [InicialStore.data])
+	}, [data])
 
 	return (
 		<main className='w-full text-sm font-medium relative z-[1] text-center'>
-			{/*//? Banner */}
+			{/* //? Banner */}
 			<div className='w-full relative'>
 				<img
 					src={logoWhite}
@@ -61,7 +62,7 @@ export default function Hotel() {
 				/>
 			</div>
 
-			{/*//? Playa  */}
+			{/* //? Playa  */}
 			<div
 				className='px-4 py-8 md:pt-14 pb-[360px] bg-no-repeat bg-bottom'
 				style={{ backgroundImage: `url(${playa})` }}>

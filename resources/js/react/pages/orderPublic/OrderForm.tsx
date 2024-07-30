@@ -3,20 +3,21 @@ import { HiMinusSm, HiPlusSm } from 'react-icons/hi'
 
 import type { Daypass } from '../../types/main'
 
+import CardPase from '../../components/pages/orden/CardPase'
+import StripeForm from '../../components/pages/orden/creditCard/StripeForm'
+import AppContext from '../../context/AppContext'
 import OrdenContext from '../../context/OrdenContext'
 import { numberWithCommas } from '../../helpers/Utils'
-import { useInicialStore } from '../../store/useInicialStore'
-import CardPase from '../pages/orden/CardPase'
-import StripeForm from '../pages/orden/creditCard/StripeForm'
 
 export default function OrderForm() {
 	const { state, dispatch } = useContext(OrdenContext)
-	const [loading, getDaypass] = useInicialStore(state => [state.loading, state.getDaypass])
+	const { loading, data: appData } = useContext(AppContext)
+
 	const [data, setData] = useState<Daypass>()
 	const [maximo, setMaximo] = useState<boolean>(false)
 
 	useEffect(() => {
-		if (!loading) setData(getDaypass())
+		if (!loading) setData(appData.daypass)
 	}, [loading])
 
 	function subtotal(count: number, price: number): number {
