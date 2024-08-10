@@ -16,7 +16,7 @@ export default function OrderForm() {
 	const state = useMemo<StatePublicOrder>(
 		() => (appState ? (appState as StatePublicOrder) : ({} as StatePublicOrder)),
 		[appState]
-	) // TODO: No se si funciona
+	)
 	const [data, setData] = useState<Daypass>()
 	const [maximo, setMaximo] = useState<boolean>(false)
 
@@ -48,6 +48,10 @@ export default function OrderForm() {
 
 		dispatch({ total: total() })
 	}, [state.pasoActual, state.adultos, state.ninos, state.ninos_menores])
+
+	useEffect(() => {
+		console.log({ state })
+	}, [state])
 
 	return (
 		<div className='max-w-design mx-auto px-4 py-12 md:py-32'>
@@ -186,10 +190,31 @@ export default function OrderForm() {
 								</tbody>
 							</table>
 						</div>
+
+						{state.pasoActual !== 'pago' && (
+							<div className='flex items-center justify-between gap-2'>
+								<button
+									type='button'
+									onClick={() => dispatch({ pasoActual: 'reservacion' })}
+									className='px-8 py-2 mb-3 mr-2 inline text-sm mt-2 max-w-max bg-white text-black rounded-md mx-auto'>
+									Regresar
+								</button>
+								<button
+									type='button'
+									onClick={() => dispatch({ pasoActual: 'pago' })}
+									className={`px-8 py-2 mb-3 block text-sm mt-2 max-w-max bg-verdigris text-black rounded-md  ${
+										state.adultos > 0 ? 'cursor-pointer' : 'opacity-60 pointer-events-none'
+									}`}>
+									Proceder a pagar
+								</button>
+							</div>
+						)}
 					</div>
-					<div className='col-span-1 text-right pt-10'>
-						<StripeForm />
-					</div>
+					{state.pasoActual === 'pago' && (
+						<div className='col-span-1 text-right pt-10'>
+							<StripeForm />
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

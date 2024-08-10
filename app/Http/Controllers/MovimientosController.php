@@ -6,6 +6,7 @@ use App\Models\Daypass;
 use App\Models\Movimientos;
 use App\Models\Reservacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MovimientosController extends Controller
 {
@@ -17,13 +18,19 @@ class MovimientosController extends Controller
 			['fecha_reservacion', '=', $request->fecha_reservacion]
 		]);
 
+		Log::debug($count->get()->toArray());
+
 		$total = $count->sum('cantidad');
+
+		Log::debug($total);
 		$socio = null;
 
 		if (isset($request->socio_id)) {
 			$resp = self::verificarReservacionesSocios($request->socio_id, $request->fecha_reservacion);
-			$total = self::verificarSocioReservacionesMes($request->socio_id, $request->fecha_reservacion);
-			$socio = ['diaReservadoPrev' => $resp, 'reservacionesMes' => $total];
+			$reservacionesMes = self::verificarSocioReservacionesMes($request->socio_id, $request->fecha_reservacion);
+			$socio = ['diaReservadoPrev' => $resp, 'reservacionesMes' => $reservacionesMes];
+
+			Log::debug(['diaReservadoPrev' => $resp, 'reservacionesMes' => $reservacionesMes]);
 		}
 
 		if ($total >= $daypass->limite_total) {

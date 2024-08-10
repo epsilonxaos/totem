@@ -1,4 +1,4 @@
-export type TStep = 'politicas' | 'reservacion' | 'orden' | 'login'
+export type TStep = 'politicas' | 'reservacion' | 'orden' | 'login' | 'pago'
 
 export interface StatePublicOrder {
 	payLoading: boolean

@@ -36,3 +36,6 @@ Route::post('/socio/recuperarPassword', [AppController::class, 'recuperarPasswor
 Route::post('/socio/updatePassword', [AppController::class, 'updatePasswordSocio']);
 Route::post('/socio/reservacion', [CompraController::class, 'compraSocios']);
 Route::post('/admin/reservacion', [CompraController::class, 'compraAdmin']);
+Route::post('/pago/iniciar', [CompraController::class, 'makePayment']);
+Route::post('/pago/actualizar', [CompraController::class, 'updatePayment']);
+Route::post('/pago/actualizar/order', [CompraController::class, 'updateOrden']);

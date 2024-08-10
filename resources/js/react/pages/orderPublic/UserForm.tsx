@@ -182,8 +182,11 @@ export default function UserForm() {
 
 					<div className='text-right'>
 						<button
+							disabled={!(state.nombre && state.telefono && state.correo)}
 							type='submit'
-							className='px-8 py-2 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto'>
+							className={`px-8 py-2 mb-3 inline text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto ${
+								state.nombre && state.telefono && state.correo ? 'cursor-pointer' : 'opacity-60 pointer-events-none'
+							}`}>
 							Reservar
 						</button>
 					</div>

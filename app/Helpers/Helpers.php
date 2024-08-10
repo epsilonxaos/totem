@@ -95,7 +95,7 @@ class Helpers
 				break;
 
 			default:
-				# code...
+				return ["estado" => 'Sin clasificar', "color" => "black"];
 				break;
 		}
 	}

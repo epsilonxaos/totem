@@ -1,11 +1,15 @@
 // CheckoutForm.js
-import React, { useState } from 'react'
-import { CardElement, useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js'
 import axios from 'axios'
 
-const CheckoutForm = () => {
+import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
+import React, { useContext, useState } from 'react'
+
+import OrderContext from '../../../context/OrderContext'
+
+const CheckoutForm = ({ id, orderId }) => {
 	const stripe = useStripe()
 	const elements = useElements()
+	const { state, dispatch } = useContext(OrderContext)
 
 	const [message, setMessage] = useState(null)
 	const [isProcessing, setIsProcessing] = useState(false)
@@ -18,6 +22,13 @@ const CheckoutForm = () => {
 			// Make sure to disable form submission until Stripe.js has loaded.
 			return
 		}
+
+		const responseUpdate = await axios.post(APP_ENV.APP_URL + '/api/pago/actualizar', {
+			total: state.total,
+			id,
+		})
+
+		if (!responseUpdate.data) return
 
 		setIsProcessing(true)
 
@@ -34,8 +45,30 @@ const CheckoutForm = () => {
 			(response.error && response.error.type === 'validation_error')
 		) {
 			setMessage(response.error.message)
+
+			const dataOrderSend = {
+				order_id: orderId,
+				status: 'fail',
+			}
+
+			await axios.post(APP_ENV.APP_URL + '/api/pago/actualizar/order', dataOrderSend)
 		} else if (response.paymentIntent.id) {
-			//display success message or redirect user
+			let dataOrderSend = {
+				order_id: orderId,
+				payment_id: response.paymentIntent.id,
+				status: 'paid',
+			}
+			dataOrderSend = { ...dataOrderSend, ...state }
+
+			try {
+				const responseOrder = await axios.post(APP_ENV.APP_URL + '/api/pago/actualizar/order', dataOrderSend)
+				console.log({ responseOrder })
+				if (responseOrder.data.orden_folio) {
+					dispatch({ redirectTo: '/resumen/' + responseOrder.data.orden_folio })
+				}
+			} catch (error) {
+				setIsProcessing(false)
+			}
 		}
 
 		setIsProcessing(false)
@@ -44,12 +77,14 @@ const CheckoutForm = () => {
 	return (
 		<form
 			id='payment-form'
-			onSubmit={handleSubmit}>
+			onSubmit={handleSubmit}
+			className='bg-white rounded-md p-5 !font-inter'>
 			<PaymentElement id='payment-element' />
 			<button
+				className='px-8 py-2 mb-3 block text-sm mt-2 max-w-max bg-verdigris text-black rounded-md mx-auto'
 				disabled={isProcessing || !stripe || !elements}
 				id='submit'>
-				<span id='button-text'>{isProcessing ? 'Processing ... ' : 'Pay now'}</span>
+				<span id='button-text'>{isProcessing ? 'Procesando ... ' : 'Pagar'}</span>
 			</button>
 			{/* Show any error or success messages */}
 			{message && <div id='payment-message'>{message}</div>}

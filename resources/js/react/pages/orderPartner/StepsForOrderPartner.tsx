@@ -89,7 +89,7 @@ const StepsForOrderPartner = () => {
 						<PartnerForm />
 					</BgOrden>
 				)}
-				{state.auth && state.pasoActual === 'orden' && (
+				{(state.pasoActual === 'orden' || state.pasoActual === 'pago') && (
 					<BgOrden>
 						<PartnerOrder />
 					</BgOrden>
