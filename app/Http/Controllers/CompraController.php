@@ -451,6 +451,11 @@ class CompraController extends Controller
 			$amoutUpdate = $request->total * 100;
 
 			if ($paymentInCurso->amount !== $amoutUpdate) {
+				$orden = Orden::find($request->order_id);
+				// dd($orden);
+				$orden->total = $request->total;
+				$orden->save();
+
 				PaymentIntent::update(
 					$request->id,
 					[

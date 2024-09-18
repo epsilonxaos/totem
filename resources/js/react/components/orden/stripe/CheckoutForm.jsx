@@ -26,6 +26,7 @@ const CheckoutForm = ({ id, orderId }) => {
 		const responseUpdate = await axios.post(APP_ENV.APP_URL + '/api/pago/actualizar', {
 			total: state.total,
 			id,
+			order_id: orderId,
 		})
 
 		if (!responseUpdate.data) return
