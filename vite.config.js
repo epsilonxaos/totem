@@ -7,7 +7,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ command, mode }) => {
 	const env = loadEnv(mode, process.cwd(), '')
 	const host = env.SERVER_HOST
-	const isProduction = mode === 'local'
+	const isProduction = mode === 'development'
 
 	// console.log(env)
 	console.log(`Mode: ${mode}`)
