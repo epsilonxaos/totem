@@ -7,7 +7,12 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ command, mode }) => {
 	const env = loadEnv(mode, process.cwd(), '')
 	const host = env.SERVER_HOST
-	const isProduction = mode === 'production'
+	const isProduction = mode === 'local'
+
+	// console.log(env)
+	console.log(`Mode: ${mode}`)
+	console.log(`isProduction: ${isProduction}`)
+	console.log(`Server Host: ${host}`)
 
 	return {
 		define: {
@@ -16,8 +21,7 @@ export default defineConfig(({ command, mode }) => {
 			},
 		},
 		server: isProduction
-			? false
-			: {
+			? {
 					host,
 					port: 5174,
 					hmr: { host },
@@ -25,7 +29,8 @@ export default defineConfig(({ command, mode }) => {
 						key: readFileSync(env.SERVER_HTTPS_KEY),
 						cert: readFileSync(env.SERVER_HTTPS_CERT),
 					},
-			  },
+			  }
+			: false,
 		plugins: [
 			laravel({
 				input: [

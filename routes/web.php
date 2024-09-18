@@ -23,7 +23,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->where('path', '.*');
+Route::get('/', function () {
+	return view('mantenimiento');
+});
+Route::view('/home', 'welcome')->where('path', '.*');
 Route::view('/restaurante', 'welcome')->where('path', '.*');
 Route::view('/hotel', 'welcome')->where('path', '.*');
 Route::view('/reservacion', 'welcome')->where('path', '.*');
