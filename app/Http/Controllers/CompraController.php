@@ -19,6 +19,7 @@ use Conekta\ProcessingError;
 use Conekta\ResourceNotFoundError;
 use ErrorException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Stripe\Customer as StripeCustomer;
@@ -426,6 +427,8 @@ class CompraController extends Controller
 				'metadata' => ['order_id' => $orden->id]
 			]);
 
+			Log::debug($paymentIntent);
+
 			$output = [
 				'clientSecret' => $paymentIntent->client_secret,
 				'id' => $paymentIntent->id,
@@ -446,6 +449,7 @@ class CompraController extends Controller
 	{
 		try {
 			Stripe::setApiKey(config('app.stripeSecret'));
+			Stripe::setAccountId()
 
 			$paymentInCurso = PaymentIntent::retrieve($request->id, []);
 			$amoutUpdate = $request->total * 100;

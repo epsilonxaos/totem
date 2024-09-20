@@ -46,7 +46,7 @@ export default function OrderForm() {
 			personas == data.limite_compra_personas ? setMaximo(true) : setMaximo(false)
 		}
 
-		dispatch({ total: total() })
+		dispatch({ total: total(), personasTotales: personas })
 	}, [state.pasoActual, state.adultos, state.ninos, state.ninos_menores])
 
 	useEffect(() => {
