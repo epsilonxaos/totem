@@ -344,7 +344,27 @@ const PartnerOrder = () => {
 						</div>
 					)}
 
-					{state.pasoActual !== 'pago' && state?.addExtras && (
+					{state.addExtras && (
+						<div className='flex items-center justify-between gap-2'>
+							<button
+								type='button'
+								onClick={() => dispatch({ pasoActual: 'reservacion' })}
+								className='px-8 py-2 mb-3 mr-2 inline text-sm mt-2 max-w-max bg-white text-black rounded-md mx-auto'>
+								Regresar
+							</button>
+							<button
+								type='button'
+								{...(state.pasoActual !== 'pago' && { onClick: () => dispatch({ pasoActual: 'pago' }) })}
+								{...((state.total <= 0 || state.pasoActual == 'pago') && { disabled: true })}
+								className={`px-8 py-2 mb-3 block text-sm mt-2 max-w-max bg-verdigris text-black rounded-md disabled:opacity-30 disabled:pointer-events-none ${
+									state.adultos > 0 ? 'cursor-pointer' : 'opacity-60 pointer-events-none'
+								}`}>
+								Proceder a pagar
+							</button>
+						</div>
+					)}
+
+					{/* {state.pasoActual !== 'pago' && state?.addExtras && (
 						<div className='flex items-center justify-between gap-2'>
 							<button
 								type='button'
@@ -361,7 +381,7 @@ const PartnerOrder = () => {
 								Proceder a pagar
 							</button>
 						</div>
-					)}
+					)} */}
 
 					{state.pasoActual === 'pago' && (
 						<div className='col-span-1 text-right pt-10'>

@@ -427,7 +427,7 @@ class CompraController extends Controller
 				'metadata' => ['order_id' => $orden->id]
 			]);
 
-			Log::debug($paymentIntent);
+			// Log::debug($paymentIntent);
 
 			$output = [
 				'clientSecret' => $paymentIntent->client_secret,
@@ -449,7 +449,6 @@ class CompraController extends Controller
 	{
 		try {
 			Stripe::setApiKey(config('app.stripeSecret'));
-			Stripe::setAccountId()
 
 			$paymentInCurso = PaymentIntent::retrieve($request->id, []);
 			$amoutUpdate = $request->total * 100;

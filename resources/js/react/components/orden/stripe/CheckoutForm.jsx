@@ -69,6 +69,7 @@ const CheckoutForm = ({ id, orderId }) => {
 			(response.error && response.error.type === 'validation_error')
 		) {
 			setMessage(response.error.message)
+			setIsProcessing(false)
 
 			const dataOrderSend = {
 				order_id: orderId,

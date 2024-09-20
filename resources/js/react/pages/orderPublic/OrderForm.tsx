@@ -21,7 +21,11 @@ export default function OrderForm() {
 	const [maximo, setMaximo] = useState<boolean>(false)
 
 	useEffect(() => {
-		if (!loading) setData(appData.daypass)
+		console.log(loading)
+		if (!loading) {
+			setData(appData.daypass)
+			console.log('asd')
+		}
 	}, [loading])
 
 	function subtotal(count: number, price: number): number {
@@ -46,12 +50,10 @@ export default function OrderForm() {
 			personas == data.limite_compra_personas ? setMaximo(true) : setMaximo(false)
 		}
 
+		console.log
+		console.log({ total: total(), personasTotales: personas })
 		dispatch({ total: total(), personasTotales: personas })
-	}, [state.pasoActual, state.adultos, state.ninos, state.ninos_menores])
-
-	useEffect(() => {
-		console.log({ state })
-	}, [state])
+	}, [state.pasoActual, state.adultos, state.ninos, state.ninos_menores, data])
 
 	return (
 		<div className='max-w-design mx-auto px-4 py-12 md:py-32'>
@@ -191,24 +193,23 @@ export default function OrderForm() {
 							</table>
 						</div>
 
-						{state.pasoActual !== 'pago' && (
-							<div className='flex items-center justify-between gap-2'>
-								<button
-									type='button'
-									onClick={() => dispatch({ pasoActual: 'reservacion' })}
-									className='px-8 py-2 mb-3 mr-2 inline text-sm mt-2 max-w-max bg-white text-black rounded-md mx-auto'>
-									Regresar
-								</button>
-								<button
-									type='button'
-									onClick={() => dispatch({ pasoActual: 'pago' })}
-									className={`px-8 py-2 mb-3 block text-sm mt-2 max-w-max bg-verdigris text-black rounded-md  ${
-										state.adultos > 0 ? 'cursor-pointer' : 'opacity-60 pointer-events-none'
-									}`}>
-									Proceder a pagar
-								</button>
-							</div>
-						)}
+						<div className='flex items-center justify-between gap-2'>
+							<button
+								type='button'
+								onClick={() => dispatch({ pasoActual: 'reservacion' })}
+								className='px-8 py-2 mb-3 mr-2 inline text-sm mt-2 max-w-max bg-white text-black rounded-md mx-auto'>
+								Regresar
+							</button>
+							<button
+								type='button'
+								{...(state.pasoActual !== 'pago' && { onClick: () => dispatch({ pasoActual: 'pago' }) })}
+								{...(state.pasoActual == 'pago' && { disabled: true })}
+								className={`px-8 py-2 mb-3 block text-sm mt-2 max-w-max bg-verdigris text-black rounded-md disabled:opacity-30 disabled:pointer-events-none ${
+									state.adultos > 0 ? 'cursor-pointer' : 'opacity-60 pointer-events-none'
+								}`}>
+								Proceder a pagar
+							</button>
+						</div>
 					</div>
 					{state.pasoActual === 'pago' && (
 						<div className='col-span-1 text-right pt-10'>
