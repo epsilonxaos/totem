@@ -90,10 +90,10 @@ export default function Daypass() {
 								img={anemidad6}
 								title={'Shampoo y Jabón de baño.'}
 							/>
-							<Amenidad
+							{/* <Amenidad
 								img={anemidad8}
 								title={'Área de Lockers'}
-							/>
+							/> */}
 						</ul>
 					</div>
 					<div className='w-full md:max-w-[800px] flex max-sm:flex-col items-center justify-between gap-4 pb-14 md:pb-24'>
