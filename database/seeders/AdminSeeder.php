@@ -20,8 +20,8 @@ class AdminSeeder extends Seeder
 		DB::table('admins')->truncate();
 
 		$admin = Admin::create([
-			"name" => "Jesus Glez",
-			"email" => "jesus@soporte.com",
+			"name" => "Soporte",
+			"email" => "soporte@dev.com",
 			'email_verified_at' => now(),
 			'password' => Hash::make('password'),
 			'remember_token' => Str::random(10)

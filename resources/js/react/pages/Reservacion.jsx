@@ -5,7 +5,7 @@ export default function Reservacion() {
 				src='https://rbe.zaviaerp.com/?hotel=totembeach'
 				className='border-0 w-full'
 				height={'100%'}
-				frameborder='0'></iframe>
+			/>
 		</div>
 	)
 }

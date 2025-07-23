@@ -14,7 +14,10 @@ import { numberWithCommas } from '../../helpers/Utils'
 
 const PartnerOrder = () => {
 	const { state: appState, dispatch } = useContext(OrderContext)
-	const state = useMemo<StatePartnerOrder | null>(() => (appState ? (appState as StatePartnerOrder) : null), [appState])
+	const state = useMemo<StatePartnerOrder>(
+		() => (appState ? (appState as StatePartnerOrder) : ({} as StatePartnerOrder)),
+		[appState]
+	)
 	const { loading, data: appData } = useContext(AppContext)
 	const [data, setData] = useState<Daypass>()
 	const [errorMessage, setErrorMessage] = useState<string>()
@@ -323,7 +326,7 @@ const PartnerOrder = () => {
 					</div>
 					{errorMessage && <p className='bg-red-500 md:ml-8 text-white p-3'>{errorMessage}</p>}
 
-					{!state?.addExtras ? (
+					{!state?.addExtras && (
 						<div className='col-span-1 pt-10 flex items-center justify-end'>
 							<button
 								type='button'
@@ -339,7 +342,48 @@ const PartnerOrder = () => {
 								</button>
 							</form>
 						</div>
-					) : (
+					)}
+
+					{state.addExtras && (
+						<div className='flex items-center justify-between gap-2'>
+							<button
+								type='button'
+								onClick={() => dispatch({ pasoActual: 'reservacion' })}
+								className='px-8 py-2 mb-3 mr-2 inline text-sm mt-2 max-w-max bg-white text-black rounded-md mx-auto'>
+								Regresar
+							</button>
+							<button
+								type='button'
+								{...(state.pasoActual !== 'pago' && { onClick: () => dispatch({ pasoActual: 'pago' }) })}
+								{...((state.total <= 0 || state.pasoActual == 'pago') && { disabled: true })}
+								className={`px-8 py-2 mb-3 block text-sm mt-2 max-w-max bg-verdigris text-black rounded-md disabled:opacity-30 disabled:pointer-events-none ${
+									state.adultos > 0 ? 'cursor-pointer' : 'opacity-60 pointer-events-none'
+								}`}>
+								Proceder a pagar
+							</button>
+						</div>
+					)}
+
+					{/* {state.pasoActual !== 'pago' && state?.addExtras && (
+						<div className='flex items-center justify-between gap-2'>
+							<button
+								type='button'
+								onClick={() => dispatch({ pasoActual: 'reservacion' })}
+								className='px-8 py-2 mb-3 mr-2 inline text-sm mt-2 max-w-max bg-white text-black rounded-md mx-auto'>
+								Regresar
+							</button>
+							<button
+								type='button'
+								onClick={() => dispatch({ pasoActual: 'pago' })}
+								className={`px-8 py-2 mb-3 block text-sm mt-2 max-w-max bg-verdigris text-black rounded-md  ${
+									state.pay_adultos > 0 ? 'cursor-pointer' : 'opacity-60 pointer-events-none'
+								}`}>
+								Proceder a pagar
+							</button>
+						</div>
+					)} */}
+
+					{state.pasoActual === 'pago' && (
 						<div className='col-span-1 text-right pt-10'>
 							<StripeForm />
 						</div>

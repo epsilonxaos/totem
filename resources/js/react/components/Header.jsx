@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import '../../../css/custom/header.css'
-import { Link, NavLink, useLocation } from 'react-router-dom'
-import { BsCalendarWeek } from 'react-icons/bs'
-import { FaTimes } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 
-import logo from '../../../img/app/logo.svg'
-import { obtenerFecha } from './helpers/helpers'
-import { AnimatePresence, motion } from 'framer-motion'
-import { twMerge } from 'tailwind-merge'
-import ReactDatePicker from 'react-datepicker'
-import es from 'date-fns/locale/es'
+import React, { useEffect, useState } from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
+import { Link, NavLink, useLocation } from 'react-router-dom'
+
+import '../../../css/custom/header.css'
+import logo from '../img/logo.svg'
 import ButtonCloudbed from './ButtonCloudbed'
+import { obtenerFecha } from './helpers/helpers'
+
 const activeClass = `relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:right-0 after:mx-auto after:w-4 rounded after:h-[2px] after:bg-verdigris`
 
 function MenuList({ updateMenu, location }) {
@@ -89,122 +86,63 @@ export default function Header() {
 	const location = useLocation()
 
 	return (
-		<>
-			<header className='fixed w-full z-30 top-0 left-0 bg-white border-b-[9px] border-b-delftblue'>
-				<div className='max-w-6xl mx-auto relative z-50 bg-white  py-1 px-6 '>
-					<div className='grid grid-cols-2 md:flex items-center md:justify-between'>
-						<div className='col-span-1'>
-							<Link to={'/'}>
-								<img
-									src={logo}
-									alt='Tótem Beach Club'
-									className='w-24 h-16 object-cover'
-								/>
-							</Link>
-						</div>
-						<div className='col-span-1 flex justify-end md:hidden'>
-							<div
-								className={`menu menu-3 ${open ? 'active' : ''}`}
-								onClick={() => {
-									setOpen(!open)
-								}}>
-								<span></span>
-							</div>
-						</div>
-						<div className='hidden md:block md:col-span-2'>
-							<MenuList
-								location={location}
-								updateMenu={val => setOpen(val)}
+		<header className='fixed w-full z-30 top-0 left-0 bg-white border-b-[9px] border-b-delftblue'>
+			<div className='max-w-6xl mx-auto relative z-50 bg-white  py-1 px-6 '>
+				<div className='grid grid-cols-2 md:flex items-center md:justify-between'>
+					<div className='col-span-1'>
+						<Link to={'/'}>
+							<img
+								src={logo}
+								alt='Tótem Beach Club'
+								className='w-24 h-16 object-cover'
 							/>
+						</Link>
+					</div>
+					<div className='col-span-1 flex justify-end md:hidden'>
+						<div
+							className={`menu menu-3 ${open ? 'active' : ''}`}
+							onClick={() => {
+								setOpen(!open)
+							}}>
+							<span></span>
 						</div>
 					</div>
+					<div className='hidden md:block md:col-span-2'>
+						<MenuList
+							location={location}
+							updateMenu={val => setOpen(val)}
+						/>
+					</div>
 				</div>
-				{location.pathname === '/hotel' && <FormReservaciones />}
-				<MenuMovil
-					open={open}
-					location={location}
-					updateMenu={val => setOpen(val)}
-				/>
-			</header>
-		</>
+			</div>
+			{location.pathname === '/hotel' && <FormReservaciones />}
+			<MenuMovil
+				open={open}
+				location={location}
+				updateMenu={val => setOpen(val)}
+			/>
+		</header>
 	)
 }
 
 const FormReservaciones = () => {
-	const [currentDate, setCurrentDate] = useState(false)
-	const [checkIn, setCheckIn] = useState(false)
-	const [checkOut, setCheckOut] = useState(false)
-	const [open, setOpen] = useState(true)
-
-	useEffect(() => {
-		const currentTime = obtenerFecha()
-		setCurrentDate(currentTime.dateCurrent)
-		setCheckIn({ date: currentTime.dateCurrent, dateFormat: currentTime.dateCurrentFormat })
-		setCheckOut({ date: currentTime.dateCurrent2, dateFormat: currentTime.dateCurrentFormat2 })
-	}, [])
-
-	if (!checkIn && !checkOut) return
-
-	const v = {
-		open: {
-			height: 'auto',
-			when: 'afterChildren',
-		},
-		show: {
-			overflow: 'initial',
-			transition: {
-				when: 'beforeChildren',
-				delay: 0.3,
-			},
-		},
-		close: {
-			height: '0px',
-			overflow: 'hidden',
-		},
-	}
-
 	return (
-		<AnimatePresence>
-			<div className='absolute left-0 sm:left-1/2 sm:-translate-x-1/2 top-[80px] z-[-1] w-full sm:max-w-max'>
-				<motion.div
-					initial={v.close}
-					animate={open ? [v.open, v.show] : v.close}
-					exit={open ? [v.open, v.show] : v.close}
-					transition={{ duration: 0.3 }}
-					className='relative px-2 bg-delftblue shadow rounded-b z-[1]'>
-					<form
-						action='https://hotels.cloudbeds.com/reservation/KS15cS/'
-						onSubmit={ev => {
-							// ev.preventDefault()
-							// setTimeout(() => {
-							// 	ev.target.submit()
-							// }, 14000)
-						}}
-						className=''
-						method='post'>
-						<input
-							type='hidden'
-							name='date_format'
-							defaultValue='d/m/Y'
-						/>
-						<input
-							type='text'
-							name='widget_date'
-							value={checkIn.dateFormat}
-							className='absolute opacity-0 -z-10'
-						/>
-						<input
-							type='text'
-							name='widget_date_to'
-							value={checkOut.dateFormat}
-							className='absolute opacity-0 -z-10'
-						/>
-						<div className='flex justify-center flex-wrap py-3 pt-2 px-4'>
-							<ButtonCloudbed />
-						</div>
-					</form>
-				</motion.div>
-			</div>
-		</AnimatePresence>
+		<div className='absolute left-0 sm:left-1/2 sm:-translate-x-1/2 top-[80px] z-[-1] w-full sm:max-w-max'>
+			<motion.div
+				initial={{
+					height: '0px',
+					overflow: 'hidden',
+				}}
+				animate={{
+					height: 'auto',
+					when: 'afterChildren',
+				}}
+				transition={{ duration: 0.3 }}
+				className='relative px-2 bg-delftblue shadow rounded-b z-[1]'>
+				<div className='flex justify-center flex-wrap py-3 pt-2 px-4'>
+					<ButtonCloudbed />
+				</div>
+			</motion.div>
+		</div>
 	)
 }

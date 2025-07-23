@@ -21,7 +21,7 @@
 		"removeComments": true,
 		"resolveJsonModule": true,
 		"sourceMap": true,
-		"sourceRoot": "/resources",
+		// "sourceRoot": "/resources",
 		"strictNullChecks": true,
 		"target": "ES2022",
 		"typeRoots": ["node_modules/@types", "/resources/js/react/types", "./node_modules"],

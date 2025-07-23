@@ -1,11 +1,12 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { Link, useParams } from 'react-router-dom'
 
 export default function RecoveryPassword() {
-	let { correo, token } = useParams()
+	const { correo, token } = useParams()
 	const [messages, setMessages] = useState(null)
 	const [isSuccess, setIsSuccess] = useState(false)
 	const {
@@ -20,11 +21,11 @@ export default function RecoveryPassword() {
 		axios
 			.post(import.meta.env.VITE_APP_URL + '/api/socio/updatePassword', {
 				socio: correo,
-				token: token,
+				token,
 				password: data.password,
 			})
 			.then(function (response) {
-				let data = response.data
+				const data = response.data
 				toast.success('¡Contraseña actuailzada!')
 				setMessages({ text: data.message, success: true })
 				setIsSuccess(true)

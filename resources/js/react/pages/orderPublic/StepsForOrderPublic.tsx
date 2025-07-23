@@ -78,7 +78,7 @@ const StepForOrderPublic = () => {
 						<UserForm />
 					</BgOrden>
 				)}
-				{state.pasoActual === 'orden' && (
+				{(state.pasoActual === 'orden' || state.pasoActual === 'pago') && (
 					<BgOrden>
 						<OrderForm />
 					</BgOrden>

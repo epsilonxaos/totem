@@ -3,19 +3,18 @@ import 'swiper/css/autoplay'
 import { Autoplay } from 'swiper/modules'
 
 import parse from 'html-react-parser'
-import React, { useContext, useEffect, useState } from 'react'
-import AppContext from 'resources/js/react/context/AppContext'
+import { useContext, useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import amenidades from '../../data/amenidades-hotel.json'
+import amenidades from '../data/amenidades-hotel.json'
 
-import logo from '../../../../img/app/logo.svg'
-import banner from '../../../../img/hotel/banner.webp'
-import logoWhite from '../../../../img/hotel/logo-white.svg'
-import playa from '../../../../img/hotel/playa.jpg'
-import Textos from '../Textos'
+import Textos from '../components/Textos'
+import AppContext from '../context/AppContext'
+import banner from '../img/hotel/banner.webp'
+import logoWhite from '../img/hotel/logo-white.svg'
+import playa from '../img/hotel/playa.jpg'
+import logo from '../img/logo.svg'
 
-const URL = import.meta.env.VITE_APP_URL + '/'
 const GaleriaJSON = [
 	'img/hotel/galeria/1.jpg',
 	'img/hotel/galeria/2.jpg',
@@ -199,7 +198,7 @@ function Habitacion({ gallery = [], title = '', description = '', amenidades = [
 					{gallery.map(g => (
 						<SwiperSlide key={'galeria-' + g.id}>
 							<img
-								src={import.meta.env.VITE_APP_URL + '/' + g.cover}
+								src={APP_ENV.APP_URL + '/' + g.cover}
 								alt='Imagen de galeria'
 								className='h-[400px] md:h-[400px] object-contain w-full'
 							/>
@@ -215,7 +214,7 @@ function Habitacion({ gallery = [], title = '', description = '', amenidades = [
 						{amenidades.map(a => (
 							<img
 								key={'amenidad-' + a.id}
-								src={URL + a.cover}
+								src={APP_ENV.APP_URL + a.cover}
 								alt=''
 								className='max-w-[40px] h-[30px] mb-3'
 							/>

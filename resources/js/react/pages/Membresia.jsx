@@ -1,8 +1,7 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
-import bg from '../../../../img/app/membresia-bg.webp'
-import Textos from '../Textos'
+import Textos from '../components/Textos'
+import bg from '../img/membresia-bg.webp'
 
 export default function Membresia() {
 	return (
@@ -71,7 +70,8 @@ export default function Membresia() {
 					<a
 						href='https://wa.me/+529993264940?text=%C2%A1Hola%21%20Me%20interesa%20conocer%20informaci%C3%B3n%20sobre%20las%20membres%C3%ADas%20de%20T%C3%B3tem%20Beach%20Club.'
 						target='_blank'
-						className='px-8 py-3 inline text-sm mt-2 max-w-max bg-oxfordblue text-white rounded-md mx-auto'>
+						className='px-8 py-3 inline text-sm mt-2 max-w-max bg-oxfordblue text-white rounded-md mx-auto'
+						rel='noreferrer'>
 						¡Quiero mi membresía!
 					</a>
 				</div>
